@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MovementLimiter : MonoBehaviour
 {
+    
     public static MovementLimiter instance;
 
     [SerializeField] bool _initialCharacterCanMove = true;
-    public bool CharacterCanMove;
+    public bool characterCanMove;
 
     private void OnEnable()
     {
@@ -16,6 +17,11 @@ public class MovementLimiter : MonoBehaviour
 
     private void Start()
     {
-        CharacterCanMove = _initialCharacterCanMove;
+        characterCanMove = _initialCharacterCanMove;
+    }
+
+    public void OnDeath()
+    {
+        characterCanMove = false;
     }
 }

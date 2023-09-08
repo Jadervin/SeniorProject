@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         directionX = gameInput.GetXMovement();
 
         //Used to stop movement when the character is playing her death animation
-        if (!MovementLimiter.instance.CharacterCanMove)
+        if (!MovementLimiter.instance.characterCanMove)
         {
             directionX = 0;
         }
