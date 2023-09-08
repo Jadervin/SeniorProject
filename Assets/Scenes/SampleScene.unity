@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306de51888dda3c4fbddbfcbe8d6f09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerJump: {fileID: 1464256112}
 --- !u!1 &1464256106
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +665,7 @@ GameObject:
   - component: {fileID: 1464256109}
   - component: {fileID: 1464256108}
   - component: {fileID: 1464256111}
+  - component: {fileID: 1464256112}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -680,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 1464256106}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -699,7 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1f21d590eaca3498b7e42f230e3af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLength: 0.7
+  groundLength: 0.6
   colliderOffset: {x: 0.5, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
@@ -795,8 +797,8 @@ MonoBehaviour:
   maxAcceleration: 52
   maxDecceleration: 52
   maxTurnSpeed: 80
-  maxAirAcceleration: 0
-  maxAirDeceleration: 0
+  maxAirAcceleration: 80
+  maxAirDeceleration: 80
   maxAirTurnSpeed: 80
   friction: 0
   useAcceleration: 0
@@ -804,6 +806,37 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   onGround: 0
   pressingKey: 0
+--- !u!114 &1464256112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464256106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bfca37cd888f940b376ead52b3d389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameInput: {fileID: 766240397}
+  body: {fileID: 0}
+  ground: {fileID: 0}
+  jumpHeight: 3.8
+  timeToJumpApex: 0.5
+  upwardMovementMultiplier: 1.14
+  downwardMovementMultiplier: 6.17
+  maxAirJumps: 1
+  variableJumpHeight: 0
+  jumpCutOff: 3.05
+  fallSpeedLimit: 9.8
+  coyoteTime: 0.15
+  jumpBuffer: 0.15
+  jumpSpeed: 0
+  gravMultiplier: 0
+  canJumpAgain: 0
+  desiredJump: 0
+  pressingJump: 0
+  onGround: 0
 --- !u!1 &1685133822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialCharacterCanMove: 1
-  CharacterCanMove: 0
+  characterCanMove: 0
 --- !u!1 &2127149485
 GameObject:
   m_ObjectHideFlags: 0
