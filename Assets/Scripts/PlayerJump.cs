@@ -120,27 +120,10 @@ public class PlayerJump : MonoBehaviour
     {
         gameInput.OnJumpContextStarted += GameInput_OnJumpContextStarted;
         gameInput.OnJumpContextCanceled += GameInput_OnJumpContextCanceled;
-        gameInput.OnJumpPerformed += GameInput_OnJumpPerformed;
+        
     }
 
-    private void GameInput_OnJumpPerformed(object sender, System.EventArgs e)
-    {
-        //if (MovementLimiter.instance.characterCanMove)
-        //{
-        //    //When we press the jump button, tell the script that we desire a jump.
-        //    //Also, use the started and canceled contexts to know if we're currently holding the button
-        //    if (e.started)
-        //    {
-        //        desiredJump = true;
-        //        pressingJump = true;
-        //    }
-
-        //    if (e.canceled)
-        //    {
-        //        pressingJump = false;
-        //    }
-        //}
-    }
+    
 
     private void GameInput_OnJumpContextStarted(object sender, System.EventArgs e)
     {
@@ -156,16 +139,16 @@ public class PlayerJump : MonoBehaviour
 
 
 
-    public void StartedJump()
-    {
-        desiredJump = true;
-        pressingJump = true;
-    }
+    //public void StartedJump()
+    //{
+    //    desiredJump = true;
+    //    pressingJump = true;
+    //}
 
-    public void CanceledJump()
-    {
-        pressingJump = false;
-    }
+    //public void CanceledJump()
+    //{
+    //    pressingJump = false;
+    //}
 
     void Update()
     {

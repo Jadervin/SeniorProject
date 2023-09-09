@@ -651,7 +651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306de51888dda3c4fbddbfcbe8d6f09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerJump: {fileID: 1464256112}
 --- !u!1 &1464256106
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,12 +822,12 @@ MonoBehaviour:
   ground: {fileID: 0}
   jumpHeight: 3.8
   timeToJumpApex: 0.5
-  upwardMovementMultiplier: 1.14
-  downwardMovementMultiplier: 6.17
-  maxAirJumps: 1
-  variableJumpHeight: 0
+  upwardMovementMultiplier: 1.54
+  downwardMovementMultiplier: 3.32
+  maxAirJumps: 0
+  variableJumpHeight: 1
   jumpCutOff: 3.05
-  fallSpeedLimit: 9.8
+  fallSpeedLimit: 20
   coyoteTime: 0.15
   jumpBuffer: 0.15
   jumpSpeed: 0

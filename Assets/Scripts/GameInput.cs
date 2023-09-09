@@ -8,18 +8,14 @@ public class GameInput : MonoBehaviour
 {
     public static GameInput Instance { get; private set; }
 
-    [SerializeField] private PlayerJump playerJump;
+    //[SerializeField] private PlayerJump playerJump;
 
     private PlayerInputActions playerInputActions;
 
     public event EventHandler OnJumpContextStarted;
     public event EventHandler OnJumpContextCanceled;
-    public event EventHandler OnJumpPerformed;
+    //public event EventHandler OnJumpPerformed;
 
-    public class InputSystemEventArgs : EventArgs
-    {
-        InputAction.CallbackContext obj;
-    }
 
 
     private void Awake()
@@ -43,41 +39,48 @@ public class GameInput : MonoBehaviour
     }
 
 
-    private void Jump_performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    private void Jump_performed(InputAction.CallbackContext context)
     {
-        //OnJumpPerformed?.Invoke(this, new InputSystemEventArgs<EventArgs>
-        //{
-            
-
-        //});
-
-
-        Debug.Log("Suppose to jump");
+        //Debug.Log("Suppose to jump");
 
         if (MovementLimiter.instance.characterCanMove)
         {
-            Debug.Log("Player can move");
+
+            //Debug.Log(context);
+            Debug.Log("Jump " + context.phase);
 
 
             //When we press the jump button, tell the script that we desire a jump.
             //Also, use the started and canceled contexts to know if we're currently holding the button
-            if (context.started)
+            if (context.performed)
             {
-                //OnJumpContextStarted?.Invoke(this, EventArgs.Empty);
-                Debug.Log("Calling StartJump Function");
-                playerJump.StartedJump();
+                //Debug.Log("Calling StartJump Event");
+                OnJumpContextStarted?.Invoke(this, EventArgs.Empty);
+                
+                //playerJump.StartedJump();
                 
             }
 
+            //else
+            //{
+
+            //    Debug.Log("Calling CancelJump Function");
+            //    OnJumpContextCanceled?.Invoke(this, EventArgs.Empty);
+
+            //    //playerJump.CanceledJump();
+
+            //}
+
             if (context.canceled)
             {
-                //OnJumpContextCanceled?.Invoke(this, EventArgs.Empty);
                 Debug.Log("Calling CancelJump Function");
-                playerJump.CanceledJump();
-                
+                OnJumpContextCanceled?.Invoke(this, EventArgs.Empty);
+
+                //playerJump.CanceledJump();
+
             }
         }
-        
+
     }
 
 
