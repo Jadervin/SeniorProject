@@ -1320,7 +1320,7 @@ MonoBehaviour:
   timeToJumpApex: 0.563
   upwardMovementMultiplier: 1.54
   downwardMovementMultiplier: 6.03
-  maxAirJumps: 1
+  maxAirJumps: 0
   variableJumpHeight: 1
   jumpCutOff: 3.45
   fallSpeedLimit: 20

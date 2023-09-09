@@ -298,16 +298,21 @@ public class PlayerJump : MonoBehaviour
             canJumpAgain = (maxAirJumps == 1 && canJumpAgain == false);
 
             //Determine the power of the jump, based on our gravity and stats
+            Debug.Log("Jump Speed Calc: " + jumpSpeed);
             jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
 
             //If Kit is moving up or down when she jumps (such as when doing a double jump), change the jumpSpeed;
             //This will ensure the jump is the exact same strength, no matter your velocity.
+
+            Debug.Log("velocity.y: " + velocity.y);
             if (velocity.y > 0f)
             {
+                Debug.Log("Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
             }
             else if (velocity.y < 0f)
             {
+                Debug.Log("Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
                 jumpSpeed += Mathf.Abs(body.velocity.y);
             }
 
