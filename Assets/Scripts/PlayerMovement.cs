@@ -19,40 +19,40 @@ public class PlayerMovement : MonoBehaviour
 
     //Top movement speed
     [SerializeField, Range(0f, 20f)]
-    private float maxSpeed = 10f;
+    [Tooltip("Top movement speed")] private float maxSpeed = 10f;
 
     //How fast to reach max speed
     [SerializeField, Range(0f, 100f)]
-    private float maxAcceleration = 52f;
+    [Tooltip("How fast to reach max speed")] private float maxAcceleration = 52f;
 
     //How fast to stop after letting go
     [SerializeField, Range(0f, 100f)]
-    private float maxDecceleration = 52f;
+    [Tooltip("How fast to stop after letting go")] private float maxDecceleration = 52f;
 
     //How fast to stop when changing direction
     [SerializeField, Range(0f, 100f)]
-    private float maxTurnSpeed = 80f;
+    [Tooltip("How fast to stop when changing direction")] private float maxTurnSpeed = 80f;
 
     //How fast to reach max speed when in mid-air
     [SerializeField, Range(0f, 100f)]
-    private float maxAirAcceleration;
+    [Tooltip("How fast to reach max speed when in mid-air")] private float maxAirAcceleration;
 
     //How fast to stop in mid-air when no direction is used
     [SerializeField, Range(0f, 100f)]
-    private float maxAirDeceleration;
+    [Tooltip("How fast to stop in mid-air when no direction is used")] private float maxAirDeceleration;
 
     //How fast to stop when changing direction when in mid-air
     [SerializeField, Range(0f, 100f)]
-    private float maxAirTurnSpeed = 80f;
+    [Tooltip("How fast to stop when changing direction when in mid-air")] private float maxAirTurnSpeed = 80f;
 
     //Friction to apply against movement on stick
     [SerializeField]
-    private float friction;
+    [Tooltip("Friction to apply against movement on stick")] private float friction;
 
 
     [Header("Options")]
     //When false, the charcter will skip acceleration and deceleration and instantly move and stop
-    [SerializeField] private bool useAcceleration;
+    [SerializeField][Tooltip("When false, the charcter will skip acceleration and deceleration and instantly move and stop")] private bool useAcceleration;
 
     [Header("Calculations")]
     [SerializeField] private float directionX;
@@ -75,17 +75,6 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<PlayerGround>();
     }
-
-    //public void OnMovement(InputAction.CallbackContext context)
-    //{
-    //    //This is called when you input a direction on a valid input type, such as arrow keys or analogue stick
-    //    //The value will read -1 when pressing left, 0 when idle, and 1 when pressing right.
-
-    //    if (MovementLimiter.instance.CharacterCanMove)
-    //    {
-    //        directionX = context.ReadValue<float>();
-    //    }
-    //}
 
     private void Update()
     {
