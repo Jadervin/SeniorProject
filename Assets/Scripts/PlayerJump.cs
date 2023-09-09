@@ -26,46 +26,49 @@ public class PlayerJump : MonoBehaviour
 
     //Maximum jump height
     [SerializeField, Range(2f, 5.5f)]
-    private float jumpHeight = 7.3f;
+    [Tooltip("Maximum jump height")] private float jumpHeight = 7.3f;
 
     //How long it takes to reach that height before coming back down
     [SerializeField, Range(0.2f, 1.25f)]
-    private float timeToJumpApex;
+    [Tooltip("How long it takes to reach that height before coming back down")] private float timeToJumpApex;
 
     //Gravity multiplier to apply when going up
     
     [Range(0f, 5f)]
-    [SerializeField] private float upwardMovementMultiplier = 1f;
+    [SerializeField]
+    [Tooltip("Gravity multiplier to apply when going up")] private float upwardMovementMultiplier = 1f;
 
     //Gravity multiplier to apply when coming down
     
     [Range(1f, 10f)]
-    [SerializeField] private float downwardMovementMultiplier = 6.17f;
+    [SerializeField]
+    [Tooltip("Gravity multiplier to apply when coming down")] private float downwardMovementMultiplier = 6.17f;
     
     //How many times can you jump in the air?
-    [SerializeField, Range(0, 1)] private int maxAirJumps = 0;
+    [SerializeField, Range(0, 1)]
+    [Tooltip("How many times can you jump in the air?")] private int maxAirJumps = 0;
 
     [Header("Options")]
 
     //Should the character drop when you let go of jump?
     [SerializeField]
-    private bool variableJumpHeight;
+    [Tooltip("Should the character drop when you let go of jump?")] private bool variableJumpHeight;
 
     //Gravity multiplier when you let go of jump
     [SerializeField, Range(1f, 10f)]
-    private float jumpCutOff;
+    [Tooltip("Gravity multiplier when you let go of jump")] private float jumpCutOff;
 
     //The fastest speed the character can fall
     [SerializeField]
-    private float fallSpeedLimit;
+    [Tooltip("The fastest speed the character can fall")] private float fallSpeedLimit;
 
     //How long should coyote time last?
     [SerializeField, Range(0f, 0.3f)]
-    private float coyoteTime = 0.15f;
+    [Tooltip("How long should coyote time last?")] private float coyoteTime = 0.15f;
 
     //How far from ground should we cache your jump?
     [SerializeField, Range(0f, 0.3f)]
-    private float jumpBuffer = 0.15f;
+    [Tooltip("How far from ground should we cache your jump?")] private float jumpBuffer = 0.15f;
 
     [Header("Calculations")]
     [SerializeField] private float jumpSpeed;

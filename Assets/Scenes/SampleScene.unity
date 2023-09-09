@@ -793,14 +793,14 @@ MonoBehaviour:
   body: {fileID: 0}
   ground: {fileID: 0}
   maxSpeed: 10
-  maxAcceleration: 52
-  maxDecceleration: 52
+  maxAcceleration: 75
+  maxDecceleration: 75
   maxTurnSpeed: 80
-  maxAirAcceleration: 80
-  maxAirDeceleration: 80
-  maxAirTurnSpeed: 80
+  maxAirAcceleration: 40
+  maxAirDeceleration: 40
+  maxAirTurnSpeed: 40
   friction: 0
-  useAcceleration: 0
+  useAcceleration: 1
   directionX: 0
   velocity: {x: 0, y: 0}
   onGround: 0
@@ -820,13 +820,13 @@ MonoBehaviour:
   gameInput: {fileID: 766240397}
   body: {fileID: 0}
   ground: {fileID: 0}
-  jumpHeight: 3.8
-  timeToJumpApex: 0.5
+  jumpHeight: 4.5
+  timeToJumpApex: 0.563
   upwardMovementMultiplier: 1.54
-  downwardMovementMultiplier: 3.32
+  downwardMovementMultiplier: 6.03
   maxAirJumps: 0
   variableJumpHeight: 1
-  jumpCutOff: 3.05
+  jumpCutOff: 3.45
   fallSpeedLimit: 20
   coyoteTime: 0.15
   jumpBuffer: 0.15
