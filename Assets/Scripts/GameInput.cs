@@ -12,9 +12,9 @@ public class GameInput : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
 
-    public event EventHandler OnJumpContextStarted;
-    public event EventHandler OnJumpContextCanceled;
-    //public event EventHandler OnJumpPerformed;
+    public event EventHandler OnJumpPressed;
+    public event EventHandler OnJumpRelease;
+    
 
 
 
@@ -25,80 +25,65 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Enable();
 
-        playerInputActions.Player.Jump.performed += Jump_performed;
-        
+        playerInputActions.Player.Jump.started += Jump_started;
+
+        playerInputActions.Player.Jump.canceled += Jump_canceled;
+
+
 
 
     }
 
     private void OnDestroy()
     {
-        playerInputActions.Player.Jump.performed -= Jump_performed;
+        playerInputActions.Player.Jump.started -= Jump_started;
+
+        playerInputActions.Player.Jump.canceled -= Jump_canceled;
 
         playerInputActions.Dispose();
     }
 
+    //When we press the jump button, tell the script that we desire a jump.
+    //Also, use the started and canceled contexts to know if we're currently holding the button
 
-    private void Jump_performed(InputAction.CallbackContext context)
+    private void Jump_started(InputAction.CallbackContext context)
     {
-        //Debug.Log("Suppose to jump");
-
         if (MovementLimiter.instance.characterCanMove)
         {
+            
+            //Debug.Log("Jump " + context.phase);
 
-            //Debug.Log(context);
-            Debug.Log("Jump " + context.phase);
+            //When the player holds the button, invoke event
+            //Debug.Log("Invoking JumpPress Event");
+            OnJumpPressed?.Invoke(this, EventArgs.Empty);
+
+        }
+    }
 
 
-            //When we press the jump button, tell the script that we desire a jump.
-            //Also, use the started and canceled contexts to know if we're currently holding the button
-            if (context.performed)
-            {
-                //Debug.Log("Calling StartJump Event");
-                OnJumpContextStarted?.Invoke(this, EventArgs.Empty);
-                
-                //playerJump.StartedJump();
-                
-            }
+    private void Jump_canceled(InputAction.CallbackContext context)
+    {
+        if (MovementLimiter.instance.characterCanMove)
+        {
+            
+            //Debug.Log("Jump " + context.phase);
 
-            //else
-            //{
 
-            //    Debug.Log("Calling CancelJump Function");
-            //    OnJumpContextCanceled?.Invoke(this, EventArgs.Empty);
-
-            //    //playerJump.CanceledJump();
-
-            //}
-
-            if (context.canceled)
-            {
-                Debug.Log("Calling CancelJump Function");
-                OnJumpContextCanceled?.Invoke(this, EventArgs.Empty);
-
-                //playerJump.CanceledJump();
-
-            }
+            //When the player stops holding the button, invoke event
+            //Debug.Log("Invoking JumpRelease Event");
+            OnJumpRelease?.Invoke(this, EventArgs.Empty);
         }
 
     }
-
 
     public float GetXMovement()
     {
         float xInput
         = playerInputActions.Player.Move.ReadValue<float>();
 
-        //Debug.Log(xInput);
-
         return xInput;
 
     }
-
-
-
-
-
 
 
 }

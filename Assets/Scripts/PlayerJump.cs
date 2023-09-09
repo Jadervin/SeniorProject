@@ -121,21 +121,21 @@ public class PlayerJump : MonoBehaviour
 
     private void Start()
     {
-        gameInput.OnJumpContextStarted += GameInput_OnJumpContextStarted;
-        gameInput.OnJumpContextCanceled += GameInput_OnJumpContextCanceled;
+        gameInput.OnJumpPressed += GameInput_OnJumpPressed;
+        gameInput.OnJumpRelease += GameInput_OnJumpReleased;
         
     }
 
     
 
-    private void GameInput_OnJumpContextStarted(object sender, System.EventArgs e)
+    private void GameInput_OnJumpPressed(object sender, System.EventArgs e)
     {
         desiredJump = true;
         pressingJump = true;
     }
 
 
-    private void GameInput_OnJumpContextCanceled(object sender, System.EventArgs e)
+    private void GameInput_OnJumpReleased(object sender, System.EventArgs e)
     {
         pressingJump = false;
     }
