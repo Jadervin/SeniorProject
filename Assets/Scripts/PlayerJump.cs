@@ -174,6 +174,7 @@ public class PlayerJump : MonoBehaviour
         //Get velocity from Kit's Rigidbody 
         velocity = body.velocity;
 
+        calculateGravity();
         //Keep trying to do a jump, for as long as desiredJump is true
         if (desiredJump)
         {
@@ -185,7 +186,6 @@ public class PlayerJump : MonoBehaviour
             return;
         }
 
-        calculateGravity();
     }
 
     private void calculateGravity()
@@ -269,26 +269,31 @@ public class PlayerJump : MonoBehaviour
             canJumpAgain = (maxAirJumps == 1 && canJumpAgain == false);
 
             //Determine the power of the jump, based on our gravity and stats
-            Debug.Log("Jump Speed Calc: " + jumpSpeed);
+            Debug.Log("Gravity Scale: " + body.gravityScale);
+            Debug.Log("Gravity Mult: " + gravMultiplier);
             jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
+            Debug.Log("Jump Speed Calc: " + jumpSpeed);
 
             //If Kit is moving up or down when she jumps (such as when doing a double jump), change the jumpSpeed;
             //This will ensure the jump is the exact same strength, no matter your velocity.
 
-            Debug.Log("velocity.y: " + velocity.y);
+            //Debug.Log("velocity.y: " + velocity.y);
+            Debug.Log("velocity: " + velocity.ToString() + "\nBody.velocity:" + body.velocity.ToString());
             if (velocity.y > 0f)
             {
-                Debug.Log("Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
+                Debug.Log("Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
+
             }
             else if (velocity.y < 0f)
             {
-                Debug.Log("Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
                 jumpSpeed += Mathf.Abs(body.velocity.y);
+                Debug.Log("Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
             }
 
             //Apply the new jumpSpeed to the velocity. It will be sent to the Rigidbody in FixedUpdate;
             velocity.y += jumpSpeed;
+            Debug.Log("Velocity.y: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
             currentlyJumping = true;
 
             /*if (juice != null) {
