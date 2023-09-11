@@ -84,6 +84,9 @@ public class PlayerJump : MonoBehaviour
     
     [SerializeField] private bool onGround;
     private bool currentlyJumping;
+    private int jumpsPerformedDEBUG = 0;
+
+
 
 
     void Awake()
@@ -102,6 +105,9 @@ public class PlayerJump : MonoBehaviour
 
     private void Start()
     {
+        //For debugging
+       
+
         gameInput.OnJumpPressed += GameInput_OnJumpPressed;
         gameInput.OnJumpRelease += GameInput_OnJumpReleased;
         
@@ -261,8 +267,9 @@ public class PlayerJump : MonoBehaviour
         //Create the jump, provided we are on the ground, in coyote time, or have a double jump available
         if (onGround || (coyoteTimeCounter > 0.03f && coyoteTimeCounter < coyoteTime) || canJumpAgain)
         {
-            //Test this later
+            //Test this later to see if this fixes problem
             calculateGravity();
+            jumpsPerformedDEBUG++;
 
 
             desiredJump = false;
@@ -273,31 +280,31 @@ public class PlayerJump : MonoBehaviour
             canJumpAgain = (maxAirJumps == 1 && canJumpAgain == false);
 
             //Determine the power of the jump, based on our gravity and stats
-            Debug.Log("Gravity Scale: " + body.gravityScale);
-            Debug.Log("Gravity Mult: " + gravMultiplier);
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale);
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Mult: " + gravMultiplier);
             jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
-            Debug.Log("Jump Speed Calc: " + jumpSpeed);
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc: " + jumpSpeed);
 
             //If Kit is moving up or down when she jumps (such as when doing a double jump), change the jumpSpeed;
             //This will ensure the jump is the exact same strength, no matter your velocity.
 
             //Debug.Log("velocity.y: " + velocity.y);
-            Debug.Log("velocity: " + velocity.ToString() + "\nBody.velocity:" + body.velocity.ToString());
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "velocity: " + velocity.ToString() + "\nBody.velocity:" + body.velocity.ToString());
             if (velocity.y > 0f)
             {
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
-                Debug.Log("Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
+                Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
 
             }
             else if (velocity.y < 0f)
             {
                 jumpSpeed += Mathf.Abs(body.velocity.y);
-                Debug.Log("Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
+                Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
             }
 
             //Apply the new jumpSpeed to the velocity. It will be sent to the Rigidbody in FixedUpdate;
             velocity.y += jumpSpeed;
-            Debug.Log("Velocity.y: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Velocity.y: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
             currentlyJumping = true;
 
             /*if (juice != null) {
