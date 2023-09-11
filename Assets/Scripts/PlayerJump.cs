@@ -174,7 +174,6 @@ public class PlayerJump : MonoBehaviour
         //Get velocity from Kit's Rigidbody 
         velocity = body.velocity;
 
-        calculateGravity();
         //Keep trying to do a jump, for as long as desiredJump is true
         if (desiredJump)
         {
@@ -185,6 +184,7 @@ public class PlayerJump : MonoBehaviour
             //This makes sure you can't do the coyote time double jump bug
             return;
         }
+        calculateGravity();
 
     }
 
@@ -261,6 +261,10 @@ public class PlayerJump : MonoBehaviour
         //Create the jump, provided we are on the ground, in coyote time, or have a double jump available
         if (onGround || (coyoteTimeCounter > 0.03f && coyoteTimeCounter < coyoteTime) || canJumpAgain)
         {
+            //Test this later
+            calculateGravity();
+
+
             desiredJump = false;
             jumpBufferCounter = 0;
             coyoteTimeCounter = 0;
