@@ -84,7 +84,12 @@ public class PlayerJump : MonoBehaviour
     
     [SerializeField] private bool onGround;
     private bool currentlyJumping;
+
+
+
     private int jumpsPerformedDEBUG = 0;
+    [SerializeField] private float previousBodyGravityScale = 0;
+    private bool firstPhysicsSet;
 
 
 
@@ -106,7 +111,8 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
         //For debugging
-       
+        //setPhysics();
+        //previousBodyGravityScale = body.gravityScale;
 
         gameInput.OnJumpPressed += GameInput_OnJumpPressed;
         gameInput.OnJumpRelease += GameInput_OnJumpReleased;
@@ -133,9 +139,15 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         setPhysics();
-
+        if (firstPhysicsSet == false)
+        {
+            SetBodyGravityScale();
+        }
         //Check if we're on ground, using Kit's Ground script
         onGround = ground.GetOnGround();
+
+
+        //SetBodyGravityScale();
 
         //Jump buffer allows us to queue up a jump, which will play when we next hit the ground
         if (jumpBuffer > 0)
@@ -263,10 +275,11 @@ public class PlayerJump : MonoBehaviour
 
     private void DoAJump()
     {
-
         //Create the jump, provided we are on the ground, in coyote time, or have a double jump available
         if (onGround || (coyoteTimeCounter > 0.03f && coyoteTimeCounter < coyoteTime) || canJumpAgain)
         {
+           
+            
             //Test this later to see if this fixes problem
             calculateGravity();
             jumpsPerformedDEBUG++;
@@ -280,9 +293,13 @@ public class PlayerJump : MonoBehaviour
             canJumpAgain = (maxAirJumps == 1 && canJumpAgain == false);
 
             //Determine the power of the jump, based on our gravity and stats
+            
+            //ResetBodyGravityScale();
+            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
+
+
             Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale);
             Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Mult: " + gravMultiplier);
-            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
             Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc: " + jumpSpeed);
 
             //If Kit is moving up or down when she jumps (such as when doing a double jump), change the jumpSpeed;
@@ -298,7 +315,11 @@ public class PlayerJump : MonoBehaviour
             }
             else if (velocity.y < 0f)
             {
-                jumpSpeed += Mathf.Abs(body.velocity.y);
+                //Maybe the problem lies with this equation
+                jumpSpeed += Mathf.Abs((/*body.gravityScale - */body.velocity.y)/*/2*/);
+
+                //jumpSpeed *= .38f;
+
                 Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
             }
 
@@ -318,5 +339,19 @@ public class PlayerJump : MonoBehaviour
             //If we don't have a jump buffer, then turn off desiredJump immediately after hitting jumping
             desiredJump = false;
         }
+    }
+
+
+
+    private void SetBodyGravityScale()
+    {
+        previousBodyGravityScale = body.gravityScale;
+        firstPhysicsSet = true;
+        
+    }
+
+    private void ResetBodyGravityScale()
+    {
+        body.gravityScale = previousBodyGravityScale;
     }
 }
