@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1f21d590eaca3498b7e42f230e3af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundLength: 0.57
+  groundLength: 0.6
   colliderOffset: {x: 0.5, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
@@ -1494,6 +1494,7 @@ MonoBehaviour:
   desiredJump: 0
   pressingJump: 0
   onGround: 0
+  previousBodyGravityScale: 0
 --- !u!1 &1685133822
 GameObject:
   m_ObjectHideFlags: 0
