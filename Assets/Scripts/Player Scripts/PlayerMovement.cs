@@ -66,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Current State")]
     [SerializeField] private bool onGround;
     [SerializeField] private bool pressingKey;
+    [SerializeField] private bool isFacingRight;
 
 
 
@@ -86,18 +87,6 @@ public class PlayerMovement : MonoBehaviour
             directionX = 0;
         }
 
-        //Used to flip the character's sprite when she changes direction
-        //Also tells us that we are currently pressing a direction button
-        if (directionX != 0)
-        {
-            transform.localScale = new Vector3(directionX > 0 ? 1 : -1, 1, 1);
-            pressingKey = true;
-        }
-        else
-        {
-            pressingKey = false;
-        }
-
         //Calculate's the character's desired velocity - which is the direction you are facing, multiplied by the character's maximum speed
         //Friction is not used in this game
         desiredVelocity = new Vector2(directionX, 0f) * Mathf.Max(maxSpeed - friction, 0f);
@@ -113,6 +102,18 @@ public class PlayerMovement : MonoBehaviour
 
         //Get the Rigidbody's current velocity
         velocity = body.velocity;
+
+        //Used to flip the player when she changes direction
+        //Also tells us that we are currently pressing a direction button
+        if (directionX != 0)
+        {
+            TurnCheck();
+            pressingKey = true;
+        }
+        else
+        {
+            pressingKey = false;
+        }
 
         //Calculate movement, depending on whether "Instant Movement" has been checked
         if (useAcceleration)
@@ -131,6 +132,40 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+
+    private void TurnCheck()
+    {
+        if(directionX > 0 && !isFacingRight) 
+        {
+            Turn();
+        }
+
+        else if (directionX < 0 && isFacingRight)
+        {
+            Turn();
+        }
+
+    }
+
+    private void Turn()
+    {
+        if(isFacingRight) 
+        {
+            Vector3 rotator = new Vector3 (transform.rotation.x, 180f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            isFacingRight = !isFacingRight;
+        
+        }
+
+        else
+        {
+            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+            transform.rotation = Quaternion.Euler(rotator);
+            isFacingRight = !isFacingRight;
+        }
+    }
+
 
     private void runWithAcceleration()
     {
