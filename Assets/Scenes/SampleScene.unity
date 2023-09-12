@@ -152,6 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0332bc0dac565cb4eb0d9e1a49e6b957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1464256107}
+  flipYRotationTime: 0.5
+  isFacingRight: 0
 --- !u!4 &53830457
 Transform:
   m_ObjectHideFlags: 0
@@ -161,7 +164,7 @@ Transform:
   m_GameObject: {fileID: 53830455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1390903, y: 1.3703557, z: 0.22348939}
+  m_LocalPosition: {x: 1.42, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -496,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1390903, y: -4.2903557, z: -10.22349}
+  m_LocalPosition: {x: -1.7190903, y: -1.3703557, z: -10.22349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1004,22 +1007,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 1, y: 0, z: 0}
+  m_TrackedObjectOffset: {x: -1, y: 0, z: 0}
   m_LookaheadTime: 0.05
-  m_LookaheadSmoothing: 1
+  m_LookaheadSmoothing: 12
   m_LookaheadIgnoreY: 0
-  m_XDamping: 0.75
+  m_XDamping: 0
   m_YDamping: 2
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0
+  m_DeadZoneWidth: 0.01
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.2
+  m_SoftZoneWidth: 0.25
   m_SoftZoneHeight: 0.35
   m_BiasX: 0
   m_BiasY: -0.3
@@ -1337,7 +1340,7 @@ Transform:
   m_GameObject: {fileID: 1464256106}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.92, z: 0}
+  m_LocalPosition: {x: 0, y: -2.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1462,6 +1465,7 @@ MonoBehaviour:
   onGround: 0
   pressingKey: 0
   isFacingRight: 0
+  cameraFollowGO: {fileID: 53830455}
 --- !u!114 &1464256112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1535,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1464256107}
+  m_Follow: {fileID: 53830457}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 15
@@ -1560,7 +1564,7 @@ Transform:
   m_GameObject: {fileID: 1666043306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1390903, y: -4.2903557, z: -10.22349}
+  m_LocalPosition: {x: -1.7190903, y: -1.3703557, z: -10.22349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1685,8 +1689,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 878, y: 640}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 875, y: 617.6509}
+  m_SizeDelta: {x: 284.0325, y: 94.6981}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767281149
 MonoBehaviour:
@@ -1708,7 +1712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Build 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1735,15 +1739,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1906,9 +1910,9 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1464256107}
   - {fileID: 53830457}
+  - {fileID: 449332913}
   - {fileID: 739522399}
   - {fileID: 2127149488}
   - {fileID: 674019451}
   - {fileID: 239437702}
   - {fileID: 641008336}
-  - {fileID: 449332913}

@@ -69,13 +69,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isFacingRight;
 
 
+    [Header("Camera Components")]
+    private CameraFollowObject cameraFollowObject;
+    [SerializeField] private GameObject cameraFollowGO;
+
+
 
     private void Awake()
     {
         //Find the character's Rigidbody and ground detection script
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<PlayerGround>();
+
+        
     }
+
+
+    private void Start()
+    {
+        cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
+    }
+
 
     private void Update()
     {
@@ -155,6 +169,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 rotator = new Vector3 (transform.rotation.x, 180f, transform.rotation.z);
             transform.rotation = Quaternion.Euler(rotator);
             isFacingRight = !isFacingRight;
+
+            //turn the camera folow object
+            cameraFollowObject.CallTurn();
         
         }
 
@@ -163,6 +180,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
             transform.rotation = Quaternion.Euler(rotator);
             isFacingRight = !isFacingRight;
+
+            //turn the camera folow object
+            cameraFollowObject.CallTurn();
         }
     }
 
@@ -208,5 +228,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.x = desiredVelocity.x;
 
         body.velocity = velocity;
+    }
+
+    public bool GetIsFacingRight()
+    {
+        return isFacingRight;
     }
 }
