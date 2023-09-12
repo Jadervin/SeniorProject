@@ -139,10 +139,16 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         setPhysics();
+
+
+
         if (firstPhysicsSet == false)
         {
             SetBodyGravityScale();
         }
+
+
+
         //Check if we're on ground, using Kit's Ground script
         onGround = ground.GetOnGround();
 
@@ -197,6 +203,7 @@ public class PlayerJump : MonoBehaviour
         {
             DoAJump();
             body.velocity = velocity;
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Body velocity: " + body.velocity);
 
             //Skip gravity calculations this frame, so currentlyJumping doesn't turn off
             //This makes sure you can't do the coyote time double jump bug
@@ -266,6 +273,7 @@ public class PlayerJump : MonoBehaviour
             }
 
             gravMultiplier = defaultGravityScale;
+            
         }
 
         //Set the character's Rigidbody's velocity
@@ -293,12 +301,13 @@ public class PlayerJump : MonoBehaviour
             canJumpAgain = (maxAirJumps == 1 && canJumpAgain == false);
 
             //Determine the power of the jump, based on our gravity and stats
-            
+
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale);
             //ResetBodyGravityScale();
-            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * body.gravityScale * jumpHeight);
+            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * previousBodyGravityScale * jumpHeight);
 
-
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale);
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Physics2D Gravity: " + Physics2D.gravity.y);
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale + "\nPrevious Graivty Scale: " + previousBodyGravityScale);
             Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Mult: " + gravMultiplier);
             Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc: " + jumpSpeed);
 
@@ -316,16 +325,24 @@ public class PlayerJump : MonoBehaviour
             else if (velocity.y < 0f)
             {
                 //Maybe the problem lies with this equation
-                jumpSpeed += Mathf.Abs((/*body.gravityScale - */body.velocity.y)/*/2*/);
 
-                //jumpSpeed *= .38f;
+
+                //Find a multiplier that will allow the jump to be the same as the first jump
+                //jumpSpeed /= .3f;
+                Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after multipler: " + jumpSpeed);
+
+
+                jumpSpeed += Mathf.Abs(/*body.gravityScale - */ velocity.y /*/2*/);
+
+                
 
                 Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
             }
 
             //Apply the new jumpSpeed to the velocity. It will be sent to the Rigidbody in FixedUpdate;
-            velocity.y += jumpSpeed;
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Velocity.y: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
+            velocity.y = jumpSpeed + velocity.y;
+            
+            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Velocity after Jump Calculations: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
             currentlyJumping = true;
 
             /*if (juice != null) {
