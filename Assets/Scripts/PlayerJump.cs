@@ -25,7 +25,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Jumping Stats")]
 
     //Maximum jump height
-    [SerializeField, Range(2f, 5.5f)]
+    [SerializeField, Range(2f, 7.5f)]
     [Tooltip("Maximum jump height")] private float jumpHeight = 7.3f;
 
     //How long it takes to reach that height before coming back down
@@ -45,7 +45,7 @@ public class PlayerJump : MonoBehaviour
     [Tooltip("Gravity multiplier to apply when coming down")] private float downwardMovementMultiplier = 6.17f;
     
     //How many times can you jump in the air?
-    [SerializeField, Range(0, 1)]
+    [SerializeField, Range(0, 5)]
     [Tooltip("How many times can you jump in the air?")] private int maxAirJumps = 0;
 
     [Header("Options")]
@@ -70,10 +70,18 @@ public class PlayerJump : MonoBehaviour
     [SerializeField, Range(0f, 0.3f)]
     [Tooltip("How far from ground should we cache your jump?")] private float jumpBuffer = 0.15f;
 
+
+    [SerializeField] private float defaultBodyGravityScale = 0;
+
+    [Range(0.7f, 1f)]
+    [SerializeField] private float jumpSpeedDivider = .8f;
+
+
     [Header("Calculations")]
     [SerializeField] private float jumpSpeed;
     private float defaultGravityScale;
     [SerializeField] private float gravMultiplier;
+    //[SerializeField] private int jumpCounter = 0;
 
     [Header("Current State")]
     [SerializeField] private bool canJumpAgain = false;
@@ -82,13 +90,13 @@ public class PlayerJump : MonoBehaviour
     private float jumpBufferCounter;
     private float coyoteTimeCounter = 0;
     
+    
     [SerializeField] private bool onGround;
     private bool currentlyJumping;
 
 
 
-    private int jumpsPerformedDEBUG = 0;
-    [SerializeField] private float previousBodyGravityScale = 0;
+    //private int jumpsPerformedDEBUG = 0;
     private bool firstPhysicsSet;
 
 
@@ -110,9 +118,8 @@ public class PlayerJump : MonoBehaviour
 
     private void Start()
     {
-        //For debugging
-        //setPhysics();
-        //previousBodyGravityScale = body.gravityScale;
+
+        
 
         gameInput.OnJumpPressed += GameInput_OnJumpPressed;
         gameInput.OnJumpRelease += GameInput_OnJumpReleased;
@@ -144,7 +151,7 @@ public class PlayerJump : MonoBehaviour
 
         if (firstPhysicsSet == false)
         {
-            SetBodyGravityScale();
+            SetDefaultBodyGravityScale();
         }
 
 
@@ -203,7 +210,9 @@ public class PlayerJump : MonoBehaviour
         {
             DoAJump();
             body.velocity = velocity;
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Body velocity: " + body.velocity);
+
+
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Body velocity: " + body.velocity);
 
             //Skip gravity calculations this frame, so currentlyJumping doesn't turn off
             //This makes sure you can't do the coyote time double jump bug
@@ -290,7 +299,9 @@ public class PlayerJump : MonoBehaviour
             
             //Test this later to see if this fixes problem
             calculateGravity();
-            jumpsPerformedDEBUG++;
+
+
+            //jumpsPerformedDEBUG++;
 
 
             desiredJump = false;
@@ -300,26 +311,35 @@ public class PlayerJump : MonoBehaviour
             //If we have double jump on, allow us to jump again (but only once)
             canJumpAgain = (maxAirJumps == 1 && canJumpAgain == false);
 
-            //Determine the power of the jump, based on our gravity and stats
-
+            /*
             //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale);
             //ResetBodyGravityScale();
-            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * previousBodyGravityScale * jumpHeight);
+            */
 
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Physics2D Gravity: " + Physics2D.gravity.y);
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale + "\nPrevious Graivty Scale: " + previousBodyGravityScale);
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Mult: " + gravMultiplier);
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc: " + jumpSpeed);
+
+            //Determine the power of the jump, based on our gravity and stats
+            jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * defaultBodyGravityScale * jumpHeight);
+
+            /*
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Physics2D Gravity: " + Physics2D.gravity.y);
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Scale: " + body.gravityScale + "\nPrevious Graivty Scale: " + defaultBodyGravityScale);
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Gravity Mult: " + gravMultiplier);
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc: " + jumpSpeed);
+            */
 
             //If Kit is moving up or down when she jumps (such as when doing a double jump), change the jumpSpeed;
             //This will ensure the jump is the exact same strength, no matter your velocity.
-
+            
+            /*
             //Debug.Log("velocity.y: " + velocity.y);
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "velocity: " + velocity.ToString() + "\nBody.velocity:" + body.velocity.ToString());
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "velocity: " + velocity.ToString() + "\nBody.velocity:" + body.velocity.ToString());
+            */
+
             if (velocity.y > 0f)
             {
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
-                Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
+
+                //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is greater than 0: " + jumpSpeed);
 
             }
             else if (velocity.y < 0f)
@@ -328,27 +348,33 @@ public class PlayerJump : MonoBehaviour
 
 
                 //Find a multiplier that will allow the jump to be the same as the first jump
-                //jumpSpeed /= .3f;
-                Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after multipler: " + jumpSpeed);
+                jumpSpeed /= jumpSpeedDivider;
 
 
-                jumpSpeed += Mathf.Abs(/*body.gravityScale - */ velocity.y /*/2*/);
+                //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after multipler: " + jumpSpeed);
+
+
+                jumpSpeed += Mathf.Abs(velocity.y);
 
                 
 
-                Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
+                //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Jump Speed Calc after Velocity.y is less than 0: " + jumpSpeed);
             }
 
             //Apply the new jumpSpeed to the velocity. It will be sent to the Rigidbody in FixedUpdate;
             velocity.y = jumpSpeed + velocity.y;
             
-            Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Velocity after Jump Calculations: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
+            //Debug.Log("Jumps Performed " + jumpsPerformedDEBUG + ": " + "Velocity after Jump Calculations: " + velocity.y + ", " + "JumpSpeed: " + jumpSpeed);
+
+
             currentlyJumping = true;
 
-            /*if (juice != null) {
+            /*
+             * if (juice != null) {
                 //Apply the jumping effects on the juice script
                 juice.jumpEffects();
-            }*/
+            }
+            */
         }
 
         if (jumpBuffer == 0)
@@ -360,15 +386,15 @@ public class PlayerJump : MonoBehaviour
 
 
 
-    private void SetBodyGravityScale()
+    private void SetDefaultBodyGravityScale()
     {
-        previousBodyGravityScale = body.gravityScale;
+        defaultBodyGravityScale = body.gravityScale;
         firstPhysicsSet = true;
         
     }
 
     private void ResetBodyGravityScale()
     {
-        body.gravityScale = previousBodyGravityScale;
+        body.gravityScale = defaultBodyGravityScale;
     }
 }

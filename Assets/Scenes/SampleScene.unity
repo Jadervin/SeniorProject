@@ -1482,19 +1482,20 @@ MonoBehaviour:
   timeToJumpApex: 0.563
   upwardMovementMultiplier: 1.54
   downwardMovementMultiplier: 6.03
-  maxAirJumps: 0
+  maxAirJumps: 1
   variableJumpHeight: 1
   jumpCutOff: 3.45
   fallSpeedLimit: 20
-  coyoteTime: 0.15
-  jumpBuffer: 0.112
+  coyoteTime: 0.115
+  jumpBuffer: 0.115
+  defaultBodyGravityScale: 0
+  jumpSpeedMultiplier: 0.824
   jumpSpeed: 0
   gravMultiplier: 0
   canJumpAgain: 0
   desiredJump: 0
   pressingJump: 0
   onGround: 0
-  previousBodyGravityScale: 0
 --- !u!1 &1685133822
 GameObject:
   m_ObjectHideFlags: 0
