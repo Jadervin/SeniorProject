@@ -119,8 +119,9 @@ public class CameraManager : MonoBehaviour
     public void PanCameraOnContact(float panDistance, float panTime, PanDirection panDirection, bool panToStartPosition)
     {
         panCameraCoroutine = StartCoroutine(PanCamera(panDistance, panTime, panDirection, panToStartPosition));
-    }
 
+        
+    }
 
     private IEnumerator PanCamera(float panDistance, float panTime, PanDirection panDirection, bool panToStartingPosition)
     {
@@ -190,9 +191,11 @@ public class CameraManager : MonoBehaviour
 
             Vector3 panLerp = Vector3.Lerp(startingPos, endPos, (elapsedTime / panTime));
             framingTransposer.m_TrackedObjectOffset = panLerp;
+            yield return null;
+
         }
 
-        yield return null;
+        
     }
 
 

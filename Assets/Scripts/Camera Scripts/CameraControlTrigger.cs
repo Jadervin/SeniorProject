@@ -9,14 +9,14 @@ public class CameraControlTrigger : MonoBehaviour
 {
     public CustomInspectorObjects customInspectorObjects;
 
-    private Collider2D collider;
-    public LayerMask playerLayer;
+    private Collider2D normalCollider;
+    //public LayerMask playerLayer;
     public const string PLAYERTAG = "Player";
 
 
     private void Start()
     {
-        collider = GetComponent<Collider2D>();
+        normalCollider = GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,6 +27,8 @@ public class CameraControlTrigger : MonoBehaviour
             {
                 //Pan the camera
                 CameraManager.instance.PanCameraOnContact(customInspectorObjects.panDistance, customInspectorObjects.panTime, customInspectorObjects.panDirection, false);
+
+                
             }
         }
     }
@@ -38,6 +40,8 @@ public class CameraControlTrigger : MonoBehaviour
             {
                 //Pan the camera
                 CameraManager.instance.PanCameraOnContact(customInspectorObjects.panDistance, customInspectorObjects.panTime, customInspectorObjects.panDirection, true);
+
+                
             }
         }
     }
