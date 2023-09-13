@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class CameraFollowObject : MonoBehaviour
 {
-    //For testing collision with layers
-    //public LayerMask playerLayer;
-
+    
 
     [Header("References")]
     [SerializeField] private Transform playerTransform;
@@ -39,9 +37,9 @@ public class CameraFollowObject : MonoBehaviour
 
     public void CallTurn()
     {
-        //turnCoroutine = StartCoroutine(FlipYLerp());
+        turnCoroutine = StartCoroutine(FlipYLerp());
 
-        LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
+        //LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
     }
 
     private IEnumerator FlipYLerp()
@@ -60,17 +58,19 @@ public class CameraFollowObject : MonoBehaviour
         while (elapsedTime < flipYRotationTime)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log("Camera Follow Object Lerp Elasped Time: " + elapsedTime);
+            //Debug.Log("Camera Follow Object Lerp Elasped Time: " + elapsedTime);
 
 
             //lerp the y rotation
             yRotation = Mathf.Lerp(startRotation, endRotationAmount, (elapsedTime / flipYRotationTime));
             transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
+            yield return null;
+
         }
 
 
-        yield return null;
+        
     }
 
 
@@ -88,12 +88,4 @@ public class CameraFollowObject : MonoBehaviour
         }
     }
 
-    //For testing collision with layers
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.gameObject.layer == playerLayer)
-    //    {
-
-    //    }
-    //}
 }

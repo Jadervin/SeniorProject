@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using System;
+using UnityEngine.Rendering;
 
 public class CameraManager : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public class CameraManager : MonoBehaviour
 
     public bool IsLerpingYDamping { get; private set; }
     public bool LerpedFromPlayerFalling { get; set; }
+
+
     private Coroutine lerpYPanCoroutine;
+    private Coroutine panCameraCoroutine;
 
 
     private CinemachineVirtualCamera currentCamera;
@@ -26,6 +30,8 @@ public class CameraManager : MonoBehaviour
 
 
     private float normalYPanAmount;
+
+    private Vector2 startingTrackedObjectOffset;
 
     private void Awake()
     {
@@ -50,6 +56,9 @@ public class CameraManager : MonoBehaviour
         //set the YDamping amount so it's based on the inspector value
         normalYPanAmount = framingTransposer.m_YDamping;
 
+
+        //set the starting position of the tracked object offset
+        startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
     }
 
 
@@ -102,4 +111,89 @@ public class CameraManager : MonoBehaviour
     {
         return fallSpeedYDampingChangeThreshold;
     }
+
+
+
+    //For Panning the Camera
+
+    public void PanCameraOnContact(float panDistance, float panTime, PanDirection panDirection, bool panToStartPosition)
+    {
+        panCameraCoroutine = StartCoroutine(PanCamera(panDistance, panTime, panDirection, panToStartPosition));
+    }
+
+
+    private IEnumerator PanCamera(float panDistance, float panTime, PanDirection panDirection, bool panToStartingPosition)
+    {
+        Vector2 endPos = Vector2.zero;
+        Vector2 startingPos = Vector2.zero;
+
+        //set the direction and distance if we are panning in the direction indicated by the trigger object
+        if (!panToStartingPosition)
+        {
+            //set the direction and distance
+            switch (panDirection)
+            { 
+                case PanDirection.UP:
+                {
+                    endPos = Vector2.up;
+                    break;
+                }
+                case PanDirection.DOWN:
+                {
+                   endPos = Vector2.down;
+                   break;
+                }
+                case PanDirection.LEFT:
+                {
+                    //Check and see if this is the correct statement once you set the enum to left
+                    endPos = Vector2.left;
+                    //endPos = Vector2.right;
+                    break;
+                }
+                case PanDirection.RIGHT:
+                {
+                    //Check and see if this is the correct statement once you set the enum to right
+                    endPos = Vector2.right;
+
+                    //endPos = Vector2.left;
+                    break;
+                }
+                default:
+                {
+                    break;
+                }
+                        
+            }
+
+            endPos *= panDistance;
+
+            startingPos = startingTrackedObjectOffset;
+
+            endPos += startingPos;
+
+        }
+
+        //handle the direction settings when moving back to the starting position
+        else
+        {
+            startingPos = framingTransposer.m_TrackedObjectOffset;
+            endPos = startingTrackedObjectOffset;
+        }
+
+
+        //handle the actual panning of the camera
+        float elapsedTime = 0f;
+
+        while(elapsedTime < panTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            Vector3 panLerp = Vector3.Lerp(startingPos, endPos, (elapsedTime / panTime));
+            framingTransposer.m_TrackedObjectOffset = panLerp;
+        }
+
+        yield return null;
+    }
+
+
 }
