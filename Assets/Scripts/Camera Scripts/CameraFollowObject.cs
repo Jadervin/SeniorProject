@@ -39,9 +39,9 @@ public class CameraFollowObject : MonoBehaviour
 
     public void CallTurn()
     {
-        turnCoroutine = StartCoroutine(FlipYLerp());
+        //turnCoroutine = StartCoroutine(FlipYLerp());
 
-        //LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
+        LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
     }
 
     private IEnumerator FlipYLerp()
@@ -59,7 +59,7 @@ public class CameraFollowObject : MonoBehaviour
 
         while (elapsedTime < flipYRotationTime)
         {
-            //elapsedTime += Time.deltaTime;
+            elapsedTime += Time.deltaTime;
             Debug.Log("Camera Follow Object Lerp Elasped Time: " + elapsedTime);
 
 
