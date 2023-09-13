@@ -13,8 +13,8 @@ public class CameraFollowObject : MonoBehaviour
 
 
     [Header("Flip Rotation Stats")]
-    [SerializeField]
-    private float flipYRotationTime = 0.5f;
+    [Range(0.1f, 1f)]
+    [SerializeField] private float flipYRotationTime = 0.5f;
 
     private Coroutine turnCoroutine;
 
@@ -39,27 +39,34 @@ public class CameraFollowObject : MonoBehaviour
 
     public void CallTurn()
     {
-        //turnCoroutine = StartCoroutine(FlipYLerp());
+        turnCoroutine = StartCoroutine(FlipYLerp());
 
-        LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
+        //LeanTween.rotateY(gameObject, DetermineEndRotation(), flipYRotationTime).setEaseInOutSine();
     }
 
     private IEnumerator FlipYLerp()
     {
         float startRotation = transform.localEulerAngles.y;
         float endRotationAmount = DetermineEndRotation();
-        float yRotation = 0f;
+        float yRotation;
 
         float elapsedTime = 0f;
 
-        while(elapsedTime < flipYRotationTime)
+        //yield return new WaitForSeconds(flipYRotationTime);
+        //yRotation = Mathf.Lerp(startRotation, endRotationAmount, (elapsedTime / flipYRotationTime));
+        //transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+
+
+        while (elapsedTime < flipYRotationTime)
         {
-            elapsedTime += Time.deltaTime;
+            //elapsedTime += Time.deltaTime;
+            Debug.Log("Camera Follow Object Lerp Elasped Time: " + elapsedTime);
+
 
             //lerp the y rotation
             yRotation = Mathf.Lerp(startRotation, endRotationAmount, (elapsedTime / flipYRotationTime));
             transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
-        
+
         }
 
 

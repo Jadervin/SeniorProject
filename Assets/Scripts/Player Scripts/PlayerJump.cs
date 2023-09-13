@@ -45,7 +45,7 @@ public class PlayerJump : MonoBehaviour
     [Tooltip("Gravity multiplier to apply when coming down")] private float downwardMovementMultiplier = 6.17f;
     
     //How many times can you jump in the air?
-    [SerializeField, Range(0, 5)]
+    [SerializeField, Range(0, 1)]
     [Tooltip("How many times can you jump in the air?")] private int maxAirJumps = 0;
 
     [Header("Options")]
@@ -99,6 +99,10 @@ public class PlayerJump : MonoBehaviour
     //private int jumpsPerformedDEBUG = 0;
     private bool firstPhysicsSet;
 
+    //For Camera Manager
+    //[Header("Camera Components")]
+    private float fallSpeedYDampingChangeThreshold;
+
 
 
 
@@ -119,11 +123,12 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
 
-        
-
         gameInput.OnJumpPressed += GameInput_OnJumpPressed;
         gameInput.OnJumpRelease += GameInput_OnJumpReleased;
-        
+
+        fallSpeedYDampingChangeThreshold = CameraManager.instance.GetFallSpeedYDampingChangeThreshold();
+
+
     }
 
     
@@ -191,6 +196,22 @@ public class PlayerJump : MonoBehaviour
             //Reset it when we touch the ground, or jump
             coyoteTimeCounter = 0;
         }
+
+
+
+        //if we are falling past a certain speed threshold
+        if(body.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpYDamping(true);
+        }
+
+        //if we are standing still or moving up
+        if (body.velocity.y >= 0f && !CameraManager.instance.IsLerpingYDamping && CameraManager.instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.instance.LerpedFromPlayerFalling = false;
+            CameraManager.instance.LerpYDamping(false);
+        }
+
     }
 
     private void setPhysics()
