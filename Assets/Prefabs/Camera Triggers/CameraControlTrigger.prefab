@@ -95,9 +95,8 @@ MonoBehaviour:
     panCameraOnContact: 0
     cameraOnLeft: {fileID: 0}
     cameraOnRight: {fileID: 0}
+    cameraOnTop: {fileID: 0}
+    cameraOnBottom: {fileID: 0}
     panDirection: 0
     panDistance: 3
     panTime: 0.35
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256

@@ -36,6 +36,15 @@ public class CameraControlTrigger : MonoBehaviour
     {
         if (collision.CompareTag(PLAYERTAG))
         {
+
+            Vector2 exitDirection = (collision.transform.position - normalCollider.bounds.center).normalized;
+
+            if((customInspectorObjects.swapCameras && customInspectorObjects.cameraOnLeft != null && customInspectorObjects.cameraOnRight != null) || (customInspectorObjects.swapCameras && customInspectorObjects.cameraOnTop != null && customInspectorObjects.cameraOnBottom != null))
+            {
+                CameraManager.instance.SwapCameras(customInspectorObjects.cameraOnLeft, customInspectorObjects.cameraOnRight, customInspectorObjects.cameraOnTop, customInspectorObjects.cameraOnBottom, exitDirection);
+            }
+
+
             if (customInspectorObjects.panCameraOnContact)
             {
                 //Pan the camera
@@ -63,6 +72,8 @@ public class CustomInspectorObjects
 
     [HideInInspector] public CinemachineVirtualCamera cameraOnLeft;
     [HideInInspector] public CinemachineVirtualCamera cameraOnRight;
+    [HideInInspector] public CinemachineVirtualCamera cameraOnTop;
+    [HideInInspector] public CinemachineVirtualCamera cameraOnBottom;
 
 
     [HideInInspector] public PanDirection panDirection;
@@ -89,6 +100,8 @@ public class MyUnityEditor : Editor
         {
             cameraControlTrigger.customInspectorObjects.cameraOnLeft = EditorGUILayout.ObjectField("Camera on Left", cameraControlTrigger.customInspectorObjects.cameraOnLeft, typeof(CinemachineVirtualCamera), true) as CinemachineVirtualCamera;
             cameraControlTrigger.customInspectorObjects.cameraOnRight = EditorGUILayout.ObjectField("Camera on Right", cameraControlTrigger.customInspectorObjects.cameraOnRight, typeof(CinemachineVirtualCamera), true) as CinemachineVirtualCamera;
+            cameraControlTrigger.customInspectorObjects.cameraOnTop = EditorGUILayout.ObjectField("Camera on Top", cameraControlTrigger.customInspectorObjects.cameraOnTop, typeof(CinemachineVirtualCamera), true) as CinemachineVirtualCamera;
+            cameraControlTrigger.customInspectorObjects.cameraOnBottom = EditorGUILayout.ObjectField("Camera on Bottom", cameraControlTrigger.customInspectorObjects.cameraOnBottom, typeof(CinemachineVirtualCamera), true) as CinemachineVirtualCamera;
         }
 
         if (cameraControlTrigger.customInspectorObjects.panCameraOnContact)
