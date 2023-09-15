@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float speed;
-    public float despawnTime;
+    [SerializeField] private float speed;
+    [SerializeField] private float despawnTime;
+    [SerializeField] private int bulletDamage = 5;
+    private float timeAlive = 0;
+    public string ENEMYTAG = "Enemy";
 
-    float timeAlive = 0;
 
    
 
@@ -32,8 +34,15 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.gameObject.CompareTag(ENEMYTAG))
+        {
+            collision.gameObject.GetComponent<EnemyScript>().DamageHealth(bulletDamage);
+        }
         
         Destroy(this.gameObject);
+
+
         
     }
 }
