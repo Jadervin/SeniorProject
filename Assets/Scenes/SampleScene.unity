@@ -4485,10 +4485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0c53254538ebf4f92c9de78fa1bb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  cooldownTimerMax: 0.2
+  bullet: {fileID: 238057513800418341, guid: 16e131700ad0af44b99c7c8fb17e760f, type: 3}
+  timeSinceShooting: 0
+  cooldownTimerMax: 0.5
   gameInput: {fileID: 766240397}
-  shootPoint: {fileID: 0}
+  shootPoint: {fileID: 1175859256}
+  canShoot: 1
 --- !u!1 &915154573
 GameObject:
   m_ObjectHideFlags: 3
@@ -6526,7 +6528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1175859256}
   m_Layer: 8
-  m_Name: Muzzle
+  m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

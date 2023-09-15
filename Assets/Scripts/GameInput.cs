@@ -14,7 +14,7 @@ public class GameInput : MonoBehaviour
 
     public event EventHandler OnJumpPressed;
     public event EventHandler OnJumpRelease;
-    
+    public event EventHandler OnShootPressed;
 
 
 
@@ -29,10 +29,12 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Jump.canceled += Jump_canceled;
 
-
+        playerInputActions.Player.Shoot.performed += Shoot_performed;
 
 
     }
+
+    
 
     private void OnDestroy()
     {
@@ -40,8 +42,17 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Jump.canceled -= Jump_canceled;
 
+        playerInputActions.Player.Shoot.performed -= Shoot_performed;
+
         playerInputActions.Dispose();
     }
+
+    private void Shoot_performed(InputAction.CallbackContext obj)
+    {
+        OnShootPressed?.Invoke(this, EventArgs.Empty);
+    }
+
+
 
     //When we press the jump button, tell the script that we desire a jump.
     //Also, use the started and canceled contexts to know if we're currently holding the button
