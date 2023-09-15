@@ -294,7 +294,7 @@ Transform:
   m_GameObject: {fileID: 53830455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -15.27, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2227,7 +2227,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1390903, y: 3.9096441, z: -10.22349}
+  m_LocalPosition: {x: -12.780709, y: 3.7296343, z: -10.22349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2527,8 +2527,8 @@ Transform:
   m_GameObject: {fileID: 574491391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.8908, y: -5.9, z: 0}
-  m_LocalScale: {x: 25.659334, y: 2.1691074, z: 1}
+  m_LocalPosition: {x: 33.8908, y: -6.3705, z: 0}
+  m_LocalScale: {x: 25.659334, y: 3.1100662, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 239437702}
@@ -3065,7 +3065,7 @@ MonoBehaviour:
   m_LookaheadSmoothing: 12
   m_LookaheadIgnoreY: 1
   m_XDamping: 0
-  m_YDamping: 2
+  m_YDamping: 0.25
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
@@ -3713,7 +3713,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 45.929222, y: -0.79130936}
+  m_Offset: {x: 45.929222, y: -0.95254135}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3724,7 +3724,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 76.78761, y: 32.52556}
+  m_Size: {x: 76.78761, y: 32.848022}
   m_EdgeRadius: 0
 --- !u!66 &759941528
 CompositeCollider2D:
@@ -3770,15 +3770,15 @@ CompositeCollider2D:
       - X: 75354160
         Y: 154714704
       - X: 75354160
-        Y: -170540880
+        Y: -173765520
       - X: 843230272
-        Y: -170540880
+        Y: -173765520
   m_CompositePaths:
     m_Paths:
-    - - {x: 84.323, y: -17.054089}
+    - - {x: 84.323, y: -17.376553}
       - {x: 84.323, y: 15.471471}
       - {x: 7.535416, y: 15.471442}
-      - {x: 7.5354457, y: -17.054089}
+      - {x: 7.5354457, y: -17.376553}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -3969,14 +3969,14 @@ MonoBehaviour:
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.5
+  m_ScreenY: 0.75
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0.5
+  m_DeadZoneWidth: 1
+  m_DeadZoneHeight: 0.35
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 1.5
-  m_SoftZoneHeight: 0.75
+  m_SoftZoneHeight: 0.35
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -4412,7 +4412,7 @@ MonoBehaviour:
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 2
-  m_SoftZoneHeight: 0.2
+  m_SoftZoneHeight: 0.45
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -6861,7 +6861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Size.y
-      value: 0.79225063
+      value: 0.59877205
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Offset.x
@@ -6869,7 +6869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Offset.y
-      value: -1.4978547
+      value: -1.7235804
       objectReference: {fileID: 0}
     - target: {fileID: 5380390430599753537, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: customInspectorObjects.cameraOnTop
@@ -7163,7 +7163,7 @@ MonoBehaviour:
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
   m_XDamping: 0.75
-  m_YDamping: 2
+  m_YDamping: 0.25
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
@@ -8889,7 +8889,7 @@ Transform:
   m_GameObject: {fileID: 1666043306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1390903, y: 3.9096441, z: -10.22349}
+  m_LocalPosition: {x: -18.40909, y: 3.7296443, z: -10.22349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9747,7 +9747,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 29.362095, y: -3.9569004}
+  m_Offset: {x: 29.362095, y: -4.0536404}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9758,7 +9758,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 26.0848, y: 22.420328}
+  m_Size: {x: 26.0848, y: 22.226849}
   m_EdgeRadius: 0
 --- !u!66 &1972789087
 CompositeCollider2D:
@@ -9800,9 +9800,9 @@ CompositeCollider2D:
   - m_Collider: {fileID: 1972789086}
     m_ColliderPaths:
     - - X: 424044960
-        Y: 72532632
+        Y: 70597840
       - X: 163196944
-        Y: 72532632
+        Y: 70597840
       - X: 163196944
         Y: -151670640
       - X: 424044960
@@ -9810,8 +9810,8 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths:
     - - {x: 42.40447, y: -15.167064}
-      - {x: 42.40447, y: 7.2532635}
-      - {x: 16.319695, y: 7.253234}
+      - {x: 42.40447, y: 7.059784}
+      - {x: 16.319695, y: 7.0597544}
       - {x: 16.319723, y: -15.167064}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -9871,14 +9871,14 @@ MonoBehaviour:
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.75
+  m_ScreenY: 0.8
   m_CameraDistance: 10
   m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 2
+  m_DeadZoneHeight: 0.45
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.2
-  m_SoftZoneHeight: 2
+  m_SoftZoneWidth: 0.25
+  m_SoftZoneHeight: 0.51
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -10458,19 +10458,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Size.x
-      value: 6.2626724
+      value: 3.5510292
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Size.y
-      value: 6.101389
+      value: 7.3022604
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Offset.x
-      value: -0.93087006
+      value: -2.2866917
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Offset.y
-      value: -3.2047195
+      value: -3.8051553
       objectReference: {fileID: 0}
     - target: {fileID: 5380390430599753537, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: customInspectorObjects.panTime
