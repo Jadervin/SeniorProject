@@ -1,7 +1,9 @@
 using UnityEngine;
 using Cinemachine;
-using UnityEditor;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class CameraControlTrigger : MonoBehaviour
 {
@@ -79,6 +81,7 @@ public class CustomInspectorObjects
     [HideInInspector] public float panTime = .35f;
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(CameraControlTrigger))]
 public class MyUnityEditor : Editor
 {
@@ -117,4 +120,8 @@ public class MyUnityEditor : Editor
             EditorUtility.SetDirty(cameraControlTrigger);
         }
     }
+
+
 }
+
+#endif
