@@ -6,11 +6,18 @@ using UnityEngine.Rendering;
 public class PlayerBasicShooting : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
-    [SerializeField] private float timeSinceShooting = 0f;
-    [SerializeField] private float cooldownTimerMax = 1f;
+    /*
+     * [SerializeField] 
+     *
+     */
+    private float timeSinceShooting = 0f;
+    [SerializeField] private float cooldownTimeMax = .3f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private Transform shootPoint;
-    [SerializeField] private bool canShoot = true;
+    /*
+     * [SerializeField] 
+     */
+    private bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +44,7 @@ public class PlayerBasicShooting : MonoBehaviour
         {
             timeSinceShooting += Time.deltaTime;
 
-            if (timeSinceShooting > cooldownTimerMax)
+            if (timeSinceShooting > cooldownTimeMax)
             {
                 timeSinceShooting = 0;
                 canShoot = true;

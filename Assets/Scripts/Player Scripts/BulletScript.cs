@@ -9,12 +9,7 @@ public class BulletScript : MonoBehaviour
 
     float timeAlive = 0;
 
-    public LayerMask groundLayer;
-    public LayerMask wallLayer;
-
-    public const string WALLTAG = "Wall";
-    public const string GROUNDTAG = "Ground";
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +32,8 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == groundLayer || collision.gameObject.layer == wallLayer)
-        {
-            Destroy(this.gameObject);
-        }
+        
+        Destroy(this.gameObject);
+        
     }
 }
