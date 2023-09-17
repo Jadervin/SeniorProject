@@ -20,8 +20,10 @@ public class MovementLimiter : MonoBehaviour
         characterCanMove = _initialCharacterCanMove;
     }
 
-    public void OnDeath()
+    public void OnDeathManager()
     {
         characterCanMove = false;
     }
+
+
 }

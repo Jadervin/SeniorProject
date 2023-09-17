@@ -2527,8 +2527,8 @@ Transform:
   m_GameObject: {fileID: 574491391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.8908, y: -6.3705, z: 0}
-  m_LocalScale: {x: 25.659334, y: 3.1100662, z: 1}
+  m_LocalPosition: {x: 34.5222, y: -6.5793, z: 0}
+  m_LocalScale: {x: 32.983295, y: 2.692579, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 239437702}
@@ -5033,8 +5033,8 @@ Transform:
   m_GameObject: {fileID: 1026720889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 261.0343, y: 31.4, z: 0.33130404}
-  m_LocalScale: {x: 130.46487, y: 4.746919, z: 1}
+  m_LocalPosition: {x: 263.4874, y: 31.4, z: 0.33130404}
+  m_LocalScale: {x: 125.559395, y: 4.746919, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 641008336}
@@ -8204,6 +8204,7 @@ GameObject:
   - component: {fileID: 1464256108}
   - component: {fileID: 1464256111}
   - component: {fileID: 1464256112}
+  - component: {fileID: 1464256113}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -8380,6 +8381,19 @@ MonoBehaviour:
   desiredJump: 0
   pressingJump: 0
   onGround: 0
+--- !u!114 &1464256113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464256106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e8598afd001fe489f4b48f377e2962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
 --- !u!1 &1489406478
 GameObject:
   m_ObjectHideFlags: 0
@@ -10828,6 +10842,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 1464256107}
+  - {fileID: 1876047066}
   - {fileID: 53830457}
   - {fileID: 449332913}
   - {fileID: 2029723712}
@@ -10839,4 +10854,3 @@ SceneRoots:
   - {fileID: 674019451}
   - {fileID: 239437702}
   - {fileID: 641008336}
-  - {fileID: 1876047066}

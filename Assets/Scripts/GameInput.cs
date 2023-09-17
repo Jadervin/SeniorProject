@@ -49,7 +49,10 @@ public class GameInput : MonoBehaviour
 
     private void Shoot_performed(InputAction.CallbackContext obj)
     {
-        OnShootPressed?.Invoke(this, EventArgs.Empty);
+        if (MovementLimiter.instance.characterCanMove)
+        {
+            OnShootPressed?.Invoke(this, EventArgs.Empty);
+        }
     }
 
 
@@ -61,11 +64,7 @@ public class GameInput : MonoBehaviour
     {
         if (MovementLimiter.instance.characterCanMove)
         {
-            
-            //Debug.Log("Jump " + context.phase);
-
             //When the player holds the button, invoke event
-            //Debug.Log("Invoking JumpPress Event");
             OnJumpPressed?.Invoke(this, EventArgs.Empty);
 
         }
@@ -76,13 +75,9 @@ public class GameInput : MonoBehaviour
     {
         if (MovementLimiter.instance.characterCanMove)
         {
-            
-            //Debug.Log("Jump " + context.phase);
-
-
             //When the player stops holding the button, invoke event
-            //Debug.Log("Invoking JumpRelease Event");
             OnJumpRelease?.Invoke(this, EventArgs.Empty);
+
         }
 
     }

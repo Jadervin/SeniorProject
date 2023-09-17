@@ -21,7 +21,8 @@ public class PlayerHealth : EntityScript
     public override void OnDeath()
     {
         this.gameObject.SetActive(false);
-        Destroy(gameObject);
+        MovementLimiter.instance.OnDeathManager();
+        //Destroy(gameObject);
     }
 
 }
