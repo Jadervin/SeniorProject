@@ -9,9 +9,11 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private int bulletDamage = 5;
     private float timeAlive = 0;
     public string ENEMYTAG = "Enemy";
+    public string GROUNDTAG = "Ground";
+    public string WALLTAG = "Wall";
 
 
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,11 +40,17 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.CompareTag(ENEMYTAG))
         {
             collision.gameObject.GetComponent<EnemyScript>().DamageHealth(bulletDamage);
+            Destroy(this.gameObject);
         }
-        
-        Destroy(this.gameObject);
 
+        if (collision.gameObject.CompareTag(GROUNDTAG))
+        {
+            Destroy(this.gameObject);
+        }
+        if (collision.gameObject.CompareTag(WALLTAG))
+        {
+            Destroy(this.gameObject);
+        }
 
-        
     }
 }
