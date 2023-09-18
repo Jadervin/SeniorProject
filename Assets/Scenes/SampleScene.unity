@@ -8496,8 +8496,8 @@ MonoBehaviour:
   ground: {fileID: 0}
   jumpHeight: 4.5
   timeToJumpApex: 0.563
-  upwardMovementMultiplier: 1.54
-  downwardMovementMultiplier: 6.03
+  upwardMovementMultiplier: 1.5
+  downwardMovementMultiplier: 2
   maxAirJumps: 0
   variableJumpHeight: 1
   jumpCutOff: 3.45
