@@ -9864,6 +9864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  enemyState: 0
+  attackState: 0
 --- !u!1001 &1887417085
 PrefabInstance:
   m_ObjectHideFlags: 0

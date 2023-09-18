@@ -19,7 +19,7 @@ public enum AttackStates
 }
 
 
-public abstract class  EnemyScript : EntityScript
+public class  EnemyScript : EntityScript
 {
 
     [SerializeField] private EnemyStates enemyState;
@@ -38,7 +38,10 @@ public abstract class  EnemyScript : EntityScript
         switch(enemyState)
         {
             case EnemyStates.IDLE:
-                //Do nothing, unless I want the enemy to move as an idle state
+                //Do nothing, just change to patrol state
+                //Maybe when the player gets into a certain distance, change to patrol
+
+                enemyState = EnemyStates.PATROL;
                 break;
             case EnemyStates.PATROL: 
                 //Movement
