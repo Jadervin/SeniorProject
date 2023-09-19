@@ -22,19 +22,33 @@ public enum AttackStates
 public class EnemyScript : EntityScript
 {
 
-    [SerializeField] private EnemyStates enemyState;
-    [SerializeField] private AttackStates attackState;
+    
     protected Rigidbody2D rb;
     protected BoxCollider2D boxCollider;
     [SerializeField] protected float moveSpeed = 3f;
     [SerializeField] protected bool isFacingRight;
-    public string STOP_POINT_TAG = "StopPoint";
+
+
+    
 
     [SerializeField] private float chaseTriggerRadius = 3f;
     [SerializeField] protected bool canChase;
     [SerializeField] private float attackTriggerRadius = 1.5f;
     [SerializeField] protected bool canAttack;
     public LayerMask playerLayer;
+
+    [SerializeField] private Transform playerTarget;
+    //[SerializeField] private Collider2D playerCollider;
+    [SerializeField] private float chaseSpeedMultiplier = 1.3f;
+
+    [Header("States")]
+    [SerializeField] private EnemyStates enemyState;
+    [SerializeField] private AttackStates attackState;
+
+    [Header("Tags")]
+    public string STOP_POINT_TAG = "StopPoint";
+    public string CAMERA_SWITCH_TRIGGER_TAG = "CameraSwitchTriggers";
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,13 +79,15 @@ public class EnemyScript : EntityScript
                 Movement();
                 if (canChase == true)
                 {
+                    
                     enemyState = EnemyStates.CHASE;
                 }
                 break;
 
             case EnemyStates.CHASE:
                 //Track down and get into range of player
-                if(canAttack == true)
+                ChasePlayer();
+                if (canAttack == true)
                 {
                     enemyState = EnemyStates.ATTACK;
                 }
@@ -79,6 +95,10 @@ public class EnemyScript : EntityScript
 
             case EnemyStates.ATTACK: 
                 //Executes attack and changes attack state to counterable
+                if(canChase == true && canAttack == false)
+                {
+                    enemyState = EnemyStates.CHASE;
+                }
                 break;
 
             case EnemyStates.STUNNED: 
@@ -111,8 +131,16 @@ public class EnemyScript : EntityScript
     {
         if(collision.gameObject.CompareTag(STOP_POINT_TAG) && enemyState == EnemyStates.PATROL)
         {
+            //Rotates the enemy when it reaches a stop point
+            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
         }
+
+        //if(collision.gameObject.CompareTag(CAMERA_SWITCH_TRIGGER_TAG))
+        //{
+        //    rb.velocity = new Vector2(0f, 0f);
+        //    enemyState = EnemyStates.IDLE;
+        //}
         
     }
 
@@ -154,6 +182,24 @@ public class EnemyScript : EntityScript
         enemyState = EnemyStates.DEATH;
         this.gameObject.SetActive(false);
         //Destroy(gameObject);
+    }
+
+
+
+    protected void ChasePlayer()
+    {
+        if(transform.position.x < playerTarget.position.x)
+        {
+            rb.velocity = new Vector2(moveSpeed * chaseSpeedMultiplier, 0f);
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            isFacingRightFunction();
+        }
+        else
+        {
+            rb.velocity = new Vector2(-moveSpeed * chaseSpeedMultiplier, 0f);
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+            isFacingRightFunction();
+        }
     }
 }
 
