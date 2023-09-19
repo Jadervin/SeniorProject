@@ -54,6 +54,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool onEdgeOfGround;
     [SerializeField] protected bool canChase;
     [SerializeField] protected bool canAttack;
+    [SerializeField] protected bool currentlyAttacking;
 
     [Header("States")]
     [SerializeField] protected EnemyStates enemyState;
@@ -120,7 +121,7 @@ public class EnemyScript : EntityScript
 
             case EnemyStates.ATTACK: 
                 //Executes attack and changes attack state to counterable
-                if(canChase == true && canAttack == false)
+                if(canChase == true && canAttack == false/* && currentlyAttacking == false*/)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
