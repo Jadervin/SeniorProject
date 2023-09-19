@@ -2776,8 +2776,8 @@ Transform:
   m_GameObject: {fileID: 574491391}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.5222, y: -6.5793, z: 0}
-  m_LocalScale: {x: 32.983295, y: 2.692579, z: 1}
+  m_LocalPosition: {x: 34.5222, y: -7.9822, z: 0}
+  m_LocalScale: {x: 32.983295, y: 5.362218, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 239437702}
@@ -8892,7 +8892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e8598afd001fe489f4b48f377e2962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
   maxHealth: 20
+  ENEMYTAG: Enemy
+  damageTimeBuffer: 1
+  isInvincible: 0
 --- !u!1 &1489406478
 GameObject:
   m_ObjectHideFlags: 0
@@ -10239,11 +10243,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94dad36990429c44bb8259dbed7e346c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHealth: 0
   maxHealth: 10
   enemyParent: {fileID: 2121362126}
   leftStopPoint: {fileID: 605642435}
   rightStopPoint: {fileID: 315342098}
   playerTarget: {fileID: 1464256107}
+  damage: 2
   groundLength: 0.75
   colliderOffset: {x: -0.66, y: 0, z: 0}
   chaseTriggerRadius: 7.23
@@ -10252,8 +10258,10 @@ MonoBehaviour:
   chaseSpeedMultiplier: 1.3
   isFacingRight: 0
   onEdgeOfGround: 0
-  canChase: 0
-  canAttack: 0
+  canChaseDetection: 0
+  canAttackDetection: 0
+  currentlyAttacking: 0
+  canPatrolOption: 0
   enemyState: 0
   attackState: 0
   STOP_POINT_TAG: StopPoint
@@ -11225,8 +11233,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2121362127}
   m_Layer: 0
-  m_Name: Enemy Object
-  m_TagString: Untagged
+  m_Name: Base Enemy Object
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

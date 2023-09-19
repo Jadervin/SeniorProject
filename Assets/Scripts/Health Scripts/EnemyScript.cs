@@ -31,6 +31,8 @@ public class EnemyScript : EntityScript
     [SerializeField] protected GameObject rightStopPoint;
     [SerializeField] protected Transform playerTarget;
 
+    [Header("Damage Amount")]
+    [SerializeField] protected int damage;
 
     [Header("Collider Settings")]
     //The length of the ground-checking collider
@@ -52,9 +54,12 @@ public class EnemyScript : EntityScript
     [Header("Booleans")]
     [SerializeField] protected bool isFacingRight;
     [SerializeField] protected bool onEdgeOfGround;
-    [SerializeField] protected bool canChase;
-    [SerializeField] protected bool canAttack;
+    [SerializeField] protected bool canChaseDetection;
+    [SerializeField] protected bool canAttackDetection;
     [SerializeField] protected bool currentlyAttacking;
+
+    [Header("Options")]
+    [SerializeField] protected bool canPatrolOption;
 
     [Header("States")]
     [SerializeField] protected EnemyStates enemyState;
@@ -68,6 +73,8 @@ public class EnemyScript : EntityScript
     [Header("Layer Masks")]
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected LayerMask groundLayer;
+
+
 
 
 
@@ -94,17 +101,26 @@ public class EnemyScript : EntityScript
         switch (enemyState)
         {
             case EnemyStates.IDLE:
-                //Do nothing, just change to patrol state
-                //Maybe when the player gets into a certain distance, change to patrol
-                enemyState = EnemyStates.PATROL;
+                //If the enemy is meant to patrol, set the state to patrol
+                if (canPatrolOption == true)
+                {
+                    enemyState = EnemyStates.PATROL;
+                }
+
+                //If the enemy spots the player, switch to chase
+                if (canChaseDetection == true)
+                {
+                    enemyState = EnemyStates.CHASE;
+                }
                 break;
 
             case EnemyStates.PATROL:
                 //Movement
                 Movement();
-                if (canChase == true)
+
+                //If the enemy spots the player, switch to chase
+                if (canChaseDetection == true)
                 {
-                    
                     enemyState = EnemyStates.CHASE;
                 }
                 break;
@@ -113,7 +129,7 @@ public class EnemyScript : EntityScript
                 //Track down and get into range of player
                 //if()
                 ChasePlayer();
-                if (canAttack == true)
+                if (canAttackDetection == true)
                 {
                     enemyState = EnemyStates.ATTACK;
                 }
@@ -121,7 +137,7 @@ public class EnemyScript : EntityScript
 
             case EnemyStates.ATTACK: 
                 //Executes attack and changes attack state to counterable
-                if(canChase == true && canAttack == false/* && currentlyAttacking == false*/)
+                if(canChaseDetection == true && canAttackDetection == false/* && currentlyAttacking == false*/)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
@@ -206,21 +222,31 @@ public class EnemyScript : EntityScript
     //Checks all of the custom colliders 
     protected void CheckCustomColliders()
     {
-        canChase = Physics2D.OverlapCircle(transform.position, chaseTriggerRadius, playerLayer);
+        canChaseDetection = Physics2D.OverlapCircle(transform.position, chaseTriggerRadius, playerLayer);
 
-        canAttack = Physics2D.OverlapCircle(transform.position, attackTriggerRadius, playerLayer);
+        canAttackDetection = Physics2D.OverlapCircle(transform.position, attackTriggerRadius, playerLayer);
 
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
-        if(canChase == false && enemyState == EnemyStates.CHASE || canChase == false && enemyState == EnemyStates.ATTACK) 
+        if(canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK) 
         {
-            enemyState = EnemyStates.PATROL;
 
-            TurnOffOneStopPoint();
+            if (canPatrolOption == true)
+            {
+                enemyState = EnemyStates.PATROL;
+
+                TurnOffOneStopPoint();
 
 
-            //Rotates the enemy when it reaches a stop point
-            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+                //Rotates the enemy when it reaches a stop point
+                transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+            }
+            else
+            {
+                enemyState = EnemyStates.IDLE;
+
+                transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+            }
         }
 
         //Checks if the collider is not touching the ground
@@ -235,7 +261,7 @@ public class EnemyScript : EntityScript
             //change the enemyState to patrol
         if (onEdgeOfGround)
         {
-            canChase = false;
+            canChaseDetection = false;
             TurnOffOneStopPoint();
             chaseTriggerRadius = 0;
             attackTriggerRadius = 0;
@@ -319,7 +345,10 @@ public class EnemyScript : EntityScript
         //Destroy(gameObject);
     }
 
-
+    public int GetDamage()
+    {
+        return damage;
+    }
 
 }
 

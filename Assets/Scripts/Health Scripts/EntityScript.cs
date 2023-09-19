@@ -5,10 +5,7 @@ using UnityEngine;
 public abstract class EntityScript : MonoBehaviour
 {
     [Header("Health Attributes")]
-    /*
-     * [SerializeField] 
-     */
-    protected int currentHealth;
+    [SerializeField] protected int currentHealth;
     [SerializeField] protected int maxHealth;
 
     protected void Awake()
@@ -32,7 +29,7 @@ public abstract class EntityScript : MonoBehaviour
     {
         currentHealth += healAmount;
     }
-    public void DamageHealth(int damageAmount) 
+    public virtual void DamageHealth(int damageAmount) 
     {
         currentHealth -= damageAmount;
 
