@@ -23,9 +23,9 @@ public class PlayerKnockback : MonoBehaviour
         Vector2 knockbackDirection = (transform.position - e.collidedGameObject.transform.position).normalized;
 
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
-
-
-        //throw new System.NotImplementedException();
+        //MovementLimiter.instance.OnKnockbackBegin();
+        StartCoroutine(Reset());
+        
     }
 
     // Update is called once per frame
@@ -38,5 +38,6 @@ public class PlayerKnockback : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         rb.velocity = Vector2.zero;
+        //MovementLimiter.instance.OnKnockbackDone();
     }
 }

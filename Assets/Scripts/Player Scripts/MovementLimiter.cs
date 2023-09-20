@@ -20,6 +20,16 @@ public class MovementLimiter : MonoBehaviour
         characterCanMove = _initialCharacterCanMove;
     }
 
+    public void OnKnockbackBegin()
+    {
+        characterCanMove = false;
+    }
+
+    public void OnKnockbackDone()
+    {
+        characterCanMove = true;
+    }
+
     public void OnDeathManager()
     {
         characterCanMove = false;
