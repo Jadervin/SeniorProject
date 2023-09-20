@@ -11,11 +11,12 @@ public class PlayerHealth : EntityScript
     [SerializeField] private bool isInvincible;
 
     public event EventHandler<OnKnockbackEventArgs> OnPlayerKnockbackAction;
-
     public class OnKnockbackEventArgs : EventArgs
     {
         public GameObject collidedGameObject;
     }
+
+    public event EventHandler OnPlayerHit;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +33,12 @@ public class PlayerHealth : EntityScript
     public override void DamageHealth(int damageAmount)
     {
         currentHealth -= damageAmount;
+        OnPlayerHit?.Invoke(this, EventArgs.Empty);
+
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             OnDeath();
         }
         else
@@ -58,11 +62,14 @@ public class PlayerHealth : EntityScript
             int damage = collision.gameObject.GetComponent<EnemyScript>().GetDamage();
             DamageHealth(damage);
 
-            //player gets knocked back
-            OnPlayerKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
+            if (currentHealth > 0)
             {
-                collidedGameObject = collision.gameObject
-            });
+                //player gets knocked back
+                OnPlayerKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
+                {
+                    collidedGameObject = collision.gameObject
+                });
+            }
         }
       
     }
