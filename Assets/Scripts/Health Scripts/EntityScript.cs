@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public abstract class EntityScript : MonoBehaviour
     [Header("Health Attributes")]
     [SerializeField] protected int currentHealth;
     [SerializeField] protected int maxHealth;
+    
 
     protected void Awake()
     {

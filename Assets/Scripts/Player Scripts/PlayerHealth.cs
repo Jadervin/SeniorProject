@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,13 @@ public class PlayerHealth : EntityScript
 
     [SerializeField] private float damageTimeBuffer = 1f;
     [SerializeField] private bool isInvincible;
+
+    public event EventHandler<OnKnockbackEventArgs> OnPlayerKnockbackAction;
+
+    public class OnKnockbackEventArgs : EventArgs
+    {
+        public GameObject collidedGameObject;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -44,14 +52,19 @@ public class PlayerHealth : EntityScript
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (isInvincible == false)
+      
+        if (collision.gameObject.CompareTag(ENEMYTAG) && isInvincible == false)
         {
-            if (collision.gameObject.CompareTag(ENEMYTAG))
+            int damage = collision.gameObject.GetComponent<EnemyScript>().GetDamage();
+            DamageHealth(damage);
+
+            //player gets knocked back
+            OnPlayerKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
             {
-                int damage = collision.gameObject.GetComponent<EnemyScript>().GetDamage();
-                DamageHealth(damage);
-            }
+                collidedGameObject = collision.gameObject
+            });
         }
+      
     }
 
     IEnumerator playerInvincibility()

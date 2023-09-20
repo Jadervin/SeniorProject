@@ -74,13 +74,13 @@ public class EnemyScript : EntityScript
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected LayerMask groundLayer;
 
-
+    [SerializeField] protected float attackChargeTime = .3f;
     [SerializeField] protected float counterableTimeFrameMax = .3f;
     [SerializeField] protected float currentCounterableTimeFrame;
     [SerializeField] protected float attackRechargeTimeMax = 1f;
     [SerializeField] protected float currentRechargeTime;
 
-    [SerializeField] protected bool canAttack;
+    [SerializeField] protected bool canAttack = true;
     [SerializeField] protected float dashPower = 24.0f;
     [SerializeField] protected float attackTime = .4f;
 
@@ -151,20 +151,27 @@ public class EnemyScript : EntityScript
                     enemyState = EnemyStates.CHASE;
                 }
 
-                if (canAttack == false)
+
+                if (canAttack == true)
                 {
-                    EnemyAttack_DashAttack();
+                    //Have the enemy charge up their attack
+                    StartCoroutine(EnemyAttackStartUp());
+
+                    StartCoroutine(EnemyAttack_DashAttack());
+
+                    StartCoroutine(AttackRecharge());
+
                 }
-                if (currentlyAttacking == false && currentRechargeTime < attackRechargeTimeMax)
-                {
-                    //EnemyAttack_DashAttack();
-                    currentRechargeTime += Time.deltaTime;
-                }
-                else
-                {
-                    currentRechargeTime = 0;
-                    canAttack = true;
-                }
+                //while (currentlyAttacking == false && currentRechargeTime < attackRechargeTimeMax)
+                //{
+                //    //EnemyAttack_DashAttack();
+                //    currentRechargeTime += Time.deltaTime;
+                //}
+                //else
+                //{
+                //    currentRechargeTime = 0;
+                //    canAttack = true;
+                //}
 
                 break;
 
@@ -376,8 +383,14 @@ public class EnemyScript : EntityScript
         return damage;
     }
 
+    public IEnumerator EnemyAttackStartUp()
+    {
+        yield return new WaitForSeconds(attackChargeTime);
 
-    public void EnemyAttack_DashAttack()
+    }
+
+
+    public IEnumerator EnemyAttack_DashAttack()
     {
         attackState = AttackStates.COUNTERABLE;
         canAttack = false;
@@ -385,22 +398,35 @@ public class EnemyScript : EntityScript
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         
+        //Dash
+        rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
 
-        if (currentCounterableTimeFrame < counterableTimeFrameMax)
-        {
 
-            //Dash
-            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-            currentCounterableTimeFrame += Time.deltaTime;
+        //while (currentCounterableTimeFrame < counterableTimeFrameMax)
+        //{
 
-        }
-        else
-        {
-            currentCounterableTimeFrame = 0;
-            attackState = AttackStates.NON_COUNTERABLE;
-            rb.gravityScale = originalGravity;
-            currentlyAttacking = false;
-        }
+            
+        //    currentCounterableTimeFrame += Time.deltaTime;
+
+        //}
+        //else
+        //{
+        //    currentCounterableTimeFrame = 0;
+            
+        //}
+
+        yield return new WaitForSeconds(counterableTimeFrameMax);
+        attackState = AttackStates.NON_COUNTERABLE;
+        rb.gravityScale = originalGravity;
+        currentlyAttacking = false;
+
+    }
+
+
+    public IEnumerator AttackRecharge()
+    {
+        yield return new WaitForSeconds(attackRechargeTimeMax);
+        canAttack = true;
     }
 
 }
