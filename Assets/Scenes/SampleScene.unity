@@ -10253,7 +10253,7 @@ MonoBehaviour:
   groundLength: 0.75
   colliderOffset: {x: -0.66, y: 0, z: 0}
   chaseTriggerRadius: 7.23
-  attackTriggerRadius: 1.62
+  attackTriggerRadius: 3.61
   moveSpeed: 7
   chaseSpeedMultiplier: 1.3
   isFacingRight: 0
@@ -10273,6 +10273,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  counterableTimeFrameMax: 0.3
+  currentCounterableTimeFrame: 0
+  attackRechargeTimeMax: 1
+  currentRechargeTime: 0
+  canAttack: 0
+  dashPower: 24
+  attackTime: 0.2
 --- !u!1001 &1887417085
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -75,8 +75,14 @@ public class EnemyScript : EntityScript
     [SerializeField] protected LayerMask groundLayer;
 
 
+    [SerializeField] protected float counterableTimeFrameMax = .3f;
+    [SerializeField] protected float currentCounterableTimeFrame;
+    [SerializeField] protected float attackRechargeTimeMax = 1f;
+    [SerializeField] protected float currentRechargeTime;
 
-
+    [SerializeField] protected bool canAttack;
+    [SerializeField] protected float dashPower = 24.0f;
+    [SerializeField] protected float attackTime = .4f;
 
 
     // Start is called before the first frame update
@@ -89,6 +95,9 @@ public class EnemyScript : EntityScript
 
         oldChaseTriggerRadius = chaseTriggerRadius;
         oldAttackTriggerRadius = attackTriggerRadius;
+
+        counterableTimeFrameMax = attackTime;
+
     }
 
     // Update is called once per frame
@@ -137,14 +146,31 @@ public class EnemyScript : EntityScript
 
             case EnemyStates.ATTACK: 
                 //Executes attack and changes attack state to counterable
-                if(canChaseDetection == true && canAttackDetection == false/* && currentlyAttacking == false*/)
+                if(canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
+
+                if (canAttack == false)
+                {
+                    EnemyAttack_DashAttack();
+                }
+                if (currentlyAttacking == false && currentRechargeTime < attackRechargeTimeMax)
+                {
+                    //EnemyAttack_DashAttack();
+                    currentRechargeTime += Time.deltaTime;
+                }
+                else
+                {
+                    currentRechargeTime = 0;
+                    canAttack = true;
+                }
+
                 break;
 
-            case EnemyStates.STUNNED: 
+            case EnemyStates.STUNNED:
                 //Enemy cannot move
+                rb.velocity = new Vector2(0f, 0f); 
                 break;
 
             case EnemyStates.DEATH: 
@@ -348,6 +374,33 @@ public class EnemyScript : EntityScript
     public int GetDamage()
     {
         return damage;
+    }
+
+
+    public void EnemyAttack_DashAttack()
+    {
+        attackState = AttackStates.COUNTERABLE;
+        canAttack = false;
+        currentlyAttacking = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        
+
+        if (currentCounterableTimeFrame < counterableTimeFrameMax)
+        {
+
+            //Dash
+            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+            currentCounterableTimeFrame += Time.deltaTime;
+
+        }
+        else
+        {
+            currentCounterableTimeFrame = 0;
+            attackState = AttackStates.NON_COUNTERABLE;
+            rb.gravityScale = originalGravity;
+            currentlyAttacking = false;
+        }
     }
 
 }
