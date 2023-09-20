@@ -59,7 +59,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool currentlyAttacking;
 
     [Header("Options")]
-    [SerializeField] protected bool canPatrolOption;
+    public bool canPatrolOption;
 
     [Header("States")]
     [SerializeField] protected EnemyStates enemyState;
@@ -75,7 +75,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected LayerMask groundLayer;
 
 
-    [Header("Attack State Variables Masks")]
+    [Header("Attack State Variables")]
     [SerializeField] protected float attackChargeTime = 5f;
     [SerializeField] protected float counterableTimeFrameMax = .3f;
     //[SerializeField] protected float currentCounterableTimeFrame;
@@ -100,6 +100,8 @@ public class EnemyScript : EntityScript
 
         counterableTimeFrameMax = attackTime;
 
+        //isFacingRightFunction();
+
     }
 
     // Update is called once per frame
@@ -116,6 +118,11 @@ public class EnemyScript : EntityScript
                 if (canPatrolOption == true)
                 {
                     enemyState = EnemyStates.PATROL;
+                }
+
+                else
+                {
+                    enemyState = EnemyStates.IDLE;
                 }
 
                 //If the enemy spots the player, switch to chase
@@ -300,7 +307,7 @@ public class EnemyScript : EntityScript
             //turn off one of the stop points
             //make the radiuses of the colliders zero
             //change the enemyState to patrol
-        if (onEdgeOfGround)
+        if (onEdgeOfGround && enemyState != EnemyStates.IDLE)
         {
             canChaseDetection = false;
             TurnOffOneStopPoint();
