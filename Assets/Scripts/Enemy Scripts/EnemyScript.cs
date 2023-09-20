@@ -74,11 +74,13 @@ public class EnemyScript : EntityScript
     [SerializeField] protected LayerMask playerLayer;
     [SerializeField] protected LayerMask groundLayer;
 
-    [SerializeField] protected float attackChargeTime = .3f;
+
+    [Header("Attack State Variables Masks")]
+    [SerializeField] protected float attackChargeTime = 5f;
     [SerializeField] protected float counterableTimeFrameMax = .3f;
-    [SerializeField] protected float currentCounterableTimeFrame;
+    //[SerializeField] protected float currentCounterableTimeFrame;
     [SerializeField] protected float attackRechargeTimeMax = 1f;
-    [SerializeField] protected float currentRechargeTime;
+    //[SerializeField] protected float currentRechargeTime;
 
     [SerializeField] protected bool canAttack = true;
     [SerializeField] protected float dashPower = 24.0f;
@@ -151,12 +153,14 @@ public class EnemyScript : EntityScript
                     enemyState = EnemyStates.CHASE;
                 }
 
+                
 
                 if (canAttack == true)
                 {
+                    //StopAllCoroutines();
                     //Have the enemy charge up their attack
                     StartCoroutine(EnemyAttackStartUp());
-
+                    
                     StartCoroutine(EnemyAttack_DashAttack());
 
                     StartCoroutine(AttackRecharge());
@@ -258,7 +262,11 @@ public class EnemyScript : EntityScript
         canChaseDetection = Physics2D.OverlapCircle(transform.position, chaseTriggerRadius, playerLayer);
 
         canAttackDetection = Physics2D.OverlapCircle(transform.position, attackTriggerRadius, playerLayer);
-
+        
+        //Checks if the collider is not touching the ground
+        //if one of the raycast is not touching the ground, the boolean is set to true
+        onEdgeOfGround = !Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer) || 
+            !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
         if(canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK) 
@@ -282,10 +290,7 @@ public class EnemyScript : EntityScript
             }
         }
 
-        //Checks if the collider is not touching the ground
-        //if one of the raycast is not touching the ground, the boolean is set to true
-        onEdgeOfGround = !Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer) || 
-            !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
+       
 
         //if the enemy is on the edge of the ground:
             //set the chase to false

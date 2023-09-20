@@ -10292,9 +10292,7 @@ MonoBehaviour:
     m_Bits: 64
   attackChargeTime: 10
   counterableTimeFrameMax: 1
-  currentCounterableTimeFrame: 0
   attackRechargeTimeMax: 2
-  currentRechargeTime: 0
   canAttack: 1
   dashPower: 24
   attackTime: 0.3
