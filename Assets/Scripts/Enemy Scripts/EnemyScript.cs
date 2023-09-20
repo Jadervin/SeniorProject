@@ -158,10 +158,13 @@ public class EnemyScript : EntityScript
                 if (canAttack == true)
                 {
                     StopAllCoroutines();
+
                     //Have the enemy charge up their attack
                     StartCoroutine(EnemyAttackStartUp());
+
                     //StopAllCoroutines();
                     StartCoroutine(EnemyAttack_DashAttack());
+
                     //StopAllCoroutines();
                     StartCoroutine(AttackRecharge());
 
