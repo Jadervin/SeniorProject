@@ -79,7 +79,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected float attackChargeTime = 5f;
     /*[SerializeField]*/ protected float counterableTimeFrame = .3f;
     //[SerializeField] protected float currentCounterableTimeFrame;
-    [SerializeField] protected float attackRechargeTimeMax = 1f;
+    [SerializeField] protected float attackRechargeTime = 1f;
     //[SerializeField] protected float currentRechargeTime;
 
     [SerializeField] protected bool canAttack = true;
@@ -293,8 +293,12 @@ public class EnemyScript : EntityScript
             !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
-        if(canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK) 
+        if(canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK || canAttackDetection == false && enemyState == EnemyStates.ATTACK) 
         {
+
+            isChargingAttack = false;
+            isAttacking = false;
+            isRecharging = false;
 
             if (canPatrolOption == true)
             {
@@ -420,6 +424,7 @@ public class EnemyScript : EntityScript
 
     public IEnumerator EnemyAttack() 
     {
+        canAttack = false;
         isChargingAttack = true;
         if (isAttacking == false && isRecharging == false && isChargingAttack == true)
         {
@@ -434,7 +439,7 @@ public class EnemyScript : EntityScript
         if (isChargingAttack == false && isRecharging == false && isAttacking == true)
         {
             attackState = AttackStates.COUNTERABLE;
-            canAttack = false;
+            
             currentlyAttacking = true;
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
@@ -464,13 +469,15 @@ public class EnemyScript : EntityScript
         }
 
         isRecharging = true;
-        if (isChargingAttack == false && isAttacking == false && isRecharging == true)
-        {
-            yield return new WaitForSeconds(attackRechargeTimeMax);
-            canAttack = true;
+        //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
+        
+        yield return new WaitForSeconds(attackRechargeTime);
 
-            isRecharging = false;
-        }
+        isRecharging = false;
+        canAttack = true;
+
+            
+        
 
     }
 
