@@ -10502,7 +10502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 2
+  m_text: Build 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11929,12 +11929,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 2020301651}
     m_Modifications:
     - target: {fileID: 1057868000834207737, guid: a4c32f80c7804214081849c603c2f915, type: 3}
+      propertyPath: attackTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057868000834207737, guid: a4c32f80c7804214081849c603c2f915, type: 3}
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 1464256107}
     - target: {fileID: 1057868000834207737, guid: a4c32f80c7804214081849c603c2f915, type: 3}
       propertyPath: canPatrolOption
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1057868000834207737, guid: a4c32f80c7804214081849c603c2f915, type: 3}
+      propertyPath: attackChargeTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4874715465528085387, guid: a4c32f80c7804214081849c603c2f915, type: 3}
       propertyPath: m_Name
