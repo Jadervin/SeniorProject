@@ -77,7 +77,7 @@ public class EnemyScript : EntityScript
 
     [Header("Attack State Variables")]
     [SerializeField] protected float attackChargeTime = 5f;
-    [SerializeField] protected float counterableTimeFrameMax = .3f;
+    /*[SerializeField]*/ protected float counterableTimeFrame = .3f;
     //[SerializeField] protected float currentCounterableTimeFrame;
     [SerializeField] protected float attackRechargeTimeMax = 1f;
     //[SerializeField] protected float currentRechargeTime;
@@ -85,6 +85,12 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool canAttack = true;
     [SerializeField] protected float dashPower = 24.0f;
     [SerializeField] protected float attackTime = .4f;
+
+
+    [SerializeField] protected bool isChargingAttack = false;
+    [SerializeField] protected bool isAttacking = false;
+    [SerializeField] protected bool isRecharging = false;
+
 
 
     // Start is called before the first frame update
@@ -98,7 +104,7 @@ public class EnemyScript : EntityScript
         oldChaseTriggerRadius = chaseTriggerRadius;
         oldAttackTriggerRadius = attackTriggerRadius;
 
-        counterableTimeFrameMax = attackTime;
+        counterableTimeFrame = attackTime;
 
         //isFacingRightFunction();
 
@@ -164,29 +170,37 @@ public class EnemyScript : EntityScript
 
                 if (canAttack == true)
                 {
-                    StopAllCoroutines();
+                    //StopAllCoroutines();
+
+                    //Maybe put all of these functions into one coroutine because with the method I have now, all the coroutines activate at the same time
 
                     //Have the enemy charge up their attack
-                    StartCoroutine(EnemyAttackStartUp());
 
-                    //StopAllCoroutines();
-                    StartCoroutine(EnemyAttack_DashAttack());
+                    StartCoroutine(EnemyAttack());
 
-                    //StopAllCoroutines();
-                    StartCoroutine(AttackRecharge());
+                    //StartCoroutine(EnemyAttackStartUp());
+
+
+
+                    
+                    //StartCoroutine(EnemyAttack_DashAttack());
+
+               
+                    //StartCoroutine(AttackRecharge());
 
                 }
-                //while (currentlyAttacking == false && currentRechargeTime < attackRechargeTimeMax)
-                //{
-                //    //EnemyAttack_DashAttack();
-                //    currentRechargeTime += Time.deltaTime;
-                //}
-                //else
-                //{
-                //    currentRechargeTime = 0;
-                //    canAttack = true;
-                //}
-
+                /*
+                while (currentlyAttacking == false && currentRechargeTime < attackRechargeTimeMax)
+                {
+                    //EnemyAttack_DashAttack();
+                    currentRechargeTime += Time.deltaTime;
+                }
+                else
+                {
+                    currentRechargeTime = 0;
+                    canAttack = true;
+                }
+                */
                 break;
 
             case EnemyStates.STUNNED:
@@ -398,51 +412,107 @@ public class EnemyScript : EntityScript
         return damage;
     }
 
-    public IEnumerator EnemyAttackStartUp()
+    //public IEnumerator EnemyAttackStartUp()
+    //{
+    //    yield return new WaitForSeconds(attackChargeTime);
+
+    //}
+
+    public IEnumerator EnemyAttack() 
     {
-        yield return new WaitForSeconds(attackChargeTime);
+        isChargingAttack = true;
+        if (isAttacking == false && isRecharging == false && isChargingAttack == true)
+        {
+            yield return new WaitForSeconds(attackChargeTime);
+            isChargingAttack = false;
+        }
+        //Attack
+        //StartCoroutine(EnemyAttack_DashAttack());
+
+        isAttacking = true;
+
+        if (isChargingAttack == false && isRecharging == false && isAttacking == true)
+        {
+            attackState = AttackStates.COUNTERABLE;
+            canAttack = false;
+            currentlyAttacking = true;
+            float originalGravity = rb.gravityScale;
+            rb.gravityScale = 0f;
+
+            //Dash
+            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+
+
+            //while (currentCounterableTimeFrame < counterableTimeFrameMax)
+            //{
+
+
+            //    currentCounterableTimeFrame += Time.deltaTime;
+
+            //}
+            //else
+            //{
+            //    currentCounterableTimeFrame = 0;
+
+            //}
+
+            yield return new WaitForSeconds(counterableTimeFrame);
+            attackState = AttackStates.NON_COUNTERABLE;
+            rb.gravityScale = originalGravity;
+            currentlyAttacking = false;
+            isAttacking = false;
+        }
+
+        isRecharging = true;
+        if (isChargingAttack == false && isAttacking == false && isRecharging == true)
+        {
+            yield return new WaitForSeconds(attackRechargeTimeMax);
+            canAttack = true;
+
+            isRecharging = false;
+        }
 
     }
 
 
-    public IEnumerator EnemyAttack_DashAttack()
-    {
-        attackState = AttackStates.COUNTERABLE;
-        canAttack = false;
-        currentlyAttacking = true;
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
+    //public IEnumerator EnemyAttack_DashAttack()
+    //{
+    //    attackState = AttackStates.COUNTERABLE;
+    //    canAttack = false;
+    //    currentlyAttacking = true;
+    //    float originalGravity = rb.gravityScale;
+    //    rb.gravityScale = 0f;
         
-        //Dash
-        rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+    //    //Dash
+    //    rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
 
 
-        //while (currentCounterableTimeFrame < counterableTimeFrameMax)
-        //{
+    //    //while (currentCounterableTimeFrame < counterableTimeFrameMax)
+    //    //{
 
             
-        //    currentCounterableTimeFrame += Time.deltaTime;
+    //    //    currentCounterableTimeFrame += Time.deltaTime;
 
-        //}
-        //else
-        //{
-        //    currentCounterableTimeFrame = 0;
+    //    //}
+    //    //else
+    //    //{
+    //    //    currentCounterableTimeFrame = 0;
             
-        //}
+    //    //}
 
-        yield return new WaitForSeconds(counterableTimeFrameMax);
-        attackState = AttackStates.NON_COUNTERABLE;
-        rb.gravityScale = originalGravity;
-        currentlyAttacking = false;
+    //    yield return new WaitForSeconds(counterableTimeFrame);
+    //    attackState = AttackStates.NON_COUNTERABLE;
+    //    rb.gravityScale = originalGravity;
+    //    currentlyAttacking = false;
 
-    }
+    //}
 
 
-    public IEnumerator AttackRecharge()
-    {
-        yield return new WaitForSeconds(attackRechargeTimeMax);
-        canAttack = true;
-    }
+    //public IEnumerator AttackRecharge()
+    //{
+    //    yield return new WaitForSeconds(attackRechargeTimeMax);
+    //    canAttack = true;
+    //}
 
 }
 
