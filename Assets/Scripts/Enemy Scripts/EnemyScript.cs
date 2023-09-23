@@ -94,7 +94,7 @@ public class EnemyScript : EntityScript
 
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         enemyState = EnemyStates.IDLE;
         attackState = AttackStates.NON_COUNTERABLE;
@@ -111,7 +111,7 @@ public class EnemyScript : EntityScript
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
@@ -160,7 +160,7 @@ public class EnemyScript : EntityScript
                 break;
 
             case EnemyStates.ATTACK: 
-                //Executes attack and changes attack state to counterable
+                
                 if(canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
                 {
                     enemyState = EnemyStates.CHASE;
