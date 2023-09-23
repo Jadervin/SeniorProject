@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 2552928060806785625}
   - component: {fileID: 7460583001455998517}
   - component: {fileID: 1057868000834207737}
+  - component: {fileID: 6179995937735283193}
   m_Layer: 0
   m_Name: Enemy Logic
   m_TagString: Enemy
@@ -449,6 +450,7 @@ MonoBehaviour:
   STOP_POINT_TAG: StopPoint
   CAMERA_SWITCH_TRIGGER_TAG: CameraSwitchTrigger
   WALLTAG: Wall
+  TONGUECOUNTERTAG: TongueCounter
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -456,11 +458,29 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackChargeTime: 10
-  counterableTimeFrameMax: 1
-  attackRechargeTimeMax: 2
+  attackRechargeTime: 1
   canAttack: 1
   dashPower: 24
   attackTime: 0.3
+  isChargingAttack: 0
+  isAttacking: 0
+  isRecharging: 0
+--- !u!114 &6179995937735283193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7431700707521253591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8aa298dc9107d24a900fb3d237f6d8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  knockbackStrength: 16
+  delayTime: 0.3
+  enemyScript: {fileID: 0}
 --- !u!1 &7579737027473613007
 GameObject:
   m_ObjectHideFlags: 0

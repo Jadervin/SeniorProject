@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,6 +91,12 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool isChargingAttack = false;
     [SerializeField] protected bool isAttacking = false;
     [SerializeField] protected bool isRecharging = false;
+
+    public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
+    public class OnKnockbackEventArgs : EventArgs
+    {
+        public GameObject collidedGameObject;
+    }
 
 
 
@@ -236,6 +243,12 @@ public class EnemyScript : EntityScript
         if (collision.gameObject.CompareTag(TONGUECOUNTERTAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
         {
             //Knockback enemy
+            OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
+            {
+                collidedGameObject = collision.gameObject
+            });
+
+            enemyState = EnemyStates.STUNNED;
         }
 
     }
