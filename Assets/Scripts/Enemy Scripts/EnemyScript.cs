@@ -208,7 +208,7 @@ public class EnemyScript : EntityScript
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
         //if it collides with one of the stop points while patrolling, rotate the enemy
         if(collision.gameObject.CompareTag(STOP_POINT_TAG) && enemyState == EnemyStates.PATROL)
@@ -402,7 +402,7 @@ public class EnemyScript : EntityScript
 
     //}
 
-    public IEnumerator EnemyAttack() 
+    protected IEnumerator EnemyAttack() 
     {
         //Have the enemy charge up their attack
         canAttack = false;

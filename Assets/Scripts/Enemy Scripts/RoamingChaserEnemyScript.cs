@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoamingEnemyScript : EnemyScript
+public class RoamingChaserEnemyScript : EnemyScript
 {
     
 

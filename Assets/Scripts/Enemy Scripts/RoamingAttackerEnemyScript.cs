@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StationaryEnemyScript : EnemyScript
-{
+public class RoamingAttackerEnemyScript : EnemyScript
+{//This enemy may be a slow mover, but can have a wide attack range
 
     // Update is called once per frame
     new private void Update()
@@ -16,30 +16,38 @@ public class StationaryEnemyScript : EnemyScript
         {
             case EnemyStates.IDLE:
 
+                enemyState = EnemyStates.PATROL;
 
-                //If the enemy spots the player, switch to attack
+                
                 /*
                 if (canChaseDetection == true)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
                 */
+                /*
                 if (canAttackDetection == true)
                 {
                     enemyState = EnemyStates.ATTACK;
                 }
-
+                */
                 break;
 
             case EnemyStates.PATROL:
                 //Movement
-                //Movement();
+                Movement();
 
                 ////If the enemy spots the player, switch to chase
                 //if (canChaseDetection == true)
                 //{
                 //    enemyState = EnemyStates.CHASE;
                 //}
+
+                //If the enemy spots the player, switch to attack
+                if (canAttackDetection == true)
+                {
+                    enemyState = EnemyStates.ATTACK;
+                }
                 break;
 
             case EnemyStates.CHASE:
