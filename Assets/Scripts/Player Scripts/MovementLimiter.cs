@@ -7,8 +7,11 @@ public class MovementLimiter : MonoBehaviour
     
     public static MovementLimiter instance;
 
-    [SerializeField] bool _initialCharacterCanMove = true;
+    [SerializeField] private bool _initialCharacterCanMove = true;
     public bool characterCanMove;
+
+    [SerializeField] private bool _initialCharacterCanShoot = true;
+    public bool characterCanShoot;
 
     private void OnEnable()
     {
@@ -18,6 +21,7 @@ public class MovementLimiter : MonoBehaviour
     private void Start()
     {
         characterCanMove = _initialCharacterCanMove;
+        characterCanShoot = _initialCharacterCanShoot;
     }
 
     public void OnKnockbackBegin()

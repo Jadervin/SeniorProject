@@ -37,6 +37,7 @@ public abstract class EntityScript : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             OnDeath();
         }
     }

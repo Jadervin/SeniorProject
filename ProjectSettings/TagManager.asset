@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - StopPoint
   - CameraSwitchTrigger
+  - TongueCounter
   layers:
   - Default
   - TransparentFX

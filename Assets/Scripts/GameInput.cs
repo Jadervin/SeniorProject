@@ -15,7 +15,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnJumpPressed;
     public event EventHandler OnJumpRelease;
     public event EventHandler OnShootPressed;
-
+    public event EventHandler OnTongueCounterPressed;
 
 
     private void Awake()
@@ -31,6 +31,8 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Shoot.performed += Shoot_performed;
 
+        playerInputActions.Player.TongueCounter.performed += TongueCounter_performed;
+
 
     }
 
@@ -44,12 +46,22 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Shoot.performed -= Shoot_performed;
 
+        playerInputActions.Player.TongueCounter.performed-= TongueCounter_performed;
+
         playerInputActions.Dispose();
     }
 
-    private void Shoot_performed(InputAction.CallbackContext obj)
+
+    private void TongueCounter_performed(InputAction.CallbackContext obj)
     {
         if (MovementLimiter.instance.characterCanMove)
+        {
+            OnTongueCounterPressed?.Invoke(this, EventArgs.Empty);
+        }
+    }
+    private void Shoot_performed(InputAction.CallbackContext obj)
+    {
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanShoot)
         {
             OnShootPressed?.Invoke(this, EventArgs.Empty);
         }

@@ -69,6 +69,7 @@ public class EnemyScript : EntityScript
     public string STOP_POINT_TAG = "StopPoint";
     public string CAMERA_SWITCH_TRIGGER_TAG = "CameraSwitchTriggers";
     public string WALLTAG = "Wall";
+    public string TONGUECOUNTERTAG = "TongueCounter";
 
     [Header("Layer Masks")]
     [SerializeField] protected LayerMask playerLayer;
@@ -78,9 +79,8 @@ public class EnemyScript : EntityScript
     [Header("Attack State Variables")]
     [SerializeField] protected float attackChargeTime = 5f;
     /*[SerializeField]*/ protected float counterableTimeFrame = .3f;
-    //[SerializeField] protected float currentCounterableTimeFrame;
+    
     [SerializeField] protected float attackRechargeTime = 1f;
-    //[SerializeField] protected float currentRechargeTime;
 
     [SerializeField] protected bool canAttack = true;
     [SerializeField] protected float dashPower = 24.0f;
@@ -173,34 +173,11 @@ public class EnemyScript : EntityScript
                     //StopAllCoroutines();
 
                     //Maybe put all of these functions into one coroutine because with the method I have now, all the coroutines activate at the same time
-
-                    //Have the enemy charge up their attack
-
                     StartCoroutine(EnemyAttack());
 
-                    //StartCoroutine(EnemyAttackStartUp());
-
-
-
-                    
-                    //StartCoroutine(EnemyAttack_DashAttack());
-
-               
-                    //StartCoroutine(AttackRecharge());
 
                 }
-                /*
-                while (currentlyAttacking == false && currentRechargeTime < attackRechargeTimeMax)
-                {
-                    //EnemyAttack_DashAttack();
-                    currentRechargeTime += Time.deltaTime;
-                }
-                else
-                {
-                    currentRechargeTime = 0;
-                    canAttack = true;
-                }
-                */
+                
                 break;
 
             case EnemyStates.STUNNED:
@@ -256,7 +233,10 @@ public class EnemyScript : EntityScript
             
         }
 
-        
+        if (collision.gameObject.CompareTag(TONGUECOUNTERTAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
+        {
+            //Knockback enemy
+        }
 
     }
 
@@ -424,6 +404,7 @@ public class EnemyScript : EntityScript
 
     public IEnumerator EnemyAttack() 
     {
+        //Have the enemy charge up their attack
         canAttack = false;
         isChargingAttack = true;
         if (isAttacking == false && isRecharging == false && isChargingAttack == true)
@@ -434,6 +415,7 @@ public class EnemyScript : EntityScript
         //Attack
         //StartCoroutine(EnemyAttack_DashAttack());
 
+        //Enemy is now attacking with the dash attack
         isAttacking = true;
 
         if (isChargingAttack == false && isRecharging == false && isAttacking == true)
@@ -468,6 +450,8 @@ public class EnemyScript : EntityScript
             isAttacking = false;
         }
 
+
+        //Enemy is now recharging
         isRecharging = true;
         //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
         
@@ -481,45 +465,6 @@ public class EnemyScript : EntityScript
 
     }
 
-
-    //public IEnumerator EnemyAttack_DashAttack()
-    //{
-    //    attackState = AttackStates.COUNTERABLE;
-    //    canAttack = false;
-    //    currentlyAttacking = true;
-    //    float originalGravity = rb.gravityScale;
-    //    rb.gravityScale = 0f;
-        
-    //    //Dash
-    //    rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-
-
-    //    //while (currentCounterableTimeFrame < counterableTimeFrameMax)
-    //    //{
-
-            
-    //    //    currentCounterableTimeFrame += Time.deltaTime;
-
-    //    //}
-    //    //else
-    //    //{
-    //    //    currentCounterableTimeFrame = 0;
-            
-    //    //}
-
-    //    yield return new WaitForSeconds(counterableTimeFrame);
-    //    attackState = AttackStates.NON_COUNTERABLE;
-    //    rb.gravityScale = originalGravity;
-    //    currentlyAttacking = false;
-
-    //}
-
-
-    //public IEnumerator AttackRecharge()
-    //{
-    //    yield return new WaitForSeconds(attackRechargeTimeMax);
-    //    canAttack = true;
-    //}
 
 }
 
