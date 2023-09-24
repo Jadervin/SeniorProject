@@ -19,12 +19,14 @@ public class RoamingChaserEnemyScript : EnemyScript
                 //If the enemy is meant to patrol, set the state to patrol
                 
                 enemyState = EnemyStates.PATROL;
-                
 
-                //else
-                //{
-                //    enemyState = EnemyStates.IDLE;
-                //}
+                /*
+                else
+                {
+                    enemyState = EnemyStates.IDLE;
+                }
+                */
+
 
                 //If the enemy spots the player, switch to chase
                 if (canChaseDetection == true)

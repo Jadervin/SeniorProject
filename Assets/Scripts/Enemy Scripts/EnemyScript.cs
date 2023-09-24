@@ -31,6 +31,8 @@ public class EnemyScript : EntityScript
     [SerializeField] protected GameObject leftStopPoint;
     [SerializeField] protected GameObject rightStopPoint;
     [SerializeField] protected Transform playerTarget;
+    [SerializeField] protected SpriteRenderer mainSprite;
+    protected Color mainColor;
 
     [Header("Damage Amount")]
     [SerializeField] protected int damage;
@@ -61,6 +63,7 @@ public class EnemyScript : EntityScript
 
     [Header("Options")]
     public bool canPatrolOption;
+    public bool canChaseOption = true;
 
     [Header("States")]
     [SerializeField] protected EnemyStates enemyState;
@@ -113,6 +116,8 @@ public class EnemyScript : EntityScript
 
         counterableTimeFrame = attackTime;
 
+        mainColor = mainSprite.color;
+
         //isFacingRightFunction();
 
     }
@@ -143,6 +148,12 @@ public class EnemyScript : EntityScript
                 {
                     enemyState = EnemyStates.CHASE;
                 }
+
+                if (canAttackDetection == true)
+                {
+                    enemyState = EnemyStates.ATTACK;
+                }
+
                 break;
 
             case EnemyStates.PATROL:
@@ -166,9 +177,14 @@ public class EnemyScript : EntityScript
                 }
                 break;
 
-            case EnemyStates.ATTACK: 
-                
-                if(canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
+            case EnemyStates.ATTACK:
+
+                if (isChargingAttack == false || currentlyAttacking == false)
+                {
+                    TurnEnemy();
+                }
+
+                if (canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
@@ -276,7 +292,10 @@ public class EnemyScript : EntityScript
     //Checks all of the custom colliders 
     protected void CheckCustomColliders()
     {
-        canChaseDetection = Physics2D.OverlapCircle(transform.position, chaseTriggerRadius, playerLayer);
+        if (canChaseOption == true)
+        {
+            canChaseDetection = Physics2D.OverlapCircle(transform.position, chaseTriggerRadius, playerLayer);
+        }
 
         canAttackDetection = Physics2D.OverlapCircle(transform.position, attackTriggerRadius, playerLayer);
         
@@ -337,9 +356,11 @@ public class EnemyScript : EntityScript
     protected void OnDrawGizmosSelected()
     {
         //Drawing the Chase Trigger Circle
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, chaseTriggerRadius);
-
+        if (canChaseOption == true)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, chaseTriggerRadius);
+        }
 
         //Drawing the Attack Trigger Circle
         Gizmos.color = Color.red;
@@ -420,6 +441,7 @@ public class EnemyScript : EntityScript
         //Have the enemy charge up their attack
         canAttack = false;
         isChargingAttack = true;
+        mainSprite.color = Color.red;
         if (isAttacking == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(attackChargeTime);
@@ -463,6 +485,7 @@ public class EnemyScript : EntityScript
             isAttacking = false;
         }
 
+        mainSprite.color = mainColor;
 
         //Enemy is now recharging
         isRecharging = true;
@@ -473,11 +496,27 @@ public class EnemyScript : EntityScript
         isRecharging = false;
         canAttack = true;
 
+        
             
         
 
     }
 
+    protected void TurnEnemy()
+    {
+        //Changes the direction the enemy based on which side the player is on
+        if (transform.position.x < playerTarget.position.x)
+        {
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            isFacingRightFunction();
+        }
+        else
+        {
 
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+            isFacingRightFunction();
+        }
+
+    }
 }
 

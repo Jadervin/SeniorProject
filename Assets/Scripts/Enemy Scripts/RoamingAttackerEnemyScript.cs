@@ -37,12 +37,13 @@ public class RoamingAttackerEnemyScript : EnemyScript
                 //Movement
                 Movement();
 
-                ////If the enemy spots the player, switch to chase
-                //if (canChaseDetection == true)
-                //{
-                //    enemyState = EnemyStates.CHASE;
-                //}
-
+                //If the enemy spots the player, switch to chase
+                /*
+                if (canChaseDetection == true)
+                {
+                    enemyState = EnemyStates.CHASE;
+                }
+                */
                 //If the enemy spots the player, switch to attack
                 if (canAttackDetection == true)
                 {
@@ -52,12 +53,13 @@ public class RoamingAttackerEnemyScript : EnemyScript
 
             case EnemyStates.CHASE:
                 //Track down and get into range of player
-                //if()
-                //ChasePlayer();
-                //if (canAttackDetection == true)
-                //{
-                //    enemyState = EnemyStates.ATTACK;
-                //}
+                /*
+                ChasePlayer();
+                if (canAttackDetection == true)
+                {
+                    enemyState = EnemyStates.ATTACK;
+                }
+                */
                 break;
 
             case EnemyStates.ATTACK:
