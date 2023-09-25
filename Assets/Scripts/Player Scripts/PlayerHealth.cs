@@ -39,6 +39,7 @@ public class PlayerHealth : EntityScript
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            OnPlayerHit?.Invoke(this, EventArgs.Empty);
             OnDeath();
         }
         else

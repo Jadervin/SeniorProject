@@ -62,8 +62,8 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool currentlyAttacking;
 
     [Header("Options")]
-    public bool canPatrolOption;
-    public bool canChaseOption = true;
+    [SerializeField] private bool canPatrolOption;
+    [SerializeField] private bool canChaseOption = true;
 
     [Header("States")]
     [SerializeField] protected EnemyStates enemyState;
@@ -319,13 +319,17 @@ public class EnemyScript : EntityScript
                 TurnOffOneStopPoint();
 
 
-                //Rotates the enemy when it reaches a stop point
+                /*
+                 * //Rotates the enemy when it reaches a stop point
+                 */
+                //Rotates the enemy
                 transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             }
             else
             {
                 enemyState = EnemyStates.IDLE;
 
+                //Rotates the enemy
                 transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             }
         }
@@ -345,7 +349,10 @@ public class EnemyScript : EntityScript
             attackTriggerRadius = 0;
 
 
-            //Rotates the enemy when it reaches a stop point
+            /*
+             * //Rotates the enemy when it reaches a stop point
+             */
+            //Rotates the enemy
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             enemyState = EnemyStates.PATROL;
         }
@@ -505,18 +512,20 @@ public class EnemyScript : EntityScript
     protected void TurnEnemy()
     {
         //Changes the direction the enemy based on which side the player is on
-        if (transform.position.x < playerTarget.position.x)
+        if (isAttacking == false)
         {
-            transform.localScale = new Vector2(1, transform.localScale.y);
-            isFacingRightFunction();
-        }
-        else
-        {
+            if (transform.position.x < playerTarget.position.x)
+            {
+                transform.localScale = new Vector2(1, transform.localScale.y);
+                isFacingRightFunction();
+            }
+            else
+            {
 
-            transform.localScale = new Vector2(-1, transform.localScale.y);
-            isFacingRightFunction();
+                transform.localScale = new Vector2(-1, transform.localScale.y);
+                isFacingRightFunction();
+            }
         }
-
     }
 }
 
