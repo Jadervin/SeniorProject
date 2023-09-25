@@ -269,18 +269,18 @@ public class EnemyScript : EntityScript
 
     }
 
+    /*
+    private void OnCollisionEnter2D(Collision2D collision)
+     {
+        if (collision.gameObject.CompareTag(WALLTAG) && enemyState == EnemyStates.PATROL)
+        {
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //    if (collision.gameObject.CompareTag(WALLTAG) && enemyState == EnemyStates.PATROL)
-    //    {
 
-
-    //        //Rotates the enemy when it reaches a stop point
-    //        transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
-    //    }
-    //}
-
+            //Rotates the enemy when it reaches a stop point
+            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+        }
+    }
+    */
 
     //Checks if the player is facing right
     protected bool isFacingRightFunction()

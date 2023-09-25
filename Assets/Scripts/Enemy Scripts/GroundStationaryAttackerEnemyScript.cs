@@ -1,54 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
-public class PatrollingAttackerEnemyScript : EnemyScript
-{//This enemy may be a slow mover, but can have a wide attack range
+public class GroundStationaryAttackerEnemyScript : EnemyScript
+{
+    //[Header("Attack State Variables")]
+    [SerializeField] private Collider2D attackCollider;
+    [SerializeField] private SpriteRenderer attackSprite;
+
+
+    new protected void Start()
+    {
+        enemyState = EnemyStates.IDLE;
+        attackState = AttackStates.NON_COUNTERABLE;
+        rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+
+        oldChaseTriggerRadius = chaseTriggerRadius;
+        oldAttackTriggerRadius = attackTriggerRadius;
+
+        counterableTimeFrame = attackTime;
+
+        mainColor = mainSprite.color;
+
+        attackCollider.enabled = false;
+        attackSprite.enabled = false;
+
+        
+
+    }
+
 
     // Update is called once per frame
     new private void Update()
     {
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
-
+        isFacingRightFunction();
 
         switch (enemyState)
         {
             case EnemyStates.IDLE:
+                //If the enemy is meant to patrol, set the state to patrol
 
+                /*
                 enemyState = EnemyStates.PATROL;
 
-                
-                /*
+
+                else
+                {
+                    enemyState = EnemyStates.IDLE;
+                }
+
+                If the enemy spots the player, switch to chase
                 if (canChaseDetection == true)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
                 */
-                /*
                 if (canAttackDetection == true)
                 {
                     enemyState = EnemyStates.ATTACK;
                 }
-                */
                 break;
 
             case EnemyStates.PATROL:
                 //Movement
+                /*
                 Movement();
 
                 //If the enemy spots the player, switch to chase
-                /*
                 if (canChaseDetection == true)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
                 */
-                //If the enemy spots the player, switch to attack
-                if (canAttackDetection == true)
-                {
-                    enemyState = EnemyStates.ATTACK;
-                }
                 break;
 
             case EnemyStates.CHASE:
@@ -63,15 +90,19 @@ public class PatrollingAttackerEnemyScript : EnemyScript
                 break;
 
             case EnemyStates.ATTACK:
-                
-                //if (canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
-                //{
-                //    enemyState = EnemyStates.CHASE;
-                //}
+                //Executes attack and changes attack state to counterable
+                /*
+                if (canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
+                {
+                    enemyState = EnemyStates.CHASE;
+                }
+                */
+
+                TurnEnemy();
 
                 if (canAttackDetection == false && currentlyAttacking == false)
                 {
-                    enemyState = EnemyStates.PATROL;
+                    enemyState = EnemyStates.IDLE;
                 }
 
                 if (canAttack == true)
@@ -83,6 +114,9 @@ public class PatrollingAttackerEnemyScript : EnemyScript
 
 
                 }
+
+
+               
 
                 break;
 
@@ -97,15 +131,12 @@ public class PatrollingAttackerEnemyScript : EnemyScript
 
             default:
                 break;
-
         }
     }
 
+
     new protected void CheckCustomColliders()
     {
-        
-        //canChaseDetection = Physics2D.OverlapCircle(transform.position, chaseTriggerRadius, playerLayer);
-        
 
         canAttackDetection = Physics2D.OverlapCircle(transform.position, attackTriggerRadius, playerLayer);
 
@@ -115,7 +146,7 @@ public class PatrollingAttackerEnemyScript : EnemyScript
             !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
-        if (/*canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK || */canAttackDetection == false && enemyState == EnemyStates.ATTACK)
+        if (canAttackDetection == false && enemyState == EnemyStates.ATTACK)
         {
 
             isChargingAttack = false;
@@ -123,12 +154,8 @@ public class PatrollingAttackerEnemyScript : EnemyScript
             isRecharging = false;
 
             
-            enemyState = EnemyStates.PATROL;
+            enemyState = EnemyStates.IDLE;
 
-            TurnOffOneStopPoint();
-
-
-            
             //Rotates the enemy
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             
@@ -155,13 +182,14 @@ public class PatrollingAttackerEnemyScript : EnemyScript
         }
     }
 
-
     new protected void OnDrawGizmosSelected()
     {
-        //Drawing the Chase Trigger Circle
-        //Gizmos.color = Color.blue;
-        //Gizmos.DrawWireSphere(transform.position, chaseTriggerRadius);
-
+       
+        /* 
+            //Drawing the Chase Trigger Circle
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, chaseTriggerRadius);
+        */
 
         //Drawing the Attack Trigger Circle
         Gizmos.color = Color.red;
@@ -180,4 +208,61 @@ public class PatrollingAttackerEnemyScript : EnemyScript
         Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLength);
         Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLength);
     }
+
+    new protected IEnumerator EnemyAttack()
+    {
+        //Have the enemy charge up their attack
+        canAttack = false;
+        isChargingAttack = true;
+        mainSprite.color = Color.red;
+        if (isAttacking == false && isRecharging == false && isChargingAttack == true)
+        {
+            yield return new WaitForSeconds(attackChargeTime);
+            isChargingAttack = false;
+        }
+        //Attack
+        //StartCoroutine(EnemyAttack_DashAttack());
+
+        //Enemy is now attacking
+        isAttacking = true;
+
+        if (isChargingAttack == false && isRecharging == false && isAttacking == true)
+        {
+            attackState = AttackStates.COUNTERABLE;
+
+            currentlyAttacking = true;
+            /*
+            float originalGravity = rb.gravityScale;
+            rb.gravityScale = 0f;
+
+            //Dash
+            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+            */
+            attackCollider.enabled = true;
+            attackSprite.enabled = true;
+
+            yield return new WaitForSeconds(counterableTimeFrame);
+            attackState = AttackStates.NON_COUNTERABLE;
+
+            attackCollider.enabled = false;
+            attackSprite.enabled = false;
+            //rb.gravityScale = originalGravity;
+            currentlyAttacking = false;
+            isAttacking = false;
+        }
+
+        mainSprite.color = mainColor;
+
+        //Enemy is now recharging
+        isRecharging = true;
+        //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
+
+        yield return new WaitForSeconds(attackRechargeTime);
+
+        isRecharging = false;
+        canAttack = true;
+
+
+    }
+
 }
