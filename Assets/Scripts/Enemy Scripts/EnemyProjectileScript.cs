@@ -1,0 +1,37 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyProjectileScript : MonoBehaviour
+{
+    public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
+    public class OnKnockbackEventArgs : EventArgs
+    {
+        public GameObject collidedGameObject;
+    }
+
+    [SerializeField] private EnemyScript enemy;
+    [SerializeField] private int damage;
+    [SerializeField] private string TONGUE_COUNTER_TAG = "TongueCounter";
+
+    public int GetDamage()
+    {
+        return damage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG))
+        {
+            //Knockback enemy
+            OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
+            {
+                collidedGameObject = collision.gameObject
+            });
+
+            //enemyState = EnemyStates.STUNNED;
+            enemy.StunEnemy();
+        }
+    }
+}

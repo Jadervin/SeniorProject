@@ -1,9 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 
 public class StationaryAttackerEnemyScript : EnemyScript
 {
+    //[Header("Attack State Variables")]
+    [SerializeField] private Collider2D attackCollider;
+    [SerializeField] private SpriteRenderer attackSprite;
+
+
+    new protected void Start()
+    {
+        enemyState = EnemyStates.IDLE;
+        attackState = AttackStates.NON_COUNTERABLE;
+        rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
+
+        oldChaseTriggerRadius = chaseTriggerRadius;
+        oldAttackTriggerRadius = attackTriggerRadius;
+
+        counterableTimeFrame = attackTime;
+
+        mainColor = mainSprite.color;
+
+        attackCollider.enabled = false;
+        attackSprite.enabled = false;
+
+        
+
+    }
+
+
     // Update is called once per frame
     new private void Update()
     {
@@ -203,30 +231,22 @@ public class StationaryAttackerEnemyScript : EnemyScript
             attackState = AttackStates.COUNTERABLE;
 
             currentlyAttacking = true;
+            /*
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
 
             //Dash
             rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-
-            /*
-            while (currentCounterableTimeFrame < counterableTimeFrameMax)
-            {
-
-
-                currentCounterableTimeFrame += Time.deltaTime;
-
-            }
-            else
-            {
-                currentCounterableTimeFrame = 0;
-
-            }
             */
+            attackCollider.enabled = true;
+            attackSprite.enabled = true;
 
             yield return new WaitForSeconds(counterableTimeFrame);
             attackState = AttackStates.NON_COUNTERABLE;
-            rb.gravityScale = originalGravity;
+
+            attackCollider.enabled = false;
+            attackSprite.enabled = false;
+            //rb.gravityScale = originalGravity;
             currentlyAttacking = false;
             isAttacking = false;
         }

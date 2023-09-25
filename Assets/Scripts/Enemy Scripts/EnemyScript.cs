@@ -73,7 +73,7 @@ public class EnemyScript : EntityScript
     public string STOP_POINT_TAG = "StopPoint";
     public string CAMERA_SWITCH_TRIGGER_TAG = "CameraSwitchTriggers";
     public string WALLTAG = "Wall";
-    public string TONGUECOUNTERTAG = "TongueCounter";
+    public string TONGUE_COUNTER_TAG = "TongueCounter";
 
     [Header("Layer Masks")]
     [SerializeField] protected LayerMask playerLayer;
@@ -256,7 +256,7 @@ public class EnemyScript : EntityScript
             
         }
 
-        if (collision.gameObject.CompareTag(TONGUECOUNTERTAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
+        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
         {
             //Knockback enemy
             OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
@@ -526,6 +526,11 @@ public class EnemyScript : EntityScript
                 isFacingRightFunction();
             }
         }
+    }
+
+    public void StunEnemy()
+    {
+        enemyState = EnemyStates.STUNNED;
     }
 }
 
