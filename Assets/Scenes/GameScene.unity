@@ -11506,6 +11506,12 @@ MonoBehaviour:
   ENEMY_PROJECTILE_TAG: EnemyProjectile
   damageTimeBuffer: 1
   isInvincible: 0
+  deathTimer: 1.5
+  sprites:
+  - {fileID: 1685133824}
+  - {fileID: 1096994192}
+  - {fileID: 1080788136}
+  - {fileID: 82626897}
 --- !u!114 &1464256114
 MonoBehaviour:
   m_ObjectHideFlags: 0

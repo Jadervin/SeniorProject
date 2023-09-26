@@ -23,12 +23,13 @@ public class EnemyKnockback : MonoBehaviour
 
     private void EnemyScript_OnEnemyKnockbackAction(object sender, EnemyScript.OnKnockbackEventArgs e)
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         Vector2 knockbackDirection = (transform.position - e.collidedGameObject.transform.position).normalized;
 
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
         //MovementLimiter.instance.OnKnockbackBegin();
         StartCoroutine(Reset());
+        enemyScript.StunEnemy();
     }
 
     // Update is called once per frame

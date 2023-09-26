@@ -269,7 +269,7 @@ public class EnemyScript : EntityScript
                 collidedGameObject = collision.gameObject
             });
 
-            enemyState = EnemyStates.STUNNED;
+            //enemyState = EnemyStates.STUNNED;
         }
 
     }

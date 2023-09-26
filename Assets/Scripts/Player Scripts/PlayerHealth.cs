@@ -11,6 +11,9 @@ public class PlayerHealth : EntityScript
 
     [SerializeField] private float damageTimeBuffer = 1f;
     [SerializeField] private bool isInvincible;
+    [SerializeField] private float deathTimer = 2f;
+
+    [SerializeField] private List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 
     public event EventHandler<OnKnockbackEventArgs> OnPlayerKnockbackAction;
     public class OnKnockbackEventArgs : EventArgs
@@ -52,8 +55,14 @@ public class PlayerHealth : EntityScript
 
     public override void OnDeath()
     {
-        this.gameObject.SetActive(false);
+        foreach(var sprite in sprites)
+        {
+            sprite.enabled = false;
+        }
+
         MovementLimiter.instance.OnDeathManager();
+
+        StartCoroutine(DeathTimerUntilLoseScreen());
         //Destroy(gameObject);
     }
 
@@ -95,13 +104,21 @@ public class PlayerHealth : EntityScript
         }
     }
 
-    IEnumerator playerInvincibility()
+    private IEnumerator playerInvincibility()
     {
         isInvincible = true;
         //ShieldIcon.SetActive(true);
         yield return new WaitForSeconds(damageTimeBuffer);
         isInvincible = false;
         //ShieldIcon.SetActive(false);
+    }
+
+    private IEnumerator DeathTimerUntilLoseScreen()
+    {
+        
+        yield return new WaitForSeconds(deathTimer);
+        Loader.Load(Loader.GameScenes.LoseScene);
+        
     }
 
 }

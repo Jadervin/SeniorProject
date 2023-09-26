@@ -8,7 +8,7 @@ public class Loader : MonoBehaviour
     public enum GameScenes
     {
         MainMenuScene,
-        MainScene,
+        GameScene,
         LoseScene,
         LoadingScene
     }

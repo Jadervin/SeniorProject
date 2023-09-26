@@ -12,7 +12,7 @@ public class MenuUIScript : MonoBehaviour
     {
         retryButton.onClick.AddListener(() => {
             //Click
-            Loader.Load(Loader.GameScenes.MainScene);
+            Loader.Load(Loader.GameScenes.GameScene);
         });
 
 
