@@ -459,6 +459,7 @@ MonoBehaviour:
   isChargingAttack: 0
   isAttacking: 0
   isRecharging: 0
+  stunTime: 2
 --- !u!61 &44510057
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7276,6 +7277,7 @@ MonoBehaviour:
   isChargingAttack: 0
   isAttacking: 0
   isRecharging: 0
+  stunTime: 2
 --- !u!114 &1040703071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7289,7 +7291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  knockbackStrength: 16
+  knockbackStrength: 30
   delayTime: 0.3
   enemyScript: {fileID: 0}
 --- !u!1 &1041845885
@@ -9741,6 +9743,7 @@ MonoBehaviour:
   isChargingAttack: 0
   isAttacking: 0
   isRecharging: 0
+  stunTime: 2
   attackCollider: {fileID: 1486109136}
   attackSprite: {fileID: 711355528}
 --- !u!61 &1279584196

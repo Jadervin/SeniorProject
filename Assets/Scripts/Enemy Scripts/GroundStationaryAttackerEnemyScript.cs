@@ -123,6 +123,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
             case EnemyStates.STUNNED:
                 //Enemy cannot move
                 rb.velocity = new Vector2(0f, 0f);
+                StartCoroutine(StunTimer());
                 break;
 
             case EnemyStates.DEATH:
@@ -261,6 +262,19 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         isRecharging = false;
         canAttack = true;
+
+
+    }
+
+
+
+    new protected IEnumerator StunTimer()
+    {
+
+        yield return new WaitForSeconds(stunTime);
+
+
+        enemyState = EnemyStates.IDLE;
 
 
     }

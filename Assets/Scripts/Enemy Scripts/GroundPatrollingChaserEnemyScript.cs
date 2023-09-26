@@ -73,6 +73,7 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
             case EnemyStates.STUNNED:
                 //Enemy cannot move
                 rb.velocity = new Vector2(0f, 0f);
+                StartCoroutine(StunTimer());
                 break;
 
             case EnemyStates.DEATH:
@@ -163,5 +164,17 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
         Gizmos.DrawLine(transform.position + colliderOffset, transform.position + colliderOffset + Vector3.down * groundLength);
         Gizmos.DrawLine(transform.position - colliderOffset, transform.position - colliderOffset + Vector3.down * groundLength);
+    }
+
+
+    new protected IEnumerator StunTimer()
+    {
+
+        yield return new WaitForSeconds(stunTime);
+
+        
+        enemyState = EnemyStates.PATROL;
+        
+
     }
 }

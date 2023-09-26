@@ -95,6 +95,10 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool isAttacking = false;
     [SerializeField] protected bool isRecharging = false;
 
+    [SerializeField] protected float stunTime = 2f;
+
+
+
     public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
     public class OnKnockbackEventArgs : EventArgs
     {
@@ -205,7 +209,8 @@ public class EnemyScript : EntityScript
 
             case EnemyStates.STUNNED:
                 //Enemy cannot move
-                rb.velocity = new Vector2(0f, 0f); 
+                rb.velocity = new Vector2(0f, 0f);
+                StartCoroutine(StunTimer());
                 break;
 
             case EnemyStates.DEATH: 
@@ -532,5 +537,23 @@ public class EnemyScript : EntityScript
     {
         enemyState = EnemyStates.STUNNED;
     }
+
+
+    protected IEnumerator StunTimer()
+    {
+
+        yield return new WaitForSeconds(stunTime);
+
+        if (canPatrolOption == true)
+        {
+            enemyState = EnemyStates.PATROL;
+        }
+        else
+        {
+            enemyState = EnemyStates.IDLE;
+        }
+
+    }
+
 }
 
