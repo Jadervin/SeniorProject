@@ -187,7 +187,7 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
 
     new protected IEnumerator StunTimer()
     {
-
+        mainSprite.color = Color.gray;
         yield return new WaitForSeconds(stunTime);
 
         mainSprite.color = mainColor;

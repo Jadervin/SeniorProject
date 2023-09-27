@@ -576,7 +576,7 @@ public class EnemyScript : EntityScript
 
     protected IEnumerator StunTimer()
     {
-
+        
         yield return new WaitForSeconds(stunTime);
 
         if (canPatrolOption == true)
