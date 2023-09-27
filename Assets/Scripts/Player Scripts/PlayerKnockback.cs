@@ -20,8 +20,14 @@ public class PlayerKnockback : MonoBehaviour
     private void PlayerHealth_OnPlayerKnockbackAction(object sender, PlayerHealth.OnKnockbackEventArgs e)
     {
         StopAllCoroutines();
-        Vector2 knockbackDirection = (transform.position - e.collidedGameObject.transform.position).normalized;
 
+        //Debug.Log(transform.position);
+        //Debug.Log(e.collidedGameObject.transform.position);
+
+        //Debug.Log(transform.position - e.collidedGameObject.transform.position);
+
+        Vector2 knockbackDirection = (transform.position - e.collidedGameObject.transform.position).normalized;
+        Debug.Log(knockbackDirection);
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
         //MovementLimiter.instance.OnKnockbackBegin();
         StartCoroutine(Reset());

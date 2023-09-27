@@ -172,7 +172,10 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
         yield return new WaitForSeconds(stunTime);
 
-        
+        mainSprite.color = mainColor;
+        currentlyAttacking = false;
+        isAttacking = false;
+        canAttack = true;
         enemyState = EnemyStates.PATROL;
         
 

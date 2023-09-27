@@ -95,16 +95,21 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool isAttacking = false;
     [SerializeField] protected bool isRecharging = false;
 
+    
+
+
+    [Header("Knockback Variables")]
+    [SerializeField] protected float knockbackStrength = 16;
+    [SerializeField] protected float delayTime = .3f;
     [SerializeField] protected float stunTime = 2f;
 
-
-
+    /*
     public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
     public class OnKnockbackEventArgs : EventArgs
     {
         public GameObject collidedGameObject;
     }
-
+    */
 
 
     // Start is called before the first frame update
@@ -264,13 +269,43 @@ public class EnemyScript : EntityScript
         if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
         {
             //Knockback enemy
-            OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
-            {
-                collidedGameObject = collision.gameObject
-            });
+            //OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
+            //{
+            //    collidedGameObject = collision.gameObject
+            //});
+
+            //StopCoroutine(EnemyAttack());
+            EnemyKnockbackAction(collision.gameObject);
 
             //enemyState = EnemyStates.STUNNED;
         }
+
+    }
+
+
+    protected void EnemyKnockbackAction(GameObject collidedGameObject)
+    {
+        //Debug.Log(transform.position);
+        //Debug.Log(collidedGameObject.transform.position);
+
+        //Debug.Log(transform.position - collidedGameObject.transform.position);
+
+        //StopAllCoroutines();
+        Vector2 knockbackDirection = (transform.position - collidedGameObject.transform.position).normalized;
+        //Debug.Log(knockbackDirection);
+
+        //knockbackDirection = new Vector2((Mathf.Sign(knockbackDirection.x)), 0);
+        //Debug.Log(knockbackDirection);
+        rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
+        
+        StartCoroutine(StunDelay());
+        StunEnemy();
+    }
+
+    protected IEnumerator StunDelay()
+    {
+        yield return new WaitForSeconds(delayTime);
+        rb.velocity = Vector2.zero;
 
     }
 

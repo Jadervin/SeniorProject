@@ -273,7 +273,10 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         yield return new WaitForSeconds(stunTime);
 
-
+        mainSprite.color = mainColor;
+        currentlyAttacking = false;
+        isAttacking = false;
+        canAttack = true;
         enemyState = EnemyStates.IDLE;
 
 
