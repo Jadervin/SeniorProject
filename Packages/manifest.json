@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.seanba.super-tiled2unity": "file:C:/Users/jdervin/Documents/Class Files/College Classes/Senior (CLIMAX)/Senior Project/Unity Packages/super-tiled2unity.v2.1.1",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.0.5",
     "com.unity.feature.2d": "2.0.0",
