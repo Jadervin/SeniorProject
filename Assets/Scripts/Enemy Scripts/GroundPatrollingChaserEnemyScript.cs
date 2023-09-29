@@ -9,6 +9,7 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
     // Update is called once per frame
     new private void Update()
     {
+        //Debug.Log("New Update");
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
 
@@ -17,9 +18,11 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
         {
             case EnemyStates.IDLE:
                 //If the enemy is meant to patrol, set the state to patrol
-                
-                enemyState = EnemyStates.PATROL;
 
+                if (currentlyAttacking == false)
+                {
+                    enemyState = EnemyStates.PATROL;
+                }
 
                 //If the enemy spots the player, switch to chase
                 if (canChaseDetection == true)
@@ -31,21 +34,27 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
             case EnemyStates.PATROL:
                 //Movement
                 Movement();
-
-                //If the enemy spots the player, switch to chase
-                if (canChaseDetection == true)
+                /*
+                if (isChargingAttack == false)
                 {
-                    enemyState = EnemyStates.CHASE;
+                    
                 }
+                */
                 break;
 
             case EnemyStates.CHASE:
                 //Track down and get into range of player
                 //if()
                 ChasePlayer();
-                if (canAttackDetection == true)
+                /*
+                if (isChargingAttack == false)
                 {
-                    enemyState = EnemyStates.ATTACK;
+                    
+                }
+                */
+                if (canChaseDetection == false && enemyState == EnemyStates.CHASE && currentlyAttacking == false)
+                {
+                    ChangeToPatrol();
                 }
                 break;
 
@@ -63,9 +72,16 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
                     //StopAllCoroutines();
 
                     //Maybe put all of these functions into one coroutine because with the method I have now, all the coroutines activate at the same time
+
+                    
                     StartCoroutine(EnemyAttack());
 
 
+                }
+
+                if(canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false || canChaseDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
+                {
+                    ChangeToPatrol();
                 }
 
                 break;
@@ -86,6 +102,34 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
         }
     }
 
+    new protected void Movement()
+    {
+
+        //Moves in the direction the enemy is facing
+        if (isFacingRightFunction())
+        {
+            rb.velocity = new Vector2(moveSpeed, 0f);
+        }
+        else
+        {
+            rb.velocity = new Vector2(-moveSpeed, 0f);
+        }
+
+        //If the enemy spots the player, switch to chase
+        if (canChaseDetection == true)
+        {
+            enemyState = EnemyStates.CHASE;
+        }
+
+        /*
+        if (isChargingAttack == false)
+        {
+            
+        }
+        */
+        
+    }
+
     new protected void CheckCustomColliders()
     {
        
@@ -100,25 +144,19 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
             !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
-        if (canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK || canAttackDetection == false && enemyState == EnemyStates.ATTACK)
+
+        //Seperate each condition of the if statement and put them into the desinated state. Put the contents inside of the if statement in a seperate function
+
+        /*
+        if ((canChaseDetection == false && enemyState == EnemyStates.CHASE) ||
+        (canChaseDetection == false && enemyState == EnemyStates.ATTACK) ||
+        (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false) ||
+        (canChaseDetection == false && enemyState == EnemyStates.CHASE && currentlyAttacking == false) || canAttackDetection == false && enemyState == EnemyStates.ATTACK && isChargingAttack == false)
         {
 
-            isChargingAttack = false;
-            isAttacking = false;
-            isRecharging = false;
 
-            
-            enemyState = EnemyStates.PATROL;
-
-            TurnOffOneStopPoint();
-
-
-            //Rotates the enemy
-            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
-            
-            
         }
-
+        */
 
 
         //if the enemy is on the edge of the ground:
@@ -138,6 +176,39 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             enemyState = EnemyStates.PATROL;
         }
+    }
+
+    new protected void ChasePlayer()
+    {
+        //Changes the direction the enemy based on which side the player is on
+        if (transform.position.x < playerTarget.position.x)
+        {
+            rb.velocity = new Vector2(moveSpeed * chaseSpeedMultiplier, 0f);
+            transform.localScale = new Vector2(1, transform.localScale.y);
+            isFacingRightFunction();
+        }
+        else
+        {
+            rb.velocity = new Vector2(-moveSpeed * chaseSpeedMultiplier, 0f);
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+            isFacingRightFunction();
+        }
+
+        if (canAttackDetection == true)
+        {
+            enemyState = EnemyStates.ATTACK;
+        }
+        /*
+        if (isChargingAttack == true)
+        {
+            enemyState = EnemyStates.ATTACK;
+        }
+
+        if (isChargingAttack == false)
+        {
+
+        }
+        */
     }
 
     new protected void OnDrawGizmosSelected()
@@ -174,10 +245,30 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
         mainSprite.color = mainColor;
         currentlyAttacking = false;
-        isAttacking = false;
+        isUsingAttack = false;
         canAttack = true;
         enemyState = EnemyStates.PATROL;
         
 
     }
+
+    new protected void ChangeToPatrol()
+    {
+        Debug.Log("Change to Patrol");
+        isChargingAttack = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        mainSprite.color = mainColor;
+        attackState = AttackStates.NON_COUNTERABLE;
+
+        enemyState = EnemyStates.PATROL;
+
+        TurnOffOneStopPoint();
+
+
+        //Rotates the enemy
+        transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+
+    }
+
 }

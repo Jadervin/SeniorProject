@@ -37,18 +37,6 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
                 //Movement
                 Movement();
 
-                //If the enemy spots the player, switch to chase
-                /*
-                if (canChaseDetection == true)
-                {
-                    enemyState = EnemyStates.CHASE;
-                }
-                */
-                //If the enemy spots the player, switch to attack
-                if (canAttackDetection == true)
-                {
-                    enemyState = EnemyStates.ATTACK;
-                }
                 break;
 
             case EnemyStates.CHASE:
@@ -104,6 +92,30 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
         }
     }
 
+    new protected void Movement()
+    {
+
+        if (isChargingAttack == false)
+        {
+            //Moves in the direction the enemy is facing
+            if (isFacingRightFunction())
+            {
+                rb.velocity = new Vector2(moveSpeed, 0f);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-moveSpeed, 0f);
+            }
+
+            //If the enemy spots the player, switch to attack
+            if (canAttackDetection == true)
+            {
+                enemyState = EnemyStates.ATTACK;
+            }
+
+        }
+    }
+
     new protected void CheckCustomColliders()
     {
         
@@ -122,7 +134,7 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
         {
 
             isChargingAttack = false;
-            isAttacking = false;
+            isUsingAttack = false;
             isRecharging = false;
 
             
@@ -192,7 +204,7 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
 
         mainSprite.color = mainColor;
         currentlyAttacking = false;
-        isAttacking = false;
+        isUsingAttack = false;
         canAttack = true;
         enemyState = EnemyStates.PATROL;
 

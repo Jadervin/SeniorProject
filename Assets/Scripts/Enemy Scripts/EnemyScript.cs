@@ -66,8 +66,32 @@ public class EnemyScript : EntityScript
     [SerializeField] private bool canChaseOption = true;
 
     [Header("States")]
-    [SerializeField] protected EnemyStates enemyState;
-    [SerializeField] protected AttackStates attackState;
+    [SerializeField] protected EnemyStates _enemyState;
+    [SerializeField] protected EnemyStates enemyState
+    {
+        get
+        {
+            return _enemyState;
+        }
+        set
+        {
+            _enemyState = value;
+            Debug.Log(gameObject.name + " changed state to " + value.ToString());
+        }
+    }
+    [SerializeField] protected AttackStates _attackState;
+    [SerializeField] protected AttackStates attackState
+    {
+        get
+        {
+            return _attackState;
+        }
+        set
+        {
+            _attackState = value;
+            Debug.Log(gameObject.name + " changed state to " + value.ToString());
+        }
+    }
 
     [Header("Tags")]
     public string STOP_POINT_TAG = "StopPoint";
@@ -82,17 +106,17 @@ public class EnemyScript : EntityScript
 
     [Header("Attack State Variables")]
     [SerializeField] protected float attackChargeTime = 5f;
-    /*[SerializeField]*/ protected float counterableTimeFrame = .3f;
+    
     
     [SerializeField] protected float attackRechargeTime = 1f;
 
     [SerializeField] protected bool canAttack = true;
     [SerializeField] protected float dashPower = 24.0f;
     [SerializeField] protected float attackTime = .4f;
-
+    [SerializeField] protected float counterableTimeFrame = .3f;
 
     [SerializeField] protected bool isChargingAttack = false;
-    [SerializeField] protected bool isAttacking = false;
+    [SerializeField] protected bool isUsingAttack = false;
     [SerializeField] protected bool isRecharging = false;
 
     
@@ -134,6 +158,7 @@ public class EnemyScript : EntityScript
     // Update is called once per frame
     protected void Update()
     {
+        //Debug.Log("Update");
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
 
@@ -184,6 +209,10 @@ public class EnemyScript : EntityScript
                 {
                     enemyState = EnemyStates.ATTACK;
                 }
+                if (canChaseDetection == false && enemyState == EnemyStates.CHASE && currentlyAttacking == false)
+                {
+                    ChangeToPatrol();
+                }
                 break;
 
             case EnemyStates.ATTACK:
@@ -198,7 +227,10 @@ public class EnemyScript : EntityScript
                     enemyState = EnemyStates.CHASE;
                 }
 
-                
+                if (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false || canChaseDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
+                {
+                    ChangeToPatrol();
+                }
 
                 if (canAttack == true)
                 {
@@ -230,14 +262,17 @@ public class EnemyScript : EntityScript
 
     protected void Movement()
     {
-        //Moves in the direction the enemy is facing
-        if (isFacingRightFunction())
+        if (isChargingAttack == false)
         {
-            rb.velocity = new Vector2(moveSpeed, 0f);
-        }
-        else
-        {
-            rb.velocity = new Vector2(-moveSpeed, 0f);
+            //Moves in the direction the enemy is facing
+            if (isFacingRightFunction())
+            {
+                rb.velocity = new Vector2(moveSpeed, 0f);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-moveSpeed, 0f);
+            }
         }
     }
 
@@ -268,12 +303,13 @@ public class EnemyScript : EntityScript
 
         if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
         {
+            /*
             //Knockback enemy
             //OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
             //{
             //    collidedGameObject = collision.gameObject
             //});
-
+            */
             //StopCoroutine(EnemyAttack());
             EnemyKnockbackAction(collision.gameObject);
 
@@ -345,11 +381,12 @@ public class EnemyScript : EntityScript
             !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
+        /*
         if(canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK || canAttackDetection == false && enemyState == EnemyStates.ATTACK) 
         {
 
             isChargingAttack = false;
-            isAttacking = false;
+            isUsingAttack = false;
             isRecharging = false;
 
             if (canPatrolOption == true)
@@ -359,11 +396,11 @@ public class EnemyScript : EntityScript
                 TurnOffOneStopPoint();
 
 
-                /*
-                 * //Rotates the enemy when it reaches a stop point
-                 */
-                //Rotates the enemy
-                transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+                
+                 //Rotates the enemy when it reaches a stop point
+                 
+            //Rotates the enemy
+            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             }
             else
             {
@@ -373,14 +410,14 @@ public class EnemyScript : EntityScript
                 transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             }
         }
+        */
 
-       
 
         //if the enemy is on the edge of the ground:
-            //set the chase to false
-            //turn off one of the stop points
-            //make the radiuses of the colliders zero
-            //change the enemyState to patrol
+        //set the chase to false
+        //turn off one of the stop points
+        //make the radiuses of the colliders zero
+        //change the enemyState to patrol
         if (onEdgeOfGround && enemyState != EnemyStates.IDLE)
         {
             canChaseDetection = false;
@@ -477,19 +514,14 @@ public class EnemyScript : EntityScript
         return damage;
     }
 
-    //public IEnumerator EnemyAttackStartUp()
-    //{
-    //    yield return new WaitForSeconds(attackChargeTime);
-
-    //}
-
     protected IEnumerator EnemyAttack() 
     {
         //Have the enemy charge up their attack
         canAttack = false;
         isChargingAttack = true;
+        currentlyAttacking = true;
         mainSprite.color = Color.red;
-        if (isAttacking == false && isRecharging == false && isChargingAttack == true)
+        if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(attackChargeTime);
             isChargingAttack = false;
@@ -498,38 +530,38 @@ public class EnemyScript : EntityScript
         //StartCoroutine(EnemyAttack_DashAttack());
 
         //Enemy is now attacking with the dash attack
-        isAttacking = true;
+        isUsingAttack = true;
 
-        if (isChargingAttack == false && isRecharging == false && isAttacking == true)
+        if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
         {
             attackState = AttackStates.COUNTERABLE;
             
-            currentlyAttacking = true;
+            
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
 
             //Dash
             rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
 
+            /*
+            while (currentCounterableTimeFrame < counterableTimeFrameMax)
+            {
 
-            //while (currentCounterableTimeFrame < counterableTimeFrameMax)
-            //{
 
+                currentCounterableTimeFrame += Time.deltaTime;
 
-            //    currentCounterableTimeFrame += Time.deltaTime;
+            }
+            else
+            {
+                currentCounterableTimeFrame = 0;
 
-            //}
-            //else
-            //{
-            //    currentCounterableTimeFrame = 0;
-
-            //}
-
+            }
+            */
             yield return new WaitForSeconds(counterableTimeFrame);
             attackState = AttackStates.NON_COUNTERABLE;
             rb.gravityScale = originalGravity;
             currentlyAttacking = false;
-            isAttacking = false;
+            isUsingAttack = false;
         }
 
         mainSprite.color = mainColor;
@@ -552,7 +584,7 @@ public class EnemyScript : EntityScript
     protected void TurnEnemy()
     {
         //Changes the direction the enemy based on which side the player is on
-        if (isAttacking == false)
+        if (isUsingAttack == false)
         {
             if (transform.position.x < playerTarget.position.x)
             {
@@ -586,6 +618,39 @@ public class EnemyScript : EntityScript
         else
         {
             enemyState = EnemyStates.IDLE;
+        }
+
+    }
+
+    protected void ChangeToPatrol()
+    {
+        Debug.Log("Change to Patrol");
+        isChargingAttack = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        mainSprite.color = mainColor;
+        attackState = AttackStates.NON_COUNTERABLE;
+
+        if (canPatrolOption == true)
+        {
+            enemyState = EnemyStates.PATROL;
+
+            TurnOffOneStopPoint();
+
+
+            /*
+                Rotates the enemy when it reaches a stop point
+             */
+
+            //Rotates the enemy
+            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+        }
+        else
+        {
+            enemyState = EnemyStates.IDLE;
+
+            //Rotates the enemy
+            transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
         }
 
     }

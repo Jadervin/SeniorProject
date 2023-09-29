@@ -151,7 +151,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         {
 
             isChargingAttack = false;
-            isAttacking = false;
+            isUsingAttack = false;
             isRecharging = false;
 
             
@@ -216,7 +216,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         canAttack = false;
         isChargingAttack = true;
         mainSprite.color = Color.red;
-        if (isAttacking == false && isRecharging == false && isChargingAttack == true)
+        if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(attackChargeTime);
             isChargingAttack = false;
@@ -225,9 +225,9 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         //StartCoroutine(EnemyAttack_DashAttack());
 
         //Enemy is now attacking
-        isAttacking = true;
+        isUsingAttack = true;
 
-        if (isChargingAttack == false && isRecharging == false && isAttacking == true)
+        if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
         {
             attackState = AttackStates.COUNTERABLE;
 
@@ -249,7 +249,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
             attackSprite.enabled = false;
             //rb.gravityScale = originalGravity;
             currentlyAttacking = false;
-            isAttacking = false;
+            isUsingAttack = false;
         }
 
         mainSprite.color = mainColor;
@@ -275,7 +275,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         mainSprite.color = mainColor;
         currentlyAttacking = false;
-        isAttacking = false;
+        isUsingAttack = false;
         canAttack = true;
         enemyState = EnemyStates.IDLE;
 
