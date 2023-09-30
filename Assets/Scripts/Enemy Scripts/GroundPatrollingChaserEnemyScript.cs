@@ -254,7 +254,7 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
     new protected void ChangeToPatrol()
     {
-        Debug.Log("Change to Patrol");
+        //Debug.Log("Change to Patrol");
         isChargingAttack = false;
         isUsingAttack = false;
         isRecharging = false;

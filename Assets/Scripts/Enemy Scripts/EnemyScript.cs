@@ -76,7 +76,7 @@ public class EnemyScript : EntityScript
         set
         {
             _enemyState = value;
-            Debug.Log(gameObject.name + " changed state to " + value.ToString());
+            //Debug.Log(gameObject.name + " changed state to " + value.ToString());
         }
     }
     [SerializeField] protected AttackStates _attackState;
@@ -89,7 +89,7 @@ public class EnemyScript : EntityScript
         set
         {
             _attackState = value;
-            Debug.Log(gameObject.name + " changed state to " + value.ToString());
+            //Debug.Log(gameObject.name + " changed state to " + value.ToString());
         }
     }
 

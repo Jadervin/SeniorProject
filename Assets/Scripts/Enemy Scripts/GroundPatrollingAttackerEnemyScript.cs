@@ -74,6 +74,11 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
 
                 }
 
+                if (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
+                {
+                    ChangeToPatrol();
+                }
+
                 break;
 
             case EnemyStates.STUNNED:
@@ -129,27 +134,29 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
         onEdgeOfGround = !Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer) ||
             !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
 
+
+        /*
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
-        if (/*canChaseDetection == false && enemyState == EnemyStates.CHASE || canChaseDetection == false && enemyState == EnemyStates.ATTACK || */canAttackDetection == false && enemyState == EnemyStates.ATTACK)
+        if (canAttackDetection == false && enemyState == EnemyStates.ATTACK)
         {
 
             isChargingAttack = false;
             isUsingAttack = false;
             isRecharging = false;
 
-            
+
             enemyState = EnemyStates.PATROL;
 
             TurnOffOneStopPoint();
 
 
-            
+
             //Rotates the enemy
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
-            
+
         }
 
-
+        */
 
         //if the enemy is on the edge of the ground:
         //set the chase to false
@@ -208,6 +215,25 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
         canAttack = true;
         enemyState = EnemyStates.PATROL;
 
+
+    }
+
+    new protected void ChangeToPatrol()
+    {
+        Debug.Log("Change to Patrol");
+        isChargingAttack = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        mainSprite.color = mainColor;
+        attackState = AttackStates.NON_COUNTERABLE;
+
+        enemyState = EnemyStates.PATROL;
+
+        TurnOffOneStopPoint();
+
+
+        //Rotates the enemy
+        transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
 
     }
 
