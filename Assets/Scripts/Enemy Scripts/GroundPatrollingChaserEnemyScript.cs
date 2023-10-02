@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundPatrollingChaserEnemyScript : EnemyScript
 {
-    [SerializeField] private bool stunTimerOn;
+    
 
 
     // Update is called once per frame
@@ -93,7 +93,14 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
                 if (stunTimerOn == false)
                 {
                     StartCoroutine(StunTimer());
+                    
                 }
+                /*
+                if (notStunnedAnymore == true)
+                {
+                    StunToPatrol();
+                }
+                */
                 break;
 
             case EnemyStates.DEATH:
@@ -259,12 +266,20 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
         mainSprite.color = mainColor;
 
-        
+
         enemyState = EnemyStates.PATROL;
 
         stunTimerOn = false;
     }
 
+/*
+    public void StunToPatrol()
+    {
+        enemyState = EnemyStates.PATROL;
+        notStunnedAnymore = false;
+        //stunTimerOn = false;
+    }
+*/
     new protected void ChangeToPatrol()
     {
         //Debug.Log("Change to Patrol");

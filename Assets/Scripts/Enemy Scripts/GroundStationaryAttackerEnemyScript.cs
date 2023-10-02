@@ -125,8 +125,19 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
             case EnemyStates.STUNNED:
                 //Enemy cannot move
-                rb.velocity = new Vector2(0f, 0f);
-                StartCoroutine(StunTimer());
+                //rb.velocity = new Vector2(0f, 0f);
+                if (stunTimerOn == false)
+                {
+                    StartCoroutine(StunTimer());
+                    
+                }
+/*
+
+                if (notStunnedAnymore == true)
+                {
+                    StunToIdle();
+                }
+*/
                 break;
 
             case EnemyStates.DEATH:
@@ -272,21 +283,38 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
     }
 
 
-
     new protected IEnumerator StunTimer()
     {
+        stunTimerOn = true;
         mainSprite.color = Color.gray;
+
+
+        currentlyAttacking = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        isChargingAttack = false;
+
+        canAttack = true;
+
         yield return new WaitForSeconds(stunTime);
 
         mainSprite.color = mainColor;
-        currentlyAttacking = false;
-        isUsingAttack = false;
-        canAttack = true;
+
+
         enemyState = EnemyStates.IDLE;
 
+        stunTimerOn = false;
 
     }
+/*
 
+    public void StunToIdle()
+    {
+        enemyState = EnemyStates.IDLE;
+        notStunnedAnymore = false;
+        //stunTimerOn = false;
+    }
+*/
 
 
     new protected void ChangeToPatrol()
@@ -307,4 +335,6 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
 
     }
+
+    
 }

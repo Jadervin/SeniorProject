@@ -83,8 +83,20 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
 
             case EnemyStates.STUNNED:
                 //Enemy cannot move
-                rb.velocity = new Vector2(0f, 0f);
-                StartCoroutine(StunTimer());
+                //rb.velocity = new Vector2(0f, 0f);
+                if (stunTimerOn == false)
+                {
+                    StartCoroutine(StunTimer());
+                    
+                }
+/*
+
+                if (notStunnedAnymore == true)
+                {
+                    StunToPatrol();
+                }
+
+*/
                 break;
 
             case EnemyStates.DEATH:
@@ -206,16 +218,31 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
 
     new protected IEnumerator StunTimer()
     {
+        stunTimerOn = true;
         mainSprite.color = Color.gray;
+
+
+        currentlyAttacking = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        isChargingAttack = false;
+
+        canAttack = true;
+
         yield return new WaitForSeconds(stunTime);
 
         mainSprite.color = mainColor;
-        currentlyAttacking = false;
-        isUsingAttack = false;
-        canAttack = true;
+
         enemyState = EnemyStates.PATROL;
 
+        stunTimerOn = false;
+    }
 
+    public void StunToPatrol()
+    {
+        enemyState = EnemyStates.PATROL;
+        notStunnedAnymore = false;
+        //stunTimerOn = false;
     }
 
     new protected void ChangeToPatrol()

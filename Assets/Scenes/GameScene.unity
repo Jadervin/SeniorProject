@@ -14194,6 +14194,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1825776846}
     m_Modifications:
     - target: {fileID: 694876506724881682, guid: 728629677db03a84c856ce001c9d2285, type: 3}
+      propertyPath: stunTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 694876506724881682, guid: 728629677db03a84c856ce001c9d2285, type: 3}
       propertyPath: dashPower
       value: 15
       objectReference: {fileID: 0}

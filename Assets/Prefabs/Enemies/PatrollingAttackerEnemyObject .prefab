@@ -172,10 +172,12 @@ MonoBehaviour:
   canChaseDetection: 0
   canAttackDetection: 0
   currentlyAttacking: 0
+  stunTimerOn: 0
+  notStunnedAnymore: 0
   canPatrolOption: 0
   canChaseOption: 0
-  enemyState: 0
-  attackState: 0
+  _enemyState: 0
+  _attackState: 0
   STOP_POINT_TAG: StopPoint
   CAMERA_SWITCH_TRIGGER_TAG: CameraSwitchTriggers
   WALLTAG: Wall
@@ -191,11 +193,12 @@ MonoBehaviour:
   canAttack: 1
   dashPower: 24
   attackTime: 0.4
+  counterableTimeFrame: 0.3
   isChargingAttack: 0
-  isAttacking: 0
+  isUsingAttack: 0
   isRecharging: 0
-  knockbackStrength: 16
-  delayTime: 0.3
+  knockbackStrength: 10
+  delayTime: 1
   stunTime: 2
 --- !u!1 &2572606527928857041
 GameObject:

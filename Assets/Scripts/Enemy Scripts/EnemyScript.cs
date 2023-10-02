@@ -61,6 +61,9 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool canAttackDetection;
     [SerializeField] protected bool currentlyAttacking;
 
+    [SerializeField] protected bool stunTimerOn;
+    [SerializeField] protected bool notStunnedAnymore;
+
     [Header("Options")]
     [SerializeField] private bool canPatrolOption;
     [SerializeField] private bool canChaseOption = true;
@@ -126,6 +129,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected float knockbackStrength = 16;
     [SerializeField] protected float delayTime = .3f;
     [SerializeField] protected float stunTime = 2f;
+    
 
     /*
     public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
@@ -247,8 +251,20 @@ public class EnemyScript : EntityScript
 
             case EnemyStates.STUNNED:
                 //Enemy cannot move
-                rb.velocity = new Vector2(0f, 0f);
-                StartCoroutine(StunTimer());
+
+                if (stunTimerOn == false)
+                {
+                    StartCoroutine(StunTimer());
+                    
+
+                }
+/*
+                if(notStunnedAnymore == true)
+                {
+                    StunToPatrolORIdle();
+                }
+*/
+                //rb.velocity = new Vector2(0f, 0f);
                 break;
 
             case EnemyStates.DEATH: 
@@ -323,6 +339,8 @@ public class EnemyScript : EntityScript
 
     protected void EnemyKnockbackAction(GameObject collidedGameObject)
     {
+        //StopAllCoroutines();
+
         //Debug.Log(transform.position);
         //Debug.Log(collidedGameObject.transform.position);
 
@@ -350,6 +368,62 @@ public class EnemyScript : EntityScript
         rb.velocity = Vector2.zero;
 
     }
+
+
+    public void StunEnemy()
+    {
+        enemyState = EnemyStates.STUNNED;
+    }
+
+
+    protected IEnumerator StunTimer()
+    {
+        stunTimerOn = true;
+        mainSprite.color = Color.gray;
+
+
+        currentlyAttacking = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        isChargingAttack = false;
+
+        canAttack = true;
+
+        yield return new WaitForSeconds(stunTime);
+
+        mainSprite.color = mainColor;
+
+        stunTimerOn = false;
+        notStunnedAnymore = true;
+
+        if (canPatrolOption == true)
+        {
+            enemyState = EnemyStates.PATROL;
+        }
+        else
+        {
+            enemyState = EnemyStates.IDLE;
+        }
+
+    }
+/*
+    private void StunToPatrolORIdle()
+    {
+        if (canPatrolOption == true)
+        {
+            enemyState = EnemyStates.PATROL;
+        }
+        else
+        {
+            enemyState = EnemyStates.IDLE;
+        }
+
+        //stunTimerOn = false;
+        notStunnedAnymore = false;
+    }
+*/
+
+
 
     /*
     private void OnCollisionEnter2D(Collision2D collision)
@@ -581,9 +655,6 @@ public class EnemyScript : EntityScript
         isRecharging = false;
         canAttack = true;
 
-        
-            
-        
 
     }
 
@@ -606,28 +677,7 @@ public class EnemyScript : EntityScript
         }
     }
 
-    public void StunEnemy()
-    {
-        enemyState = EnemyStates.STUNNED;
-    }
-
-
-    protected IEnumerator StunTimer()
-    {
-        
-        yield return new WaitForSeconds(stunTime);
-
-        if (canPatrolOption == true)
-        {
-            enemyState = EnemyStates.PATROL;
-        }
-        else
-        {
-            enemyState = EnemyStates.IDLE;
-        }
-
-    }
-
+   
     protected void ChangeToPatrol()
     {
         Debug.Log("Change to Patrol");
