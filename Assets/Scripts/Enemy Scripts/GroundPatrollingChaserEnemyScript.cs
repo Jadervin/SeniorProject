@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GroundPatrollingChaserEnemyScript : EnemyScript
 {
-    
+    [SerializeField] private bool stunTimerOn;
+
 
     // Update is called once per frame
     new private void Update()
@@ -88,8 +89,11 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
             case EnemyStates.STUNNED:
                 //Enemy cannot move
-                rb.velocity = new Vector2(0f, 0f);
-                StartCoroutine(StunTimer());
+                //rb.velocity = new Vector2(0f, 0f);
+                if (stunTimerOn == false)
+                {
+                    StartCoroutine(StunTimer());
+                }
                 break;
 
             case EnemyStates.DEATH:
@@ -164,7 +168,7 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
         //turn off one of the stop points
         //make the radiuses of the colliders zero
         //change the enemyState to patrol
-        if (onEdgeOfGround && enemyState != EnemyStates.IDLE)
+        if (onEdgeOfGround && enemyState != EnemyStates.IDLE && enemyState != EnemyStates.STUNNED)
         {
             canChaseDetection = false;
             TurnOffOneStopPoint();
@@ -240,16 +244,25 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
 
     new protected IEnumerator StunTimer()
     {
+        stunTimerOn = true;
         mainSprite.color = Color.gray;
+
+
+        currentlyAttacking = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        isChargingAttack = false;
+
+        canAttack = true;
+
         yield return new WaitForSeconds(stunTime);
 
         mainSprite.color = mainColor;
-        currentlyAttacking = false;
-        isUsingAttack = false;
-        canAttack = true;
-        enemyState = EnemyStates.PATROL;
-        
 
+        
+        enemyState = EnemyStates.PATROL;
+
+        stunTimerOn = false;
     }
 
     new protected void ChangeToPatrol()

@@ -27,7 +27,7 @@ public class PlayerKnockback : MonoBehaviour
         //Debug.Log(transform.position - e.collidedGameObject.transform.position);
 
         Vector2 knockbackDirection = (transform.position - e.collidedGameObject.transform.position).normalized;
-        Debug.Log(knockbackDirection);
+        //Debug.Log(knockbackDirection);
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
         //MovementLimiter.instance.OnKnockbackBegin();
         StartCoroutine(Reset());

@@ -158,6 +158,7 @@ public class EnemyScript : EntityScript
     // Update is called once per frame
     protected void Update()
     {
+        Debug.Log(rb.velocity);
         //Debug.Log("Update");
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
@@ -311,6 +312,7 @@ public class EnemyScript : EntityScript
             //});
             */
             //StopCoroutine(EnemyAttack());
+            
             EnemyKnockbackAction(collision.gameObject);
 
             //enemyState = EnemyStates.STUNNED;
@@ -328,17 +330,21 @@ public class EnemyScript : EntityScript
 
         //StopAllCoroutines();
         Vector2 knockbackDirection = (transform.position - collidedGameObject.transform.position).normalized;
-        //Debug.Log(knockbackDirection);
+        knockbackDirection.y *= -1;
+        Debug.Log(knockbackDirection * knockbackStrength);
 
+        rb.velocity = Vector2.zero;
         //knockbackDirection = new Vector2((Mathf.Sign(knockbackDirection.x)), 0);
         //Debug.Log(knockbackDirection);
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
+
+        Debug.Log(rb.velocity);
         
-        StartCoroutine(StunDelay());
+        StartCoroutine(KnockbackDelay());
         StunEnemy();
     }
 
-    protected IEnumerator StunDelay()
+    protected IEnumerator KnockbackDelay()
     {
         yield return new WaitForSeconds(delayTime);
         rb.velocity = Vector2.zero;
@@ -418,7 +424,7 @@ public class EnemyScript : EntityScript
         //turn off one of the stop points
         //make the radiuses of the colliders zero
         //change the enemyState to patrol
-        if (onEdgeOfGround && enemyState != EnemyStates.IDLE)
+        if (onEdgeOfGround && enemyState != EnemyStates.IDLE && enemyState != EnemyStates.STUNNED)
         {
             canChaseDetection = false;
             TurnOffOneStopPoint();
