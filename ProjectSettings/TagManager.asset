@@ -11,6 +11,7 @@ TagManager:
   - CameraSwitchTrigger
   - TongueCounter
   - EnemyProjectile
+  - Artifact
   layers:
   - Default
   - TransparentFX

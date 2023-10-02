@@ -398,6 +398,7 @@ Transform:
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6850919567382927341}
   - {fileID: 4987271427783889084}
   m_Father: {fileID: 6092328444213995679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -506,8 +507,8 @@ MonoBehaviour:
   currentlyAttacking: 0
   canPatrolOption: 0
   canChaseOption: 0
-  enemyState: 0
-  attackState: 0
+  _enemyState: 0
+  _attackState: 0
   STOP_POINT_TAG: StopPoint
   CAMERA_SWITCH_TRIGGER_TAG: CameraSwitchTriggers
   WALLTAG: Wall
@@ -523,8 +524,9 @@ MonoBehaviour:
   canAttack: 1
   dashPower: 30
   attackTime: 0.5
+  counterableTimeFrame: 0.3
   isChargingAttack: 0
-  isAttacking: 0
+  isUsingAttack: 0
   isRecharging: 0
   knockbackStrength: 16
   delayTime: 0.3
@@ -557,13 +559,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4909765543881943004}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7176186802798199967}
-  m_Father: {fileID: 6092328444213995679}
+  m_Father: {fileID: 2988970074188613394}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3259782061837674303
 MonoBehaviour:
@@ -658,7 +660,6 @@ Transform:
   - {fileID: 1602499290599518172}
   - {fileID: 1134196024577745977}
   - {fileID: 7283349026591342623}
-  - {fileID: 6850919567382927341}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5700966218509126342
