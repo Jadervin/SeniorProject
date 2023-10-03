@@ -61,6 +61,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool canChaseDetection;
     [SerializeField] protected bool canAttackDetection;
     [SerializeField] protected bool currentlyAttacking;
+    
 
     [SerializeField] protected bool stunTimerOn;
     [SerializeField] protected bool notStunnedAnymore;
@@ -122,8 +123,8 @@ public class EnemyScript : EntityScript
     [SerializeField] protected bool isChargingAttack = false;
     [SerializeField] protected bool isUsingAttack = false;
     [SerializeField] protected bool isRecharging = false;
-
     
+
 
 
     [Header("Knockback Variables")]
@@ -335,6 +336,19 @@ public class EnemyScript : EntityScript
             //enemyState = EnemyStates.STUNNED;
         }
 
+    }
+
+    private void OnParticleCollision(GameObject particle)
+    {
+        if (particle.GetComponent<FlareShotParticleScript>().GetHitWithParticleBool() == false)
+        {
+            DamageHealth(particle.GetComponent<FlareShotParticleScript>().GetDamage());
+            particle.GetComponent<FlareShotParticleScript>().SetHitWithParticleBool(true);
+
+            
+            //particle.SetActive(false);
+            //hitWithParticle = true;
+        }
     }
 
 

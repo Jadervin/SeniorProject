@@ -7,8 +7,8 @@ public class PlayerJump : MonoBehaviour
     
     [Header("Components")]
 
-    [SerializeField] 
-    private GameInput gameInput;
+    //[SerializeField] 
+    //private GameInput gameInput;
 
     [SerializeField]
     public Rigidbody2D body;
@@ -120,8 +120,8 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
 
-        gameInput.OnJumpPressed += GameInput_OnJumpPressed;
-        gameInput.OnJumpRelease += GameInput_OnJumpReleased;
+        GameInput.Instance.OnJumpPressed += GameInput_OnJumpPressed;
+        GameInput.Instance.OnJumpRelease += GameInput_OnJumpReleased;
 
         fallSpeedYDampingChangeThreshold = CameraManager.instance.GetFallSpeedYDampingChangeThreshold();
 

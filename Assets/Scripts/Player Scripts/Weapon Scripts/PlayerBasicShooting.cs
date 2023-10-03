@@ -6,23 +6,16 @@ using UnityEngine.Rendering;
 public class PlayerBasicShooting : MonoBehaviour
 {
     [SerializeField] private GameObject bullet;
-    /*
-     * [SerializeField] 
-     *
-     */
-    private float timeSinceShooting = 0f;
+    /*[SerializeField]*/ private float timeSinceShooting = 0f;
     [SerializeField] private float cooldownTimeMax = .3f;
-    [SerializeField] private GameInput gameInput;
+    //[SerializeField] private GameInput gameInput;
     [SerializeField] private Transform shootPoint;
-    /*
-     * [SerializeField] 
-     */
-    private bool canShoot = true;
+    /*[SerializeField]*/ private bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameInput.OnShootPressed += GameInput_OnShootPressed;
+        GameInput.Instance.OnShootPressed += GameInput_OnShootPressed;
     }
 
     private void GameInput_OnShootPressed(object sender, System.EventArgs e)
@@ -31,6 +24,7 @@ public class PlayerBasicShooting : MonoBehaviour
         {
             BasicShoot();
             canShoot = false;
+            MovementLimiter.instance.characterCanSpecialShoot = false;
         }
         
         
@@ -48,7 +42,7 @@ public class PlayerBasicShooting : MonoBehaviour
             {
                 timeSinceShooting = 0;
                 canShoot = true;
-
+                MovementLimiter.instance.characterCanSpecialShoot = true;
             }
         }
         

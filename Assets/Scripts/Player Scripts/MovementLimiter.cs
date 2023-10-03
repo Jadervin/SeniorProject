@@ -10,8 +10,11 @@ public class MovementLimiter : MonoBehaviour
     [SerializeField] private bool _initialCharacterCanMove = true;
     public bool characterCanMove;
 
-    [SerializeField] private bool _initialCharacterCanShoot = true;
-    public bool characterCanShoot;
+    [SerializeField] private bool _initialCharacterCanBasicShoot = true;
+    public bool characterCanBasicShoot;
+
+    [SerializeField] private bool _initialCharacterCanSpecialShoot = true;
+    public bool characterCanSpecialShoot;
 
     private void OnEnable()
     {
@@ -21,7 +24,8 @@ public class MovementLimiter : MonoBehaviour
     private void Start()
     {
         characterCanMove = _initialCharacterCanMove;
-        characterCanShoot = _initialCharacterCanShoot;
+        characterCanBasicShoot = _initialCharacterCanBasicShoot;
+        characterCanSpecialShoot = _initialCharacterCanSpecialShoot;
     }
 
     public void OnKnockbackBegin()

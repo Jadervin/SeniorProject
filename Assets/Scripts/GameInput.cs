@@ -16,6 +16,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnJumpRelease;
     public event EventHandler OnShootPressed;
     public event EventHandler OnTongueCounterPressed;
+    public event EventHandler OnSpecialShootPressed;
 
 
     private void Awake()
@@ -33,6 +34,7 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.TongueCounter.performed += TongueCounter_performed;
 
+        playerInputActions.Player.SpecialShoot.performed += SpecialShoot_performed;
 
     }
 
@@ -46,11 +48,13 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Shoot.performed -= Shoot_performed;
 
-        playerInputActions.Player.TongueCounter.performed-= TongueCounter_performed;
+        playerInputActions.Player.TongueCounter.performed -= TongueCounter_performed;
+        playerInputActions.Player.SpecialShoot.performed -= SpecialShoot_performed;
 
         playerInputActions.Dispose();
     }
 
+    
 
     private void TongueCounter_performed(InputAction.CallbackContext obj)
     {
@@ -61,9 +65,17 @@ public class GameInput : MonoBehaviour
     }
     private void Shoot_performed(InputAction.CallbackContext obj)
     {
-        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanShoot)
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanBasicShoot)
         {
             OnShootPressed?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private void SpecialShoot_performed(InputAction.CallbackContext obj)
+    {
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanSpecialShoot)
+        {
+            OnSpecialShootPressed?.Invoke(this, EventArgs.Empty);
         }
     }
 

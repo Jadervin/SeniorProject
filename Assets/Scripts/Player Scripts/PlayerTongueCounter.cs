@@ -6,7 +6,7 @@ public class PlayerTongueCounter : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D polygonCollider;
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private GameInput gameInput;
+    //[SerializeField] private GameInput gameInput;
     [SerializeField] private float tongueCounterTimer = 0.2f;
     [SerializeField] private float cooldownTime = 1f;
     private bool canCounter = true;
@@ -19,7 +19,7 @@ public class PlayerTongueCounter : MonoBehaviour
         polygonCollider = GetComponent<PolygonCollider2D>();
         polygonCollider.enabled = false;
         sprite.enabled = false;
-        gameInput.OnTongueCounterPressed += GameInput_OnTongueCounterPressed;
+        GameInput.Instance.OnTongueCounterPressed += GameInput_OnTongueCounterPressed;
     }
 
     private void GameInput_OnTongueCounterPressed(object sender, System.EventArgs e)
@@ -27,7 +27,8 @@ public class PlayerTongueCounter : MonoBehaviour
         if (canCounter == true)
         {
             canCounter = false;
-            MovementLimiter.instance.characterCanShoot = false;
+            MovementLimiter.instance.characterCanBasicShoot = false;
+            MovementLimiter.instance.characterCanSpecialShoot = false;
             StartCoroutine(TongueCounter());
             
 
@@ -58,7 +59,8 @@ public class PlayerTongueCounter : MonoBehaviour
         yield return new WaitForSeconds(tongueCounterTimer);
         polygonCollider.enabled = false;
         sprite.enabled = false;
-        MovementLimiter.instance.characterCanShoot = true;
-        
+        MovementLimiter.instance.characterCanBasicShoot = true;
+        MovementLimiter.instance.characterCanSpecialShoot = true;
+
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private GameInput gameInput;
+    //[SerializeField] private GameInput gameInput;
 
     [Header("Components")]
     [SerializeField]
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        directionX = gameInput.GetXMovement();
+        directionX = GameInput.Instance.GetXMovement();
 
         //Used to stop movement when the character is playing her death animation
         if (!MovementLimiter.instance.characterCanMove)
