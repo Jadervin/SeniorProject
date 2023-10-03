@@ -32,6 +32,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected GameObject rightStopPoint;
     [SerializeField] protected Transform playerTarget;
     [SerializeField] protected SpriteRenderer mainSprite;
+    [SerializeField] protected GameObject itemToSpawn;
     protected Color mainColor;
 
     [Header("Damage Amount")]
@@ -586,6 +587,11 @@ public class EnemyScript : EntityScript
     {
         enemyState = EnemyStates.DEATH;
         enemyParent.gameObject.SetActive(false);
+
+        if (itemToSpawn != null)
+        {
+            GameObject temp = Instantiate(itemToSpawn, transform.position, Quaternion.identity);
+        }
         //Destroy(gameObject);
     }
 
