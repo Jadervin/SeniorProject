@@ -31,7 +31,7 @@ public class FlareShotScript : MonoBehaviour
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (canSpecialShoot == true && specialWeaponScript.GetCurrentWeaponEnergy() > 0)
+        if (canSpecialShoot == true && specialWeaponScript.GetCurrentWeaponEnergy() > weaponEnergyCost)
         {
             specialWeaponScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             canSpecialShoot = false;

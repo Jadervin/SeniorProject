@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlareShotParticleScript : MonoBehaviour
 {
     [SerializeField] private int bulletDamage = 1;
-    [SerializeField] protected bool hitWithParticle = false;
+    [SerializeField] private bool hitWithParticle = false;
     [SerializeField] private float cooldownTimeMax = 1f;
     [SerializeField] private float timeSinceHit = 0f;
 
