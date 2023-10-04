@@ -12420,6 +12420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1687954158}
+  - component: {fileID: 1687954159}
   m_Layer: 8
   m_Name: Special Weapons
   m_TagString: Untagged
@@ -12443,6 +12444,20 @@ Transform:
   - {fileID: 1751227448}
   m_Father: {fileID: 1464256107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687954159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687954157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce384e355e1f184a9749768886a8335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWeaponEnergy: 10
+  currentWeaponEnergy: 0
 --- !u!1 &1751227447
 GameObject:
   m_ObjectHideFlags: 0
@@ -12494,6 +12509,8 @@ MonoBehaviour:
   timeToBasicShootMax: 0.2
   cooldownTimeMax: 1
   canSpecialShoot: 1
+  specialWeaponScript: {fileID: 0}
+  weaponEnergyCost: 3
 --- !u!1001 &1755319405
 PrefabInstance:
   m_ObjectHideFlags: 0

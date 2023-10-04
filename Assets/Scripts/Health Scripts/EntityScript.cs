@@ -8,6 +8,7 @@ public abstract class EntityScript : MonoBehaviour
     [Header("Health Attributes")]
     [SerializeField] protected int currentHealth;
     [SerializeField] protected int maxHealth;
+
     
 
     protected void Awake()

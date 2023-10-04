@@ -12,7 +12,11 @@ public class FlareShotScript : MonoBehaviour
     //[SerializeField] private GameInput gameInput;
     //[SerializeField] private Transform shootPoint;
     [SerializeField] private bool canSpecialShoot = true;
-    [SerializeField] private float energyUsed = 1f;
+
+    public SpecialWeaponScript specialWeaponScript;
+
+
+    [SerializeField] private int weaponEnergyCost = 3;
 
 
     // Start is called before the first frame update
@@ -21,16 +25,20 @@ public class FlareShotScript : MonoBehaviour
         GameInput.Instance.OnSpecialShootPressed += GameInput_OnSpecialShootPressed;
         flareShotParticle.GetComponent<FlareShotParticleScript>().SetCooldownTime(cooldownTimeMax);
 
+        specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
 
     }
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (canSpecialShoot == true)
+        if (canSpecialShoot == true && specialWeaponScript.GetCurrentWeaponEnergy() > 0)
         {
-            FlareShot();
+            specialWeaponScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             canSpecialShoot = false;
             MovementLimiter.instance.characterCanBasicShoot = false;
+            FlareShot();
+            
+           
         }
     }
 
