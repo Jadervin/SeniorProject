@@ -6,7 +6,7 @@ public class SpecialWeaponScript : MonoBehaviour
 {
     [SerializeField] protected int maxWeaponEnergy = 10;
     [SerializeField] protected int currentWeaponEnergy;
-    public static SpecialWeaponScript Instance { get; private set; }
+    //public static SpecialWeaponScript Instance { get; set; }
 
     // Start is called before the first frame update
     void Start()
