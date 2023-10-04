@@ -12,6 +12,8 @@ TagManager:
   - TongueCounter
   - EnemyProjectile
   - Artifact
+  - UnlockableAreas
+  - HiddenAreas
   layers:
   - Default
   - TransparentFX
