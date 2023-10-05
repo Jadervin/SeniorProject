@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlanetTotemScript : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> unlockableWalls;
-    [SerializeField] private List<GameObject> unlockablePlatforms;
+    [SerializeField] private List<GameObject> unlockableAreas;
+    [SerializeField] private List<GameObject> hiddenAreas;
     [SerializeField] private Collider2D switchCollider;
     [SerializeField] private int maxArtifacts = 3;
     [SerializeField] private string PLAYERTAG = "Player";
@@ -30,11 +30,11 @@ public class PlanetTotemScript : MonoBehaviour
             artifactsNeeded = maxArtifacts
         });
         */
-        foreach(GameObject platform in unlockablePlatforms) 
+        foreach(GameObject platform in hiddenAreas) 
         { 
             platform.SetActive(false);
         }
-        foreach (GameObject wall in unlockableWalls)
+        foreach (GameObject wall in unlockableAreas)
         {
             wall.SetActive(true);
         }
@@ -77,7 +77,7 @@ public class PlanetTotemScript : MonoBehaviour
             collision.gameObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded() == 0 && 
             completedTotem == false)
         {
-            foreach (GameObject platform in unlockablePlatforms)
+            foreach (GameObject platform in hiddenAreas)
             {
                 platform.SetActive(true);
             }
@@ -92,7 +92,7 @@ public class PlanetTotemScript : MonoBehaviour
         if (collision.gameObject.CompareTag(PLAYERTAG) &&
             collision.gameObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected() == maxArtifacts)
         {
-            foreach (GameObject wall in unlockableWalls)
+            foreach (GameObject wall in unlockableAreas)
             {
                 wall.SetActive(false);
             }
