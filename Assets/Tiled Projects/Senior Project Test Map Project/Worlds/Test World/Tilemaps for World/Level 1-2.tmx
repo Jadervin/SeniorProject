@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="1">
- <tileset firstgid="1" source="../../Tilesets/Metroid_like2.tsx"/>
+ <tileset firstgid="1" source="../../../../../GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior Project Test Map Project/Tilesets/Metroid_like2.tsx"/>
  <layer id="3" name="Background" width="30" height="20">
   <data encoding="csv">
 213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,213,

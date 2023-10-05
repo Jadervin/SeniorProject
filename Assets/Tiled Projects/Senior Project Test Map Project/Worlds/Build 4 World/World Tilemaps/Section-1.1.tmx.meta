@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d90629aec81920499db14e5960f7faf
+guid: 2b43dd2407eede342bd9c27934415513
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -7,14 +7,19 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {fileID: 11500000, guid: c6b19dac32d07094ca0a4ffc902a36c4, type: 3}
+  script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
   errors: []
   warnings: []
   missingSortingLayers: []
   missingLayers: []
   missingTags: []
-  importerVersion: 1
-  pixelsPerUnit: 100
+  importerVersion: 27
+  pixelsPerUnit: 16
   edgesPerEllipse: 32
   numberOfObjectsImported: 2
+  tilesAsObjects: 0
+  sortingMode: 0
+  isIsometric: 0
+  customImporterClassName: 
+  internalTilesets: []

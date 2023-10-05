@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 70e2f8009a6826443aa21b1e70c0e305
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
+  missingFiles:
+  - ../../../../../GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior
+    Project Test Map Project/Tilesets/Metroid_like2.tsx
+  errors:
+  - 'Missing tileset asset: ../../../../../GitHub Repositories/SeniorProject/Assets/Tiled
+    Projects/Senior Project Test Map Project/Tilesets/Metroid_like2.tsx'
+  warnings: []
+  missingSortingLayers: []
+  missingLayers: []
+  missingTags: []
+  importerVersion: 27
+  pixelsPerUnit: 100
+  edgesPerEllipse: 32
+  numberOfObjectsImported: 2
+  tilesAsObjects: 0
+  sortingMode: 0
+  isIsometric: 0
+  customImporterClassName: 
+  internalTilesets: []
