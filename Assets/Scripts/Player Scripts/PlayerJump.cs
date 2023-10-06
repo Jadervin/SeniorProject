@@ -8,7 +8,7 @@ public class PlayerJump : MonoBehaviour
     [Header("Components")]
 
     //[SerializeField] 
-    //private GameInput gameInput;
+    [SerializeField] private GameInput gameInput;
 
     [SerializeField]
     public Rigidbody2D body;
@@ -84,13 +84,16 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private bool canJumpAgain = false;
     [SerializeField] private bool desiredJump;
     [SerializeField] private bool pressingJump;
+    [SerializeField] private bool isJumping;
     private float jumpBufferCounter;
     private float coyoteTimeCounter = 0;
-    
-    
+    [SerializeField] private bool isFacingRight;
+
+
     [SerializeField] private bool onGround;
     private bool currentlyJumping;
-
+    
+    
 
 
     //private int jumpsPerformedDEBUG = 0;
@@ -100,6 +103,23 @@ public class PlayerJump : MonoBehaviour
     //[Header("Camera Components")]
     private float fallSpeedYDampingChangeThreshold;
 
+    [Header("Ledge Grab Settings")]
+    [SerializeField] private float ledgeGrabLength = 0.95f;
+    [SerializeField] private GameObject ledgeDetectionTransform;
+    [SerializeField, Range(-1, 1)]
+    private float gameInputDirectionX = 1;
+    [SerializeField, Range(-1, 1)]
+    private float directionX = 1;
+
+
+    [SerializeField] private bool isAboveLedge;
+    [SerializeField] private bool isTouchingLedgeCenter;
+    //Which layers are read as the ground
+    [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField, Range(0, 2)]
+    private float isAboveLedgeOffset;
+    [SerializeField] private float playerHalfWidth = 0.5f;
 
 
 
@@ -113,6 +133,8 @@ public class PlayerJump : MonoBehaviour
         ground = GetComponent<PlayerGround>();
         //juice = GetComponentInChildren<characterJuice>();
         defaultGravityScale = 1f;
+
+        gameInput = FindAnyObjectByType<GameInput>();
     }
 
    
@@ -120,8 +142,8 @@ public class PlayerJump : MonoBehaviour
     private void Start()
     {
 
-        GameInput.Instance.OnJumpPressed += GameInput_OnJumpPressed;
-        GameInput.Instance.OnJumpRelease += GameInput_OnJumpReleased;
+        gameInput.OnJumpPressed += GameInput_OnJumpPressed;
+        gameInput.OnJumpRelease += GameInput_OnJumpReleased;
 
         fallSpeedYDampingChangeThreshold = CameraManager.instance.GetFallSpeedYDampingChangeThreshold();
 
@@ -149,7 +171,15 @@ public class PlayerJump : MonoBehaviour
     {
         setPhysics();
 
+        gameInputDirectionX = gameInput.GetXMovement();
 
+        
+
+        //Used to stop movement when the character is playing her death animation
+        if (!MovementLimiter.instance.characterCanMove)
+        {
+            gameInputDirectionX = 0;
+        }
 
         if (firstPhysicsSet == false)
         {
@@ -220,6 +250,14 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
+        DirectionCheck();
+
+        if (onGround == false)
+        {
+            Debug.Log("Checking for Ledge");
+            LedgeGrab();
+        }
+
         //Get velocity from Kit's Rigidbody 
         velocity = body.velocity;
 
@@ -414,5 +452,64 @@ public class PlayerJump : MonoBehaviour
     private void ResetBodyGravityScale()
     {
         body.gravityScale = defaultBodyGravityScale;
+    }
+
+
+    public void DirectionCheck()
+    {
+        if(gameInputDirectionX == -1)
+        {
+            isFacingRight = false;
+        }
+        else if (gameInputDirectionX == 1)
+        {
+            isFacingRight = true;
+        }
+
+
+        if(isFacingRight)
+        {
+            directionX = 1;
+        }
+        else
+        {
+            directionX = -1;
+        }
+    }
+
+
+    public void LedgeGrab()
+    {
+        isTouchingLedgeCenter = Physics2D.Raycast(transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
+
+        isAboveLedge = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
+
+
+
+        if(isTouchingLedgeCenter == true && isAboveLedge == false)
+        {
+
+        }
+
+    }
+
+
+    private void OnDrawGizmos()
+    {
+
+        if (isTouchingLedgeCenter || isAboveLedge)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+
+        //For the isTouchingLedgeCenter bool
+        Gizmos.DrawLine(transform.position, transform.position+ new Vector3(directionX, 0, 0) * ledgeGrabLength);
+
+        //For the isAboveLedge bool
+        Gizmos.DrawLine(ledgeDetectionTransform.transform.position, ledgeDetectionTransform.transform.position + new Vector3(directionX, 0,0) * ledgeGrabLength);
     }
 }
