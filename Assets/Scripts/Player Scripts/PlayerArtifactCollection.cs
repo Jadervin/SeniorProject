@@ -68,6 +68,8 @@ public class PlayerArtifactCollection : MonoBehaviour
             artifactsCollected++;
 
             OnPlayerCollectsArtifact?.Invoke(this, EventArgs.Empty);
+
+            Destroy(collision.gameObject);
         }
     }
 }

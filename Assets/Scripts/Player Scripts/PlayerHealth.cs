@@ -8,10 +8,12 @@ public class PlayerHealth : EntityScript
 {
     [SerializeField] private string ENEMYTAG = "Enemy";
     [SerializeField] private string ENEMY_PROJECTILE_TAG = "EnemyProjectile";
+    [SerializeField] private string HEALTHUPGRADETAG = "HealthUpgrade";
 
     [SerializeField] private float damageTimeBuffer = 1f;
     [SerializeField] private bool isInvincible;
     [SerializeField] private float deathTimer = 2f;
+    [SerializeField] private int healthUpgradeIncrease = 5;
 
     [SerializeField] private List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 
@@ -21,7 +23,8 @@ public class PlayerHealth : EntityScript
         public GameObject collidedGameObject;
     }
 
-    public event EventHandler OnPlayerHit;
+    public event EventHandler OnPlayerHealthChanged;
+    public event EventHandler OnPlayerMaxHealthChanged;
 
     // Start is called before the first frame update
     void Start()
@@ -38,19 +41,37 @@ public class PlayerHealth : EntityScript
     public override void DamageHealth(int damageAmount)
     {
         currentHealth -= damageAmount;
-        OnPlayerHit?.Invoke(this, EventArgs.Empty);
+        OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
 
 
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            OnPlayerHit?.Invoke(this, EventArgs.Empty);
+            OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
             OnDeath();
         }
         else
         {
             StartCoroutine(playerInvincibility());
         }
+    }
+
+    public void IncreaseMaxHealth(int hpIncreaseAmount)
+    {
+        maxHealth += hpIncreaseAmount;
+        currentHealth = maxHealth;
+
+        OnPlayerMaxHealthChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+
+    public void HealthRefill()
+    {
+        currentHealth = maxHealth;
+
+        OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
+
+
     }
 
     public override void OnDeath()
@@ -82,6 +103,13 @@ public class PlayerHealth : EntityScript
                     collidedGameObject = collision.gameObject
                 });
             }
+        }
+        if(collision.gameObject.CompareTag(HEALTHUPGRADETAG))
+        {
+            collision.gameObject.SetActive(false);
+            IncreaseMaxHealth(healthUpgradeIncrease);
+
+            Destroy(collision.gameObject);
         }
       
     }

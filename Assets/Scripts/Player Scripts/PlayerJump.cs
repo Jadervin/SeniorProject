@@ -121,7 +121,7 @@ public class PlayerJump : MonoBehaviour
     private float isAboveLedgeDownwardOffset = 0.05f;
     [SerializeField] private float playerHalfWidth = 0.5f;
     [SerializeField, Range(1, 10)]
-    private float ledgeGrabLengthMultiplier = 2f;
+    private float ledgeDistanceMultiplier = 2f;
 
 
     void Awake()
@@ -513,7 +513,7 @@ public class PlayerJump : MonoBehaviour
             {
                 previousAboveLedgeDetection = aboveLedgeLoopCheck;
 
-                aboveLedgeLoopCheck = Physics2D.Raycast(new Vector3(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop, ledgeDetectionTransform.transform.position.z), new Vector3(directionX, 0, 0), ledgeGrabLength * ledgeGrabLengthMultiplier, groundLayer);
+                aboveLedgeLoopCheck = Physics2D.Raycast(new Vector3(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop, ledgeDetectionTransform.transform.position.z), new Vector3(directionX, 0, 0), ledgeGrabLength/* * ledgeGrabLengthMultiplier*/, groundLayer);
 
                 isAboveLedgeDownwardOffsetForLoop += isAboveLedgeDownwardOffset;
                 //Debug.Log("isAboveLedgeDownwardOffsetForLoop: " + isAboveLedgeDownwardOffsetForLoop);
@@ -523,7 +523,7 @@ public class PlayerJump : MonoBehaviour
             }
 
             
-            ledgeDistance = previousAboveLedgeDetection.fraction;
+            ledgeDistance = previousAboveLedgeDetection.fraction * ledgeDistanceMultiplier;
 
             finalPosition = previousAboveLedgeDetection.centroid;
             finalPosition.y += /*isAboveLedgeDownwardOffset*/ isAboveLedgeDownwardOffsetForLoop;

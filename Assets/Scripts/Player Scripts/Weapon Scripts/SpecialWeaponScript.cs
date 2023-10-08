@@ -47,6 +47,21 @@ public class SpecialWeaponScript : MonoBehaviour
     public void IncreaseCurrentWeaponEnergy(int weaponEnergy)
     {
         currentWeaponEnergy += weaponEnergy;
+
+        OnEnergyChanged?.Invoke(this, new OnEnergyChangedEventArgs
+        {
+            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy
+        });
+    }
+
+    public void RechargeEnergy()
+    {
+        currentWeaponEnergy = maxWeaponEnergy;
+
+        OnEnergyChanged?.Invoke(this, new OnEnergyChangedEventArgs
+        {
+            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy
+        });
     }
 
     public void IncreaseMaxWeaponEnergy(int weaponEnergy) 

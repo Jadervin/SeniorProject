@@ -44,11 +44,7 @@ public abstract class EntityScript : MonoBehaviour
     }
     
 
-    public void IncreaseMaxHealth(int hpIncreaseAmount)
-    {
-        maxHealth += hpIncreaseAmount;
-        currentHealth = maxHealth;
-    }
+    
 
     public int GetCurrentHealth()
     {

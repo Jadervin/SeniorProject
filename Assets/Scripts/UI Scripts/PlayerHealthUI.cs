@@ -12,13 +12,21 @@ public class PlayerHealthUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerHealth.OnPlayerHit += PlayerHealth_OnPlayerHit;
+        playerHealth.OnPlayerHealthChanged += PlayerHealth_OnPlayerHealthChanged;
+
+        playerHealth.OnPlayerMaxHealthChanged += PlayerHealth_OnPlayerMaxHealthChanged;
 
         currentHealthText.text = playerHealth.GetCurrentHealth().ToString();
         maxHealthText.text = "/ " + playerHealth.GetMaxHealth().ToString();
     }
 
-    private void PlayerHealth_OnPlayerHit(object sender, System.EventArgs e)
+    private void PlayerHealth_OnPlayerMaxHealthChanged(object sender, System.EventArgs e)
+    {
+        maxHealthText.text = "/ " + playerHealth.GetMaxHealth().ToString();
+        currentHealthText.text = playerHealth.GetCurrentHealth().ToString();
+    }
+
+    private void PlayerHealth_OnPlayerHealthChanged(object sender, System.EventArgs e)
     {
         currentHealthText.text = playerHealth.GetCurrentHealth().ToString();
     }
