@@ -118,9 +118,10 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField, Range(0, 2)]
-    private float isAboveLedgeOffset;
+    private float isAboveLedgeDownwardOffset = 0.05f;
     [SerializeField] private float playerHalfWidth = 0.5f;
-
+    [SerializeField, Range(1, 10)]
+    private float ledgeGrabLengthMultiplier = 2f;
 
 
     void Awake()
@@ -147,7 +148,7 @@ public class PlayerJump : MonoBehaviour
 
         fallSpeedYDampingChangeThreshold = CameraManager.instance.GetFallSpeedYDampingChangeThreshold();
 
-
+        playerHalfWidth = transform.localScale.x/2;
     }
 
     
@@ -254,7 +255,7 @@ public class PlayerJump : MonoBehaviour
 
         if (onGround == false)
         {
-            Debug.Log("Checking for Ledge");
+            //Debug.Log("Checking for Ledge");
             LedgeGrab();
         }
 
@@ -482,34 +483,105 @@ public class PlayerJump : MonoBehaviour
     {
         isTouchingLedgeCenter = Physics2D.Raycast(transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
 
-        isAboveLedge = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
+        isAboveLedge = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0).normalized, ledgeGrabLength, groundLayer);
 
+
+        //RaycastHit2D originalAboveLedgeDetection;
+        //float isAboveLedgeDownwardOffsetForLoop = isAboveLedgeDownwardOffset;
+
+        float ledgeDistance;
+        Vector3 finalPosition = Vector3.zero;
+        //Debug.Log("isTouchingLedgeCenter: " + isTouchingLedgeCenter);
+        //Debug.Log("isAboveLedge: " + isAboveLedge);
 
 
         if(isTouchingLedgeCenter == true && isAboveLedge == false)
         {
+            float isAboveLedgeDownwardOffsetForLoop = isAboveLedgeDownwardOffset;
+            //float isAboveLedgeDownwardOffsetFromLoop = isAboveLedgeDownwardOffset;
 
+            //originalAboveLedgeDetection = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
+        
+
+            RaycastHit2D aboveLedgeLoopCheck = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
+
+            RaycastHit2D previousAboveLedgeDetection = aboveLedgeLoopCheck;
+
+
+
+            while (/*isAboveLedge == false*/ aboveLedgeLoopCheck == false)
+            {
+                previousAboveLedgeDetection = aboveLedgeLoopCheck;
+
+                aboveLedgeLoopCheck = Physics2D.Raycast(new Vector3(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop, ledgeDetectionTransform.transform.position.z), new Vector3(directionX, 0, 0), ledgeGrabLength * ledgeGrabLengthMultiplier, groundLayer);
+
+                isAboveLedgeDownwardOffsetForLoop += isAboveLedgeDownwardOffset;
+                //Debug.Log("isAboveLedgeDownwardOffsetForLoop: " + isAboveLedgeDownwardOffsetForLoop);
+                //Debug.Log("aboveLedgeLoopCheck: " + (bool)aboveLedgeLoopCheck);
+
+
+            }
+
+            
+            ledgeDistance = previousAboveLedgeDetection.fraction;
+
+            finalPosition = previousAboveLedgeDetection.centroid;
+            finalPosition.y += /*isAboveLedgeDownwardOffset*/ isAboveLedgeDownwardOffsetForLoop;
+            finalPosition = finalPosition + (new Vector3(directionX, 0, 0) * (ledgeDistance + (playerHalfWidth)));
+            Debug.Log("finalPosition: " + finalPosition);
+
+            transform.position += finalPosition;
+
+            //isAboveLedge = originalAboveLedgeDetection;
         }
+
+        
 
     }
 
 
     private void OnDrawGizmos()
     {
-
-        if (isTouchingLedgeCenter || isAboveLedge)
+        float isAboveLedgeDownwardOffsetForLoop = isAboveLedgeDownwardOffset;
+        if (isTouchingLedgeCenter && !isAboveLedge)
         {
             Gizmos.color = Color.green;
+            //For the isTouchingLedgeCenter bool
+            Gizmos.DrawLine(transform.position, transform.position + new Vector3(directionX, 0, 0) * ledgeGrabLength);
+        }
+        else 
+        {
+            Gizmos.color = Color.red;
+            //For the isTouchingLedgeCenter bool
+            Gizmos.DrawLine(transform.position, transform.position + new Vector3(directionX, 0, 0) * ledgeGrabLength);
+        }
+
+        if(isAboveLedge && !isTouchingLedgeCenter)
+        {
+            Gizmos.color = Color.blue;
+            //For the isAboveLedge bool
+            Gizmos.DrawLine(ledgeDetectionTransform.transform.position, ledgeDetectionTransform.transform.position + new Vector3(directionX, 0, 0) * ledgeGrabLength);
         }
         else
         {
             Gizmos.color = Color.red;
+            //For the isAboveLedge bool
+            Gizmos.DrawLine(ledgeDetectionTransform.transform.position, ledgeDetectionTransform.transform.position + new Vector3(directionX, 0, 0) * ledgeGrabLength);
         }
 
         //For the isTouchingLedgeCenter bool
-        Gizmos.DrawLine(transform.position, transform.position+ new Vector3(directionX, 0, 0) * ledgeGrabLength);
+        //Gizmos.DrawLine(transform.position, transform.position+ new Vector3(directionX, 0, 0) * ledgeGrabLength);
 
         //For the isAboveLedge bool
-        Gizmos.DrawLine(ledgeDetectionTransform.transform.position, ledgeDetectionTransform.transform.position + new Vector3(directionX, 0,0) * ledgeGrabLength);
+        //Gizmos.DrawLine(ledgeDetectionTransform.transform.position, ledgeDetectionTransform.transform.position + new Vector3(directionX, 0,0) * ledgeGrabLength);
+
+        /*Gizmos.color = Color.yellow;
+        while (isTouchingLedgeCenter == true && isAboveLedge == false)
+        {
+            
+            Gizmos.DrawLine(new Vector3(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop, ledgeDetectionTransform.transform.position.z), new Vector3(directionX, 0, 0) * ledgeGrabLength);
+
+            isAboveLedgeDownwardOffsetForLoop *= 2;
+        }*/
     }
 }

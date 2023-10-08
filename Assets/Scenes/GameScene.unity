@@ -12750,7 +12750,7 @@ MonoBehaviour:
   isJumping: 0
   isFacingRight: 0
   onGround: 0
-  ledgeGrabLength: 0.68
+  ledgeGrabLength: 0.7
   ledgeDetectionTransform: {fileID: 828832873}
   gameInputDirectionX: 1
   directionX: 1
@@ -12759,8 +12759,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  isAboveLedgeOffset: 0
-  playerHalfWidth: 0.5
+  isAboveLedgeDownwardOffset: 0.05
+  playerHalfWidth: 3
+  ledgeGrabLengthMultiplier: 1.5
 --- !u!114 &1464256113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16914,7 +16915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087083401008200664, guid: 728629677db03a84c856ce001c9d2285, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
