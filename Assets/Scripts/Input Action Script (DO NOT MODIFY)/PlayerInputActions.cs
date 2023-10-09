@@ -71,6 +71,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Special Weapon Switching"",
+                    ""type"": ""Value"",
+                    ""id"": ""2fbea32e-2672-45c7-8761-a33ba98eed41"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -337,6 +346,72 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Special Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Shoulder Buttons"",
+                    ""id"": ""89bf8a65-8dd3-4abf-9241-29915497b80f"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special Weapon Switching"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8ecd58b8-1de3-41a8-88f8-f19edd5faa0b"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Special Weapon Switching"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""4a9f1671-997b-45d5-9ce1-3a7fc3947a32"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Special Weapon Switching"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Scroll Wheel"",
+                    ""id"": ""5231c9ca-dbe8-45cd-866a-dcc08416fc41"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Special Weapon Switching"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""da816b21-b2d0-43e0-8904-69848eb77e4e"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Special Weapon Switching"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""37ebf0e7-ffff-4c61-814a-8cf9610d02d0"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Special Weapon Switching"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -361,6 +436,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_SpecialShoot = m_Player.FindAction("Special Shoot", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_TongueCounter = m_Player.FindAction("Tongue Counter", throwIfNotFound: true);
+        m_Player_SpecialWeaponSwitching = m_Player.FindAction("Special Weapon Switching", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -427,6 +503,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpecialShoot;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_TongueCounter;
+    private readonly InputAction m_Player_SpecialWeaponSwitching;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -436,6 +513,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @SpecialShoot => m_Wrapper.m_Player_SpecialShoot;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @TongueCounter => m_Wrapper.m_Player_TongueCounter;
+        public InputAction @SpecialWeaponSwitching => m_Wrapper.m_Player_SpecialWeaponSwitching;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -460,6 +538,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TongueCounter.started += instance.OnTongueCounter;
             @TongueCounter.performed += instance.OnTongueCounter;
             @TongueCounter.canceled += instance.OnTongueCounter;
+            @SpecialWeaponSwitching.started += instance.OnSpecialWeaponSwitching;
+            @SpecialWeaponSwitching.performed += instance.OnSpecialWeaponSwitching;
+            @SpecialWeaponSwitching.canceled += instance.OnSpecialWeaponSwitching;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -479,6 +560,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @TongueCounter.started -= instance.OnTongueCounter;
             @TongueCounter.performed -= instance.OnTongueCounter;
             @TongueCounter.canceled -= instance.OnTongueCounter;
+            @SpecialWeaponSwitching.started -= instance.OnSpecialWeaponSwitching;
+            @SpecialWeaponSwitching.performed -= instance.OnSpecialWeaponSwitching;
+            @SpecialWeaponSwitching.canceled -= instance.OnSpecialWeaponSwitching;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -521,5 +605,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSpecialShoot(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnTongueCounter(InputAction.CallbackContext context);
+        void OnSpecialWeaponSwitching(InputAction.CallbackContext context);
     }
 }
