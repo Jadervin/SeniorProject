@@ -12,6 +12,7 @@ public class FlareShotScript : MonoBehaviour
     //[SerializeField] private GameInput gameInput;
     //[SerializeField] private Transform shootPoint;
     [SerializeField] private bool canSpecialShoot = true;
+    [SerializeField] private SpecialWeaponSO specialWeaponSOReference;
 
     public SpecialWeaponScript specialWeaponScript;
 
@@ -26,7 +27,7 @@ public class FlareShotScript : MonoBehaviour
         flareShotParticle.GetComponent<SpecialWeaponParticleScript>().SetCooldownTime(cooldownTimeMax);
 
         specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
-
+        weaponEnergyCost = specialWeaponSOReference.specialWeaponEnergyCost;
     }
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)

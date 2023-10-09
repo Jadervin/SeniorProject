@@ -14032,6 +14032,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWeaponEnergy: 10
   currentWeaponEnergy: 0
+  specialWeaponSOList:
+  - {fileID: 11400000, guid: 2186abf0ee3f1f248b4dbec9c52acc4b, type: 2}
+  - {fileID: 11400000, guid: d46ac073ee87e7644ba534b1039eb5e9, type: 2}
+  currentSpecialWeapon: {fileID: 0}
 --- !u!1 &1725891333
 GameObject:
   m_ObjectHideFlags: 0
@@ -16922,6 +16926,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1687954158}
     m_Modifications:
+    - target: {fileID: 1377700381217168950, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
+      propertyPath: weaponEnergyCost
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377700381217168950, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
+      propertyPath: specialWeaponSOReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 2186abf0ee3f1f248b4dbec9c52acc4b, type: 2}
     - target: {fileID: 4121623116001316203, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16965,6 +16977,10 @@ PrefabInstance:
     - target: {fileID: 9115927276592769470, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
       propertyPath: m_Name
       value: Flare Shot
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115927276592769470, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17019,6 +17035,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4340928520694846434, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
+      propertyPath: weaponEnergyCost
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4340928520694846434, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
+      propertyPath: specialWeaponSOReference
+      value: 
+      objectReference: {fileID: 11400000, guid: d46ac073ee87e7644ba534b1039eb5e9, type: 2}
     - target: {fileID: 6870736686573482554, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
       propertyPath: m_Name
       value: Flamethrower

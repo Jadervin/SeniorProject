@@ -15,6 +15,7 @@ public class FlamethrowerScript : MonoBehaviour
 
 
     [SerializeField] private int weaponEnergyCost = 2;
+    [SerializeField] private SpecialWeaponSO specialWeaponSOReference;
 
 
     // Start is called before the first frame update
@@ -25,6 +26,8 @@ public class FlamethrowerScript : MonoBehaviour
 
         flamethrowerParticle.gameObject.SetActive(false);
         specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
+
+        weaponEnergyCost = specialWeaponSOReference.specialWeaponEnergyCost;
     }
 
 

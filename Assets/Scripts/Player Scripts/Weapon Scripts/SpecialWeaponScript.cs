@@ -8,6 +8,9 @@ public class SpecialWeaponScript : MonoBehaviour
     [SerializeField] private int maxWeaponEnergy = 10;
     [SerializeField] private int currentWeaponEnergy;
 
+    [SerializeField] private List<SpecialWeaponSO> specialWeaponSOList = new List<SpecialWeaponSO>();
+    [SerializeField] private SpecialWeaponSO currentSpecialWeapon;
+
     public event EventHandler<OnEnergyChangedEventArgs> OnEnergyChanged;
 
     public class OnEnergyChangedEventArgs:EventArgs
@@ -20,6 +23,7 @@ public class SpecialWeaponScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentSpecialWeapon = specialWeaponSOList[0];
         currentWeaponEnergy = maxWeaponEnergy;
     }
 
