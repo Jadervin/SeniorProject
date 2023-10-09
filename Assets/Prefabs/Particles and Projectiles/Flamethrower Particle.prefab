@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 927982745757862131}
   - component: {fileID: 1932529053027360287}
   - component: {fileID: 4710958473187767882}
+  - component: {fileID: 5717324435449505225}
   m_Layer: 0
   m_Name: Flamethrower Particle
   m_TagString: Untagged
@@ -4886,3 +4887,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5717324435449505225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8810127200896500766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6d6bc101623d74ea9aeeefd7be51a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletDamage: 2
+  hitWithParticle: 0
+  cooldownTimeMax: 0.2
+  timeSinceHit: 0

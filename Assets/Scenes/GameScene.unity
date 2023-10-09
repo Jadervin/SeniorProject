@@ -1180,6 +1180,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
+--- !u!4 &128465992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+  m_PrefabInstance: {fileID: 1343730037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &128465994 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1932529053027360287, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+  m_PrefabInstance: {fileID: 1343730037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &136964813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,7 +2802,7 @@ GameObject:
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &358184432
 Transform:
   m_ObjectHideFlags: 0
@@ -2952,6 +2962,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380417137}
   m_CullTransparentMesh: 1
+--- !u!1 &391848766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 391848767}
+  - component: {fileID: 391848768}
+  m_Layer: 8
+  m_Name: Flamethrower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &391848767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391848766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1018545112}
+  - {fileID: 128465992}
+  m_Father: {fileID: 1687954158}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &391848768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391848766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474fe4858f9885d42a61bc72236b16a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamethrowerParticle: {fileID: 128465994}
+  specialWeaponScript: {fileID: 0}
+  isHoldingButton: 0
+  timeSinceShooting: 0
+  energyDecreaseTimeMax: 1
+  weaponEnergyCost: 2
 --- !u!1 &395674201
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +6980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828832873}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8242,6 +8304,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1018545111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018545112}
+  m_Layer: 8
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018545112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018545111}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: -0.10400009, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 391848767}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026720889
 GameObject:
   m_ObjectHideFlags: 0
@@ -11655,6 +11748,67 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1343730037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 391848767}
+    m_Modifications:
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10400009
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810127200896500766, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_Name
+      value: Flamethrower Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810127200896500766, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
 --- !u!1 &1347313456
 GameObject:
   m_ObjectHideFlags: 0
@@ -12809,8 +12963,6 @@ MonoBehaviour:
   onGround: 0
   ledgeGrabLength: 0.7
   ledgeDetectionTransform: {fileID: 828832873}
-  gameInputDirectionX: 1
-  directionX: 1
   isAboveLedge: 0
   isTouchingLedgeCenter: 0
   groundLayer:
@@ -14263,6 +14415,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1751227448}
+  - {fileID: 391848767}
   m_Father: {fileID: 1464256107}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1687954159
@@ -14372,7 +14525,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1751227448
 Transform:
   m_ObjectHideFlags: 0
@@ -14765,7 +14918,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Build 4
+  m_text: Build 5 Midterm
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14792,8 +14945,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

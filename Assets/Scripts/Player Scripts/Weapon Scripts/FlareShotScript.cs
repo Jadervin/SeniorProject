@@ -23,7 +23,7 @@ public class FlareShotScript : MonoBehaviour
     void Start()
     {
         GameInput.Instance.OnSpecialShootPressed += GameInput_OnSpecialShootPressed;
-        flareShotParticle.GetComponent<FlareShotParticleScript>().SetCooldownTime(cooldownTimeMax);
+        flareShotParticle.GetComponent<SpecialWeaponParticleScript>().SetCooldownTime(cooldownTimeMax);
 
         specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
 
@@ -31,7 +31,7 @@ public class FlareShotScript : MonoBehaviour
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (canSpecialShoot == true && specialWeaponScript.GetCurrentWeaponEnergy() > weaponEnergyCost)
+        if (canSpecialShoot == true && specialWeaponScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
         {
             specialWeaponScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             canSpecialShoot = false;

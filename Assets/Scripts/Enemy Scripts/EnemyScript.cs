@@ -340,10 +340,10 @@ public class EnemyScript : EntityScript
 
     private void OnParticleCollision(GameObject particle)
     {
-        if (particle.GetComponent<FlareShotParticleScript>().GetHitWithParticleBool() == false)
+        if (particle.GetComponent<SpecialWeaponParticleScript>().GetHitWithParticleBool() == false)
         {
-            DamageHealth(particle.GetComponent<FlareShotParticleScript>().GetDamage());
-            particle.GetComponent<FlareShotParticleScript>().SetHitWithParticleBool(true);
+            DamageHealth(particle.GetComponent<SpecialWeaponParticleScript>().GetDamage());
+            particle.GetComponent<SpecialWeaponParticleScript>().SetHitWithParticleBool(true);
 
             
             //particle.SetActive(false);

@@ -106,9 +106,9 @@ public class PlayerJump : MonoBehaviour
     [Header("Ledge Grab Settings")]
     [SerializeField] private float ledgeGrabLength = 0.95f;
     [SerializeField] private GameObject ledgeDetectionTransform;
-    [SerializeField, Range(-1, 1)]
+    //[SerializeField, Range(-1, 1)]
     private float gameInputDirectionX = 1;
-    [SerializeField, Range(-1, 1)]
+    //[SerializeField, Range(-1, 1)]
     private float directionX = 1;
 
 
@@ -481,58 +481,85 @@ public class PlayerJump : MonoBehaviour
 
     public void LedgeGrab()
     {
+        
+        float ledgeDistance;
+        Vector3 finalPosition;
+
+
         isTouchingLedgeCenter = Physics2D.Raycast(transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
 
         isAboveLedge = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0).normalized, ledgeGrabLength, groundLayer);
 
 
-        //RaycastHit2D originalAboveLedgeDetection;
-        //float isAboveLedgeDownwardOffsetForLoop = isAboveLedgeDownwardOffset;
-
-        float ledgeDistance;
-        Vector3 finalPosition = Vector3.zero;
-        //Debug.Log("isTouchingLedgeCenter: " + isTouchingLedgeCenter);
-        //Debug.Log("isAboveLedge: " + isAboveLedge);
-
 
         if(isTouchingLedgeCenter == true && isAboveLedge == false)
         {
+            Debug.Log("transform.position: " + transform.position);
             float isAboveLedgeDownwardOffsetForLoop = isAboveLedgeDownwardOffset;
-            //float isAboveLedgeDownwardOffsetFromLoop = isAboveLedgeDownwardOffset;
-
-            //originalAboveLedgeDetection = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
+            
         
 
             RaycastHit2D aboveLedgeLoopCheck = Physics2D.Raycast(ledgeDetectionTransform.transform.position, new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
 
             RaycastHit2D previousAboveLedgeDetection = aboveLedgeLoopCheck;
 
+            Ray2D previousAboveLedgeRay = new Ray2D();
+            Ray2D aboveLedgeLoopCheckRay = new Ray2D();
 
 
-            while (/*isAboveLedge == false*/ aboveLedgeLoopCheck == false)
+            while (aboveLedgeLoopCheck == false)
             {
                 previousAboveLedgeDetection = aboveLedgeLoopCheck;
 
-                aboveLedgeLoopCheck = Physics2D.Raycast(new Vector3(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop, ledgeDetectionTransform.transform.position.z), new Vector3(directionX, 0, 0), ledgeGrabLength/* * ledgeGrabLengthMultiplier*/, groundLayer);
+                previousAboveLedgeRay = aboveLedgeLoopCheckRay;
+
+                aboveLedgeLoopCheckRay = new Ray2D(new Vector2(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop), new Vector2(directionX, 0));
+
+
+                aboveLedgeLoopCheck = Physics2D.Raycast(new Vector3(ledgeDetectionTransform.transform.position.x, ledgeDetectionTransform.transform.position.y - isAboveLedgeDownwardOffsetForLoop, ledgeDetectionTransform.transform.position.z), new Vector3(directionX, 0, 0), ledgeGrabLength, groundLayer);
 
                 isAboveLedgeDownwardOffsetForLoop += isAboveLedgeDownwardOffset;
-                //Debug.Log("isAboveLedgeDownwardOffsetForLoop: " + isAboveLedgeDownwardOffsetForLoop);
-                //Debug.Log("aboveLedgeLoopCheck: " + (bool)aboveLedgeLoopCheck);
 
 
+                Debug.Log("aboveLedgeLoopCheckRay.origin: " + aboveLedgeLoopCheckRay.origin);
+                Debug.Log("aboveLedgeLoopCheck.point: " + aboveLedgeLoopCheck.point);
             }
 
-            
-            ledgeDistance = previousAboveLedgeDetection.fraction * ledgeDistanceMultiplier;
+            Debug.Log("aboveLedgeLoopCheckRay.origin: " + aboveLedgeLoopCheckRay.origin);
+            Debug.Log("aboveLedgeLoopCheck.point: " + aboveLedgeLoopCheck.point);
+
+            /*
+             * ledgeDistance = previousAboveLedgeDetection.fraction * ledgeDistanceMultiplier;
 
             finalPosition = previousAboveLedgeDetection.centroid;
-            finalPosition.y += /*isAboveLedgeDownwardOffset*/ isAboveLedgeDownwardOffsetForLoop;
+            finalPosition.y += isAboveLedgeDownwardOffsetForLoop;
             finalPosition = finalPosition + (new Vector3(directionX, 0, 0) * (ledgeDistance + (playerHalfWidth)));
             Debug.Log("finalPosition: " + finalPosition);
 
             transform.position += finalPosition;
+            */
 
-            //isAboveLedge = originalAboveLedgeDetection;
+            
+            ledgeDistance = aboveLedgeLoopCheck.distance;
+
+            //finalPosition = previousAboveLedgeDetection.centroid;
+
+            finalPosition = previousAboveLedgeRay.origin;
+
+            finalPosition.y += isAboveLedgeDownwardOffsetForLoop;
+
+            finalPosition += new Vector3(directionX, 0, 0) * (ledgeDistance + playerHalfWidth);
+            Debug.Log("transform.position: " + transform.position);
+            Debug.Log("finalPosition: " + finalPosition);
+
+            //transform.position += finalPosition;
+
+            transform.position = finalPosition;
+
+            Debug.Log("transform.position: " + transform.position);
+
+
+            Debug.Log("ledgeDistance: " + ledgeDistance);
         }
 
         

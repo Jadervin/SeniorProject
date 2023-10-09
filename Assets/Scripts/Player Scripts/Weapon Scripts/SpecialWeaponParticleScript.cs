@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlareShotParticleScript : MonoBehaviour
+public class SpecialWeaponParticleScript : MonoBehaviour
 {
     [SerializeField] private int bulletDamage = 1;
     [SerializeField] private bool hitWithParticle = false;

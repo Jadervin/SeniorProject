@@ -17,6 +17,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnShootPressed;
     public event EventHandler OnTongueCounterPressed;
     public event EventHandler OnSpecialShootPressed;
+    public event EventHandler OnSpecialShootRelease;
 
 
     private void Awake()
@@ -36,6 +37,8 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.SpecialShoot.performed += SpecialShoot_performed;
 
+        playerInputActions.Player.SpecialShoot.canceled += SpecialShoot_canceled;
+
     }
 
     
@@ -50,6 +53,7 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.TongueCounter.performed -= TongueCounter_performed;
         playerInputActions.Player.SpecialShoot.performed -= SpecialShoot_performed;
+        playerInputActions.Player.SpecialShoot.canceled -= SpecialShoot_canceled;
 
         playerInputActions.Dispose();
     }
@@ -79,7 +83,14 @@ public class GameInput : MonoBehaviour
         }
     }
 
+    private void SpecialShoot_canceled(InputAction.CallbackContext obj)
+    {
 
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanSpecialShoot)
+        {
+            OnSpecialShootRelease?.Invoke(this, EventArgs.Empty);
+        }
+    }
 
     //When we press the jump button, tell the script that we desire a jump.
     //Also, use the started and canceled contexts to know if we're currently holding the button
