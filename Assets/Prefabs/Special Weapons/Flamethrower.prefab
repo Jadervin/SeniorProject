@@ -1,0 +1,156 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4145432690395461126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5420496026572639532}
+  m_Layer: 8
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5420496026572639532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4145432690395461126}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: -0.10400009, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244668655420207462}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6870736686573482554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244668655420207462}
+  - component: {fileID: 4340928520694846434}
+  m_Layer: 8
+  m_Name: Flamethrower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1244668655420207462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6870736686573482554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5420496026572639532}
+  - {fileID: 6390902984351011483}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4340928520694846434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6870736686573482554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474fe4858f9885d42a61bc72236b16a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flamethrowerParticle: {fileID: 5656644190667162743}
+  specialWeaponScript: {fileID: 0}
+  isHoldingButton: 0
+  timeSinceShooting: 0
+  energyDecreaseTimeMax: 1
+  weaponEnergyCost: 2
+--- !u!1001 &6075873787141626472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1244668655420207462}
+    m_Modifications:
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.10400009
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810127200896500766, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_Name
+      value: Flamethrower Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810127200896500766, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+--- !u!198 &5656644190667162743 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1932529053027360287, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+  m_PrefabInstance: {fileID: 6075873787141626472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6390902984351011483 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 927982745757862131, guid: e03805858f17b244292ed03a8cf86c92, type: 3}
+  m_PrefabInstance: {fileID: 6075873787141626472}
+  m_PrefabAsset: {fileID: 0}

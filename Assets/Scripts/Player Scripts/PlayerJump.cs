@@ -120,8 +120,10 @@ public class PlayerJump : MonoBehaviour
     [SerializeField, Range(0, 2)]
     private float isAboveLedgeDownwardOffset = 0.05f;
     [SerializeField] private float playerHalfWidth = 0.5f;
-    [SerializeField, Range(1, 10)]
+    /*
+     * [SerializeField, Range(1, 10)]
     private float ledgeDistanceMultiplier = 2f;
+    */
 
 
     void Awake()
@@ -494,7 +496,7 @@ public class PlayerJump : MonoBehaviour
 
         if(isTouchingLedgeCenter == true && isAboveLedge == false)
         {
-            Debug.Log("transform.position: " + transform.position);
+            //Debug.Log("transform.position: " + transform.position);
             float isAboveLedgeDownwardOffsetForLoop = isAboveLedgeDownwardOffset;
             
         
@@ -521,12 +523,12 @@ public class PlayerJump : MonoBehaviour
                 isAboveLedgeDownwardOffsetForLoop += isAboveLedgeDownwardOffset;
 
 
-                Debug.Log("aboveLedgeLoopCheckRay.origin: " + aboveLedgeLoopCheckRay.origin);
-                Debug.Log("aboveLedgeLoopCheck.point: " + aboveLedgeLoopCheck.point);
+                //Debug.Log("aboveLedgeLoopCheckRay.origin: " + aboveLedgeLoopCheckRay.origin);
+                //Debug.Log("aboveLedgeLoopCheck.point: " + aboveLedgeLoopCheck.point);
             }
 
-            Debug.Log("aboveLedgeLoopCheckRay.origin: " + aboveLedgeLoopCheckRay.origin);
-            Debug.Log("aboveLedgeLoopCheck.point: " + aboveLedgeLoopCheck.point);
+            //Debug.Log("aboveLedgeLoopCheckRay.origin: " + aboveLedgeLoopCheckRay.origin);
+            //Debug.Log("aboveLedgeLoopCheck.point: " + aboveLedgeLoopCheck.point);
 
             /*
              * ledgeDistance = previousAboveLedgeDetection.fraction * ledgeDistanceMultiplier;
@@ -539,6 +541,8 @@ public class PlayerJump : MonoBehaviour
             transform.position += finalPosition;
             */
 
+            //Set velocity to 0
+            body.velocity = Vector3.zero;
             
             ledgeDistance = aboveLedgeLoopCheck.distance;
 
@@ -549,17 +553,17 @@ public class PlayerJump : MonoBehaviour
             finalPosition.y += isAboveLedgeDownwardOffsetForLoop;
 
             finalPosition += new Vector3(directionX, 0, 0) * (ledgeDistance + playerHalfWidth);
-            Debug.Log("transform.position: " + transform.position);
-            Debug.Log("finalPosition: " + finalPosition);
+            //Debug.Log("transform.position: " + transform.position);
+            //Debug.Log("finalPosition: " + finalPosition);
 
             //transform.position += finalPosition;
 
             transform.position = finalPosition;
 
-            Debug.Log("transform.position: " + transform.position);
+            //Debug.Log("transform.position: " + transform.position);
 
 
-            Debug.Log("ledgeDistance: " + ledgeDistance);
+            //Debug.Log("ledgeDistance: " + ledgeDistance);
         }
 
         
