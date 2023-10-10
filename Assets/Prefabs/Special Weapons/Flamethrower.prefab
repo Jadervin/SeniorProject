@@ -83,6 +83,7 @@ MonoBehaviour:
   timeSinceShooting: 0
   energyDecreaseTimeMax: 1
   weaponEnergyCost: 2
+  specialWeaponSOReference: {fileID: 11400000, guid: d46ac073ee87e7644ba534b1039eb5e9, type: 2}
 --- !u!1001 &6075873787141626472
 PrefabInstance:
   m_ObjectHideFlags: 0

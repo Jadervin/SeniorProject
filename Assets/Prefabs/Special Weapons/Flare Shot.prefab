@@ -284,6 +284,7 @@ MonoBehaviour:
   timeToBasicShootMax: 0.2
   cooldownTimeMax: 1
   canSpecialShoot: 1
+  specialWeaponSOReference: {fileID: 11400000, guid: 2186abf0ee3f1f248b4dbec9c52acc4b, type: 2}
   specialWeaponScript: {fileID: 0}
   weaponEnergyCost: 3
 --- !u!1 &9189052468246020994

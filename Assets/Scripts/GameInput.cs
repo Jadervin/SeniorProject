@@ -135,5 +135,12 @@ public class GameInput : MonoBehaviour
 
     }
 
+    public float GetSpecialWeaponSwitchDirection()
+    {
+        float specialWeaponSwitchDirection = playerInputActions.Player.SpecialWeaponSwitching.ReadValue<float>();
+
+        return specialWeaponSwitchDirection;
+    }
+
 
 }
