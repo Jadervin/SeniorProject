@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class SpecialWeaponScript : MonoBehaviour
+public class SpecialWeaponManagerScript : MonoBehaviour
 {
     //[SerializeField] private GameObject specialWeaponScriptParent;
     //[SerializeField] private GameObject spawnedSpecialWeapon;
@@ -37,11 +37,20 @@ public class SpecialWeaponScript : MonoBehaviour
         public float energyNormalized;
     }
 
+    public event EventHandler<OnCurrentSWChangedEventArgs> OnCurrentSWChanged;
+
+    public class OnCurrentSWChangedEventArgs : EventArgs
+    {
+        public Sprite sWSprite;
+
+    }
+
     //public static SpecialWeaponScript Instance { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
+        currentWeaponIndex = 0;
         gameInput = FindAnyObjectByType<GameInput>();
 
         gameInput.OnSpecialWeaponSwitch += Instance_OnSpecialWeaponSwitch;
@@ -53,7 +62,7 @@ public class SpecialWeaponScript : MonoBehaviour
             weapon.SetActive(false);
         }
 
-        specialWeaponList[0].SetActive(true);
+        EnableWeapon();
 
         //SpawnWeapon();
 
@@ -137,6 +146,7 @@ public class SpecialWeaponScript : MonoBehaviour
         switchedWeapon = true;
         if (gameInput.GetSpecialWeaponSwitchDirection() > Mathf.Epsilon)
         {
+
             DisableWeapon();
             //DeleteWeapon();
             currentWeaponIndex++;
@@ -196,6 +206,7 @@ public class SpecialWeaponScript : MonoBehaviour
 
     public void DisableWeapon()
     {
+        specialWeaponList[currentWeaponIndex].GetComponent<SpecialWeaponEntityScript>().ResetRechargeTimer();
         specialWeaponList[currentWeaponIndex].SetActive(false);
         //Destroy(spawnedSpecialWeapon);
     }
@@ -204,7 +215,11 @@ public class SpecialWeaponScript : MonoBehaviour
         specialWeaponList[currentWeaponIndex].SetActive(true);
         //Destroy(spawnedSpecialWeapon);
 
+        OnCurrentSWChanged?.Invoke(this, new OnCurrentSWChangedEventArgs
+        {
+            sWSprite = currentSpecialWeapon.GetComponent<SpecialWeaponEntityScript>().GetSpecialWeaponSOReference().swIcon
 
+        });
         
     }
 

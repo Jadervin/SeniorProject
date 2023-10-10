@@ -2,30 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlamethrowerScript : MonoBehaviour
+public class FlamethrowerScript : SpecialWeaponEntityScript
 {
     [SerializeField] private ParticleSystem flamethrowerParticle;
 
-    public SpecialWeaponScript specialWeaponScript;
+
     [SerializeField] private bool isHoldingButton;
-    [SerializeField] private float timeSinceShooting = 0f;
+
 
     [SerializeField, Range(0, 5)]
     private float energyDecreaseTimeMax = .5f;
 
 
-    [SerializeField] private int weaponEnergyCost = 2;
-    [SerializeField] private SpecialWeaponSO specialWeaponSOReference;
 
 
     // Start is called before the first frame update
-    void Start()
+    new private void Start()
     {
         GameInput.Instance.OnSpecialShootPressed += GameInput_OnSpecialShootPressed;
         GameInput.Instance.OnSpecialShootRelease += GameInput_OnSpecialShootRelease;
 
         flamethrowerParticle.gameObject.SetActive(false);
-        specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
+        specialWeaponManagerScript = FindAnyObjectByType<SpecialWeaponManagerScript>();
 
         weaponEnergyCost = specialWeaponSOReference.specialWeaponEnergyCost;
     }
@@ -33,7 +31,7 @@ public class FlamethrowerScript : MonoBehaviour
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (specialWeaponScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
+        if (specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
         {
             isHoldingButton = true;
             
@@ -51,7 +49,7 @@ public class FlamethrowerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isHoldingButton == true && specialWeaponScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
+        if (isHoldingButton == true && specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
         {
 
             FlamethrowerShoot();
@@ -63,7 +61,7 @@ public class FlamethrowerScript : MonoBehaviour
             if (timeSinceShooting > energyDecreaseTimeMax)
             {
                 timeSinceShooting = 0;
-                specialWeaponScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
+                specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
 
             }
         }

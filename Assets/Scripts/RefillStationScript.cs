@@ -8,7 +8,7 @@ public class RefillStationScript : MonoBehaviour
     [SerializeField] private string PLAYERTAG = "Player";
     [SerializeField] private bool refilledEnergy = false;
     [SerializeField] private PlayerHealth playerHealth;
-    [SerializeField] private SpecialWeaponScript specialWeaponScript;
+    [SerializeField] private SpecialWeaponManagerScript specialWeaponScript;
 
 
 
@@ -16,7 +16,7 @@ public class RefillStationScript : MonoBehaviour
     void Start()
     {
         playerHealth = FindAnyObjectByType<PlayerHealth>();
-        specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
+        specialWeaponScript = FindAnyObjectByType<SpecialWeaponManagerScript>();
     }
 
     // Update is called once per frame

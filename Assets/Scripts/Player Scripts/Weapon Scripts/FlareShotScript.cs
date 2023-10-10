@@ -2,40 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlareShotScript : MonoBehaviour
+public class FlareShotScript : SpecialWeaponEntityScript
 {
     //[SerializeField] private GameObject projectile;
     [SerializeField] private ParticleSystem flareShotParticle;
-    [SerializeField] private float timeSinceShooting = 0f;
-    [SerializeField] private float timeToBasicShootMax = .2f;
-    [SerializeField] private float cooldownTimeMax = 1f;
-    //[SerializeField] private GameInput gameInput;
-    //[SerializeField] private Transform shootPoint;
-    [SerializeField] private bool canSpecialShoot = true;
-    [SerializeField] private SpecialWeaponSO specialWeaponSOReference;
-
-    public SpecialWeaponScript specialWeaponScript;
-
-
-    [SerializeField] private int weaponEnergyCost = 3;
 
 
     // Start is called before the first frame update
-    void Start()
+    new private void Start()
     {
         GameInput.Instance.OnSpecialShootPressed += GameInput_OnSpecialShootPressed;
         flareShotParticle.GetComponent<SpecialWeaponParticleScript>().SetCooldownTime(cooldownTimeMax);
 
-        specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
+        specialWeaponManagerScript = FindAnyObjectByType<SpecialWeaponManagerScript>();
         weaponEnergyCost = specialWeaponSOReference.specialWeaponEnergyCost;
         timeSinceShooting = 0f;
     }
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (canSpecialShoot == true && specialWeaponScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
+        if (canSpecialShoot == true && specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
         {
-            specialWeaponScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
+            specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             canSpecialShoot = false;
             MovementLimiter.instance.characterCanBasicShoot = false;
             FlareShot();
@@ -47,19 +35,6 @@ public class FlareShotScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(specialWeaponScript.switchedWeapon == true)
-        {
-            timeSinceShooting = 0f;
-            canSpecialShoot = true;
-        }
-        /*
-        if(this.gameObject.activeSelf == false)
-        {
-            timeSinceShooting = 0f;
-            canSpecialShoot = true;
-        }
-        */
-
         if (canSpecialShoot == false)
         {
             timeSinceShooting += Time.deltaTime;

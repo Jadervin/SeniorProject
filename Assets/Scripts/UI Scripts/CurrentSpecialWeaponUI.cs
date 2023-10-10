@@ -3,24 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpecialWeaponEnergyUI : MonoBehaviour
+public class CurrentSpecialWeaponUI : MonoBehaviour
 {
-    [SerializeField] private Image barImage;
     [SerializeField] private SpecialWeaponManagerScript specialWeaponManagerScript;
+    [SerializeField] private Image sWImage;
 
     // Start is called before the first frame update
     void Start()
     {
         specialWeaponManagerScript = FindAnyObjectByType<SpecialWeaponManagerScript>();
-        specialWeaponManagerScript.OnEnergyChanged += SpecialWeaponScript_OnEnergyChanged;
+        specialWeaponManagerScript.OnCurrentSWChanged += SpecialWeaponManagerScript_OnCurrentSWChanged;
     }
 
-    private void SpecialWeaponScript_OnEnergyChanged(object sender, SpecialWeaponManagerScript.OnEnergyChangedEventArgs e)
+    private void SpecialWeaponManagerScript_OnCurrentSWChanged(object sender, SpecialWeaponManagerScript.OnCurrentSWChangedEventArgs e)
     {
-        barImage.fillAmount = e.energyNormalized;
+        sWImage.sprite = e.sWSprite;
     }
-
-
 
     // Update is called once per frame
     void Update()
