@@ -6,8 +6,8 @@ using UnityEngine.Rendering;
 
 public class SpecialWeaponScript : MonoBehaviour
 {
-    [SerializeField] private GameObject specialWeaponScriptParent;
-    [SerializeField] private GameObject spawnedSpecialWeapon;
+    //[SerializeField] private GameObject specialWeaponScriptParent;
+    //[SerializeField] private GameObject spawnedSpecialWeapon;
 
     [SerializeField] private int maxWeaponEnergy = 10;
     [SerializeField] private int currentWeaponEnergy;
@@ -15,10 +15,20 @@ public class SpecialWeaponScript : MonoBehaviour
 
     [SerializeField] private GameInput gameInput;
 
-    [SerializeField] private List<SpecialWeaponSO> specialWeaponSOList = new List<SpecialWeaponSO>();
-    [SerializeField] private SpecialWeaponSO currentSpecialWeapon;
+    //[SerializeField] private List<SpecialWeaponSO> specialWeaponSOList = new List<SpecialWeaponSO>();
+
+    [SerializeField] private List<GameObject> specialWeaponList = new List<GameObject>();
+    [SerializeField] private GameObject currentSpecialWeapon;
+
+
+    //[SerializeField] private SpecialWeaponSO currentSpecialWeapon;
     [SerializeField] private int currentWeaponIndex = 0;
-    
+
+    public bool switchedWeapon;
+
+    [SerializeField] private float timeSinceSwitch = 0f;
+    [SerializeField] private float cooldownTimeMax = .5f;
+
 
     public event EventHandler<OnEnergyChangedEventArgs> OnEnergyChanged;
 
@@ -35,10 +45,17 @@ public class SpecialWeaponScript : MonoBehaviour
         gameInput = FindAnyObjectByType<GameInput>();
 
         gameInput.OnSpecialWeaponSwitch += Instance_OnSpecialWeaponSwitch;
-        currentSpecialWeapon = specialWeaponSOList[0];
+        currentSpecialWeapon = specialWeaponList[0];
         currentWeaponEnergy = maxWeaponEnergy;
 
-        SpawnWeapon();
+        foreach (var weapon in specialWeaponList)
+        {
+            weapon.SetActive(false);
+        }
+
+        specialWeaponList[0].SetActive(true);
+
+        //SpawnWeapon();
 
     }
 
@@ -50,7 +67,18 @@ public class SpecialWeaponScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (switchedWeapon == true)
+        {
+            timeSinceSwitch += Time.deltaTime;
+
+            if (timeSinceSwitch > cooldownTimeMax)
+            {
+                timeSinceSwitch = 0;
+                switchedWeapon = false;
+                
+
+            }
+        }
     }
 
     public void DecreaseCurrentWeaponEnergy(int weaponEnergy)
@@ -106,27 +134,30 @@ public class SpecialWeaponScript : MonoBehaviour
 
     public void ChangeWeapons()
     {
-        if(gameInput.GetSpecialWeaponSwitchDirection() > Mathf.Epsilon)
+        switchedWeapon = true;
+        if (gameInput.GetSpecialWeaponSwitchDirection() > Mathf.Epsilon)
         {
-
-            DeleteWeapon();
+            DisableWeapon();
+            //DeleteWeapon();
             currentWeaponIndex++;
 
-            if(currentWeaponIndex > specialWeaponSOList.Count - 1)
+            if(currentWeaponIndex > specialWeaponList.Count - 1)
             {
                 currentWeaponIndex = 0;
             }
 
-            currentSpecialWeapon = specialWeaponSOList[currentWeaponIndex];
+            currentSpecialWeapon = specialWeaponList[currentWeaponIndex];
 
 
-            SpawnWeapon();
+            //SpawnWeapon();
 
-
+            EnableWeapon();
         }
         else
         {
-            DeleteWeapon();
+            DisableWeapon();
+
+            //DeleteWeapon();
             currentWeaponIndex--;
 
             if (currentWeaponIndex < 0)
@@ -134,22 +165,47 @@ public class SpecialWeaponScript : MonoBehaviour
                 currentWeaponIndex = 1;
             }
 
-            currentSpecialWeapon = specialWeaponSOList[currentWeaponIndex];
+            currentSpecialWeapon = specialWeaponList[currentWeaponIndex];
 
 
-            SpawnWeapon();
+            //SpawnWeapon();
+
+
+            EnableWeapon();
         }
+
+
+
+        
     }
 
-    public void SpawnWeapon()
+    /*
+     public void SpawnWeapon()
     {
         spawnedSpecialWeapon = Instantiate(specialWeaponSOList[currentWeaponIndex].specialWeaponGO, transform.position, transform.rotation);
 
         spawnedSpecialWeapon.transform.parent = specialWeaponScriptParent.transform;
+    }*/
+
+    /*
+     public void DeleteWeapon()
+    {
+        spawnedSpecialWeapon.SetActive(false);
+        Destroy(spawnedSpecialWeapon);
+    }*/
+
+    public void DisableWeapon()
+    {
+        specialWeaponList[currentWeaponIndex].SetActive(false);
+        //Destroy(spawnedSpecialWeapon);
+    }
+    public void EnableWeapon()
+    {
+        specialWeaponList[currentWeaponIndex].SetActive(true);
+        //Destroy(spawnedSpecialWeapon);
+
+
+        
     }
 
-    public void DeleteWeapon()
-    {
-        Destroy(spawnedSpecialWeapon);
-    }
 }

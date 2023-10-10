@@ -98,7 +98,7 @@ public class GameInput : MonoBehaviour
     private void SpecialWeaponSwitching_started(InputAction.CallbackContext obj)
     {
         OnSpecialWeaponSwitch?.Invoke(this, EventArgs.Empty);
-        Debug.Log("Switch. Now Read Value: " + playerInputActions.Player.SpecialWeaponSwitching.ReadValue<float>());
+        
     }
 
 

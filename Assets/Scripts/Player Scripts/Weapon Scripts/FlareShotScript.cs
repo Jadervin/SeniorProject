@@ -6,7 +6,7 @@ public class FlareShotScript : MonoBehaviour
 {
     //[SerializeField] private GameObject projectile;
     [SerializeField] private ParticleSystem flareShotParticle;
-    /*[SerializeField]*/ private float timeSinceShooting = 0f;
+    [SerializeField] private float timeSinceShooting = 0f;
     [SerializeField] private float timeToBasicShootMax = .2f;
     [SerializeField] private float cooldownTimeMax = 1f;
     //[SerializeField] private GameInput gameInput;
@@ -28,6 +28,7 @@ public class FlareShotScript : MonoBehaviour
 
         specialWeaponScript = FindAnyObjectByType<SpecialWeaponScript>();
         weaponEnergyCost = specialWeaponSOReference.specialWeaponEnergyCost;
+        timeSinceShooting = 0f;
     }
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
@@ -46,6 +47,19 @@ public class FlareShotScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(specialWeaponScript.switchedWeapon == true)
+        {
+            timeSinceShooting = 0f;
+            canSpecialShoot = true;
+        }
+        /*
+        if(this.gameObject.activeSelf == false)
+        {
+            timeSinceShooting = 0f;
+            canSpecialShoot = true;
+        }
+        */
+
         if (canSpecialShoot == false)
         {
             timeSinceShooting += Time.deltaTime;
@@ -66,6 +80,8 @@ public class FlareShotScript : MonoBehaviour
                 
             }
         }
+
+
     }
 
 
