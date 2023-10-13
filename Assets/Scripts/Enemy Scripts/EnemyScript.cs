@@ -145,6 +145,7 @@ public class EnemyScript : EntityScript
     // Start is called before the first frame update
     protected void Start()
     {
+        playerTarget = FindAnyObjectByType<PlayerMovement>().transform;
         enemyState = EnemyStates.IDLE;
         attackState = AttackStates.NON_COUNTERABLE;
         rb = GetComponent<Rigidbody2D>();
@@ -260,12 +261,15 @@ public class EnemyScript : EntityScript
                     
 
                 }
-/*
-                if(notStunnedAnymore == true)
-                {
-                    StunToPatrolORIdle();
-                }
-*/
+
+                chaseTriggerRadius = 0;
+                attackTriggerRadius = 0;
+                /*
+                                if(notStunnedAnymore == true)
+                                {
+                                    StunToPatrolORIdle();
+                                }
+                */
                 //rb.velocity = new Vector2(0f, 0f);
                 break;
 
@@ -304,17 +308,20 @@ public class EnemyScript : EntityScript
             if (collision.gameObject == rightStopPoint)
             {
                 leftStopPoint.SetActive(true);
-                chaseTriggerRadius = oldChaseTriggerRadius;
-                attackTriggerRadius = oldAttackTriggerRadius;
+                //chaseTriggerRadius = oldChaseTriggerRadius;
+                //attackTriggerRadius = oldAttackTriggerRadius;
 
             }
             else if(collision.gameObject == leftStopPoint)
             {
                 rightStopPoint.SetActive(true);
-                chaseTriggerRadius = oldChaseTriggerRadius;
-                attackTriggerRadius = oldAttackTriggerRadius;
+                //chaseTriggerRadius = oldChaseTriggerRadius;
+                //attackTriggerRadius = oldAttackTriggerRadius;
             }
-            
+
+            chaseTriggerRadius = oldChaseTriggerRadius;
+            attackTriggerRadius = oldAttackTriggerRadius;
+
             //Rotates the enemy when it reaches a stop point
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             

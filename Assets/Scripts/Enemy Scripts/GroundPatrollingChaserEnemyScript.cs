@@ -95,6 +95,8 @@ public class GroundPatrollingChaserEnemyScript : EnemyScript
                     StartCoroutine(StunTimer());
                     
                 }
+                chaseTriggerRadius = 0;
+                attackTriggerRadius = 0;
                 /*
                 if (notStunnedAnymore == true)
                 {

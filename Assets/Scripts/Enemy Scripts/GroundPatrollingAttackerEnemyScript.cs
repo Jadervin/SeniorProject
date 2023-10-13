@@ -89,14 +89,15 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
                     StartCoroutine(StunTimer());
                     
                 }
-/*
+                chaseTriggerRadius = 0;
+                attackTriggerRadius = 0;
 
-                if (notStunnedAnymore == true)
-                {
-                    StunToPatrol();
-                }
-
-*/
+                /*
+                  if (notStunnedAnymore == true)
+                  {
+                     StunToPatrol();
+                  }
+                */
                 break;
 
             case EnemyStates.DEATH:
@@ -187,6 +188,8 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             enemyState = EnemyStates.PATROL;
         }
+
+        
     }
 
 

@@ -12,6 +12,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
     new protected void Start()
     {
+        playerTarget = FindAnyObjectByType<PlayerMovement>().transform;
         enemyState = EnemyStates.IDLE;
         attackState = AttackStates.NON_COUNTERABLE;
         rb = GetComponent<Rigidbody2D>();
@@ -131,13 +132,16 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
                     StartCoroutine(StunTimer());
                     
                 }
-/*
+                chaseTriggerRadius = 0;
+                attackTriggerRadius = 0;
 
-                if (notStunnedAnymore == true)
-                {
-                    StunToIdle();
-                }
-*/
+                /*
+
+                                if (notStunnedAnymore == true)
+                                {
+                                    StunToIdle();
+                                }
+                */
                 break;
 
             case EnemyStates.DEATH:
