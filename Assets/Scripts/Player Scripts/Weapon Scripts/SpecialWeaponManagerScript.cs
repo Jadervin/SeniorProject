@@ -35,6 +35,7 @@ public class SpecialWeaponManagerScript : MonoBehaviour
     public class OnEnergyChangedEventArgs:EventArgs
     {
         public float energyNormalized;
+        public int energy;
     }
 
     public event EventHandler<OnCurrentSWChangedEventArgs> OnCurrentSWChanged;
@@ -101,7 +102,8 @@ public class SpecialWeaponManagerScript : MonoBehaviour
 
         OnEnergyChanged?.Invoke(this, new OnEnergyChangedEventArgs
         {
-            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy
+            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy,
+            energy = currentWeaponEnergy
         });
     }
 
@@ -111,7 +113,8 @@ public class SpecialWeaponManagerScript : MonoBehaviour
 
         OnEnergyChanged?.Invoke(this, new OnEnergyChangedEventArgs
         {
-            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy
+            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy,
+            energy = currentWeaponEnergy
         });
     }
 
@@ -121,7 +124,8 @@ public class SpecialWeaponManagerScript : MonoBehaviour
 
         OnEnergyChanged?.Invoke(this, new OnEnergyChangedEventArgs
         {
-            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy
+            energyNormalized = (float)currentWeaponEnergy / maxWeaponEnergy,
+            energy = currentWeaponEnergy
         });
     }
 
