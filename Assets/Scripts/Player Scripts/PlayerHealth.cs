@@ -8,12 +8,12 @@ public class PlayerHealth : EntityScript
 {
     [SerializeField] private string ENEMYTAG = "Enemy";
     [SerializeField] private string ENEMY_PROJECTILE_TAG = "EnemyProjectile";
-    [SerializeField] private string HEALTHUPGRADETAG = "HealthUpgrade";
+    //[SerializeField] private string HEALTHUPGRADETAG = "HealthUpgrade";
 
     [SerializeField] private float damageTimeBuffer = 1f;
     [SerializeField] private bool isInvincible;
     [SerializeField] private float deathTimer = 2f;
-    [SerializeField] private int healthUpgradeIncrease = 5;
+    
 
     [SerializeField] private List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 
@@ -104,13 +104,14 @@ public class PlayerHealth : EntityScript
                 });
             }
         }
+        /*
         if(collision.gameObject.CompareTag(HEALTHUPGRADETAG))
         {
             collision.gameObject.SetActive(false);
             IncreaseMaxHealth(healthUpgradeIncrease);
 
             Destroy(collision.gameObject);
-        }
+        }*/
       
     }
 

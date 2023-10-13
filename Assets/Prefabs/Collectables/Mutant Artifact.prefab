@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2050576690752573448}
   - component: {fileID: 3175803249449932379}
   - component: {fileID: 2006950715391020265}
+  - component: {fileID: 3463659245536641101}
   m_Layer: 0
   m_Name: Mutant Artifact
-  m_TagString: Artifact
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,9 +67,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.021476865}
   serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.52147686
 --- !u!50 &2006950715391020265
 Rigidbody2D:
   serializedVersion: 4
@@ -96,6 +97,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3463659245536641101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6298217667686722615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f595744e469b0c42bff7d7d114626c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  PLAYERTAG: Player
 --- !u!1 &7022146084682379923
 GameObject:
   m_ObjectHideFlags: 0

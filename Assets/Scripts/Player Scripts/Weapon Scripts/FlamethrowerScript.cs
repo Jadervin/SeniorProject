@@ -31,8 +31,10 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
+        if (specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost && specialWeaponManagerScript.GetCurrentSpecialWeapon()  == this.gameObject
+            /*and is the current weapon*/)
         {
+            specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             isHoldingButton = true;
             
         }

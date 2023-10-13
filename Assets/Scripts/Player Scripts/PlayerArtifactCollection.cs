@@ -8,7 +8,7 @@ public class PlayerArtifactCollection : MonoBehaviour
 
     [SerializeField] private int artifactsCollected;
     [SerializeField] private int artifactsNeeded;
-    [SerializeField] private string ARTIFACTTAG = "Artifact";
+    //[SerializeField] private string ARTIFACTTAG = "Artifact";
 
     public event EventHandler OnPlayerCollectsArtifact;
 
@@ -36,11 +36,6 @@ public class PlayerArtifactCollection : MonoBehaviour
         artifactsCollected = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public int GetCurrentArtifactsCollected()
     {
@@ -52,24 +47,29 @@ public class PlayerArtifactCollection : MonoBehaviour
         return artifactsNeeded;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if(collision.gameObject.CompareTag(ARTIFACTTAG))
-    //    {
-    //        artifactsCollected++;
-    //    }
-    //}
+/*    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(ARTIFACTTAG))
+        {
+            artifactsCollected++;
+        }
+    }*/
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(ARTIFACTTAG) && artifactsNeeded != 0)
         {
             collision.gameObject.SetActive(false);
-            artifactsCollected++;
-
-            OnPlayerCollectsArtifact?.Invoke(this, EventArgs.Empty);
+            IncreaseArtifactCount();
 
             Destroy(collision.gameObject);
         }
+    }
+*/
+    public void IncreaseArtifactCount()
+    {
+        artifactsCollected++;
+
+        OnPlayerCollectsArtifact?.Invoke(this, EventArgs.Empty);
     }
 }

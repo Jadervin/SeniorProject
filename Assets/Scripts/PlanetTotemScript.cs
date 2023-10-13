@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlanetTotemScript : MonoBehaviour
 {
     [SerializeField] private List<GameObject> unlockableAreas;
-    [SerializeField] private List<GameObject> hiddenAreas;
+    //[SerializeField] private List<GameObject> hiddenAreas;
     [SerializeField] private Collider2D switchCollider;
     [SerializeField] private int maxArtifacts = 3;
     [SerializeField] private string PLAYERTAG = "Player";
@@ -30,21 +30,18 @@ public class PlanetTotemScript : MonoBehaviour
             artifactsNeeded = maxArtifacts
         });
         */
-        foreach(GameObject platform in hiddenAreas) 
-        { 
+        /*
+        foreach (GameObject platform in hiddenAreas)
+        {
             platform.SetActive(false);
-        }
+        }*/
+
         foreach (GameObject wall in unlockableAreas)
         {
             wall.SetActive(true);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -70,24 +67,29 @@ public class PlanetTotemScript : MonoBehaviour
         }
     }
     */
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag(PLAYERTAG) &&
-            collision.gameObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded() == 0 && 
+            collision.gameObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded() == 0 &&
             completedTotem == false)
         {
+            /*
             foreach (GameObject platform in hiddenAreas)
             {
                 platform.SetActive(true);
             }
+            */
 
             OnPlayerStartingWorld?.Invoke(this, new OnSendingArtifactNumberEventArgs
             {
                 artifactsNeeded = maxArtifacts
             });
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
 
         if (collision.gameObject.CompareTag(PLAYERTAG) &&
             collision.gameObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected() == maxArtifacts)

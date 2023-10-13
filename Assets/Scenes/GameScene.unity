@@ -1689,6 +1689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StationaryAttackerEnemyObject
       objectReference: {fileID: 0}
+    - target: {fileID: 5417343538276433052, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6092328444213995679, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
       propertyPath: m_LocalPosition.x
       value: -77.70295
@@ -2837,6 +2841,7 @@ GameObject:
   - component: {fileID: 351627585}
   - component: {fileID: 351627586}
   - component: {fileID: 351627584}
+  - component: {fileID: 351627587}
   - component: {fileID: 351627583}
   m_Layer: 6
   m_Name: Planet Totem
@@ -2859,8 +2864,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlockableAreas:
   - {fileID: 550882700}
-  hiddenAreas:
-  - {fileID: 1313276645}
   switchCollider: {fileID: 351627584}
   maxArtifacts: 3
   PLAYERTAG: Player
@@ -2954,6 +2957,51 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &351627587
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351627582}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -20.416859, y: 6.110157}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.086403, y: 19.976257}
+  m_EdgeRadius: 0
 --- !u!1 &380417137
 GameObject:
   m_ObjectHideFlags: 0
@@ -7198,6 +7246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4340928520694846434, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
+      propertyPath: weaponEnergyCost
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6870736686573482554, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
       propertyPath: m_Name
       value: Flamethrower
@@ -10972,7 +11024,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Size.x
-      value: 1.1788559
+      value: 0.78045654
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Size.y
@@ -10980,7 +11032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Offset.x
-      value: 7.2335243
+      value: 7.0841217
       objectReference: {fileID: 0}
     - target: {fileID: 4896893279880206453, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
       propertyPath: m_Offset.y
@@ -11561,11 +11613,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!1 &1313276645 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8467668546873540582, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
-  m_PrefabInstance: {fileID: 2071382157}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1326010030
 GameObject:
   m_ObjectHideFlags: 0
@@ -11971,7 +12018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13365,11 +13412,9 @@ MonoBehaviour:
   maxHealth: 20
   ENEMYTAG: Enemy
   ENEMY_PROJECTILE_TAG: EnemyProjectile
-  HEALTHUPGRADETAG: HealthUpgrade
   damageTimeBuffer: 1
   isInvincible: 0
   deathTimer: 1.5
-  healthUpgradeIncrease: 5
   sprites:
   - {fileID: 1685133824}
   - {fileID: 1096994192}
@@ -13405,7 +13450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   artifactsCollected: 0
   artifactsNeeded: 0
-  ARTIFACTTAG: Artifact
 --- !u!1 &1489406478
 GameObject:
   m_ObjectHideFlags: 0
@@ -14801,7 +14845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13589b48e080514cac2d4766d48d1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWeaponEnergy: 10
+  maxWeaponEnergy: 20
   currentWeaponEnergy: 0
   gameInput: {fileID: 0}
   specialWeaponList:
@@ -17752,7 +17796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8087083401008200664, guid: 728629677db03a84c856ce001c9d2285, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17768,6 +17812,63 @@ PrefabInstance:
       addedObject: {fileID: 2043235620}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 728629677db03a84c856ce001c9d2285, type: 3}
+--- !u!1001 &1376984028039435447
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3285343449884654340, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_Name
+      value: SWEnergyUpgradeObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 162.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.043322
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.053984694
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
 --- !u!1001 &2550125283604674623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17898,6 +17999,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 624001764}
     m_Modifications:
+    - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
+      propertyPath: itemToSpawn
+      value: 
+      objectReference: {fileID: 3285343449884654340, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
     - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: playerTarget
       value: 
@@ -18066,5 +18171,6 @@ SceneRoots:
   - {fileID: 2071382157}
   - {fileID: 4992820762892898601}
   - {fileID: 697244405}
+  - {fileID: 1376984028039435447}
   - {fileID: 1547999821}
   - {fileID: 903960411}

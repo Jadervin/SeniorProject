@@ -21,7 +21,8 @@ public class FlareShotScript : SpecialWeaponEntityScript
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
-        if (canSpecialShoot == true && specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost)
+        if (canSpecialShoot == true && specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost && specialWeaponManagerScript.GetCurrentSpecialWeapon() == this.gameObject
+            /*and is the current weapon*/)
         {
             specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             canSpecialShoot = false;

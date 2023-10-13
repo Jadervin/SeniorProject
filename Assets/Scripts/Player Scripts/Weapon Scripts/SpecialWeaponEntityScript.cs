@@ -9,7 +9,7 @@ public class SpecialWeaponEntityScript : MonoBehaviour
     [SerializeField] protected float cooldownTimeMax = 1f;
     [SerializeField] protected bool canSpecialShoot = true;
     [SerializeField] protected SpecialWeaponSO specialWeaponSOReference;
-    [SerializeField] protected int weaponEnergyCost = 3;
+    protected int weaponEnergyCost = 3;
 
     public SpecialWeaponManagerScript specialWeaponManagerScript;
 
