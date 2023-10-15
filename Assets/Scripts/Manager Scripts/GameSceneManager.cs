@@ -18,7 +18,7 @@ public class GameSceneManager : MonoBehaviour
     public event EventHandler OnGameUnpaused;
 
 
-    private GameState gameState;
+    [SerializeField] private GameState gameState;
     private bool isGamePaused = false;
 
     // Start is called before the first frame update

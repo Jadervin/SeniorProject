@@ -10,7 +10,8 @@ public class Loader : MonoBehaviour
         StartScene,
         GameScene,
         LoseScene,
-        LoadingScene
+        LoadingScene,
+        WinScene
     }
 
     private static GameScenes targetScene;
