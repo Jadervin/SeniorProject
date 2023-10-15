@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e1871c2-2438-4be0-b5bb-3409544375a1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,17 +281,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""609f24d5-8b34-4919-b789-2c0a09e5b697"",
-                    ""path"": ""<Keyboard>/u"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a609746f-6bd4-453e-865e-5abaf05c21fb"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
@@ -318,17 +316,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""790aeedc-26f8-4274-b6ab-3db75f1fab75"",
                     ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Special Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""85495f6a-a183-4eeb-acf0-0727cb04e622"",
-                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -381,8 +368,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Scroll Wheel"",
-                    ""id"": ""5231c9ca-dbe8-45cd-866a-dcc08416fc41"",
+                    ""name"": ""Keyboard"",
+                    ""id"": ""309775b7-a80c-41cc-9d26-f3b5ddc84015"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -393,8 +380,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""da816b21-b2d0-43e0-8904-69848eb77e4e"",
-                    ""path"": ""<Mouse>/scroll/down"",
+                    ""id"": ""44e64426-6dac-4c6a-9929-f4eca7c0e36f"",
+                    ""path"": ""<Keyboard>/u"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -404,14 +391,36 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""37ebf0e7-ffff-4c61-814a-8cf9610d02d0"",
-                    ""path"": ""<Mouse>/scroll/up"",
+                    ""id"": ""c131dfeb-ca06-4a2f-bdb7-acf48747d506"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Special Weapon Switching"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b3acb4e-b9df-480e-b067-d8de4d7fd047"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51dac07e-7bb7-4518-98d0-04d2a27eee05"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -437,6 +446,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_TongueCounter = m_Player.FindAction("Tongue Counter", throwIfNotFound: true);
         m_Player_SpecialWeaponSwitching = m_Player.FindAction("Special Weapon Switching", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -504,6 +514,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_TongueCounter;
     private readonly InputAction m_Player_SpecialWeaponSwitching;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -514,6 +525,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @TongueCounter => m_Wrapper.m_Player_TongueCounter;
         public InputAction @SpecialWeaponSwitching => m_Wrapper.m_Player_SpecialWeaponSwitching;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -541,6 +553,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SpecialWeaponSwitching.started += instance.OnSpecialWeaponSwitching;
             @SpecialWeaponSwitching.performed += instance.OnSpecialWeaponSwitching;
             @SpecialWeaponSwitching.canceled += instance.OnSpecialWeaponSwitching;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -563,6 +578,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SpecialWeaponSwitching.started -= instance.OnSpecialWeaponSwitching;
             @SpecialWeaponSwitching.performed -= instance.OnSpecialWeaponSwitching;
             @SpecialWeaponSwitching.canceled -= instance.OnSpecialWeaponSwitching;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -606,5 +624,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnTongueCounter(InputAction.CallbackContext context);
         void OnSpecialWeaponSwitching(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

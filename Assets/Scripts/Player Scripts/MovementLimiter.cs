@@ -15,6 +15,7 @@ public class MovementLimiter : MonoBehaviour
 
     [SerializeField] private bool _initialCharacterCanSpecialShoot = true;
     public bool characterCanSpecialShoot;
+    public bool isPlayerDead = false;
 
     private void OnEnable()
     {
@@ -28,7 +29,7 @@ public class MovementLimiter : MonoBehaviour
         characterCanSpecialShoot = _initialCharacterCanSpecialShoot;
     }
 
-    public void OnKnockbackBegin()
+    /*public void OnKnockbackBegin()
     {
         characterCanMove = false;
     }
@@ -36,11 +37,18 @@ public class MovementLimiter : MonoBehaviour
     public void OnKnockbackDone()
     {
         characterCanMove = true;
-    }
+    }*/
+
+    /*private void Update()
+    {
+        Debug.Log(characterCanMove);
+    }*/
 
     public void OnDeathManager()
     {
         characterCanMove = false;
+        isPlayerDead = true;
+        GameSceneManager.Instance.SetGameStateToDeath();
     }
 
 

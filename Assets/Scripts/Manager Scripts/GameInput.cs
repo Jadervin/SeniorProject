@@ -19,6 +19,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnSpecialShootPressed;
     public event EventHandler OnSpecialShootRelease;
     public event EventHandler OnSpecialWeaponSwitch;
+    public event EventHandler OnPausePressed;
 
 
     private void Awake()
@@ -41,10 +42,11 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.SpecialShoot.canceled += SpecialShoot_canceled;
         playerInputActions.Player.SpecialWeaponSwitching.started += SpecialWeaponSwitching_started;
 
+        playerInputActions.Player.Pause.performed += Pause_performed;
+
     }
 
     
-
     private void OnDestroy()
     {
         playerInputActions.Player.Jump.started -= Jump_started;
@@ -57,11 +59,19 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.SpecialShoot.performed -= SpecialShoot_performed;
         playerInputActions.Player.SpecialShoot.canceled -= SpecialShoot_canceled;
         playerInputActions.Player.SpecialWeaponSwitching.started -= SpecialWeaponSwitching_started;
+        playerInputActions.Player.Pause.performed -= Pause_performed;
 
         playerInputActions.Dispose();
     }
 
-    
+    private void Pause_performed(InputAction.CallbackContext obj)
+    {
+        if(!GameSceneManager.Instance.IsGameOver())
+        {
+            OnPausePressed?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
 
     private void TongueCounter_performed(InputAction.CallbackContext obj)
     {

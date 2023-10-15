@@ -97,7 +97,7 @@ public class PlayerJump : MonoBehaviour
 
 
     //private int jumpsPerformedDEBUG = 0;
-    private bool firstPhysicsSet;
+    [SerializeField] private bool firstPhysicsSet = false;
 
     //For Camera Manager
     //[Header("Camera Components")]
@@ -144,7 +144,7 @@ public class PlayerJump : MonoBehaviour
 
     private void Start()
     {
-
+        //firstPhysicsSet = false;
         gameInput.OnJumpPressed += GameInput_OnJumpPressed;
         gameInput.OnJumpRelease += GameInput_OnJumpReleased;
 
@@ -184,11 +184,12 @@ public class PlayerJump : MonoBehaviour
             gameInputDirectionX = 0;
         }
 
+        /*
         if (firstPhysicsSet == false)
         {
             SetDefaultBodyGravityScale();
         }
-
+        */
 
 
         //Check if we're on ground, using Kit's Ground script
@@ -230,7 +231,8 @@ public class PlayerJump : MonoBehaviour
 
 
         //if we are falling past a certain speed threshold
-        if(body.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && !CameraManager.instance.LerpedFromPlayerFalling)
+        if(body.velocity.y < fallSpeedYDampingChangeThreshold && !CameraManager.instance.IsLerpingYDamping && 
+            !CameraManager.instance.LerpedFromPlayerFalling)
         {
             CameraManager.instance.LerpYDamping(true);
         }
@@ -267,7 +269,7 @@ public class PlayerJump : MonoBehaviour
         //Keep trying to do a jump, for as long as desiredJump is true
         if (desiredJump)
         {
-            DoAJump();
+              DoAJump();
             body.velocity = velocity;
 
 
@@ -452,10 +454,10 @@ public class PlayerJump : MonoBehaviour
         
     }
 
-    private void ResetBodyGravityScale()
+    /*private void ResetBodyGravityScale()
     {
         body.gravityScale = defaultBodyGravityScale;
-    }
+    }*/
 
 
     public void DirectionCheck()
