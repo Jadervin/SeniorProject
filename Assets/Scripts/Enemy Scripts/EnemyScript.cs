@@ -607,12 +607,14 @@ public class EnemyScript : EntityScript
     public override void OnDeath()
     {
         enemyState = EnemyStates.DEATH;
-        enemyParent.gameObject.SetActive(false);
+        //enemyParent.gameObject.SetActive(false);
 
-        if (itemToSpawn != null)
+        if (itemToSpawn != null && enemyParent.gameObject.activeSelf == true)
         {
             GameObject temp = Instantiate(itemToSpawn, transform.position, Quaternion.identity);
         }
+        enemyParent.gameObject.SetActive(false);
+
         //Destroy(gameObject);
     }
 
