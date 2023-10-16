@@ -90,7 +90,7 @@ public class PlayerHealth : EntityScript
     private void OnCollisionEnter2D(Collision2D collision)
     {
       
-        if ((collision.gameObject.CompareTag(ENEMYTAG) && isInvincible == false /*&& is not tongue countering*/))
+        if ((collision.gameObject.CompareTag(ENEMYTAG) && isInvincible == false && MovementLimiter.instance.playerActionStates != PlayerActionStates.COUNTERING /*&& is not tongue countering*/))
         {
             int damage = collision.gameObject.GetComponent<EnemyScript>().GetDamage();
             DamageHealth(damage);
