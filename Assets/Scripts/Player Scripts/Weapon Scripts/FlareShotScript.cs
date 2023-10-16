@@ -22,11 +22,11 @@ public class FlareShotScript : SpecialWeaponEntityScript
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
         if (canSpecialShoot == true && specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost && specialWeaponManagerScript.GetCurrentSpecialWeapon() == this.gameObject
-            /*and is the current weapon*/)
+            && MovementLimiter.instance.playerActionStates == PlayerActionStates.NOACTION)
         {
             specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             canSpecialShoot = false;
-            MovementLimiter.instance.characterCanBasicShoot = false;
+            MovementLimiter.instance.IsSpecialShooting();
             FlareShot();
             
            
@@ -44,7 +44,7 @@ public class FlareShotScript : SpecialWeaponEntityScript
             if (timeSinceShooting > timeToBasicShootMax)
             {
                 //timeSinceShooting = 0;
-                MovementLimiter.instance.characterCanBasicShoot = true;
+                MovementLimiter.instance.IsNotDoingAnything();
 
             }
 

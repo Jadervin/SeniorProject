@@ -20,11 +20,11 @@ public class PlayerBasicShooting : MonoBehaviour
 
     private void GameInput_OnShootPressed(object sender, System.EventArgs e)
     {
-        if(canShoot == true)
+        if(canShoot == true && MovementLimiter.instance.playerActionStates == PlayerActionStates.NOACTION)
         {
             BasicShoot();
             canShoot = false;
-            MovementLimiter.instance.characterCanSpecialShoot = false;
+            MovementLimiter.instance.IsBasicShooting();
         }
         
         
@@ -42,7 +42,7 @@ public class PlayerBasicShooting : MonoBehaviour
             {
                 timeSinceShooting = 0;
                 canShoot = true;
-                MovementLimiter.instance.characterCanSpecialShoot = true;
+                MovementLimiter.instance.IsNotDoingAnything();
             }
         }
         

@@ -24,11 +24,10 @@ public class PlayerTongueCounter : MonoBehaviour
 
     private void GameInput_OnTongueCounterPressed(object sender, System.EventArgs e)
     {
-        if (canCounter == true)
+        if (canCounter == true && MovementLimiter.instance.playerActionStates == PlayerActionStates.NOACTION)
         {
             canCounter = false;
-            MovementLimiter.instance.characterCanBasicShoot = false;
-            MovementLimiter.instance.characterCanSpecialShoot = false;
+            MovementLimiter.instance.IsCountering();
             StartCoroutine(TongueCounter());
             
 
@@ -59,8 +58,7 @@ public class PlayerTongueCounter : MonoBehaviour
         yield return new WaitForSeconds(tongueCounterTimer);
         polygonCollider.enabled = false;
         sprite.enabled = false;
-        MovementLimiter.instance.characterCanBasicShoot = true;
-        MovementLimiter.instance.characterCanSpecialShoot = true;
+        MovementLimiter.instance.IsNotDoingAnything();
 
     }
 }

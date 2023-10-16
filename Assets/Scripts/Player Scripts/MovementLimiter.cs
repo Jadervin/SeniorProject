@@ -2,10 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum PlayerActionStates
+{
+    NOACTION,
+    BASESHOOTING,
+    SPECIALSHOOTING,
+    COUNTERING
+}
+
 public class MovementLimiter : MonoBehaviour
 {
     
     public static MovementLimiter instance;
+
+    public PlayerActionStates playerActionStates;
 
     [SerializeField] private bool _initialCharacterCanMove = true;
     public bool characterCanMove;
@@ -15,7 +26,13 @@ public class MovementLimiter : MonoBehaviour
 
     [SerializeField] private bool _initialCharacterCanSpecialShoot = true;
     public bool characterCanSpecialShoot;
-    public bool isPlayerDead = false;
+
+
+    [SerializeField] private bool _initialCharacterCanCounter = true;
+    public bool characterCanCounter;
+
+    [SerializeField] private bool _initialCharacterIsDead = false;
+    public bool CharacterIsDead = false;
 
     private void OnEnable()
     {
@@ -27,6 +44,8 @@ public class MovementLimiter : MonoBehaviour
         characterCanMove = _initialCharacterCanMove;
         characterCanBasicShoot = _initialCharacterCanBasicShoot;
         characterCanSpecialShoot = _initialCharacterCanSpecialShoot;
+        characterCanCounter = _initialCharacterCanCounter;
+        CharacterIsDead = _initialCharacterIsDead;
     }
 
     /*public void OnKnockbackBegin()
@@ -39,15 +58,58 @@ public class MovementLimiter : MonoBehaviour
         characterCanMove = true;
     }*/
 
-    /*private void Update()
+    private void Update()
     {
-        Debug.Log(characterCanMove);
-    }*/
+        switch (playerActionStates)
+        {
+            case PlayerActionStates.NOACTION:
+                characterCanBasicShoot = true;
+                characterCanSpecialShoot = true;
+                characterCanCounter = true;
+                break;
+            case PlayerActionStates.BASESHOOTING:
+                characterCanSpecialShoot = false;
+                characterCanCounter = false;
+                break;
+            case PlayerActionStates.SPECIALSHOOTING:
+                characterCanBasicShoot = false;
+                characterCanCounter = false;
+                break;
+            case PlayerActionStates.COUNTERING: 
+                characterCanSpecialShoot= false;
+                characterCanBasicShoot = false;
+                break;
+            default: 
+                break;
+
+        }
+    }
+
+    public void IsBasicShooting()
+    {
+        playerActionStates = PlayerActionStates.BASESHOOTING;
+    }
+
+    public void IsSpecialShooting()
+    {
+        playerActionStates = PlayerActionStates.SPECIALSHOOTING;
+    }
+
+    public void IsCountering()
+    {
+        playerActionStates = PlayerActionStates.COUNTERING;
+    }
+    public void IsNotDoingAnything()
+    {
+        playerActionStates = PlayerActionStates.NOACTION;
+
+    }
+    
 
     public void OnDeathManager()
     {
         characterCanMove = false;
-        isPlayerDead = true;
+        CharacterIsDead = true;
         GameSceneManager.Instance.SetGameStateToDeath();
     }
 

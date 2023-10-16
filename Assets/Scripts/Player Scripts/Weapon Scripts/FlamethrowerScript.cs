@@ -31,8 +31,9 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
 
     private void GameInput_OnSpecialShootPressed(object sender, System.EventArgs e)
     {
+        //if the [player has enough weapon energy, and this is the current weapon, and is not doing anything else
         if (specialWeaponManagerScript.GetCurrentWeaponEnergy() >= weaponEnergyCost && specialWeaponManagerScript.GetCurrentSpecialWeapon()  == this.gameObject
-            /*and is the current weapon*/)
+            && MovementLimiter.instance.playerActionStates == PlayerActionStates.NOACTION)
         {
             specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             isHoldingButton = true;
@@ -55,7 +56,7 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
         {
 
             FlamethrowerShoot();
-            MovementLimiter.instance.characterCanBasicShoot = false;
+            MovementLimiter.instance.IsSpecialShooting();
             timeSinceShooting += Time.deltaTime;
 
 
@@ -70,7 +71,7 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
         else
         {
             TurnOffFlamethrower();
-            MovementLimiter.instance.characterCanBasicShoot = true;
+            MovementLimiter.instance.IsNotDoingAnything();
         }
 
     }

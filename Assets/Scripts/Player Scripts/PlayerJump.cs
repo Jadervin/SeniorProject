@@ -97,7 +97,7 @@ public class PlayerJump : MonoBehaviour
 
 
     //private int jumpsPerformedDEBUG = 0;
-    [SerializeField] private bool firstPhysicsSet = false;
+    //[SerializeField] private bool firstPhysicsSet = false;
 
     //For Camera Manager
     //[Header("Camera Components")]
@@ -447,12 +447,12 @@ public class PlayerJump : MonoBehaviour
 
 
 
-    private void SetDefaultBodyGravityScale()
+    /*private void SetDefaultBodyGravityScale()
     {
         defaultBodyGravityScale = body.gravityScale;
         firstPhysicsSet = true;
         
-    }
+    }*/
 
     /*private void ResetBodyGravityScale()
     {

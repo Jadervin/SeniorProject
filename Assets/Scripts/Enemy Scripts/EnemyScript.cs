@@ -22,9 +22,9 @@ public enum AttackStates
 
 public class EnemyScript : EntityScript
 {
-    
-    protected Rigidbody2D rb;
-    protected BoxCollider2D boxCollider;
+
+    [SerializeField] protected Rigidbody2D rb;
+    [SerializeField] protected Collider2D boxCollider;
 
     [Header("Components")]
     [SerializeField] protected GameObject enemyParent;
@@ -149,7 +149,7 @@ public class EnemyScript : EntityScript
         enemyState = EnemyStates.IDLE;
         attackState = AttackStates.NON_COUNTERABLE;
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<Collider2D>();
 
         oldChaseTriggerRadius = chaseTriggerRadius;
         oldAttackTriggerRadius = attackTriggerRadius;
@@ -165,7 +165,7 @@ public class EnemyScript : EntityScript
     // Update is called once per frame
     protected void Update()
     {
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
         //Debug.Log("Update");
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();

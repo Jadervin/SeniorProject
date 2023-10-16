@@ -116,10 +116,10 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
                 }
 
-                if (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
+                /*if (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
                 {
                     ChangeToPatrol();
-                }
+                }*/
 
 
                 break;
@@ -132,7 +132,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
                     StartCoroutine(StunTimer());
                     
                 }
-                chaseTriggerRadius = 0;
+                //chaseTriggerRadius = 0;
                 attackTriggerRadius = 0;
 
                 /*
@@ -161,8 +161,9 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         //Checks if the collider is not touching the ground
         //if one of the raycast is not touching the ground, the boolean is set to true
-        onEdgeOfGround = !Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer) ||
+        /*onEdgeOfGround = !Physics2D.Raycast(transform.position + colliderOffset, Vector2.down, groundLength, groundLayer) ||
             !Physics2D.Raycast(transform.position - colliderOffset, Vector2.down, groundLength, groundLayer);
+        */
 
         //If the enemy is out of range of the chasing and attacking colliders while it is chasing or attack, set the state to patrol and turn off one of the stop points
         /*
@@ -188,7 +189,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         //turn off one of the stop points
         //make the radiuses of the colliders zero
         //change the enemyState to patrol
-        if (onEdgeOfGround && enemyState != EnemyStates.IDLE)
+        /*if (onEdgeOfGround && enemyState != EnemyStates.IDLE)
         {
             canChaseDetection = false;
             TurnOffOneStopPoint();
@@ -199,7 +200,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
             //Rotates the enemy when it reaches a stop point
             transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
             enemyState = EnemyStates.PATROL;
-        }
+        }*/
     }
 
     new protected void OnDrawGizmosSelected()
@@ -306,12 +307,12 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
 
         enemyState = EnemyStates.IDLE;
+        attackTriggerRadius = oldAttackTriggerRadius;
 
         stunTimerOn = false;
 
     }
 /*
-
     public void StunToIdle()
     {
         enemyState = EnemyStates.IDLE;
@@ -321,7 +322,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 */
 
 
-    new protected void ChangeToPatrol()
+    /*new protected void ChangeToPatrol()
     {
         Debug.Log("Change to Patrol");
         isChargingAttack = false;
@@ -338,7 +339,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         //Rotates the enemy
         transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
 
-    }
+    }*/
 
     
 }
