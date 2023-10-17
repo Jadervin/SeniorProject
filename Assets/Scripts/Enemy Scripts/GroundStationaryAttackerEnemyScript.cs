@@ -283,6 +283,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         isRecharging = false;
         canAttack = true;
+        attackTriggerRadius = oldAttackTriggerRadius;
 
 
     }
@@ -307,7 +308,6 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
 
         enemyState = EnemyStates.IDLE;
-        attackTriggerRadius = oldAttackTriggerRadius;
 
         stunTimerOn = false;
 
