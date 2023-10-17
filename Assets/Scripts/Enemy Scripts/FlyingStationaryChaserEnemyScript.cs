@@ -6,6 +6,7 @@ using UnityEngine;
 public class FlyingStationaryChaserEnemyScript : EnemyScript
 {
     [Header("AI Variables")]
+    [SerializeField] private GameObject spriteParent;
     [SerializeField] private float nextWaypointDistance = 3f;
 
     private Path path;
@@ -60,10 +61,11 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     new protected void Update()
     {
         //Debug.Log(rb.velocity);
-        //Debug.Log("Update");
+        
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
-        if(path == null)
+        isFacingRightFunction();
+        if (path == null)
         {
             return;
         }
@@ -283,18 +285,25 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         }
 
 
-        /*//Changes the direction the enemy based on which side the player is on
-        if (transform.position.x < playerTarget.position.x)
+        //Changes the direction the enemy based on which side the player is on
+        if (force.x >= .01f)
         {
-            rb.velocity = new Vector2(moveSpeed * chaseSpeedMultiplier, 0f);
-            transform.localScale = new Vector2(1, transform.localScale.y);
-            isFacingRightFunction();
+            spriteParent.transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
+            
         }
-        else
+        else if (force.x <= -.01f)
         {
-            rb.velocity = new Vector2(-moveSpeed * chaseSpeedMultiplier, 0f);
-            transform.localScale = new Vector2(-1, transform.localScale.y);
-            isFacingRightFunction();
-        }*/
+            spriteParent.transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
+            
+        }
     }
+
+    new protected bool isFacingRightFunction()
+    {
+        isFacingRight = spriteParent.transform.localScale.x < Mathf.Epsilon;
+        return spriteParent.transform.localScale.x < Mathf.Epsilon;
+    }
+
+
+
 }

@@ -15672,6 +15672,7 @@ MonoBehaviour:
   knockbackStrength: 16
   delayTime: 0.3
   stunTime: 2
+  spriteParent: {fileID: 1186800699}
   nextWaypointDistance: 3
   repeatRate: 0.5
 --- !u!114 &1666246470
