@@ -15726,7 +15726,7 @@ MonoBehaviour:
   rightStopPoint: {fileID: 0}
   playerTarget: {fileID: 0}
   mainSprite: {fileID: 526980455}
-  itemToSpawn: {fileID: 0}
+  itemToSpawn: {fileID: 1801604100929784084, guid: a3a285c3c4c4a3e4ebb09778e03aca28, type: 3}
   damage: 5
   groundLength: 0
   colliderOffset: {x: 0, y: 0, z: 0}

@@ -101,4 +101,9 @@ public class PlayerBasicShooting : MonoBehaviour
         temp3 = Instantiate(bullet, shootPoints[2].transform.position, shootPoint.transform.rotation);*/
     }
 
+    public void UpgradeBaseWeapon()
+    {
+        basicShootingStates++;
+    }
+
 }
