@@ -17,6 +17,10 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     [SerializeField] private float repeatRate = .5f;
 
 
+    [Header("Slash Attack Variables")]
+    [SerializeField] private Collider2D attackCollider;
+    [SerializeField] private SpriteRenderer attackSprite;
+
 
     new protected void Start()
     {
@@ -38,6 +42,9 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         seeker = GetComponent<Seeker>();
 
         InvokeRepeating("UpdatePath", 0f, repeatRate);
+
+        attackCollider.enabled = false;
+        attackSprite.enabled = false;
 
     }
 
@@ -74,8 +81,9 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         {
             case EnemyStates.IDLE:
                 
-                enemyState = EnemyStates.IDLE;
-                
+                //enemyState = EnemyStates.IDLE;
+                attackTriggerRadius = oldAttackTriggerRadius;
+                chaseTriggerRadius = oldChaseTriggerRadius;
 
                 //If the enemy spots the player, switch to chase
                 if (canChaseDetection == true)
@@ -98,6 +106,8 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
                 //Track down and get into range of player
                 //if()
                 //ChasePlayer();
+
+                //FixedUpdate handles Chasing the player
                 if (canAttackDetection == true)
                 {
                     enemyState = EnemyStates.ATTACK;
@@ -110,34 +120,30 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
 
             case EnemyStates.ATTACK:
 
+                TurnEnemy();
+
                 if (canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
                 {
                     enemyState = EnemyStates.CHASE;
                 }
 
-                /*
-                                if (isChargingAttack == false || currentlyAttacking == false)
-                                {
-                                    TurnEnemy();
-                                }
+                if (canAttack == true)
+                {
+                    //StopAllCoroutines();
+
+                    //Maybe put all of these functions into one coroutine because with the method I have now, all the coroutines activate at the same time
 
 
-
-                                if (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false || canChaseDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
-                                {
-                                    ChangeToPatrol();
-                                }
-
-                                if (canAttack == true)
-                                {
-                                    //StopAllCoroutines();
-
-                                    //Maybe put all of these functions into one coroutine because with the method I have now, all the coroutines activate at the same time
-                                    StartCoroutine(EnemyAttack());
+                    StartCoroutine(EnemyAttack());
 
 
-                                }
-                */
+                }
+
+                if (canAttackDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false || canChaseDetection == false && enemyState == EnemyStates.ATTACK && currentlyAttacking == false)
+                {
+                    enemyState = EnemyStates.IDLE;
+                }
+
                 break;
 
             case EnemyStates.STUNNED:
@@ -187,14 +193,7 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
                 //Track down and get into range of player
                 //if()
                 ChasePlayer();
-                /*if (canAttackDetection == true)
-                {
-                    enemyState = EnemyStates.ATTACK;
-                }
-                if (canChaseDetection == false && enemyState == EnemyStates.CHASE && currentlyAttacking == false)
-                {
-                    enemyState = EnemyStates.IDLE;
-                }*/
+                
                 break;
 
             case EnemyStates.ATTACK:
@@ -288,12 +287,12 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         //Changes the direction the enemy based on which side the player is on
         if (force.x >= .01f)
         {
-            spriteParent.transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
+            /*spriteParent.*/transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
             
         }
         else if (force.x <= -.01f)
         {
-            spriteParent.transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
+            /*spriteParent.*/transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
             
         }
     }
@@ -304,6 +303,81 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         return spriteParent.transform.localScale.x < Mathf.Epsilon;
     }
 
+    new protected IEnumerator EnemyAttack()
+    {
+        //Have the enemy charge up their attack
+        canAttack = false;
+        isChargingAttack = true;
+        currentlyAttacking = true;
+        mainSprite.color = Color.red;
+        if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
+        {
+            yield return new WaitForSeconds(attackChargeTime);
+            isChargingAttack = false;
+        }
+        //Attack
+        //StartCoroutine(EnemyAttack_DashAttack());
 
+        //Enemy is now attacking
+        isUsingAttack = true;
+
+        if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
+        {
+            attackState = AttackStates.COUNTERABLE;
+
+
+            /*
+            float originalGravity = rb.gravityScale;
+            rb.gravityScale = 0f;
+
+            //Dash
+            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+            */
+            attackCollider.enabled = true;
+            attackSprite.enabled = true;
+
+            yield return new WaitForSeconds(counterableTimeFrame);
+            attackState = AttackStates.NON_COUNTERABLE;
+
+            attackCollider.enabled = false;
+            attackSprite.enabled = false;
+            //rb.gravityScale = originalGravity;
+            currentlyAttacking = false;
+            isUsingAttack = false;
+        }
+
+        mainSprite.color = mainColor;
+
+        //Enemy is now recharging
+        isRecharging = true;
+        //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
+
+        yield return new WaitForSeconds(attackRechargeTime);
+
+        isRecharging = false;
+        canAttack = true;
+        attackTriggerRadius = oldAttackTriggerRadius;
+        chaseTriggerRadius = oldChaseTriggerRadius;
+
+    }
+
+
+    new protected void TurnEnemy()
+    {
+        //Changes the direction the enemy based on which side the player is on
+        if (isUsingAttack == false)
+        {
+            if (transform.position.x > playerTarget.position.x)
+            {
+                transform.localScale = new Vector2(1, transform.localScale.y);
+                isFacingRightFunction();
+            }
+            else
+            {
+                transform.localScale = new Vector2(-1, transform.localScale.y);
+                isFacingRightFunction();
+            }
+        }
+    }
 
 }

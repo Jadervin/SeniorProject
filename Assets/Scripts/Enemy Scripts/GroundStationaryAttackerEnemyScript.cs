@@ -5,7 +5,7 @@ using UnityEngine.U2D;
 
 public class GroundStationaryAttackerEnemyScript : EnemyScript
 {
-    //[Header("Attack State Variables")]
+    [Header("Slash Attack Variables")]
     [SerializeField] private Collider2D attackCollider;
     [SerializeField] private SpriteRenderer attackSprite;
 

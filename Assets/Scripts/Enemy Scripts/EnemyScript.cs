@@ -47,8 +47,8 @@ public class EnemyScript : EntityScript
 
     [SerializeField] protected float chaseTriggerRadius = 3f;
     [SerializeField] protected float attackTriggerRadius = 1.5f;
-    protected float oldChaseTriggerRadius;
-    protected float oldAttackTriggerRadius;
+    [SerializeField] protected float oldChaseTriggerRadius;
+    [SerializeField] protected float oldAttackTriggerRadius;
 
 
     [Header("Movement Stats")]
