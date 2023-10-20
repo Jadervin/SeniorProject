@@ -16102,8 +16102,8 @@ MonoBehaviour:
   currentWeaponEnergy: 0
   gameInput: {fileID: 0}
   specialWeaponList:
-  - {fileID: 1395697131}
   - {fileID: 1868170328}
+  - {fileID: 1395697131}
   currentSpecialWeapon: {fileID: 0}
   currentWeaponIndex: 0
   switchedWeapon: 0
