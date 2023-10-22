@@ -233,7 +233,7 @@ public class SpecialWeaponManagerScript : MonoBehaviour
 
         OnCurrentSWChanged?.Invoke(this, new OnCurrentSWChangedEventArgs
         {
-            sWSprite = currentSpecialWeapon.GetComponent<SpecialWeaponEntityScript>().GetSpecialWeaponSOReference().swIcon
+            sWSprite = currentSpecialWeapon.GetComponent<SpecialWeaponEntityScript>().GetSpecialWeaponSOReference().sWIcon
 
         });
         

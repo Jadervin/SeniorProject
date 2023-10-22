@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c603b3b8b4a1304aa77802ad0cf9973, type: 3}
-  m_Name: FlareShot
+  m_Name: Flamethrower
   m_EditorClassIdentifier: 
-  specialWeaponName: FlareShot
-  specialWeaponGO: {fileID: 9115927276592769470, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
-  swIcon: {fileID: 21300000, guid: e6cca9026bd4cd540ac5c35305048e4b, type: 3}
-  specialWeaponEnergyCost: 3
+  specialWeaponName: Flamethrower
+  specialWeaponGO: {fileID: 6870736686573482554, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
+  sWIcon: {fileID: 21300000, guid: f7851132724f6d64ea8c114413cfba06, type: 3}
+  specialWeaponEnergyCost: 1

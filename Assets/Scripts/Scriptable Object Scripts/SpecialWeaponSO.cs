@@ -8,7 +8,7 @@ public class SpecialWeaponSO : ScriptableObject
 {
     public string specialWeaponName;
     public GameObject specialWeaponGO;
-    public Sprite swIcon;
+    public Sprite sWIcon;
     public int specialWeaponEnergyCost;
 
 }
