@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: bulletDamage
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5994068893284814154, guid: 16e131700ad0af44b99c7c8fb17e760f, type: 3}
+      propertyPath: whatDestroysObject.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

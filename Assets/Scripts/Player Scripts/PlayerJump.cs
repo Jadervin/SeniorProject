@@ -562,7 +562,7 @@ public class PlayerJump : MonoBehaviour
 
             transform.position = finalPosition;
 
-            //Debug.Log("transform.position: " + transform.position);
+            Debug.Log("transform.position: " + transform.position);
 
 
             //Debug.Log("ledgeDistance: " + ledgeDistance);
