@@ -8,14 +8,23 @@ public class AfterShockScript : MonoBehaviour
     [SerializeField] private bool hitWithCollider = false;
     [SerializeField] private float cooldownTimeMax = 1f;
     [SerializeField] private float timeSinceHit = 0f;
+    [SerializeField] private float timeSinceSpawned = 0f;
+    [SerializeField] private float aftershockDespawnTime = 3f;
     public string ENEMYTAG = "Enemy";
 
     private void Update()
     {
+        timeSinceSpawned += Time.deltaTime;
+        if (timeSinceSpawned > aftershockDespawnTime)
+        {
+            timeSinceSpawned = 0;
+            Destroy(gameObject);
+        }
+
         if (hitWithCollider == true)
         {
             timeSinceHit += Time.deltaTime;
-
+            
 
             if (timeSinceHit > cooldownTimeMax)
             {
@@ -24,6 +33,8 @@ public class AfterShockScript : MonoBehaviour
                 hitWithCollider = false;
 
             }
+
+            
         }
     }
 

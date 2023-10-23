@@ -14,10 +14,14 @@ public class BulletScript : MonoBehaviour
 {
     [Header("Universal Bullet Variables")]
     [SerializeField] private float speed;
-    [SerializeField] private float despawnTime;
-    [SerializeField] private float afterShockDespawnTime;
+    
     //private float timeAlive = 0;
     public string ENEMYTAG = "Enemy";
+    [SerializeField] private int bulletDamage = 5;
+
+ 
+    public BulletTypes bulletType;
+    public GameObject bulletSprite;
 
     [SerializeField] private Rigidbody2D rb;
 
@@ -25,14 +29,13 @@ public class BulletScript : MonoBehaviour
 
     [SerializeField] private LayerMask whatDestroysObject;
 
-    public BulletTypes bulletType;
-    public GameObject bulletSprite;
 
     [Header("Base Bullet Variables")]
-    [SerializeField] private int bulletDamage = 5;
+    [SerializeField] private float despawnTime;
+
 
     [Header("Grenade Bullet Variables")]
-    [SerializeField] private GameObject blastRadiusGO;
+    [SerializeField] private GameObject blastRadiusPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +48,7 @@ public class BulletScript : MonoBehaviour
             SetDestroyTime();
         }
 
-        if(blastRadiusGO != null)
-        {
-            blastRadiusGO.SetActive(false);
-        }
+        
 
         SetVelocity();
     }
@@ -81,22 +81,12 @@ public class BulletScript : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyScript>().DamageHealth(bulletDamage);
 
-            if (bulletType == BulletTypes.BASE)
+            if (bulletType == BulletTypes.GRENADE)
             {
-                Destroy(this.gameObject);
+                SpawnAftershock();
             }
-
-            else if (bulletType == BulletTypes.GRENADE)
-            {
-                bulletCollider.enabled = false;
-
-                bulletSprite.SetActive(false);
-                rb.velocity = Vector3.zero;
-                rb.gravityScale = 0f;
-                blastRadiusGO.SetActive(true);
-                Destroy(this.gameObject, afterShockDespawnTime);
-
-            }
+            Destroy(this.gameObject);
+            
             //Destroy(this.gameObject);
         }
 
@@ -112,23 +102,12 @@ public class BulletScript : MonoBehaviour
 
         if ((whatDestroysObject.value & (1 << collision.gameObject.layer)) > 0)
         {
-            if (bulletType == BulletTypes.BASE)
+            if (bulletType == BulletTypes.GRENADE)
             {
-                Destroy(this.gameObject);
+                SpawnAftershock();
             }
-
-            else if (bulletType == BulletTypes.GRENADE)
-            {
-                bulletCollider.enabled = false;
-
-
-                bulletSprite.SetActive(false);
-                rb.velocity = Vector3.zero;
-                rb.gravityScale = 0f;
-                blastRadiusGO.SetActive(true);
-                Destroy(this.gameObject, afterShockDespawnTime);
-
-            }
+            Destroy(this.gameObject);
+            
         }
 
     }
@@ -152,5 +131,11 @@ public class BulletScript : MonoBehaviour
     public float GetRBGravity()
     {
         return rb.gravityScale;
+    }
+
+
+    private void SpawnAftershock()
+    {
+        GameObject temp = Instantiate(blastRadiusPrefab, this.transform.position, this.transform.rotation);
     }
 }
