@@ -120,7 +120,7 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
 
             case EnemyStates.ATTACK:
 
-                TurnEnemy();
+                //TurnEnemy();
 
                 if (canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
                 {
