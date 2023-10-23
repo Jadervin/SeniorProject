@@ -18,11 +18,13 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private float afterShockDespawnTime;
     //private float timeAlive = 0;
     public string ENEMYTAG = "Enemy";
-    [SerializeField]
-    private Collider2D bulletCollider;
+
+    [SerializeField] private Rigidbody2D rb;
+
+    [SerializeField] private Collider2D bulletCollider;
 
     [SerializeField] private LayerMask whatDestroysObject;
-    [SerializeField] private Rigidbody2D rb;
+
     public BulletTypes bulletType;
     public GameObject bulletSprite;
 
