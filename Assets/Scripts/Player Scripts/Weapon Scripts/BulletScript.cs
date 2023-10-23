@@ -20,18 +20,17 @@ public class BulletScript : MonoBehaviour
 
     [SerializeField] private LayerMask whatDestroysObject;
     [SerializeField] private Rigidbody2D rb;
-    public BulletTypes bulletTypes;
+    public BulletTypes bulletType;
 
     [Header("Base Bullet Variables")]
     [SerializeField] private int bulletDamage = 5;
 
-
     // Start is called before the first frame update
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
 
-        if (bulletTypes == BulletTypes.BASE)
+        if (bulletType == BulletTypes.BASE)
         {
             SetDestroyTime();
         }
@@ -50,6 +49,14 @@ public class BulletScript : MonoBehaviour
         {
             Destroy(this.gameObject);
         }*/
+    }
+
+    private void FixedUpdate()
+    {
+        if (bulletType == BulletTypes.GRENADE)
+        {
+            transform.right = rb.velocity;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

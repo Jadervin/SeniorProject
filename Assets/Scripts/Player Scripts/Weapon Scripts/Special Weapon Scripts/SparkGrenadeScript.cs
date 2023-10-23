@@ -47,10 +47,12 @@ public class SparkGrenadeScript : SpecialWeaponEntityScript
             && isHoldingButton == true)
         {
             isHoldingButton = false;
-            canSpecialShoot = false;
             trajectoryLine.SetActive(false);
             specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             SparkGrenade();
+            canSpecialShoot = false;
+
+
         }
 
     }
@@ -91,10 +93,6 @@ public class SparkGrenadeScript : SpecialWeaponEntityScript
         */
     }
 
-    private void TrajectoryLine()
-    {
-
-    }
 
     private void SparkGrenade()
     {
