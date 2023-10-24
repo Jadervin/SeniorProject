@@ -4888,6 +4888,9 @@ MonoBehaviour:
   isChargingAttack: 0
   isUsingAttack: 0
   isRecharging: 0
+  knockbackStrength: 16
+  delayTime: 0.3
+  stunTime: 2
 --- !u!60 &516880301
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -20061,6 +20064,9 @@ MonoBehaviour:
   isChargingAttack: 0
   isUsingAttack: 0
   isRecharging: 0
+  knockbackStrength: 16
+  delayTime: 0.3
+  stunTime: 2
 --- !u!60 &2021262073
 PolygonCollider2D:
   m_ObjectHideFlags: 0
