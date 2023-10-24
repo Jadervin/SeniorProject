@@ -9,7 +9,10 @@ public class ArtifactCollectableScript : Collectables
 
     public override void Interact()
     {
-        player.gameObject.GetComponent<PlayerArtifactCollection>().IncreaseArtifactCount();
+        if (player.gameObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded() > 0)
+        {
+            player.gameObject.GetComponent<PlayerArtifactCollection>().IncreaseArtifactCount();
+        }
     }
 
 }

@@ -79,7 +79,7 @@ public class BulletScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag(ENEMYTAG))
         {
-            collision.gameObject.GetComponent<EnemyScript>().DamageHealth(bulletDamage);
+            collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
 
             if (bulletType == BulletTypes.GRENADE)
             {
