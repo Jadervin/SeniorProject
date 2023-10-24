@@ -6,15 +6,15 @@ public class AfterShockScript : MonoBehaviour
 {
     [SerializeField] private int shockDamage = 1;
     [SerializeField] private bool hitWithCollider = false;
-    [SerializeField] private float cooldownTimeMax = 1f;
     [SerializeField] private float timeSinceHit = 0f;
     [SerializeField] private float timeSinceSpawned = 0f;
-    [SerializeField] private float aftershockDespawnTime = 3f;
+    [SerializeField] private float shockCooldownTime = .2f;
+    [SerializeField] private float shockDespawnTime = 3f;
     public string ENEMYTAG = "Enemy";
 
     private void Update()
     {
-        timeSinceSpawned += Time.deltaTime;
+/*        timeSinceSpawned += Time.deltaTime;
         if (timeSinceSpawned > aftershockDespawnTime)
         {
             timeSinceSpawned = 0;
@@ -24,9 +24,8 @@ public class AfterShockScript : MonoBehaviour
         if (hitWithCollider == true)
         {
             timeSinceHit += Time.deltaTime;
-            
 
-            if (timeSinceHit > cooldownTimeMax)
+            if (timeSinceHit > shockCooldownTime)
             {
                 timeSinceHit = 0;
 
@@ -34,8 +33,17 @@ public class AfterShockScript : MonoBehaviour
 
             }
 
-            
+        }*/
+
+
+        if (hitWithCollider == true)
+        {
+            StartCoroutine(ShockCooldown());
         }
+
+
+        StartCoroutine(SpawnCooldown());
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,5 +54,21 @@ public class AfterShockScript : MonoBehaviour
             hitWithCollider = true;
         }
     }
+
+    public IEnumerator SpawnCooldown()
+    {
+        yield return new WaitForSeconds(shockDespawnTime);
+
+        Destroy(gameObject);
+    }
+
+    public IEnumerator ShockCooldown()
+    {
+        yield return new WaitForSeconds(shockCooldownTime);
+
+        hitWithCollider = false;
+    }
+
+
 
 }

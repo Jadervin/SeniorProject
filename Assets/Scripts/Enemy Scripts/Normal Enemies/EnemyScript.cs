@@ -13,7 +13,7 @@ public enum EnemyStates
     DEATH
 }
 
-public enum AttackStates
+public enum AttackCounterStates
 {
     NON_COUNTERABLE,
     COUNTERABLE
@@ -84,8 +84,8 @@ public class EnemyScript : EntityScript
             //Debug.Log(gameObject.name + " changed state to " + value.ToString());
         }
     }
-    [SerializeField] protected AttackStates _attackState;
-    [SerializeField] protected AttackStates attackState
+    [SerializeField] protected AttackCounterStates _attackState;
+    [SerializeField] protected AttackCounterStates attackState
     {
         get
         {
@@ -147,7 +147,7 @@ public class EnemyScript : EntityScript
     {
         playerTarget = FindAnyObjectByType<PlayerMovement>().transform;
         enemyState = EnemyStates.IDLE;
-        attackState = AttackStates.NON_COUNTERABLE;
+        attackState = AttackCounterStates.NON_COUNTERABLE;
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<Collider2D>();
 
@@ -327,7 +327,7 @@ public class EnemyScript : EntityScript
             
         }
 
-        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackStates.COUNTERABLE)
+        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackCounterStates.COUNTERABLE)
         {
             /*
             //Knockback enemy
@@ -643,7 +643,7 @@ public class EnemyScript : EntityScript
 
         if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
         {
-            attackState = AttackStates.COUNTERABLE;
+            attackState = AttackCounterStates.COUNTERABLE;
             
             
             float originalGravity = rb.gravityScale;
@@ -667,7 +667,7 @@ public class EnemyScript : EntityScript
             }
             */
             yield return new WaitForSeconds(counterableTimeFrame);
-            attackState = AttackStates.NON_COUNTERABLE;
+            attackState = AttackCounterStates.NON_COUNTERABLE;
             rb.gravityScale = originalGravity;
             currentlyAttacking = false;
             isUsingAttack = false;
@@ -714,7 +714,7 @@ public class EnemyScript : EntityScript
         isUsingAttack = false;
         isRecharging = false;
         mainSprite.color = mainColor;
-        attackState = AttackStates.NON_COUNTERABLE;
+        attackState = AttackCounterStates.NON_COUNTERABLE;
 
         if (canPatrolOption == true)
         {

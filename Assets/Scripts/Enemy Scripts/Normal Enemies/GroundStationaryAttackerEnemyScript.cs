@@ -14,7 +14,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
     {
         playerTarget = FindAnyObjectByType<PlayerMovement>().transform;
         enemyState = EnemyStates.IDLE;
-        attackState = AttackStates.NON_COUNTERABLE;
+        attackState = AttackCounterStates.NON_COUNTERABLE;
         rb = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
 
@@ -250,7 +250,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
         {
-            attackState = AttackStates.COUNTERABLE;
+            attackState = AttackCounterStates.COUNTERABLE;
 
             
             /*
@@ -264,7 +264,7 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
             attackSprite.enabled = true;
 
             yield return new WaitForSeconds(counterableTimeFrame);
-            attackState = AttackStates.NON_COUNTERABLE;
+            attackState = AttackCounterStates.NON_COUNTERABLE;
 
             attackCollider.enabled = false;
             attackSprite.enabled = false;

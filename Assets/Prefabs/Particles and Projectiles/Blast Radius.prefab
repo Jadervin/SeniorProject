@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3133248573576514424}
   - component: {fileID: 5419605298538256443}
+  - component: {fileID: -3144810862402296348}
   - component: {fileID: 4307888841059836212}
   m_Layer: 0
   m_Name: Blast Radius
@@ -132,9 +133,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shockDamage: 1
   hitWithCollider: 0
-  cooldownTimeMax: 0.2
   timeSinceHit: 0
+  timeSinceSpawned: 0
+  shockCooldownTime: 0.2
+  shockDespawnTime: 20
   ENEMYTAG: Enemy
+--- !u!50 &-3144810862402296348
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5339650997589042250}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!58 &4307888841059836212
 CircleCollider2D:
   m_ObjectHideFlags: 0
