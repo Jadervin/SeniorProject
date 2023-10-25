@@ -97,12 +97,12 @@ public class EnemyScript : EntityScript
             //Debug.Log(gameObject.name + " changed state to " + value.ToString());
         }
     }
-
+/*
     [Header("Tags")]
     public string STOP_POINT_TAG = "StopPoint";
     public string CAMERA_SWITCH_TRIGGER_TAG = "CameraSwitchTriggers";
     public string WALLTAG = "Wall";
-    public string TONGUE_COUNTER_TAG = "TongueCounter";
+    public string TONGUE_COUNTER_TAG = "TongueCounter";*/
 
     [Header("Layer Masks")]
     [SerializeField] protected LayerMask playerLayer;
@@ -302,7 +302,7 @@ public class EnemyScript : EntityScript
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         //if it collides with one of the stop points while patrolling, rotate the enemy
-        if(collision.gameObject.CompareTag(STOP_POINT_TAG) && enemyState == EnemyStates.PATROL)
+        if(collision.gameObject.CompareTag(TagReferencesScript.STOP_POINT_TAG) && enemyState == EnemyStates.PATROL)
         {
             //if one of the colliders were turned off because it exited the chase state or reached the edge of the ground, turn that collider on after it collides with the other one.
             if (collision.gameObject == rightStopPoint)
@@ -327,7 +327,7 @@ public class EnemyScript : EntityScript
             
         }
 
-        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackCounterStates.COUNTERABLE)
+        if (collision.gameObject.CompareTag(TagReferencesScript.TONGUE_COUNTER_TAG) && enemyState == EnemyStates.ATTACK && attackState == AttackCounterStates.COUNTERABLE)
         {
             /*
             //Knockback enemy

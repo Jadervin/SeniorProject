@@ -47,10 +47,11 @@ public class BossEnemyScript : EntityScript
     [SerializeField] protected bool notStunnedAnymore;
 
     
-
+/*
     [Header("Tags")]
     public string WALLTAG = "Wall";
     public string TONGUE_COUNTER_TAG = "TongueCounter";
+*/
 
     [Header("Layer Masks")]
     [SerializeField] protected LayerMask playerLayer;
@@ -211,7 +212,7 @@ public class BossEnemyScript : EntityScript
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG) && bossEnemyState == BossEnemyStates.ATTACKING && attackCounterState == AttackCounterStates.COUNTERABLE)
+        if (collision.gameObject.CompareTag(TagReferencesScript.TONGUE_COUNTER_TAG) && bossEnemyState == BossEnemyStates.ATTACKING && attackCounterState == AttackCounterStates.COUNTERABLE)
         {
             /*
             Knockback enemy

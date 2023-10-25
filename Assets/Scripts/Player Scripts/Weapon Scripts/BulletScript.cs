@@ -16,9 +16,9 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private float speed;
 
     //private float timeAlive = 0;
-    [SerializeField] private string ENEMYTAG = "Enemy";
+/*    [SerializeField] private string ENEMYTAG = "Enemy";
     [SerializeField] private string BOSSENEMYTAG = "Boss Enemy";
-    [SerializeField] private string PLAYERTAG = "Player";
+    [SerializeField] private string PLAYERTAG = "Player";*/
     [SerializeField] private int bulletDamage = 5;
 
  
@@ -78,7 +78,7 @@ public class BulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag(ENEMYTAG) || collision.gameObject.CompareTag(BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER)
+        if (collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG) || collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER)
         {
             
             collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
@@ -112,7 +112,7 @@ public class BulletScript : MonoBehaviour
             
         }
 
-        if (collision.gameObject.CompareTag(PLAYERTAG))
+        if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG))
         {
             collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
 
