@@ -3371,7 +3371,6 @@ MonoBehaviour:
   - {fileID: 550882700}
   switchCollider: {fileID: 351627584}
   maxArtifacts: 3
-  PLAYERTAG: Player
   completedTotem: 0
 --- !u!61 &351627584
 BoxCollider2D:
@@ -4809,7 +4808,10 @@ MonoBehaviour:
   enemyDamage: 7
   bossEnemyState: 0
   bossAttackState: 0
+  previousBossAttackState: 0
   attackCounterState: 0
+  enemyHealthState: 0
+  maxAttackStates: 0
   rb: {fileID: 0}
   polyCollider: {fileID: 0}
   enemyParent: {fileID: 1206526638}
@@ -4820,8 +4822,6 @@ MonoBehaviour:
   currentlyAttacking: 0
   stunTimerOn: 0
   notStunnedAnymore: 0
-  WALLTAG: Wall
-  TONGUE_COUNTER_TAG: TongueCounter
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -4842,7 +4842,7 @@ MonoBehaviour:
   bullet: {fileID: 5683315486978081061, guid: 07574fbd52dc9b242a97d4005d2cf0e3, type: 3}
   shootReloadTime: 2
   numOfShots: 3
-  dashAttackChargeTime: 5
+  dashAttackChargeTime: 2
   dashAttackRechargeTime: 1
   dashPower: 24
   attackTime: 0.4
@@ -14649,9 +14649,6 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 20
   enemyDamage: 0
-  ENEMYTAG: Enemy
-  BOSSENEMYTAG: Boss Enemy
-  ENEMY_PROJECTILE_TAG: EnemyProjectile
   damageTimeBuffer: 1
   isInvincible: 0
   deathTimer: 1.5
@@ -20120,6 +20117,10 @@ PrefabInstance:
     - target: {fileID: 2951942007811151338, guid: 17580f952c0a991458efbbb3e07eed79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7811883731355493146, guid: 17580f952c0a991458efbbb3e07eed79, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 8702434756647417321, guid: 17580f952c0a991458efbbb3e07eed79, type: 3}
       propertyPath: m_Name

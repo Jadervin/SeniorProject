@@ -30,6 +30,7 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private Collider2D bulletCollider;
 
     [SerializeField] private LayerMask whatDestroysObject;
+    //[SerializeField] private LayerMask bossEnemyObject;
 
     [Header("Base Bullet Variables")]
     [SerializeField] private float despawnTime;
@@ -78,7 +79,8 @@ public class BulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG) || collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER)
+        if (collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG) || 
+            collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER)
         {
             
             collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
@@ -92,14 +94,20 @@ public class BulletScript : MonoBehaviour
 
         }
 
-/*        if (collision.gameObject.CompareTag(GROUNDTAG))
+        if(collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && 
+            collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() == BossEnemyStates.WAITINGFORPLAYER)
         {
             Destroy(this.gameObject);
         }
-        if (collision.gameObject.CompareTag(WALLTAG))
-        {
-            Destroy(this.gameObject);
-        }*/
+
+        /*        if (collision.gameObject.CompareTag(GROUNDTAG))
+                {
+                    Destroy(this.gameObject);
+                }
+                if (collision.gameObject.CompareTag(WALLTAG))
+                {
+                    Destroy(this.gameObject);
+                }*/
 
 
         if ((whatDestroysObject.value & (1 << collision.gameObject.layer)) > 0)
@@ -111,6 +119,7 @@ public class BulletScript : MonoBehaviour
             Destroy(this.gameObject);
             
         }
+
 
         if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG))
         {

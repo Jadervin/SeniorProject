@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -18,9 +19,16 @@ public enum BossEnemyAttackStates
 {
     NONE,
     SHOOT,
-    DASH
+    DASH,
+
 }
 
+public enum BossEnemyHealthStates
+{
+    HIGHHEALTH,
+    MILDHEALTH,
+    LOWHEALTH
+}
 
 
 public class BossEnemyScript : EntityScript
@@ -28,7 +36,12 @@ public class BossEnemyScript : EntityScript
     [Header("States")]
     [SerializeField] protected BossEnemyStates bossEnemyState;
     [SerializeField] protected BossEnemyAttackStates bossAttackState;
+    [SerializeField] protected BossEnemyAttackStates previousBossAttackState;
+    //[SerializeField] protected bool choseAttack = false;
+
     [SerializeField] protected AttackCounterStates attackCounterState;
+    [SerializeField] protected BossEnemyHealthStates enemyHealthState;
+    [SerializeField] protected int maxAttackStates;
 
 
     [Header("Components")]
@@ -111,6 +124,8 @@ public class BossEnemyScript : EntityScript
             wall.SetActive(false);
         }
 
+        maxAttackStates = Enum.GetValues(typeof(BossEnemyAttackStates)).Cast<int>().Max();
+
     }
 
 
@@ -132,13 +147,56 @@ public class BossEnemyScript : EntityScript
                 break;
 
             case BossEnemyStates.ATTACKING:
-                
-                if(canAttack == true)
+
+
+                if (previousBossAttackState == BossEnemyAttackStates.NONE)
                 {
-                    canAttack = false;
-                    StartCoroutine(Shooting());
+                    bossAttackState = BossEnemyAttackStates.SHOOT;
+                }
+                else if (previousBossAttackState == BossEnemyAttackStates.SHOOT)
+                {
+                    bossAttackState = BossEnemyAttackStates.DASH;
+                }
+                else
+                {
+                    bossAttackState = BossEnemyAttackStates.SHOOT;
                 }
 
+                /*if (choseAttack == false)
+                {
+                    bossAttackState = (BossEnemyAttackStates)UnityEngine.Random.Range(1, maxAttackStates);
+                    choseAttack = true;
+                }*/
+
+                switch(bossAttackState)
+                {
+                    case BossEnemyAttackStates.SHOOT:
+
+                        if (canAttack == true)
+                        {
+                            canAttack = false;
+                            StartCoroutine(Shooting());
+                        }
+
+                        break;
+
+                    case BossEnemyAttackStates.DASH:
+                        if (canAttack == true)
+                        {
+                            canAttack = false;
+                            StartCoroutine(Dashing());
+                        }
+
+                        break;
+
+               
+                    default:
+
+                        break;
+                }
+
+
+                
 
                 break;
 
@@ -152,6 +210,44 @@ public class BossEnemyScript : EntityScript
 
             default:
                 break;
+
+        }
+
+
+        switch(enemyHealthState) 
+        {
+            case BossEnemyHealthStates.HIGHHEALTH:
+                if (bossEnemyState != BossEnemyStates.WAITINGFORPLAYER)
+                {
+                    mainSprite.color = mainColor;
+                }
+
+                if (currentHealth < (maxHealth * (2 / 3)))
+                {
+                    enemyHealthState = BossEnemyHealthStates.MILDHEALTH;
+                }
+                break;
+
+            case BossEnemyHealthStates.MILDHEALTH:
+                
+                mainSprite.color = Color.magenta;
+
+                if (currentHealth < (maxHealth * (1 / 3)))
+                {
+                    enemyHealthState = BossEnemyHealthStates.LOWHEALTH;
+                }
+                break;
+
+            case BossEnemyHealthStates.LOWHEALTH:
+                
+                mainSprite.color = Color.red;
+                
+                break;
+
+            default:
+
+                break;
+
 
         }
     }
@@ -187,7 +283,10 @@ public class BossEnemyScript : EntityScript
     private IEnumerator IdleTimer()
     {
         yield return new WaitForSeconds(idleWaitTime);
+        //choseAttack = false;
         bossEnemyState = BossEnemyStates.ATTACKING;
+        //canAttack = true;
+
     }
 
 
@@ -195,20 +294,77 @@ public class BossEnemyScript : EntityScript
     {
         isUsingAttack = true;
 
-        for(int i = 0; i<numOfShots; i++)
+        for(int i = 0; i < numOfShots; i++)
         {
             GameObject temp = Instantiate(bullet, shootPoint.transform.position, shootPoint.transform.rotation);
             //Debug.Log("Spawned Bullet");
             yield return new WaitForSeconds(shootReloadTime);
         }
 
-        yield return new WaitForSeconds(rechargeTime);
+        bossEnemyState = BossEnemyStates.IDLE;
+        previousBossAttackState = BossEnemyAttackStates.SHOOT;
 
+        //yield return new WaitForSeconds(rechargeTime);
+        isUsingAttack = false;
         canAttack = true;
     }
 
 
+    private IEnumerator Dashing()
+    {
+        
+        canAttack = false;
+        isChargingAttack = true;
+        currentlyAttacking = true;
+        mainSprite.color = Color.yellow;
+        if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
+        {
+            yield return new WaitForSeconds(dashAttackChargeTime);
+            isChargingAttack = false;
+        }
+        //Attack
+        //StartCoroutine(EnemyAttack_DashAttack());
 
+        //Enemy is now attacking with the dash attack
+        isUsingAttack = true;
+
+        if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
+        {
+            attackCounterState = AttackCounterStates.COUNTERABLE;
+
+
+            float originalGravity = rb.gravityScale;
+            rb.gravityScale = 0f;
+
+            //Dash
+            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
+
+            /*
+            while (currentCounterableTimeFrame < counterableTimeFrameMax)
+            {
+
+
+                currentCounterableTimeFrame += Time.deltaTime;
+
+            }
+            else
+            {
+                currentCounterableTimeFrame = 0;
+
+            }
+            */
+            yield return new WaitForSeconds(counterableTimeFrame);
+            attackCounterState = AttackCounterStates.NON_COUNTERABLE;
+            rb.gravityScale = originalGravity;
+            currentlyAttacking = false;
+            isUsingAttack = false;
+        }
+
+        yield return new WaitForSeconds(dashAttackChargeTime);
+        bossEnemyState = BossEnemyStates.IDLE;
+        previousBossAttackState = BossEnemyAttackStates.DASH;
+        canAttack = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
