@@ -48,18 +48,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  despawnTime: 1.3
-  afterShockDespawnTime: 0
   ENEMYTAG: Enemy
+  BOSSENEMYTAG: Boss Enemy
+  bulletDamage: 3
+  bulletType: 0
+  bulletSprite: {fileID: 0}
   rb: {fileID: -2849767169998106459}
   bulletCollider: {fileID: 1797835053032733941}
   whatDestroysObject:
     serializedVersion: 2
     m_Bits: 192
-  bulletType: 0
-  bulletSprite: {fileID: 0}
-  bulletDamage: 3
-  blastRadiusGO: {fileID: 0}
+  BossEnemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  despawnTime: 1.3
+  blastRadiusPrefab: {fileID: 0}
 --- !u!61 &1797835053032733941
 BoxCollider2D:
   m_ObjectHideFlags: 0

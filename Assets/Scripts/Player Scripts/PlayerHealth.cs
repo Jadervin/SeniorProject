@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerHealth : EntityScript
 {
     [SerializeField] private string ENEMYTAG = "Enemy";
+    public string BOSSENEMYTAG = "Boss Enemy";
     [SerializeField] private string ENEMY_PROJECTILE_TAG = "EnemyProjectile";
     //[SerializeField] private string HEALTHUPGRADETAG = "HealthUpgrade";
 
@@ -90,9 +91,9 @@ public class PlayerHealth : EntityScript
     private void OnCollisionEnter2D(Collision2D collision)
     {
       
-        if (collision.gameObject.CompareTag(ENEMYTAG) && isInvincible == false)
+        if (collision.gameObject.CompareTag(ENEMYTAG) && isInvincible == false || collision.gameObject.CompareTag(BOSSENEMYTAG) && isInvincible == false)
         {
-            int damage = collision.gameObject.GetComponent<EnemyScript>().GetDamage();
+            int damage = collision.gameObject.GetComponent<EntityScript>().GetEnemyDamage();
             DamageHealth(damage);
 
             if (currentHealth > 0)

@@ -8,8 +8,8 @@ public abstract class EntityScript : MonoBehaviour
     [Header("Health Attributes")]
     [SerializeField] protected int currentHealth;
     [SerializeField] protected int maxHealth;
+    [SerializeField] protected int enemyDamage;
 
-    
 
     protected void Awake()
     {
@@ -46,6 +46,10 @@ public abstract class EntityScript : MonoBehaviour
         return maxHealth;
     }
 
+    public int GetEnemyDamage()
+    {
+        return enemyDamage;
+    }
 
     public abstract void OnDeath();
     

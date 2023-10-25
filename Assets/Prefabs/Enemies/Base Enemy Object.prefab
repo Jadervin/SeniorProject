@@ -428,15 +428,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 10
+  enemyDamage: 3
+  rb: {fileID: 0}
+  boxCollider: {fileID: 0}
   enemyParent: {fileID: 4874715465528085387}
   leftStopPoint: {fileID: 1354083850918538413}
   rightStopPoint: {fileID: 2678452446577086210}
   playerTarget: {fileID: 0}
-  damage: 2
+  mainSprite: {fileID: 0}
+  itemToSpawn: {fileID: 0}
   groundLength: 0.75
   colliderOffset: {x: -0.66, y: 0, z: 0}
   chaseTriggerRadius: 7.23
   attackTriggerRadius: 3.61
+  oldChaseTriggerRadius: 0
+  oldAttackTriggerRadius: 0
   moveSpeed: 7
   chaseSpeedMultiplier: 1.3
   isFacingRight: 0
@@ -444,13 +450,16 @@ MonoBehaviour:
   canChaseDetection: 0
   canAttackDetection: 0
   currentlyAttacking: 0
+  stunTimerOn: 0
+  notStunnedAnymore: 0
   canPatrolOption: 1
-  enemyState: 0
-  attackState: 0
+  canChaseOption: 1
+  _enemyState: 0
+  _attackState: 0
   STOP_POINT_TAG: StopPoint
   CAMERA_SWITCH_TRIGGER_TAG: CameraSwitchTrigger
   WALLTAG: Wall
-  TONGUECOUNTERTAG: TongueCounter
+  TONGUE_COUNTER_TAG: TongueCounter
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -462,9 +471,13 @@ MonoBehaviour:
   canAttack: 1
   dashPower: 24
   attackTime: 0.3
+  counterableTimeFrame: 0.3
   isChargingAttack: 0
-  isAttacking: 0
+  isUsingAttack: 0
   isRecharging: 0
+  knockbackStrength: 16
+  delayTime: 0.3
+  stunTime: 2
 --- !u!114 &6179995937735283193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +491,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  knockbackStrength: 16
   delayTime: 0.3
   enemyScript: {fileID: 0}
 --- !u!1 &7579737027473613007

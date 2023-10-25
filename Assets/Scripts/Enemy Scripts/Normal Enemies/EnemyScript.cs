@@ -35,8 +35,8 @@ public class EnemyScript : EntityScript
     [SerializeField] protected GameObject itemToSpawn;
     protected Color mainColor;
 
-    [Header("Damage Amount")]
-    [SerializeField] protected int damage;
+    /*[Header("Damage Amount")]
+    [SerializeField] protected int damage;*/
 
     [Header("Collider Settings")]
     //The length of the ground-checking collider
@@ -618,10 +618,10 @@ public class EnemyScript : EntityScript
         //Destroy(gameObject);
     }
 
-    public int GetDamage()
+    /*public int GetDamage()
     {
         return damage;
-    }
+    }*/
 
     protected IEnumerator EnemyAttack() 
     {

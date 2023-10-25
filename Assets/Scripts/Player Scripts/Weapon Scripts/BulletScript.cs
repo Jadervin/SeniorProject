@@ -14,9 +14,11 @@ public class BulletScript : MonoBehaviour
 {
     [Header("Universal Bullet Variables")]
     [SerializeField] private float speed;
-    
+
     //private float timeAlive = 0;
-    public string ENEMYTAG = "Enemy";
+    [SerializeField] private string ENEMYTAG = "Enemy";
+    [SerializeField] private string BOSSENEMYTAG = "Boss Enemy";
+    [SerializeField] private string PLAYERTAG = "Player";
     [SerializeField] private int bulletDamage = 5;
 
  
@@ -28,7 +30,6 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private Collider2D bulletCollider;
 
     [SerializeField] private LayerMask whatDestroysObject;
-
 
     [Header("Base Bullet Variables")]
     [SerializeField] private float despawnTime;
@@ -77,17 +78,18 @@ public class BulletScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag(ENEMYTAG))
+        if (collision.gameObject.CompareTag(ENEMYTAG) || collision.gameObject.CompareTag(BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER)
         {
+            
             collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
+            
 
             if (bulletType == BulletTypes.GRENADE)
             {
                 SpawnAftershock();
             }
             Destroy(this.gameObject);
-            
-            //Destroy(this.gameObject);
+
         }
 
 /*        if (collision.gameObject.CompareTag(GROUNDTAG))
@@ -108,6 +110,13 @@ public class BulletScript : MonoBehaviour
             }
             Destroy(this.gameObject);
             
+        }
+
+        if (collision.gameObject.CompareTag(PLAYERTAG))
+        {
+            collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
+
+            Destroy(this.gameObject);
         }
 
     }

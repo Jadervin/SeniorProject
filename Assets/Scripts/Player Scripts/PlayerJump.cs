@@ -560,9 +560,20 @@ public class PlayerJump : MonoBehaviour
 
             //transform.position += finalPosition;
 
+            Vector3 originalPosition = transform.position;
+
             transform.position = finalPosition;
 
             Debug.Log("transform.position: " + transform.position);
+
+
+            if (transform.position.x <= 2 && transform.position.y <= 1)
+            {
+                transform.position = originalPosition;
+
+                Debug.Log("Back to origial position: " + transform.position);
+            }
+
 
 
             //Debug.Log("ledgeDistance: " + ledgeDistance);

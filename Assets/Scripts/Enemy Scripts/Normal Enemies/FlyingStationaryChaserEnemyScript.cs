@@ -8,7 +8,8 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     [Header("AI Variables")]
     [SerializeField] private GameObject spriteParent;
     [SerializeField] private float nextWaypointDistance = 3f;
-
+    [SerializeField] private Vector2 force;
+    [SerializeField] private Vector2 direction;
     private Path path;
     private int currentWaypoint = 0;
     private bool reachedEndOfPath = false;
@@ -120,7 +121,7 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
 
             case EnemyStates.ATTACK:
 
-                //TurnEnemy();
+                TurnEnemy();
 
                 if (canChaseDetection == true && canAttackDetection == false && currentlyAttacking == false)
                 {
@@ -270,9 +271,9 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
             reachedEndOfPath = false;
         }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
 
-        Vector2 force = direction * (moveSpeed * chaseSpeedMultiplier) * Time.deltaTime;
+        force = (moveSpeed * chaseSpeedMultiplier) * Time.deltaTime * direction;
 
         rb.AddForce(force);
 
@@ -369,12 +370,12 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         {
             if (transform.position.x > playerTarget.position.x)
             {
-                transform.localScale = new Vector2(1, transform.localScale.y);
+                transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 isFacingRightFunction();
             }
             else
             {
-                transform.localScale = new Vector2(-1, transform.localScale.y);
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 isFacingRightFunction();
             }
         }

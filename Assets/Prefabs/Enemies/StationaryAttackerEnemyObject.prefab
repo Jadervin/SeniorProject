@@ -488,16 +488,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 20
+  enemyDamage: 5
+  rb: {fileID: 0}
+  boxCollider: {fileID: 0}
   enemyParent: {fileID: 5417343538276433052}
   leftStopPoint: {fileID: 7307477240200023467}
   rightStopPoint: {fileID: 659783300517565530}
   playerTarget: {fileID: 0}
   mainSprite: {fileID: 5983329531555483742}
-  damage: 7
+  itemToSpawn: {fileID: 0}
   groundLength: 0.95
   colliderOffset: {x: -0.7, y: 0, z: 0}
   chaseTriggerRadius: 3
   attackTriggerRadius: 2.12
+  oldChaseTriggerRadius: 0
+  oldAttackTriggerRadius: 0
   moveSpeed: 3
   chaseSpeedMultiplier: 1.3
   isFacingRight: 0
