@@ -11,7 +11,7 @@ public class CameraControlTrigger : MonoBehaviour
 
     private Collider2D normalCollider;
     //public LayerMask playerLayer;
-    public const string PLAYERTAG = "Player";
+    
 
 
     private void Start()
@@ -21,7 +21,7 @@ public class CameraControlTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag(PLAYERTAG))
+        if(collision.CompareTag(TagReferencesScript.PLAYERTAG))
         {
             if(customInspectorObjects.panCameraOnContact)
             {
@@ -34,7 +34,7 @@ public class CameraControlTrigger : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag(PLAYERTAG))
+        if (collision.CompareTag(TagReferencesScript.PLAYERTAG))
         {
 
             Vector2 exitDirection = (collision.transform.position - normalCollider.bounds.center).normalized;

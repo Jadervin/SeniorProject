@@ -10,6 +10,8 @@ public static class TagReferencesScript
     public const string CAMERA_SWITCH_TRIGGER_TAG = "CameraSwitchTriggers";
     public const string ENEMYTAG = "Enemy";
     public const string BOSSENEMYTAG = "Boss Enemy";
+    public const string ENEMY_PROJECTILE_TAG = "EnemyProjectile";
     public const string PLAYERTAG = "Player";
+    public const string HEALTHUPGRADETAG = "HealthUpgrade";
 
 }

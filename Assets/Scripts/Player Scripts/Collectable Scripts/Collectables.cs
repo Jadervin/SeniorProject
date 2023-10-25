@@ -5,12 +5,12 @@ using UnityEngine;
 public abstract class Collectables : MonoBehaviour
 {
     [SerializeField] protected GameObject player;
-    [SerializeField] protected string PLAYERTAG = "Player";
+    
 
     // Start is called before the first frame update
     protected void Start()
     {
-        player = GameObject.FindGameObjectWithTag(PLAYERTAG).gameObject;
+        player = GameObject.FindGameObjectWithTag(TagReferencesScript.PLAYERTAG).gameObject;
     }
 
     // Update is called once per frame

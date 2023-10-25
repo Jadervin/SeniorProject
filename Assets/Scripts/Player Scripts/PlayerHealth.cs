@@ -6,10 +6,7 @@ using UnityEngine;
 
 public class PlayerHealth : EntityScript
 {
-    [SerializeField] private string ENEMYTAG = "Enemy";
-    public string BOSSENEMYTAG = "Boss Enemy";
-    [SerializeField] private string ENEMY_PROJECTILE_TAG = "EnemyProjectile";
-    //[SerializeField] private string HEALTHUPGRADETAG = "HealthUpgrade";
+   
 
     [SerializeField] private float damageTimeBuffer = 1f;
     [SerializeField] private bool isInvincible;
@@ -91,7 +88,7 @@ public class PlayerHealth : EntityScript
     private void OnCollisionEnter2D(Collision2D collision)
     {
       
-        if (collision.gameObject.CompareTag(ENEMYTAG) && isInvincible == false || collision.gameObject.CompareTag(BOSSENEMYTAG) && isInvincible == false)
+        if (collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG) && isInvincible == false || collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && isInvincible == false)
         {
             int damage = collision.gameObject.GetComponent<EntityScript>().GetEnemyDamage();
             DamageHealth(damage);
@@ -118,7 +115,7 @@ public class PlayerHealth : EntityScript
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(ENEMY_PROJECTILE_TAG) && isInvincible == false && MovementLimiter.instance.playerActionStates != PlayerActionStates.COUNTERING /*&& is not tongue countering*/)
+        if (collision.gameObject.CompareTag(TagReferencesScript.ENEMY_PROJECTILE_TAG) && isInvincible == false && MovementLimiter.instance.playerActionStates != PlayerActionStates.COUNTERING /*&& is not tongue countering*/)
         {
             int damage = collision.gameObject.GetComponent<EnemyProjectileScript>().GetDamage();
             DamageHealth(damage);

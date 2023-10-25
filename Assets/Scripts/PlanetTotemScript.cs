@@ -9,7 +9,6 @@ public class PlanetTotemScript : MonoBehaviour
     //[SerializeField] private List<GameObject> hiddenAreas;
     [SerializeField] private Collider2D switchCollider;
     [SerializeField] private int maxArtifacts = 3;
-    [SerializeField] private string PLAYERTAG = "Player";
     [SerializeField] private bool completedTotem = false;
 
     public static event EventHandler<OnSendingArtifactNumberEventArgs> OnPlayerStartingWorld;
@@ -70,7 +69,7 @@ public class PlanetTotemScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(PLAYERTAG) &&
+        if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG) &&
             collision.gameObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded() == 0 &&
             completedTotem == false)
         {
@@ -91,7 +90,7 @@ public class PlanetTotemScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag(PLAYERTAG) &&
+        if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG) &&
             collision.gameObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected() == maxArtifacts)
         {
             foreach (GameObject wall in unlockableAreas)

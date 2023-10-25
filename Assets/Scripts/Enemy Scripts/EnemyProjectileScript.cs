@@ -13,7 +13,7 @@ public class EnemyProjectileScript : MonoBehaviour
 
     [SerializeField] private EnemyScript enemy;
     [SerializeField] private int damage;
-    [SerializeField] private string TONGUE_COUNTER_TAG = "TongueCounter";
+    
 
     public int GetDamage()
     {
@@ -22,7 +22,7 @@ public class EnemyProjectileScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(TONGUE_COUNTER_TAG))
+        if (collision.gameObject.CompareTag(TagReferencesScript.TONGUE_COUNTER_TAG))
         {
             //Knockback enemy
             OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs

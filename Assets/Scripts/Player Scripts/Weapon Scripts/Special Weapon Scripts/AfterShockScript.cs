@@ -10,8 +10,7 @@ public class AfterShockScript : MonoBehaviour
     [SerializeField] private float timeSinceSpawned = 0f;
     [SerializeField] private float shockCooldownTime = .2f;
     [SerializeField] private float shockDespawnTime = 3f;
-    public string ENEMYTAG = "Enemy";
-    public string BOSSENEMYTAG = "Boss Enemy";
+
 
     private void Update()
     {
@@ -49,7 +48,7 @@ public class AfterShockScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag(ENEMYTAG) && hitWithCollider == false || collision.gameObject.CompareTag(BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER && hitWithCollider == false)
+        if(collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG) && hitWithCollider == false || collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER && hitWithCollider == false)
         {
             collision.gameObject.GetComponent<EnemyScript>().DamageHealth(shockDamage);
             hitWithCollider = true;

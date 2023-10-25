@@ -5,7 +5,7 @@ using UnityEngine;
 public class RefillStationScript : MonoBehaviour
 {
     [SerializeField] private Collider2D switchCollider;
-    [SerializeField] private string PLAYERTAG = "Player";
+
     [SerializeField] private bool refilledEnergy = false;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private SpecialWeaponManagerScript specialWeaponScript;
@@ -27,7 +27,7 @@ public class RefillStationScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(PLAYERTAG) && refilledEnergy == false)
+        if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG) && refilledEnergy == false)
         {
             refilledEnergy = true;
 
