@@ -629,7 +629,7 @@ MonoBehaviour:
   enemyDamage: 7
   bossEnemyState: 0
   bossAttackState: 0
-  previousBossAttackState: 1
+  previousBossAttackState: 0
   attackCounterState: 0
   enemyHealthState: 0
   maxAttackStates: 0
