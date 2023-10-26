@@ -136,8 +136,7 @@ MonoBehaviour:
   timeSinceHit: 0
   timeSinceSpawned: 0
   shockCooldownTime: 0.2
-  shockDespawnTime: 20
-  ENEMYTAG: Enemy
+  shockDespawnTime: 3
 --- !u!50 &-3144810862402296348
 Rigidbody2D:
   serializedVersion: 4

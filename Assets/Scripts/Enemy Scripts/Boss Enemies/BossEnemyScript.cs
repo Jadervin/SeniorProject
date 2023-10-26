@@ -35,6 +35,7 @@ public class BossEnemyScript : EntityScript
 {
     [Header("States")]
     [SerializeField] protected BossEnemyStates bossEnemyState;
+    //[SerializeField] protected List<BossEnemyAttackStates> bossAttackStateChoices;
     [SerializeField] protected BossEnemyAttackStates bossAttackState;
     [SerializeField] protected BossEnemyAttackStates previousBossAttackState;
     //[SerializeField] protected bool choseAttack = false;
@@ -52,14 +53,12 @@ public class BossEnemyScript : EntityScript
     [SerializeField] protected SpriteRenderer mainSprite;
     [SerializeField] protected GameObject itemToSpawn;
     protected Color mainColor;
+    protected Color currentColor;
 
     [Header("Booleans")]
     [SerializeField] protected bool isFacingRight;
     [SerializeField] protected bool currentlyAttacking;
-    [SerializeField] protected bool stunTimerOn;
-    [SerializeField] protected bool notStunnedAnymore;
 
-    
 /*
     [Header("Tags")]
     public string WALLTAG = "Wall";
@@ -73,10 +72,12 @@ public class BossEnemyScript : EntityScript
     [Header("Waiting for Player State Variables")]
     [SerializeField] protected bool canSeePlayer;
     [SerializeField] protected float playerTriggerRadius = 1.5f;
+    protected float playerTriggerRadiusReset;
     [SerializeField] protected List<GameObject> wallsToSpawn = new List<GameObject>();
 
     [Header("Idle State Variables")]
     [SerializeField] protected float idleWaitTime = 3f;
+    [SerializeField] protected float timeIdle = 0f;
 
     [Header("Attack State Variables")]
     [SerializeField] protected bool canAttack = true;
@@ -84,6 +85,11 @@ public class BossEnemyScript : EntityScript
     [SerializeField] protected bool isRecharging = false;
     [SerializeField] protected float rechargeTime = 3f;
 
+    [Header("Stun Variables")]
+    [SerializeField] protected float stunWaitTime = 2f;
+    [SerializeField] protected float timeStunned;
+    [SerializeField] protected bool stunTimerOn;
+    [SerializeField] protected bool notStunnedAnymore = true;
 
     [Header("Shooting Variables")]
     [SerializeField] private Transform shootPoint;
@@ -98,16 +104,15 @@ public class BossEnemyScript : EntityScript
     
     [SerializeField] protected float dashPower = 24.0f;
     [SerializeField] protected float attackTime = .4f;
-    [SerializeField] protected float counterableTimeFrame = .3f;
+    /*[SerializeField] */protected float counterableTimeFrame = .3f;
 
     [SerializeField] protected bool isChargingAttack = false;
     
 
-
     [Header("Knockback Variables")]
     [SerializeField] protected float knockbackStrength = 16;
     [SerializeField] protected float delayTime = .3f;
-    [SerializeField] protected float stunTime = 2f;
+    
 
     private void Start()
     {
@@ -118,6 +123,14 @@ public class BossEnemyScript : EntityScript
         counterableTimeFrame = attackTime;
 
         mainColor = mainSprite.color;
+
+        bossEnemyState = BossEnemyStates.WAITINGFORPLAYER;
+        playerTriggerRadiusReset = playerTriggerRadius;
+
+
+        timeIdle = 0f;
+        timeStunned = 0f;
+        notStunnedAnymore = true;
 
         foreach (GameObject wall in wallsToSpawn)
         {
@@ -139,7 +152,19 @@ public class BossEnemyScript : EntityScript
                 break;
 
             case BossEnemyStates.IDLE:
-                StartCoroutine(IdleTimer());
+                if (stunTimerOn == false)
+                {
+                    //StartCoroutine(IdleTimer());
+                    TurnEnemy();
+
+                    timeIdle += Time.deltaTime;
+
+                    if (timeIdle > idleWaitTime)
+                    {
+                        timeIdle = 0f;
+                        bossEnemyState = BossEnemyStates.ATTACKING;
+                    }
+                }
                 break;
 
             case BossEnemyStates.WALKING:
@@ -196,12 +221,16 @@ public class BossEnemyScript : EntityScript
                 }
 
 
-                
-
                 break;
 
             case BossEnemyStates.STUNNED:
-                
+                if(stunTimerOn == false)
+                {
+                    stunTimerOn = true;
+                    notStunnedAnymore = false;
+
+                    StartCoroutine(StunTimer());
+                }
                 break;
 
             case BossEnemyStates.DEATH:
@@ -217,31 +246,38 @@ public class BossEnemyScript : EntityScript
         switch(enemyHealthState) 
         {
             case BossEnemyHealthStates.HIGHHEALTH:
-                if (bossEnemyState != BossEnemyStates.WAITINGFORPLAYER)
+                if (bossEnemyState != BossEnemyStates.WAITINGFORPLAYER && canAttack == false && bossEnemyState != BossEnemyStates.STUNNED)
                 {
                     mainSprite.color = mainColor;
+                    currentColor = mainColor;
                 }
 
-                if (currentHealth < (maxHealth * (2 / 3)))
+                if (currentHealth < (maxHealth * .6f))
                 {
                     enemyHealthState = BossEnemyHealthStates.MILDHEALTH;
                 }
                 break;
 
             case BossEnemyHealthStates.MILDHEALTH:
-                
-                mainSprite.color = Color.magenta;
+                if (canAttack == false && bossEnemyState != BossEnemyStates.STUNNED)
+                {
+                    mainSprite.color = Color.magenta;
+                    currentColor = Color.magenta;
+                }
 
-                if (currentHealth < (maxHealth * (1 / 3)))
+
+                if (currentHealth < (maxHealth * .3f))
                 {
                     enemyHealthState = BossEnemyHealthStates.LOWHEALTH;
                 }
                 break;
 
             case BossEnemyHealthStates.LOWHEALTH:
-                
-                mainSprite.color = Color.red;
-                
+                if (canAttack == false && bossEnemyState != BossEnemyStates.STUNNED)
+                {
+                    mainSprite.color = Color.red;
+                    currentColor = Color.red;
+                }
                 break;
 
             default:
@@ -254,6 +290,8 @@ public class BossEnemyScript : EntityScript
 
     private void CheckForPlayer()
     {
+        playerTriggerRadius = playerTriggerRadiusReset;
+
         canSeePlayer = Physics2D.OverlapCircle(transform.position, playerTriggerRadius, playerLayer);
 
 
@@ -280,15 +318,52 @@ public class BossEnemyScript : EntityScript
 
     }
 
-    private IEnumerator IdleTimer()
-    {
-        yield return new WaitForSeconds(idleWaitTime);
-        //choseAttack = false;
-        bossEnemyState = BossEnemyStates.ATTACKING;
-        //canAttack = true;
+    /*    private IEnumerator IdleTimer()
+        {
+            yield return new WaitForSeconds(idleWaitTime);
+            //choseAttack = false;
+            bossEnemyState = BossEnemyStates.ATTACKING;
+            //canAttack = true;
 
+        }*/
+
+    protected void TurnEnemy()
+    {
+        //Changes the direction the enemy based on which side the player is on
+        
+        if (transform.position.x < playerTarget.position.x)
+        {
+            transform.localScale = new Vector2(1, transform.localScale.y);
+
+            Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+            shootPoint.transform.rotation = Quaternion.Euler(rotator);
+
+
+            //shootPoint.transform.Rotate(transform.rotation.x, 0f, transform.rotation.z);
+            //transform.Rotate(transform.rotation.x, 0f, transform.rotation.z);
+            isFacingRightFunction();
+        }
+        else
+        {
+
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+
+            Vector3 rotator = new Vector3(transform.rotation.x, 180f, transform.rotation.z);
+            shootPoint.transform.rotation = Quaternion.Euler(rotator);
+
+
+            //shootPoint.transform.Rotate(transform.rotation.x, 180.0f, transform.rotation.z);
+            //transform.Rotate(transform.rotation.x, 180f, transform.rotation.z);
+            isFacingRightFunction();
+        }
+        
     }
 
+    protected bool isFacingRightFunction()
+    {
+        isFacingRight = transform.localScale.x > Mathf.Epsilon;
+        return transform.localScale.x > Mathf.Epsilon;
+    }
 
     private IEnumerator Shooting()
     {
@@ -313,7 +388,7 @@ public class BossEnemyScript : EntityScript
     private IEnumerator Dashing()
     {
         
-        canAttack = false;
+        //canAttack = false;
         isChargingAttack = true;
         currentlyAttacking = true;
         mainSprite.color = Color.yellow;
@@ -322,8 +397,6 @@ public class BossEnemyScript : EntityScript
             yield return new WaitForSeconds(dashAttackChargeTime);
             isChargingAttack = false;
         }
-        //Attack
-        //StartCoroutine(EnemyAttack_DashAttack());
 
         //Enemy is now attacking with the dash attack
         isUsingAttack = true;
@@ -361,7 +434,14 @@ public class BossEnemyScript : EntityScript
         }
 
         yield return new WaitForSeconds(dashAttackChargeTime);
-        bossEnemyState = BossEnemyStates.IDLE;
+
+
+        /*if (stunTimerOn == false && bossEnemyState != BossEnemyStates.STUNNED)
+        {}*/
+            bossEnemyState = BossEnemyStates.IDLE;
+        
+
+
         previousBossAttackState = BossEnemyAttackStates.DASH;
         canAttack = true;
     }
@@ -370,15 +450,7 @@ public class BossEnemyScript : EntityScript
     {
         if (collision.gameObject.CompareTag(TagReferencesScript.TONGUE_COUNTER_TAG) && bossEnemyState == BossEnemyStates.ATTACKING && attackCounterState == AttackCounterStates.COUNTERABLE)
         {
-            /*
-            Knockback enemy
-            OnEnemyKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
-            {
-                collidedGameObject = collision.gameObject
-            });
-            */
-            //StopCoroutine(EnemyAttack());
-
+          
             EnemyKnockbackAction(collision.gameObject);
 
             //enemyState = EnemyStates.STUNNED;
@@ -395,6 +467,8 @@ public class BossEnemyScript : EntityScript
         Debug.Log(transform.position - collidedGameObject.transform.position);
 
         StopAllCoroutines();*/
+
+
         Vector2 knockbackDirection = (transform.position - collidedGameObject.transform.position).normalized;
         knockbackDirection.y *= -1;
         Debug.Log(knockbackDirection * knockbackStrength);
@@ -407,19 +481,45 @@ public class BossEnemyScript : EntityScript
         Debug.Log(rb.velocity);
 
         StartCoroutine(KnockbackDelay());
-        StunEnemy();
+
+        bossEnemyState = BossEnemyStates.STUNNED;
+        //StunEnemy();
     }
 
     protected IEnumerator KnockbackDelay()
     {
         yield return new WaitForSeconds(delayTime);
         rb.velocity = Vector2.zero;
+        //bossEnemyState = BossEnemyStates.STUNNED;
 
     }
 
-    public void StunEnemy()
+/*    public void StunEnemy()
     {
         bossEnemyState = BossEnemyStates.STUNNED;
+    }*/
+
+    protected IEnumerator StunTimer()
+    {
+        
+        mainSprite.color = Color.gray;
+
+
+        currentlyAttacking = false;
+        isUsingAttack = false;
+        isRecharging = false;
+        isChargingAttack = false;
+
+        //canAttack = true;
+
+        yield return new WaitForSeconds(stunWaitTime);
+
+        mainSprite.color = currentColor;
+
+        stunTimerOn = false;
+        notStunnedAnymore = true;
+
+
     }
 
 
