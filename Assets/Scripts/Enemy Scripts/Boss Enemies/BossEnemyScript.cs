@@ -120,6 +120,7 @@ public class BossEnemyScript : EntityScript
         rb = GetComponent<Rigidbody2D>();
         polyCollider = GetComponent<Collider2D>();
 
+        canSeePlayer = false;
         counterableTimeFrame = attackTime;
 
         mainColor = mainSprite.color;
@@ -246,7 +247,7 @@ public class BossEnemyScript : EntityScript
         switch(enemyHealthState) 
         {
             case BossEnemyHealthStates.HIGHHEALTH:
-                if (bossEnemyState != BossEnemyStates.WAITINGFORPLAYER && canAttack == false && bossEnemyState != BossEnemyStates.STUNNED)
+                if (bossEnemyState != BossEnemyStates.WAITINGFORPLAYER && canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
                     mainSprite.color = mainColor;
                     currentColor = mainColor;
@@ -259,7 +260,7 @@ public class BossEnemyScript : EntityScript
                 break;
 
             case BossEnemyHealthStates.MILDHEALTH:
-                if (canAttack == false && bossEnemyState != BossEnemyStates.STUNNED)
+                if (canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
                     mainSprite.color = Color.magenta;
                     currentColor = Color.magenta;
@@ -273,7 +274,7 @@ public class BossEnemyScript : EntityScript
                 break;
 
             case BossEnemyHealthStates.LOWHEALTH:
-                if (canAttack == false && bossEnemyState != BossEnemyStates.STUNNED)
+                if (canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
                     mainSprite.color = Color.red;
                     currentColor = Color.red;
@@ -438,7 +439,8 @@ public class BossEnemyScript : EntityScript
 
         /*if (stunTimerOn == false && bossEnemyState != BossEnemyStates.STUNNED)
         {}*/
-            bossEnemyState = BossEnemyStates.IDLE;
+        mainSprite.color = currentColor;
+        bossEnemyState = BossEnemyStates.IDLE;
         
 
 

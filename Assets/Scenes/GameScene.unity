@@ -7988,7 +7988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &903960411
 Transform:
   m_ObjectHideFlags: 0
@@ -19391,9 +19391,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2025352914602989820, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
+      propertyPath: m_GravityScale
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6586642902315126123, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
       propertyPath: m_Name
       value: Boss Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
+      propertyPath: itemToSpawn
+      value: 
+      objectReference: {fileID: 6298217667686722615, guid: 6458f06a00914dd4ca2ed7e402c0bdc1, type: 3}
+    - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
+      propertyPath: playerTriggerRadius
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
+      propertyPath: wallsToSpawn.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
       propertyPath: wallsToSpawn.Array.data[1]

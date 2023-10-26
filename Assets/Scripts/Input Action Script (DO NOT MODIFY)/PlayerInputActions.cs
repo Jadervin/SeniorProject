@@ -282,7 +282,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a609746f-6bd4-453e-865e-5abaf05c21fb"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/i"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
