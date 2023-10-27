@@ -47,6 +47,9 @@ public class CameraManager : MonoBehaviour
                 //set the current active camera
                 currentCamera = allVirtualCameras[i];
 
+                MapRoomManager.instance.RevealRoom();
+
+
                 //set the framing transposer
                 framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
             }
@@ -220,6 +223,8 @@ public class CameraManager : MonoBehaviour
             //set the new camera as the current camera
             currentCamera = cameraFromRight;
 
+            MapRoomManager.instance.RevealRoom();
+
             //update our composer variable
             framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
@@ -236,6 +241,8 @@ public class CameraManager : MonoBehaviour
 
             //set the new camera as the current camera
             currentCamera = cameraFromLeft;
+
+            MapRoomManager.instance.RevealRoom();
 
             //update our composer variable
             framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
@@ -254,6 +261,8 @@ public class CameraManager : MonoBehaviour
             //set the new camera as the current camera
             currentCamera = cameraFromBottom;
 
+            MapRoomManager.instance.RevealRoom();
+
             //update our composer variable
             framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
@@ -271,9 +280,17 @@ public class CameraManager : MonoBehaviour
             //set the new camera as the current camera
             currentCamera = cameraFromTop;
 
+            MapRoomManager.instance.RevealRoom();
+
             //update our composer variable
             framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
+    }
+
+
+    public CinemachineVirtualCamera GetCurrentCamera()
+    {
+        return currentCamera;
     }
 
 }

@@ -20,7 +20,7 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnSpecialShootRelease;
     public event EventHandler OnSpecialWeaponSwitch;
     public event EventHandler OnPausePressed;
-
+    public event EventHandler OnMapPressed;
 
     private void Awake()
     {
@@ -43,10 +43,11 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.SpecialWeaponSwitching.started += SpecialWeaponSwitching_started;
 
         playerInputActions.Player.Pause.performed += Pause_performed;
+        playerInputActions.Player.Map.performed += Map_performed;
 
     }
 
-    
+
     private void OnDestroy()
     {
         playerInputActions.Player.Jump.started -= Jump_started;
@@ -60,8 +61,19 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.SpecialShoot.canceled -= SpecialShoot_canceled;
         playerInputActions.Player.SpecialWeaponSwitching.started -= SpecialWeaponSwitching_started;
         playerInputActions.Player.Pause.performed -= Pause_performed;
+        playerInputActions.Player.Map.performed -= Map_performed;
 
         playerInputActions.Dispose();
+    }
+
+
+    private void Map_performed(InputAction.CallbackContext obj)
+    {
+        if (!GameSceneManager.Instance.IsGameOver())
+        {
+
+            OnMapPressed?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     private void Pause_performed(InputAction.CallbackContext obj)
