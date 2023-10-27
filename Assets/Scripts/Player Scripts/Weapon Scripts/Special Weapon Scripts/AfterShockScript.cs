@@ -6,67 +6,45 @@ public class AfterShockScript : MonoBehaviour
 {
     [SerializeField] private int shockDamage = 1;
     [SerializeField] private bool hitWithCollider = false;
-    //[SerializeField] private float timeSinceHit = 0f;
-    //[SerializeField] private float timeSinceSpawned = 0f;
+    [SerializeField] private float timeSinceHit = 0f;
+    [SerializeField] private float timeSinceSpawned = 0f;
     [SerializeField] private float shockCooldownTime = .2f;
     [SerializeField] private float shockDespawnTime = 3f;
-
+    [SerializeField] private float shockRadius = 10f;
+    [SerializeField] private LayerMask enemyLayer;
 
     private void Update()
     {
-/*        timeSinceSpawned += Time.deltaTime;
-        if (timeSinceSpawned > aftershockDespawnTime)
+        timeSinceSpawned += Time.deltaTime;
+        if (timeSinceSpawned > shockDespawnTime)
         {
             timeSinceSpawned = 0;
             Destroy(gameObject);
         }
 
-        if (hitWithCollider == true)
+
+        timeSinceHit += Time.deltaTime;
+
+        if (timeSinceHit > shockCooldownTime)
         {
-            timeSinceHit += Time.deltaTime;
+            timeSinceHit = 0;
 
-            if (timeSinceHit > shockCooldownTime)
+            hitWithCollider = false;
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, shockRadius, enemyLayer);
+            foreach (Collider2D collider in collider2Ds)
             {
-                timeSinceHit = 0;
-
-                hitWithCollider = false;
-
+                collider.gameObject.GetComponent<EnemyScript>().DamageHealth(shockDamage);
+                hitWithCollider = true;
             }
 
-        }*/
 
-
-        if (hitWithCollider == true)
-        {
-            StartCoroutine(ShockCooldown());
-        }
-
-
-        StartCoroutine(SpawnCooldown());
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG) && hitWithCollider == false || collision.gameObject.CompareTag(TagReferencesScript.BOSSENEMYTAG) && collision.gameObject.GetComponent<BossEnemyScript>().GetBossEnemyState() != BossEnemyStates.WAITINGFORPLAYER && hitWithCollider == false)
-        {
-            collision.gameObject.GetComponent<EnemyScript>().DamageHealth(shockDamage);
-            hitWithCollider = true;
         }
     }
 
-    public IEnumerator SpawnCooldown()
+    private void OnDrawGizmos()
     {
-        yield return new WaitForSeconds(shockDespawnTime);
-
-        Destroy(gameObject);
-    }
-
-    public IEnumerator ShockCooldown()
-    {
-        yield return new WaitForSeconds(shockCooldownTime);
-
-        hitWithCollider = false;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, shockRadius);
     }
 
 

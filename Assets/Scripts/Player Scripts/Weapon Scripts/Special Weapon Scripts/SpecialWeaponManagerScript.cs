@@ -183,7 +183,7 @@ public class SpecialWeaponManagerScript : MonoBehaviour
 
             if (currentWeaponIndex < 0)
             {
-                currentWeaponIndex = 1;
+                currentWeaponIndex = specialWeaponList.Count - 1;
             }
 
             currentSpecialWeapon = specialWeaponList[currentWeaponIndex];
