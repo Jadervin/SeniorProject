@@ -6,8 +6,8 @@ public class AfterShockScript : MonoBehaviour
 {
     [SerializeField] private int shockDamage = 1;
     [SerializeField] private bool hitWithCollider = false;
-    [SerializeField] private float timeSinceHit = 0f;
-    [SerializeField] private float timeSinceSpawned = 0f;
+    //[SerializeField] private float timeSinceHit = 0f;
+    //[SerializeField] private float timeSinceSpawned = 0f;
     [SerializeField] private float shockCooldownTime = .2f;
     [SerializeField] private float shockDespawnTime = 3f;
 
