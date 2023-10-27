@@ -110,7 +110,7 @@ public class MovementLimiter : MonoBehaviour
     {
         characterCanMove = false;
         CharacterIsDead = true;
-        GameSceneManager.Instance.SetGameStateToDeath();
+        GameSceneManager.Instance.SetGameState(GameStates.GameOver);
     }
 
 

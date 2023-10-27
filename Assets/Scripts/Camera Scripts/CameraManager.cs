@@ -47,7 +47,7 @@ public class CameraManager : MonoBehaviour
                 //set the current active camera
                 currentCamera = allVirtualCameras[i];
 
-                MapRoomManager.instance.RevealRoom();
+                //MapRoomManager.instance.RevealRoom();
 
 
                 //set the framing transposer

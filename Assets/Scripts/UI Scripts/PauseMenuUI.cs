@@ -19,45 +19,49 @@ public class PauseMenuUI : MonoBehaviour
 
         resumeButton.onClick.AddListener(() => {
             //Click
-            GameSceneManager.Instance.TogglePauseGame();
+            PauseManager.instance.TogglePauseGame();
         });
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameSceneManager.Instance.OnGamePaused += GameSceneManager_OnGamePaused;
-        GameSceneManager.Instance.OnGameUnpaused += GameSceneManager_OnGameUnpaused;
+        PauseManager.instance.OnGamePaused += Instance_OnGamePaused;
+        PauseManager.instance.OnGameUnpaused += Instance_OnGameUnpaused;
         Hide();
     }
 
-    private void GameSceneManager_OnGameUnpaused(object sender, System.EventArgs e)
+    private void Instance_OnGameUnpaused(object sender, System.EventArgs e)
     {
         Hide();
     }
 
-    private void GameSceneManager_OnGamePaused(object sender, System.EventArgs e)
+    private void Instance_OnGamePaused(object sender, System.EventArgs e)
     {
         Show();
     }
-
-    // Update is called once per frame
-    void Update()
+/*
+    private void PauseManager_OnGameUnpaused(object sender, System.EventArgs e)
     {
-        
+        Hide();
     }
 
+    private void PauseManager_OnGamePaused(object sender, System.EventArgs e)
+    {
+        Show();
+    }
+*/
 
     private void Show()
     {
-        gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
 
 
     }
 
     private void Hide()
     {
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
 }

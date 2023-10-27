@@ -69,16 +69,15 @@ public class GameInput : MonoBehaviour
 
     private void Map_performed(InputAction.CallbackContext obj)
     {
-        if (!GameSceneManager.Instance.IsGameOver())
+        if (GameSceneManager.Instance.GetGameState() != GameStates.GameOver && GameSceneManager.Instance.GetGameState() != GameStates.Paused)
         {
-
             OnMapPressed?.Invoke(this, EventArgs.Empty);
         }
     }
 
     private void Pause_performed(InputAction.CallbackContext obj)
     {
-        if(!GameSceneManager.Instance.IsGameOver())
+        if(GameSceneManager.Instance.GetGameState() != GameStates.GameOver && GameSceneManager.Instance.GetGameState() != GameStates.MapOpen)
         {
             OnPausePressed?.Invoke(this, EventArgs.Empty);
         }
@@ -87,14 +86,14 @@ public class GameInput : MonoBehaviour
 
     private void TongueCounter_performed(InputAction.CallbackContext obj)
     {
-        if (MovementLimiter.instance.characterCanMove)
+        if (MovementLimiter.instance.characterCanMove && GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying)
         {
             OnTongueCounterPressed?.Invoke(this, EventArgs.Empty);
         }
     }
     private void Shoot_performed(InputAction.CallbackContext obj)
     {
-        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanBasicShoot)
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanBasicShoot && GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying)
         {
             OnShootPressed?.Invoke(this, EventArgs.Empty);
         }
@@ -102,7 +101,7 @@ public class GameInput : MonoBehaviour
 
     private void SpecialShoot_performed(InputAction.CallbackContext obj)
     {
-        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanSpecialShoot)
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanSpecialShoot && GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying)
         {
             OnSpecialShootPressed?.Invoke(this, EventArgs.Empty);
         }
@@ -111,7 +110,7 @@ public class GameInput : MonoBehaviour
     private void SpecialShoot_canceled(InputAction.CallbackContext obj)
     {
 
-        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanSpecialShoot)
+        if (MovementLimiter.instance.characterCanMove && MovementLimiter.instance.characterCanSpecialShoot && GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying)
         {
             OnSpecialShootRelease?.Invoke(this, EventArgs.Empty);
         }
@@ -119,8 +118,10 @@ public class GameInput : MonoBehaviour
 
     private void SpecialWeaponSwitching_started(InputAction.CallbackContext obj)
     {
-        OnSpecialWeaponSwitch?.Invoke(this, EventArgs.Empty);
-        
+        if (GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying)
+        {
+            OnSpecialWeaponSwitch?.Invoke(this, EventArgs.Empty);
+        }
     }
 
 

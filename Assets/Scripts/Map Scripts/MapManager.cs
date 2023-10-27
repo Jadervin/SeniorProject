@@ -29,6 +29,7 @@ public class MapManager : MonoBehaviour
         if(IsMapScreenOpen == false) 
         {
             //open map screen
+            GameSceneManager.Instance.SetGameState(GameStates.MapOpen);
             OpenMapScreen();
 
 
@@ -37,6 +38,7 @@ public class MapManager : MonoBehaviour
         else
         {
             //close map screen
+            GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
             CloseMapScreen();
 
         }

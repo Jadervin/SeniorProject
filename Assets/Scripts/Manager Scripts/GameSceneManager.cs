@@ -3,66 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GameStates
+{
+    GamePlaying,
+    /*PlayerDead,*/
+    Paused,
+    MapOpen,
+    GameOver,
+}
+
 public class GameSceneManager : MonoBehaviour
 {
-    public enum GameState
-    {
-        GamePlaying,
-        /*PlayerDead,*/
-        GameOver,
-    }
+    
 
     public static GameSceneManager Instance { get; private set; }
 
-    public event EventHandler OnGamePaused;
-    public event EventHandler OnGameUnpaused;
+    
 
-
-    [SerializeField] private GameState gameState;
-    private bool isGamePaused = false;
+    [SerializeField] private GameStates gameState;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
-        gameState = GameState.GamePlaying;
+        gameState = GameStates.GamePlaying;
 
-        GameInput.Instance.OnPausePressed += GameInput_OnPausePressed;
+        
     }
 
-    private void GameInput_OnPausePressed(object sender, EventArgs e)
+    
+
+    /*public bool IsGameOver()
     {
-        TogglePauseGame();
-    }
+        return gameState == GameStates.GameOver;
+    }*/
 
-
-    public void TogglePauseGame()
+    /*public void SetGameStateToDeath()
     {
-        isGamePaused = !isGamePaused;
-        if (isGamePaused)
-        {
-            Time.timeScale = 0f;
-            OnGamePaused?.Invoke(this, EventArgs.Empty);
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
-        }
+        gameState = GameStates.GameOver;
+    }*/
 
-    }
+    public GameStates GetGameState() { return gameState; }
 
-
-    public bool IsGameOver()
+    public void SetGameState(GameStates nextGameState)
     {
-        return gameState == GameState.GameOver;
+        gameState = nextGameState;
     }
-
-    public void SetGameStateToDeath()
-    {
-        gameState = GameState.GameOver;
-    }
-
 
     /*
     public GameState GetGameState()
