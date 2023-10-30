@@ -46,18 +46,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Special Shoot"",
+                    ""name"": ""Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""68806100-c5fa-4816-b3cc-a907f6319214"",
+                    ""id"": ""f37d322d-b96e-4344-b5bf-0838ef973374"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""Special Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""f37d322d-b96e-4344-b5bf-0838ef973374"",
+                    ""id"": ""68806100-c5fa-4816-b3cc-a907f6319214"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -197,28 +197,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a578a3f2-a0ae-46c4-a907-bc53804f68f0"",
-                    ""path"": ""<Keyboard>/j"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a248eb03-c4b8-4339-a5d3-96d1278568d2"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -375,6 +353,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a578a3f2-a0ae-46c4-a907-bc53804f68f0"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a248eb03-c4b8-4339-a5d3-96d1278568d2"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -396,8 +396,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_SpecialShoot = m_Player.FindAction("Special Shoot", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
+        m_Player_SpecialShoot = m_Player.FindAction("Special Shoot", throwIfNotFound: true);
         m_Player_TongueCounter = m_Player.FindAction("Tongue Counter", throwIfNotFound: true);
         m_Player_SpecialWeaponSwitching = m_Player.FindAction("Special Weapon Switching", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
@@ -465,8 +465,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_SpecialShoot;
     private readonly InputAction m_Player_Shoot;
+    private readonly InputAction m_Player_SpecialShoot;
     private readonly InputAction m_Player_TongueCounter;
     private readonly InputAction m_Player_SpecialWeaponSwitching;
     private readonly InputAction m_Player_Pause;
@@ -477,8 +477,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @SpecialShoot => m_Wrapper.m_Player_SpecialShoot;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
+        public InputAction @SpecialShoot => m_Wrapper.m_Player_SpecialShoot;
         public InputAction @TongueCounter => m_Wrapper.m_Player_TongueCounter;
         public InputAction @SpecialWeaponSwitching => m_Wrapper.m_Player_SpecialWeaponSwitching;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
@@ -498,12 +498,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @SpecialShoot.started += instance.OnSpecialShoot;
-            @SpecialShoot.performed += instance.OnSpecialShoot;
-            @SpecialShoot.canceled += instance.OnSpecialShoot;
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @SpecialShoot.started += instance.OnSpecialShoot;
+            @SpecialShoot.performed += instance.OnSpecialShoot;
+            @SpecialShoot.canceled += instance.OnSpecialShoot;
             @TongueCounter.started += instance.OnTongueCounter;
             @TongueCounter.performed += instance.OnTongueCounter;
             @TongueCounter.canceled += instance.OnTongueCounter;
@@ -526,12 +526,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @SpecialShoot.started -= instance.OnSpecialShoot;
-            @SpecialShoot.performed -= instance.OnSpecialShoot;
-            @SpecialShoot.canceled -= instance.OnSpecialShoot;
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @SpecialShoot.started -= instance.OnSpecialShoot;
+            @SpecialShoot.performed -= instance.OnSpecialShoot;
+            @SpecialShoot.canceled -= instance.OnSpecialShoot;
             @TongueCounter.started -= instance.OnTongueCounter;
             @TongueCounter.performed -= instance.OnTongueCounter;
             @TongueCounter.canceled -= instance.OnTongueCounter;
@@ -583,8 +583,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSpecialShoot(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnSpecialShoot(InputAction.CallbackContext context);
         void OnTongueCounter(InputAction.CallbackContext context);
         void OnSpecialWeaponSwitching(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
