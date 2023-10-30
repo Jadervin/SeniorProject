@@ -8,8 +8,6 @@ public class GameInput : MonoBehaviour
 {
     public static GameInput Instance { get; private set; }
 
-    //[SerializeField] private PlayerJump playerJump;
-
     private PlayerInputActions playerInputActions;
 
     public event EventHandler OnJumpPressed;
@@ -21,6 +19,29 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnSpecialWeaponSwitch;
     public event EventHandler OnPausePressed;
     public event EventHandler OnMapPressed;
+
+
+    public enum Bindings
+    {
+        Move_Left,
+        Move_Right,
+        Jump,
+        Shoot,
+        Special_Shoot,
+        Tongue_Counter,
+        SWSwitch_Left,
+        SWSwitch_Right,
+        Pause,
+        Map,
+        Gamepad_Jump,
+        Gamepad_Shoot,
+        Gamepad_Special_Shoot,
+        Gamepad_Tongue_Counter,
+        Gamepad_SWSwitch_Left,
+        Gamepad_SWSwitch_Right,
+        Gamepad_Pause,
+        Gamepad_Map
+    }
 
     private void Awake()
     {
@@ -165,5 +186,67 @@ public class GameInput : MonoBehaviour
         return specialWeaponSwitchDirection;
     }
 
+    public string GetBindingText(Bindings binding)
+    {
+        switch(binding)
+        {
+            default:
+            case Bindings.Move_Left:
+                return playerInputActions.Player.Move.bindings[1].ToDisplayString();
+                
+            case Bindings.Move_Right:
+                return playerInputActions.Player.Move.bindings[2].ToDisplayString();
+                
+            case Bindings.Jump:
+                return playerInputActions.Player.Jump.bindings[0].ToDisplayString();
 
+            case Bindings.Shoot:
+                return playerInputActions.Player.Shoot.bindings[0].ToDisplayString();
+
+            case Bindings.Special_Shoot:
+                return playerInputActions.Player.SpecialShoot.bindings[0].ToDisplayString();
+
+            case Bindings.Tongue_Counter:
+                return playerInputActions.Player.TongueCounter.bindings[0].ToDisplayString();
+
+            case Bindings.SWSwitch_Left:
+                return playerInputActions.Player.SpecialWeaponSwitching.bindings[1].ToDisplayString();
+
+            case Bindings.SWSwitch_Right:
+                return playerInputActions.Player.SpecialWeaponSwitching.bindings[2].ToDisplayString();
+
+            case Bindings.Pause:
+                return playerInputActions.Player.Pause.bindings[0].ToDisplayString();
+
+            case Bindings.Map:
+                return playerInputActions.Player.Map.bindings[0].ToDisplayString();
+
+            case Bindings.Gamepad_Jump:
+                return playerInputActions.Player.Jump.bindings[1].ToDisplayString();
+
+            case Bindings.Gamepad_Shoot:
+                return playerInputActions.Player.Shoot.bindings[1].ToDisplayString();
+
+            case Bindings.Gamepad_Special_Shoot:
+                return playerInputActions.Player.SpecialShoot.bindings[1].ToDisplayString();
+
+            case Bindings.Gamepad_Tongue_Counter:
+                return playerInputActions.Player.TongueCounter.bindings[1].ToDisplayString();
+
+            case Bindings.Gamepad_SWSwitch_Left:
+                return playerInputActions.Player.SpecialWeaponSwitching.bindings[4].ToDisplayString();
+
+            case Bindings.Gamepad_SWSwitch_Right:
+                return playerInputActions.Player.SpecialWeaponSwitching.bindings[5].ToDisplayString();
+
+            case Bindings.Gamepad_Pause:
+                return playerInputActions.Player.Pause.bindings[1].ToDisplayString();
+
+            case Bindings.Gamepad_Map:
+                return playerInputActions.Player.Map.bindings[1].ToDisplayString();
+
+            
+                
+        }
+    }
 }
