@@ -15,5 +15,5 @@ public class SaveData
     public BasicShootingUpgradeStates currentBaseBulletState;
     public int currentArtifactNum;
     public int maxArtifactNum;
-    public CinemachineVirtualCamera currentCamera;
+    public int currentCameraIndex;
 }

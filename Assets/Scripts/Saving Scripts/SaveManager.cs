@@ -53,7 +53,7 @@ public class SaveManager : MonoBehaviour
             currentArtifactNum = playerObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected(),
             maxArtifactNum = playerObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded(),
             currentBaseBulletState = playerObject.GetComponentInChildren<PlayerBasicShooting>().GetBaseShootingState(),
-            currentCamera = CameraManager.instance.GetCurrentCamera()
+            currentCameraIndex = CameraManager.instance.GetCurrentCameraIndex()
         };
 
         string json = JsonUtility.ToJson(saveData);
@@ -83,7 +83,7 @@ public class SaveManager : MonoBehaviour
             playerObject.GetComponent<PlayerArtifactCollection>().SetCurrentArtifactsCollected(saveData.currentArtifactNum);
             playerObject.GetComponent<PlayerArtifactCollection>().SetArtifactsNeeded(saveData.maxArtifactNum);
             playerObject.GetComponentInChildren<PlayerBasicShooting>().SetBaseShootingState(saveData.currentBaseBulletState);
-            CameraManager.instance.SetCurrentCamera(saveData.currentCamera);
+            CameraManager.instance.SetCurrentCamera(saveData.currentCameraIndex);
         }
         else
         {

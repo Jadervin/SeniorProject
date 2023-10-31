@@ -106,7 +106,7 @@ public class PlayerBasicShooting : MonoBehaviour
 
     public void UpgradeBaseWeapon()
     {
-        basicShootingState++;
+        basicShootingState = BasicShootingUpgradeStates.TRISHOT;
     }
 
     public BasicShootingUpgradeStates GetBaseShootingState()

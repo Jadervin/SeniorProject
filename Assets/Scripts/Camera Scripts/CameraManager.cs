@@ -56,14 +56,15 @@ public class CameraManager : MonoBehaviour
                     framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
                 }
             }
+
+
+            //set the YDamping amount so it's based on the inspector value
+            normalYPanAmount = framingTransposer.m_YDamping;
+
+
+            //set the starting position of the tracked object offset
+            startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
         }
-
-        //set the YDamping amount so it's based on the inspector value
-        normalYPanAmount = framingTransposer.m_YDamping;
-
-
-        //set the starting position of the tracked object offset
-        startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
     }
 
 
@@ -290,31 +291,59 @@ public class CameraManager : MonoBehaviour
     }
 
 
+    public int GetCurrentCameraIndex()
+    {
+        int index = 0;
+        for (int i = 0; i < allVirtualCameras.Length; i++)
+        {
+            if(currentCamera == allVirtualCameras[i])
+            {
+                index = i; 
+                break;
+            }
+            
+        }
+        return index;
+
+    }
+
     public CinemachineVirtualCamera GetCurrentCamera()
     {
         return currentCamera;
+
+
     }
 
-    public void SetCurrentCamera(CinemachineVirtualCamera savedCurrentCamera)
+    public void SetCurrentCamera(int savedCurrentCameraIndex)
     {
         for (int i = 0; i < allVirtualCameras.Length; i++)
         {
-            if (allVirtualCameras[i] == savedCurrentCamera)
+            if (i == savedCurrentCameraIndex)
             {
                 //set the current active camera
 
-                currentCamera = savedCurrentCamera;
+                currentCamera = allVirtualCameras[i];
                 allVirtualCameras[i].gameObject.SetActive(true);
-
+                allVirtualCameras[i].enabled = true;
                 //MapRoomManager.instance.RevealRoom();
 
 
                 //set the framing transposer
                 framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+
+                //set the YDamping amount so it's based on the inspector value
+                normalYPanAmount = framingTransposer.m_YDamping;
+
+
+                //set the starting position of the tracked object offset
+                startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
             }
             else
             {
                 allVirtualCameras[i].gameObject.SetActive(false);
+                allVirtualCameras[i].enabled = false;
+
+
             }
         }
     }
