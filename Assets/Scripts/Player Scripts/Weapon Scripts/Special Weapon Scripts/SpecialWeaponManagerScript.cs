@@ -151,6 +151,15 @@ public class SpecialWeaponManagerScript : MonoBehaviour
         return maxWeaponEnergy;
     }
 
+    public void SetCurrentWeaponEnergy(int weaponEnergy)
+    {
+        currentWeaponEnergy = weaponEnergy;
+    }
+
+    public void SetMaxWeaponEnergy(int weaponEnergy)
+    {
+        maxWeaponEnergy = weaponEnergy;
+    }
 
     public void ChangeWeapons()
     {

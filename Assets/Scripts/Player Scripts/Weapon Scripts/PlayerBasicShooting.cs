@@ -111,4 +111,9 @@ public class PlayerBasicShooting : MonoBehaviour
         return basicShootingState;
     }
 
+    public void SetBaseShootingState(BasicShootingUpgradeStates baseShootState)
+    {
+        basicShootingState = baseShootState;
+    }
+
 }

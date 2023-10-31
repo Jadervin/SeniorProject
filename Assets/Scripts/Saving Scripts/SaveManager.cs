@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour
         {
             instance = this;
         }
-
+        SaveSystem.Initialize();
         playerObject = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -34,7 +34,7 @@ public class SaveManager : MonoBehaviour
     }
 
 
-    private void Save()
+    public void Save()
     {
         SaveData saveData = new SaveData
         {
@@ -66,6 +66,16 @@ public class SaveManager : MonoBehaviour
 
 
             SaveData saveData = JsonUtility.FromJson<SaveData>(saveString);
+
+            playerObject.transform.position = saveData.playerLocation;
+            playerObject.GetComponent<PlayerHealth>().SetCurrentHealth(saveData.currentHealth);
+            playerObject.GetComponent<PlayerHealth>().SetMaxHealth(saveData.maxHealth);
+            playerObject.GetComponentInChildren<SpecialWeaponManagerScript>().SetCurrentWeaponEnergy(saveData.currentSWEnergy);
+            playerObject.GetComponentInChildren<SpecialWeaponManagerScript>().SetMaxWeaponEnergy(saveData.maxSWEnergy);
+            playerObject.GetComponent<PlayerArtifactCollection>().SetCurrentArtifactsCollected(saveData.currentArtifactNum);
+            playerObject.GetComponent<PlayerArtifactCollection>().SetArtifactsNeeded(saveData.maxArtifactNum);
+            playerObject.GetComponentInChildren<PlayerBasicShooting>().SetBaseShootingState(saveData.currentBaseBulletState);
+
         }
         else
         {

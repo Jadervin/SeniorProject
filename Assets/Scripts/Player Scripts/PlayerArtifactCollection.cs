@@ -47,6 +47,16 @@ public class PlayerArtifactCollection : MonoBehaviour
         return artifactsNeeded;
     }
 
+    public void SetCurrentArtifactsCollected(int artifactsCollected)
+    {
+        this.artifactsCollected = artifactsCollected;
+    }
+
+    public void SetArtifactsNeeded(int artifactsNeeded)
+    {
+        this.artifactsNeeded = artifactsNeeded;
+    }
+
 /*    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(ARTIFACTTAG))

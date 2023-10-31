@@ -148,4 +148,13 @@ public class PlayerHealth : EntityScript
         
     }
 
+    public void SetCurrentHealth(int health)
+    {
+        currentHealth = health;
+    }
+
+    public void SetMaxHealth(int health)
+    {
+        currentHealth = health;
+    }
 }

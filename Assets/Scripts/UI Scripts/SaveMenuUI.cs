@@ -24,6 +24,7 @@ public class SaveMenuUI : MonoBehaviour
 
         saveButton.onClick.AddListener(() => {
             //Click
+            SaveManager.instance.Save();
             GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
             ToggleTimePause();
             Hide();
