@@ -199,13 +199,18 @@ public class OptionsUI : MonoBehaviour
 
     private void ShowPressToRebindKey()
     {
+
         pressToRebindKeyTransform.gameObject.SetActive(true);
+        GameSceneManager.Instance.SetGameState(GameStates.Rebinding);
+
 
     }
 
     private void HidePressToRebindKey()
     {
+
         pressToRebindKeyTransform.gameObject.SetActive(false);
+
     }
 
     private void UpdateVisual()
@@ -235,13 +240,18 @@ public class OptionsUI : MonoBehaviour
 
     private void RebindBinding(Bindings binding)
     {
+
         ShowPressToRebindKey();
         GameInput.Instance.RebindBinding(binding,()=> {
 
             HidePressToRebindKey();
             UpdateVisual();
-            
-            
-            });
+            GameSceneManager.Instance.SetGameState(GameStates.Paused);
+
+
+        });
+
+
+
     }
 }

@@ -8,7 +8,9 @@ public enum GameStates
     GamePlaying,
     /*PlayerDead,*/
     Paused,
+    Rebinding,
     MapOpen,
+    Saving,
     GameOver,
 }
 

@@ -98,7 +98,8 @@ public class GameInput : MonoBehaviour
 
     private void Map_performed(InputAction.CallbackContext obj)
     {
-        if (GameSceneManager.Instance.GetGameState() != GameStates.GameOver && GameSceneManager.Instance.GetGameState() != GameStates.Paused)
+        if (GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying || GameSceneManager.Instance.GetGameState() == GameStates.MapOpen
+            /*GameSceneManager.Instance.GetGameState() != GameStates.GameOver && GameSceneManager.Instance.GetGameState() != GameStates.Paused && GameSceneManager.Instance.GetGameState() != GameStates.Rebinding && GameSceneManager.Instance.GetGameState() != GameStates.Saving*/)
         {
             OnMapPressed?.Invoke(this, EventArgs.Empty);
         }
@@ -106,7 +107,8 @@ public class GameInput : MonoBehaviour
 
     private void Pause_performed(InputAction.CallbackContext obj)
     {
-        if(GameSceneManager.Instance.GetGameState() != GameStates.GameOver && GameSceneManager.Instance.GetGameState() != GameStates.MapOpen)
+        if(GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying || GameSceneManager.Instance.GetGameState() == GameStates.Paused
+            /*GameSceneManager.Instance.GetGameState() != GameStates.GameOver && GameSceneManager.Instance.GetGameState() != GameStates.MapOpen && GameSceneManager.Instance.GetGameState() != GameStates.Rebinding && GameSceneManager.Instance.GetGameState() != GameStates.Saving*/)
         {
             OnPausePressed?.Invoke(this, EventArgs.Empty);
         }
