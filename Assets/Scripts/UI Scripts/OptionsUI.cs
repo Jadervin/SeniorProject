@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameInput;
 
 public class OptionsUI : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class OptionsUI : MonoBehaviour
     public static OptionsUI Instance { get; private set; }
 
     [SerializeField] private Button closeButton;
+    [SerializeField] private Transform pressToRebindKeyTransform;
 
 
     [Header("Key Binding Buttons")]
@@ -56,9 +59,8 @@ public class OptionsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gamepadPauseButtonText;
     [SerializeField] private TextMeshProUGUI gamepadMapButtonText;
 
-   
 
-    private void Awake()
+     private void Awake()
     {
         if(Instance == null)
         {
@@ -71,6 +73,100 @@ public class OptionsUI : MonoBehaviour
 
             Hide();
         });
+
+        moveLeftButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Move_Left);
+        });
+
+        moveRightButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Move_Right);
+        });
+
+
+        jumpButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Jump);
+        });
+
+        shootButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Shoot);
+        });
+
+        specialShootButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Special_Shoot);
+        });
+
+        tongueCounterButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Tongue_Counter);
+        });
+
+        sWSwitchLeftButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.SWSwitch_Left);
+        });
+
+
+        sWSwitchRightButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.SWSwitch_Right);
+        });
+
+        pauseButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Pause);
+        });
+
+        mapButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Map);
+        });
+
+        gamepadJumpButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_Jump);
+        });
+
+
+        gamepadShootButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_Shoot);
+        });
+
+        gamepadSpecialShootButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_Special_Shoot);
+        });
+
+        gamepadTongueCounterButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_Tongue_Counter);
+        });
+
+        gamepadSWSwitchLeftButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_SWSwitch_Left);
+        });
+
+        gamepadSWSwitchRightButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_SWSwitch_Right);
+        });
+
+        gamepadPauseButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_Pause);
+        });
+
+        gamepadMapButton.onClick.AddListener(() => {
+            //Click
+            RebindBinding(Bindings.Gamepad_Map);
+        });
+
     }
 
 
@@ -80,6 +176,7 @@ public class OptionsUI : MonoBehaviour
         PauseManager.instance.OnGameUnpaused += PauseManager_OnGameUnpaused;
         UpdateVisual();
         Hide();
+        HidePressToRebindKey();
     }
 
     private void PauseManager_OnGameUnpaused(object sender, System.EventArgs e)
@@ -97,6 +194,18 @@ public class OptionsUI : MonoBehaviour
     private void Hide()
     {
         this.gameObject.SetActive(false);
+    }
+
+
+    private void ShowPressToRebindKey()
+    {
+        pressToRebindKeyTransform.gameObject.SetActive(true);
+
+    }
+
+    private void HidePressToRebindKey()
+    {
+        pressToRebindKeyTransform.gameObject.SetActive(false);
     }
 
     private void UpdateVisual()
@@ -121,5 +230,18 @@ public class OptionsUI : MonoBehaviour
         gamepadSWSwitchRightButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Gamepad_SWSwitch_Right);
         gamepadPauseButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Gamepad_Pause);
         gamepadMapButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Gamepad_Map);
+    }
+
+
+    private void RebindBinding(Bindings binding)
+    {
+        ShowPressToRebindKey();
+        GameInput.Instance.RebindBinding(binding,()=> {
+
+            HidePressToRebindKey();
+            UpdateVisual();
+            
+            
+            });
     }
 }

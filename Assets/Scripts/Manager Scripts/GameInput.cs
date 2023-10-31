@@ -8,6 +8,8 @@ public class GameInput : MonoBehaviour
 {
     public static GameInput Instance { get; private set; }
 
+    private const string PLAYER_PREFS_BINDINGS = "InputBindings";
+
     private PlayerInputActions playerInputActions;
 
     public event EventHandler OnJumpPressed;
@@ -47,6 +49,12 @@ public class GameInput : MonoBehaviour
     {
         Instance = this;
         playerInputActions = new PlayerInputActions();
+
+        if (PlayerPrefs.HasKey(PLAYER_PREFS_BINDINGS))
+        {
+            playerInputActions.LoadBindingOverridesFromJson(PlayerPrefs.GetString(PLAYER_PREFS_BINDINGS));
+        }
+
 
         playerInputActions.Player.Enable();
 
@@ -248,5 +256,120 @@ public class GameInput : MonoBehaviour
             
                 
         }
+    }
+
+
+
+    public void RebindBinding(Bindings binding, Action onActionRebound)
+    {
+        playerInputActions.Player.Disable();
+
+        InputAction inputAction;
+        int bindingIndex;
+
+        switch (binding)
+        {
+            default:
+            case Bindings.Move_Left:
+                inputAction = playerInputActions.Player.Move;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.Move_Right:
+                inputAction = playerInputActions.Player.Move;
+                bindingIndex = 2;
+                break;
+
+            case Bindings.Jump:
+                inputAction = playerInputActions.Player.Jump;
+                bindingIndex = 0;
+                break;
+
+            case Bindings.Shoot:
+                inputAction = playerInputActions.Player.Shoot;
+                bindingIndex = 0;
+                break;
+
+            case Bindings.Special_Shoot:
+                inputAction = playerInputActions.Player.SpecialShoot;
+                bindingIndex = 0;
+                break;
+
+            case Bindings.Tongue_Counter:
+                inputAction = playerInputActions.Player.TongueCounter;
+                bindingIndex = 0;
+                break;
+
+            case Bindings.SWSwitch_Left:
+                inputAction = playerInputActions.Player.SpecialWeaponSwitching;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.SWSwitch_Right:
+                inputAction = playerInputActions.Player.SpecialWeaponSwitching;
+                bindingIndex = 2;
+                break;
+
+            case Bindings.Pause:
+                inputAction = playerInputActions.Player.Pause;
+                bindingIndex = 0;
+                break;
+
+            case Bindings.Map:
+                inputAction = playerInputActions.Player.Map;
+                bindingIndex = 0;
+                break;
+
+            case Bindings.Gamepad_Jump:
+                inputAction = playerInputActions.Player.Jump;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.Gamepad_Shoot:
+                inputAction = playerInputActions.Player.Shoot;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.Gamepad_Special_Shoot:
+                inputAction = playerInputActions.Player.SpecialShoot;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.Gamepad_Tongue_Counter:
+                inputAction = playerInputActions.Player.TongueCounter;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.Gamepad_SWSwitch_Left:
+                inputAction = playerInputActions.Player.SpecialWeaponSwitching;
+                bindingIndex = 4;
+                break;
+
+            case Bindings.Gamepad_SWSwitch_Right:
+                inputAction = playerInputActions.Player.SpecialWeaponSwitching;
+                bindingIndex = 5;
+                break;
+
+            case Bindings.Gamepad_Pause:
+                inputAction = playerInputActions.Player.Pause;
+                bindingIndex = 1;
+                break;
+
+            case Bindings.Gamepad_Map:
+                inputAction = playerInputActions.Player.Map;
+                bindingIndex = 1;
+                break;
+
+        }
+
+
+        inputAction.PerformInteractiveRebinding(bindingIndex).OnComplete(callback =>
+        {
+            callback.Dispose();
+            playerInputActions.Player.Enable();
+            onActionRebound();
+            PlayerPrefs.SetString(PLAYER_PREFS_BINDINGS, playerInputActions.SaveBindingOverridesAsJson());
+            PlayerPrefs.Save();
+        }).Start();
     }
 }
