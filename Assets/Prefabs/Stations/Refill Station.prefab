@@ -212,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2553232112089847082}
+  - component: {fileID: 8370703595271711667}
   m_Layer: 0
   m_Name: Switch
   m_TagString: Untagged
@@ -235,6 +236,51 @@ Transform:
   - {fileID: 2968086431517984747}
   m_Father: {fileID: 6581013046117257829}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &8370703595271711667
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6722861722856434825}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.003481865}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5029125}
+  m_EdgeRadius: 0
 --- !u!1 &7770033097800015322
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6581013046117257829}
   - component: {fileID: 7976964427185791921}
-  - component: {fileID: 349389374009326028}
+  - component: {fileID: 4429188404659027554}
   - component: {fileID: 2750486855461717479}
   m_Layer: 6
   m_Name: Refill Station
@@ -550,7 +596,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &349389374009326028
+--- !u!61 &4429188404659027554
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -582,7 +628,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -1.6982956}
+  m_Offset: {x: 0, y: -1.7189817}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -593,7 +639,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.4555092}
+  m_Size: {x: 1, y: 0.488966}
   m_EdgeRadius: 0
 --- !u!114 &2750486855461717479
 MonoBehaviour:
@@ -607,8 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544e674f8d597c247b344368e6372bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchCollider: {fileID: 349389374009326028}
-  PLAYERTAG: Player
+  switchCollider: {fileID: 4429188404659027554}
   refilledEnergy: 0
   playerHealth: {fileID: 0}
   specialWeaponScript: {fileID: 0}

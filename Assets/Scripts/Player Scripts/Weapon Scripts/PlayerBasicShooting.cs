@@ -22,7 +22,7 @@ public class PlayerBasicShooting : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     /*[SerializeField]*/ private bool canShoot = true;
 
-    [SerializeField] private BasicShootingUpgradeStates basicShootingStates;
+    [SerializeField] private BasicShootingUpgradeStates basicShootingState;
 
     [Header("Tri Shot Variables")]
     [SerializeField] private List<Transform> shootPoints = new List<Transform>();
@@ -31,7 +31,7 @@ public class PlayerBasicShooting : MonoBehaviour
     void Start()
     {
         GameInput.Instance.OnShootPressed += GameInput_OnShootPressed;
-        basicShootingStates = BasicShootingUpgradeStates.BASE;
+        basicShootingState = BasicShootingUpgradeStates.BASE;
     }
 
     private void GameInput_OnShootPressed(object sender, System.EventArgs e)
@@ -39,13 +39,13 @@ public class PlayerBasicShooting : MonoBehaviour
         if(canShoot == true && MovementLimiter.instance.playerActionStates == PlayerActionStates.NOACTION)
         {
 
-            if (basicShootingStates == BasicShootingUpgradeStates.BASE)
+            if (basicShootingState == BasicShootingUpgradeStates.BASE)
             {
                 BasicShoot();
 
             }
 
-            if(basicShootingStates == BasicShootingUpgradeStates.TRISHOT)
+            if(basicShootingState == BasicShootingUpgradeStates.TRISHOT)
             {
                 TriShotShoot();
             }
@@ -103,7 +103,12 @@ public class PlayerBasicShooting : MonoBehaviour
 
     public void UpgradeBaseWeapon()
     {
-        basicShootingStates++;
+        basicShootingState++;
+    }
+
+    public BasicShootingUpgradeStates GetBaseShootingState()
+    {
+        return basicShootingState;
     }
 
 }
