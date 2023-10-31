@@ -7,10 +7,17 @@ public class MenuUIScript : MonoBehaviour
 {
 
     [SerializeField] private Button playButton;
+    [SerializeField] private Button loadButton;
     [SerializeField] private Button retryButton;
     [SerializeField] private Button quitButton;
-    [SerializeField] private Button startMenuButton;
+    [SerializeField] private Button menuButton;
 
+    [SerializeField] private Transform noSaveDataPopupGO;
+    [SerializeField] private Button closeLoadPopupButton;
+
+    [SerializeField] private Transform startNewGamePopupGO;
+    [SerializeField] private Button startNewGameButton;
+    [SerializeField] private Button closeNewGamePopupButton;
 
 
     private void Awake()
@@ -20,7 +27,17 @@ public class MenuUIScript : MonoBehaviour
             playButton.onClick.AddListener(() =>
             {
                 //Click
-                Loader.Load(Loader.GameScenes.GameScene);
+                if (SaveSystem.SaveFileCheck() == true)
+                {
+                    startNewGamePopupGO.gameObject.SetActive(true);
+                }
+                else
+                {
+                    SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
+                    Loader.Load(Loader.GameScenes.GameScene);
+                }
+
+                
             });
         }
 
@@ -42,14 +59,68 @@ public class MenuUIScript : MonoBehaviour
             });
         }
 
-        if (startMenuButton != null)
+        if (menuButton != null)
         {
-            startMenuButton.onClick.AddListener(() =>
+            menuButton.onClick.AddListener(() =>
             {
                 //Click
                 Loader.Load(Loader.GameScenes.StartScene);
             });
         }
+
+        if (loadButton != null)
+        {
+            loadButton.onClick.AddListener(() =>
+            {
+                //Click
+                if (SaveSystem.SaveFileCheck() == false)
+                {
+                    noSaveDataPopupGO.gameObject.SetActive(true);
+                }
+
+                else
+                {
+                    SaveSystem.SetGameStartState(SaveSystem.GameStartStates.LOADGAME);
+                    Loader.Load(Loader.GameScenes.GameScene);
+                }
+            });
+        }
+
+        if (closeLoadPopupButton != null)
+        {
+            closeLoadPopupButton.onClick.AddListener(() =>
+            {
+                
+                noSaveDataPopupGO.gameObject.SetActive(false);
+               
+            });
+        }
+
+        if (startNewGameButton != null)
+        {
+            startNewGameButton.onClick.AddListener(() =>
+            {
+
+                startNewGamePopupGO.gameObject.SetActive(false);
+                SaveSystem.DeleteSave();
+                SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
+                Loader.Load(Loader.GameScenes.GameScene);
+
+            });
+        }
+
+        if (closeNewGamePopupButton != null)
+        {
+            closeNewGamePopupButton.onClick.AddListener(() =>
+            {
+
+                startNewGamePopupGO.gameObject.SetActive(false);
+
+            });
+        }
+
+        noSaveDataPopupGO.gameObject.SetActive(false);
+        startNewGamePopupGO.gameObject.SetActive(false);
 
         Time.timeScale = 1f;
     }

@@ -31,7 +31,10 @@ public class PlayerBasicShooting : MonoBehaviour
     void Start()
     {
         GameInput.Instance.OnShootPressed += GameInput_OnShootPressed;
-        basicShootingState = BasicShootingUpgradeStates.BASE;
+        if (SaveSystem.SaveFileCheck() == false)
+        {
+            basicShootingState = BasicShootingUpgradeStates.BASE;
+        }
     }
 
     private void GameInput_OnShootPressed(object sender, System.EventArgs e)

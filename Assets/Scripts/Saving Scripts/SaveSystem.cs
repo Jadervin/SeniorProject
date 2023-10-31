@@ -3,9 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public static class SaveSystem 
 {
     public static readonly string SAVE_FOLDER = Application.dataPath + "/Saves/";
+
+    public enum GameStartStates
+    {
+        BLANK,
+        NEWGAME,
+        LOADGAME,
+    }
+
+    public static GameStartStates gameStartState = GameStartStates.BLANK;
 
     public static void Initialize()
     {
@@ -26,7 +36,7 @@ public static class SaveSystem
 
     public static string Load()
     {
-        if(File.Exists(SAVE_FOLDER + "save.json")) 
+        if(SaveFileCheck() == true) 
         {
             string saveString = File.ReadAllText(SAVE_FOLDER + "save.json");
             return saveString;
@@ -37,6 +47,32 @@ public static class SaveSystem
             return null;
         }
 
+    }
 
+    public static void DeleteSave()
+    {
+        File.Delete(SAVE_FOLDER + "save.json");
+    }
+
+    public static bool SaveFileCheck()
+    {
+        if (File.Exists(SAVE_FOLDER + "save.json"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static void SetGameStartState(GameStartStates state)
+    {
+        gameStartState = state;
+    }
+
+    public static GameStartStates GetGameStartState()
+    {
+        return gameStartState;
     }
 }

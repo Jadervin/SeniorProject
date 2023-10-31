@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,4 +15,5 @@ public class SaveData
     public BasicShootingUpgradeStates currentBaseBulletState;
     public int currentArtifactNum;
     public int maxArtifactNum;
+    public CinemachineVirtualCamera currentCamera;
 }

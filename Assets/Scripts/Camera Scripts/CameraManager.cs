@@ -40,21 +40,23 @@ public class CameraManager : MonoBehaviour
             instance = this;
         }
 
-        for(int i = 0; i < allVirtualCameras.Length; i++)
+        if (SaveSystem.SaveFileCheck() == false)
         {
-            if (allVirtualCameras[i].enabled)
+            for (int i = 0; i < allVirtualCameras.Length; i++)
             {
-                //set the current active camera
-                currentCamera = allVirtualCameras[i];
+                if (allVirtualCameras[i].enabled)
+                {
+                    //set the current active camera
+                    currentCamera = allVirtualCameras[i];
 
-                //MapRoomManager.instance.RevealRoom();
+                    //MapRoomManager.instance.RevealRoom();
 
 
-                //set the framing transposer
-                framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+                    //set the framing transposer
+                    framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+                }
             }
         }
-
 
         //set the YDamping amount so it's based on the inspector value
         normalYPanAmount = framingTransposer.m_YDamping;
@@ -291,6 +293,30 @@ public class CameraManager : MonoBehaviour
     public CinemachineVirtualCamera GetCurrentCamera()
     {
         return currentCamera;
+    }
+
+    public void SetCurrentCamera(CinemachineVirtualCamera savedCurrentCamera)
+    {
+        for (int i = 0; i < allVirtualCameras.Length; i++)
+        {
+            if (allVirtualCameras[i] == savedCurrentCamera)
+            {
+                //set the current active camera
+
+                currentCamera = savedCurrentCamera;
+                allVirtualCameras[i].gameObject.SetActive(true);
+
+                //MapRoomManager.instance.RevealRoom();
+
+
+                //set the framing transposer
+                framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            }
+            else
+            {
+                allVirtualCameras[i].gameObject.SetActive(false);
+            }
+        }
     }
 
 }

@@ -18,6 +18,13 @@ public class SaveManager : MonoBehaviour
         SaveSystem.Initialize();
         playerObject = GameObject.FindGameObjectWithTag("Player");
 
+        if (SaveSystem.GetGameStartState() == SaveSystem.GameStartStates.LOADGAME)
+        {
+            Load();
+
+        }
+        SaveSystem.SetGameStartState(SaveSystem.GameStartStates.BLANK);
+
     }
 
     // Start is called before the first frame update
@@ -44,8 +51,9 @@ public class SaveManager : MonoBehaviour
             currentSWEnergy = playerObject.GetComponentInChildren<SpecialWeaponManagerScript>().GetCurrentWeaponEnergy(),
             maxSWEnergy = playerObject.GetComponentInChildren<SpecialWeaponManagerScript>().GetMaxWeaponEnergy(),
             currentArtifactNum = playerObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected(),
-            maxArtifactNum= playerObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded(),
-            currentBaseBulletState = playerObject.GetComponentInChildren<PlayerBasicShooting>().GetBaseShootingState()
+            maxArtifactNum = playerObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded(),
+            currentBaseBulletState = playerObject.GetComponentInChildren<PlayerBasicShooting>().GetBaseShootingState(),
+            currentCamera = CameraManager.instance.GetCurrentCamera()
         };
 
         string json = JsonUtility.ToJson(saveData);
@@ -75,7 +83,7 @@ public class SaveManager : MonoBehaviour
             playerObject.GetComponent<PlayerArtifactCollection>().SetCurrentArtifactsCollected(saveData.currentArtifactNum);
             playerObject.GetComponent<PlayerArtifactCollection>().SetArtifactsNeeded(saveData.maxArtifactNum);
             playerObject.GetComponentInChildren<PlayerBasicShooting>().SetBaseShootingState(saveData.currentBaseBulletState);
-
+            CameraManager.instance.SetCurrentCamera(saveData.currentCamera);
         }
         else
         {
