@@ -10,7 +10,11 @@ public class ArtifactCollectionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI artifactsNeededText;
     [SerializeField] private PlayerArtifactCollection player;
 
+    private void Awake()
+    {
+        player.OnPlayerLoadingSave += Player_OnPlayerLoadingSave;
 
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +25,6 @@ public class ArtifactCollectionUI : MonoBehaviour
         PlanetTotemScript.OnPlayerHasAllArtifacts += PlanetTotemScript_OnPlayerHasAllArtifacts;
 
         player.OnPlayerCollectsArtifact += Player_OnPlayerCollectsArtifact;
-        player.OnPlayerLoadingSave += Player_OnPlayerLoadingSave;
 
         /*artifactsCollected = 0;
         artifactsCollectedText.text = "0";
