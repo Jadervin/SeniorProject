@@ -21,14 +21,29 @@ public class ArtifactCollectionUI : MonoBehaviour
         PlanetTotemScript.OnPlayerHasAllArtifacts += PlanetTotemScript_OnPlayerHasAllArtifacts;
 
         player.OnPlayerCollectsArtifact += Player_OnPlayerCollectsArtifact;
-        artifactsCollected = 0;
+        player.OnPlayerLoadingSave += Player_OnPlayerLoadingSave;
+
+        /*artifactsCollected = 0;
         artifactsCollectedText.text = "0";
         artifactsNeededText.text = "/ 0";
+*/
+
+        if (SaveSystem.SaveFileCheck() == false)
+        {
+            artifactsCollected = 0;
+            artifactsCollectedText.text = "0";
+            artifactsNeededText.text = "/ 0";
+        }
     }
 
-    private void Player_OnPlayerCollectsArtifact(object sender, System.EventArgs e)
+    private void Player_OnPlayerLoadingSave(object sender, PlayerArtifactCollection.OnLoadingSaveEventArgs e)
     {
-        ChangeCurrentArtifact();
+        ChangeArtifactNumbersFromSave(e);
+    }
+
+    private void Player_OnPlayerCollectsArtifact(object sender, PlayerArtifactCollection.OnPlayerCollectsArtifactEventArgs e)
+    {
+        ChangeCurrentArtifact(e);
     }
 
     private void PlanetTotemScript_OnPlayerStartingWorld(object sender, PlanetTotemScript.OnSendingArtifactNumberEventArgs e)
@@ -59,16 +74,20 @@ public class ArtifactCollectionUI : MonoBehaviour
         artifactsNeededText.text = "/ 0";
     }
 
-    public void ChangeCurrentArtifact()
+    public void ChangeCurrentArtifact(PlayerArtifactCollection.OnPlayerCollectsArtifactEventArgs playerObject)
     {
-        artifactsCollected++;
+        artifactsCollected = playerObject.currentArtifactNum;
         artifactsCollectedText.text = artifactsCollected.ToString();
     }
-    
 
-    // Update is called once per frame
-    void Update()
+
+    public void ChangeArtifactNumbersFromSave(PlayerArtifactCollection.OnLoadingSaveEventArgs playerObject)
     {
-        
+        artifactsCollected = playerObject.currentArtifactNum;
+        artifactsCollectedText.text = artifactsCollected.ToString();
+
+        artifactsNeededText.text = "/ " + playerObject.neededArtifactNum.ToString();
     }
+
+   
 }

@@ -10,12 +10,28 @@ public class PlayerArtifactCollection : MonoBehaviour
     [SerializeField] private int artifactsNeeded;
     //[SerializeField] private string ARTIFACTTAG = "Artifact";
 
-    public event EventHandler OnPlayerCollectsArtifact;
+    public event EventHandler<OnPlayerCollectsArtifactEventArgs> OnPlayerCollectsArtifact;
+    public class OnPlayerCollectsArtifactEventArgs:EventArgs
+    {
+        public int currentArtifactNum;
+    }
+
+
+    public event EventHandler<OnLoadingSaveEventArgs> OnPlayerLoadingSave;
+    public class OnLoadingSaveEventArgs:EventArgs 
+    {
+        
+        public int currentArtifactNum;
+        public int neededArtifactNum;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        artifactsCollected = 0;
+        if (SaveSystem.SaveFileCheck() == false)
+        {
+            artifactsCollected = 0;
+        }
 
         //If there is multiple planet totems, this may need to be changed
         PlanetTotemScript.OnPlayerStartingWorld += PlanetTotemScript_OnPlayerStartingWorld;
@@ -47,15 +63,19 @@ public class PlayerArtifactCollection : MonoBehaviour
         return artifactsNeeded;
     }
 
-    public void SetCurrentArtifactsCollected(int artifactsCollected)
+    public void SetArtifactsNumbersFromSave(int artifactsCollected, int artifactsNeeded)
     {
         this.artifactsCollected = artifactsCollected;
+        this.artifactsNeeded = artifactsNeeded;
+
+        OnPlayerLoadingSave?.Invoke(this, new OnLoadingSaveEventArgs
+        {
+            currentArtifactNum = artifactsCollected,
+            neededArtifactNum = artifactsNeeded,
+        });
+
     }
 
-    public void SetArtifactsNeeded(int artifactsNeeded)
-    {
-        this.artifactsNeeded = artifactsNeeded;
-    }
 
 /*    private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -80,6 +100,9 @@ public class PlayerArtifactCollection : MonoBehaviour
     {
         artifactsCollected++;
 
-        OnPlayerCollectsArtifact?.Invoke(this, EventArgs.Empty);
+        OnPlayerCollectsArtifact?.Invoke(this, new OnPlayerCollectsArtifactEventArgs
+        {
+            currentArtifactNum = artifactsCollected,
+        });
     }
 }

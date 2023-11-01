@@ -136,7 +136,7 @@ MonoBehaviour:
   timeSinceHit: 0
   timeSinceSpawned: 0
   shockCooldownTime: 1
-  shockDespawnTime: 20
+  shockDespawnTime: 3
   shockRadius: 2.5
   enemyLayer:
     serializedVersion: 2

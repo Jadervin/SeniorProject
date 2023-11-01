@@ -33,6 +33,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected Transform playerTarget;
     [SerializeField] protected SpriteRenderer mainSprite;
     [SerializeField] protected GameObject itemToSpawn;
+    [SerializeField] protected string enemyID = "";
     protected Color mainColor;
 
     /*[Header("Damage Amount")]
@@ -131,7 +132,15 @@ public class EnemyScript : EntityScript
     [SerializeField] protected float knockbackStrength = 16;
     [SerializeField] protected float delayTime = .3f;
     [SerializeField] protected float stunTime = 2f;
-    
+
+    //[Header("Events")]
+    public static event EventHandler<OnEnemyDefeatedEventArgs> OnAnyEnemyDefeated;
+
+    public class OnEnemyDefeatedEventArgs : EventArgs
+    {
+        public GameObject enemyParent;
+        public GameObject itemToSpawn;
+    }
 
     /*
     public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
@@ -140,7 +149,10 @@ public class EnemyScript : EntityScript
         public GameObject collidedGameObject;
     }
     */
-
+    public static void ResetStaticData()
+    {
+        OnAnyEnemyDefeated = null;
+    }
 
     // Start is called before the first frame update
     protected void Start()
@@ -615,6 +627,12 @@ public class EnemyScript : EntityScript
         }
         enemyParent.gameObject.SetActive(false);
 
+        OnAnyEnemyDefeated?.Invoke(this, new OnEnemyDefeatedEventArgs
+        {
+            enemyParent = enemyParent,
+            itemToSpawn = itemToSpawn,
+        });
+
         //Destroy(gameObject);
     }
 
@@ -739,6 +757,11 @@ public class EnemyScript : EntityScript
         }
 
     }
+
+    public string GetEnemyID()
+    {
+        return enemyID;
+    }    
 
 }
 

@@ -54,6 +54,7 @@ public class BossEnemyScript : EntityScript
     [SerializeField] protected GameObject itemToSpawn;
     protected Color mainColor;
     protected Color currentColor;
+    [SerializeField] protected string bossEnemyID = "";
 
     [Header("Booleans")]
     [SerializeField] protected bool isFacingRight;

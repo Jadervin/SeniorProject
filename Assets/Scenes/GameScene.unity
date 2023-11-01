@@ -2496,6 +2496,10 @@ PrefabInstance:
       propertyPath: damage
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
+      propertyPath: enemyID
+      value: StateAtk4
+      objectReference: {fileID: 0}
     - target: {fileID: 5417343538276433052, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
       propertyPath: m_Name
       value: StationaryAttackerEnemyObject
@@ -3765,6 +3769,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262122251}
   m_CullTransparentMesh: 1
+--- !u!1 &280496451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280496452}
+  - component: {fileID: 280496453}
+  m_Layer: 0
+  m_Name: Enemy Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &280496452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280496451}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 674019451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &280496453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280496451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f13167617038d548b4ac8d179b5a901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regularEnemyList: []
+  bossEnemyList: []
+  enemiesWithItemsIndexList: 
+  bossEnemiesWithItemsIndexList: 
+  enemiesItemIndexesFromSaveList: 
 --- !u!1001 &284143437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7046,6 +7099,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 624001764}
     m_Modifications:
     - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
+      propertyPath: enemyID
+      value: PatAtk2
+      objectReference: {fileID: 0}
+    - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: itemToSpawn
       value: 
       objectReference: {fileID: 6298217667686722615, guid: 6458f06a00914dd4ca2ed7e402c0bdc1, type: 3}
@@ -7079,7 +7136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596523334443078606, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: m_Name
-      value: PatrollingAttackerEnemyObject  (1)
+      value: PatrollingAttackerEnemyObject (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5596523334443078606, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: m_Layer
@@ -8502,6 +8559,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
+      propertyPath: enemyID
+      value: StateAtk3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 1464256107}
@@ -8881,6 +8942,10 @@ PrefabInstance:
     - target: {fileID: 4909765543881943004, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
+      propertyPath: enemyID
+      value: StateAtk2
       objectReference: {fileID: 0}
     - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
       propertyPath: itemToSpawn
@@ -10372,6 +10437,8 @@ Transform:
   - {fileID: 1051143004}
   - {fileID: 947083804}
   - {fileID: 1086526535}
+  - {fileID: 280496452}
+  - {fileID: 1009350118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &678946193
@@ -61847,6 +61914,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1009350117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1009350118}
+  - component: {fileID: 1009350119}
+  m_Layer: 0
+  m_Name: Collectable Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1009350118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009350117}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 674019451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1009350119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009350117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1258b3dd4d90b4cbfe88ff2d1226d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1025508626
 GameObject:
   m_ObjectHideFlags: 0
@@ -63082,7 +63193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596523334443078606, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: m_Name
-      value: 'PatrollingAttackerEnemyObject '
+      value: PatrollingAttackerEnemyObject
       objectReference: {fileID: 0}
     - target: {fileID: 5596523334443078606, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: m_Layer
@@ -106663,11 +106774,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 624009912953903148, guid: da386970c6fede74fb9dfe95d21525fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 82.3
+      value: 176
       objectReference: {fileID: 0}
     - target: {fileID: 624009912953903148, guid: da386970c6fede74fb9dfe95d21525fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.1
+      value: 25.91
       objectReference: {fileID: 0}
     - target: {fileID: 624009912953903148, guid: da386970c6fede74fb9dfe95d21525fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -106946,6 +107057,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
+      propertyPath: enemyID
+      value: StateAtk1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320036793749713873, guid: 90709472efec6884ea87be3cb60aeb15, type: 3}
       propertyPath: playerTarget
       value: 
       objectReference: {fileID: 1464256107}
@@ -107212,6 +107327,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 2687123208228548819, guid: 05c4f57e01e8c7f40a7a568c716a0169, type: 3}
+      propertyPath: enemyID
+      value: FlyChase1
+      objectReference: {fileID: 0}
     - target: {fileID: 2699927820354440336, guid: 05c4f57e01e8c7f40a7a568c716a0169, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -107250,6 +107369,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 624001764}
     m_Modifications:
     - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
+      propertyPath: enemyID
+      value: PatAtk1
+      objectReference: {fileID: 0}
+    - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: itemToSpawn
       value: 
       objectReference: {fileID: 3285343449884654340, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
@@ -107279,7 +107402,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5596523334443078606, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: m_Name
-      value: 'PatrollingAttackerEnemyObject '
+      value: PatrollingAttackerEnemyObject
       objectReference: {fileID: 0}
     - target: {fileID: 5596523334443078606, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: m_Layer
@@ -107501,6 +107624,10 @@ PrefabInstance:
     - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
       propertyPath: maxHealth
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
+      propertyPath: bossEnemyID
+      value: Boss1
       objectReference: {fileID: 0}
     - target: {fileID: 8449440168632149564, guid: bb3e868241d441d44ba3b4a2f518b9e3, type: 3}
       propertyPath: itemToSpawn

@@ -40,7 +40,7 @@ public class CameraManager : MonoBehaviour
             instance = this;
         }
 
-        if (SaveSystem.SaveFileCheck() == false)
+        //if (SaveSystem.SaveFileCheck() == false)
         {
             for (int i = 0; i < allVirtualCameras.Length; i++)
             {

@@ -46,7 +46,16 @@ public class MenuUIScript : MonoBehaviour
             retryButton.onClick.AddListener(() =>
             {
                 //Click
-                Loader.Load(Loader.GameScenes.GameScene);
+                if (SaveSystem.SaveFileCheck() == true)
+                {
+                    SaveSystem.SetGameStartState(SaveSystem.GameStartStates.LOADGAME);
+                    Loader.Load(Loader.GameScenes.GameScene);
+                }
+                else
+                {
+                    SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
+                    Loader.Load(Loader.GameScenes.GameScene);
+                }
             });
         }
 
@@ -119,8 +128,16 @@ public class MenuUIScript : MonoBehaviour
             });
         }
 
-        noSaveDataPopupGO.gameObject.SetActive(false);
-        startNewGamePopupGO.gameObject.SetActive(false);
+
+        if (noSaveDataPopupGO != null)
+        {
+            noSaveDataPopupGO.gameObject.SetActive(false);
+        }
+
+        if (startNewGamePopupGO != null)
+        {
+            startNewGamePopupGO.gameObject.SetActive(false);
+        }
 
         Time.timeScale = 1f;
     }

@@ -1,1 +1,21 @@
-{"playerLocation":{"x":81.97358703613281,"y":-16.05228614807129,"z":0.0},"currentHealth":16,"maxHealth":20,"currentSWEnergy":30,"maxSWEnergy":30,"currentBaseBulletState":1,"currentArtifactNum":0,"maxArtifactNum":0,"currentCameraIndex":1}
+{
+  "playerLocation": {
+    "x": 176.4559326171875,
+    "y": 24.95445442199707,
+    "z": 0.0
+  },
+  "currentHealth": 20,
+  "maxHealth": 20,
+  "currentSWEnergy": 30,
+  "maxSWEnergy": 30,
+  "currentBaseBulletState": 1,
+  "currentArtifactNum": 2,
+  "maxArtifactNum": 3,
+  "currentCameraIndex": 4,
+  "enemyIDs": [
+    "PatAtk1",
+    "FlyChase1",
+    "PatAtk2",
+    "StateAtk2"
+  ]
+}

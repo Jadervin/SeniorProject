@@ -461,7 +461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &490950474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1001,9 +1001,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playButton: {fileID: 0}
+  loadButton: {fileID: 0}
   retryButton: {fileID: 490950477}
   quitButton: {fileID: 59331023}
-  startMenuButton: {fileID: 1851656155}
+  menuButton: {fileID: 0}
+  noSaveDataPopupGO: {fileID: 0}
+  closeLoadPopupButton: {fileID: 0}
+  startNewGamePopupGO: {fileID: 0}
+  startNewGameButton: {fileID: 0}
+  closeNewGamePopupButton: {fileID: 0}
 --- !u!4 &1404845467
 Transform:
   m_ObjectHideFlags: 0
@@ -1410,7 +1416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14, y: -227.63}
+  m_AnchoredPosition: {x: -300, y: -227.63}
   m_SizeDelta: {x: 160, y: 100.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1943145499

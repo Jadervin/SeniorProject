@@ -16,4 +16,7 @@ public class SaveData
     public int currentArtifactNum;
     public int maxArtifactNum;
     public int currentCameraIndex;
+
+    public string[] enemyIDs;
+    //public int[] bossEnemiesWithItemIndexes;
 }
