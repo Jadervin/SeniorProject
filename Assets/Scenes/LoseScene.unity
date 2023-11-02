@@ -408,9 +408,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playButton: {fileID: 0}
+  loadButton: {fileID: 0}
   retryButton: {fileID: 2108142917}
   quitButton: {fileID: 413014760}
-  startMenuButton: {fileID: 2027974634}
+  menuButton: {fileID: 2027974634}
+  noSaveDataPopupGO: {fileID: 0}
+  closeLoadPopupButton: {fileID: 0}
+  startNewGamePopupGO: {fileID: 0}
+  startNewGameButton: {fileID: 0}
+  closeNewGamePopupButton: {fileID: 0}
 --- !u!4 &568125909
 Transform:
   m_ObjectHideFlags: 0

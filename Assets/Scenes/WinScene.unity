@@ -1004,7 +1004,7 @@ MonoBehaviour:
   loadButton: {fileID: 0}
   retryButton: {fileID: 490950477}
   quitButton: {fileID: 59331023}
-  menuButton: {fileID: 0}
+  menuButton: {fileID: 1851656155}
   noSaveDataPopupGO: {fileID: 0}
   closeLoadPopupButton: {fileID: 0}
   startNewGamePopupGO: {fileID: 0}
