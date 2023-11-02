@@ -16,13 +16,18 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<GameObject> bossEnemyList;
 
     private string[] enemiesWithItemsIDs;
-    [SerializeField] private List<string> enemiesWithItemsidsList;
+    [SerializeField] private List<string> enemiesWithItemsIdsList;
 
-    private int[] bossEnemiesWithItemsIndexes;
-    [SerializeField] private List<int> bossEnemiesWithItemsIndexList;
+    private string[] bossEnemiesWithItemIDs;
+    [SerializeField] private List<string> bossEnemiesWithItemsIdsList;
 
-    private string[] enemyidsFromSave = new string[0];
-    [SerializeField] private List<string> enemyidsFromSaveList = new List<string>();
+    private string[] enemyIdsFromSave = new string[0];
+    [SerializeField] private List<string> enemyIdsFromSaveList = new List<string>();
+
+    private string[] bossEnemyIdsFromSave = new string[0];
+    [SerializeField] private List<string> bossEnemyIdsFromSaveList = new List<string>();
+
+
 
     private void Awake()
     {
@@ -40,8 +45,8 @@ public class EnemyManager : MonoBehaviour
 
         regularEnemyList = new List<GameObject>();
         bossEnemyList = new List<GameObject>();
-        enemiesWithItemsidsList = new List<string>();
-        enemyidsFromSaveList = new List<string>();
+        enemiesWithItemsIdsList = new List<string>();
+        enemyIdsFromSaveList = new List<string>();
 
         for (int i = 0; i < regularEnemyArray.Length; i++)
         {
@@ -52,12 +57,29 @@ public class EnemyManager : MonoBehaviour
             bossEnemyList.Add(bossEnemyArray[i].transform.parent.gameObject);
         }
 
-        if (enemyidsFromSave != null /*enemiesItemIndexesFromSaveList.IsEmpty() == false*/)
+        Debug.Log(enemyIdsFromSave);
+
+        if (enemyIdsFromSave.Length > 0)
         {
-            CheckEnemyIndexes();
+            Debug.Log("Checking Regular Enemies");
+            CheckEnemyIDs();
+        }
+
+        Debug.Log(bossEnemyIdsFromSave);
+
+        if(bossEnemyIdsFromSave.Length > 0)
+        {
+            Debug.Log("Checking Boss Enemies");
+            CheckBossEnemyIDs();
         }
 
         EnemyScript.OnAnyEnemyDefeated += EnemyScript_OnAnyEnemyDefeated;
+        BossEnemyScript.OnAnyBossEnemyDefeated += BossEnemyScript_OnAnyBossEnemyDefeated;
+    }
+
+    private void BossEnemyScript_OnAnyBossEnemyDefeated(object sender, BossEnemyScript.OnBossEnemyDefeatedEventArgs e)
+    {
+        CheckBossEnemyLists(e);
     }
 
     private void EnemyScript_OnAnyEnemyDefeated(object sender, EnemyScript.OnEnemyDefeatedEventArgs e)
@@ -73,28 +95,49 @@ public class EnemyManager : MonoBehaviour
             {
                 if(enemyObject.itemToSpawn != null)
                 {
-                    if(enemiesWithItemsidsList.Contains(regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID()) == false)
+                    if(enemiesWithItemsIdsList.Contains(regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID()) == false)
                     {
-                        enemiesWithItemsidsList.Add(regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID());
+                        enemiesWithItemsIdsList.Add(regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID());
                     }
                 }
             }
         }
 
-        enemiesWithItemsIDs = new string[enemiesWithItemsidsList.Count];
+        enemiesWithItemsIDs = new string[enemiesWithItemsIdsList.Count];
 
         for(int i = 0; i < enemiesWithItemsIDs.Length; i++)
         {
-            enemiesWithItemsIDs[i] = enemiesWithItemsidsList[i];
+            enemiesWithItemsIDs[i] = enemiesWithItemsIdsList[i];
 
             
         }
     }
 
 
-    private void CheckBossEnemyLists(/*EnemyScript.OnEnemyDefeatedEventArgs enemyObject*/)
+    private void CheckBossEnemyLists(BossEnemyScript.OnBossEnemyDefeatedEventArgs bossEnemyObject)
     {
+        for (int i = 0; i < bossEnemyList.Count; i++)
+        {
+            if (bossEnemyObject.enemyParent == bossEnemyList[i])
+            {
+                if (bossEnemyObject.itemToSpawn != null)
+                {
+                    if (bossEnemiesWithItemsIdsList.Contains(bossEnemyList[i].GetComponentInChildren<BossEnemyScript>().GetBossEnemyID()) == false)
+                    {
+                        bossEnemiesWithItemsIdsList.Add(bossEnemyList[i].GetComponentInChildren<BossEnemyScript>().GetBossEnemyID());
+                    }
+                }
+            }
+        }
 
+        bossEnemiesWithItemIDs = new string[bossEnemiesWithItemsIdsList.Count];
+
+        for (int i = 0; i < enemiesWithItemsIDs.Length; i++)
+        {
+            bossEnemiesWithItemIDs[i] = bossEnemiesWithItemsIdsList[i];
+
+
+        }
     }
 
     public string[] GetEnemyIDs()
@@ -102,23 +145,39 @@ public class EnemyManager : MonoBehaviour
         return enemiesWithItemsIDs;
     }
 
-    public void SetEnemyIDs(string[] indexes)
+    public string[] GetBossEnemyIDs()
     {
-        enemyidsFromSave = indexes;
+        return bossEnemiesWithItemIDs;
+    }
 
-        for (int i = 0; i < enemyidsFromSave.Length; i++)
+    public void SetEnemyIDs(string[] ids)
+    {
+        enemyIdsFromSave = ids;
+
+        for (int i = 0; i < enemyIdsFromSave.Length; i++)
         {
-            enemyidsFromSaveList.Add(indexes[i]);
+            enemyIdsFromSaveList.Add(ids[i]);
         }
     }
 
-    private void CheckEnemyIndexes()
+
+    public void SetBossEnemyIDs(string[] ids)
     {
-        for (int j = 0; j < enemyidsFromSave.Length; j++)
+        bossEnemyIdsFromSave = ids;
+
+        for (int i = 0; i < enemyIdsFromSave.Length; i++)
+        {
+            bossEnemyIdsFromSaveList.Add(ids[i]);
+        }
+    }
+
+    private void CheckEnemyIDs()
+    {
+        for (int j = 0; j < enemyIdsFromSave.Length; j++)
         {
             for (int i = 0; i < regularEnemyList.Count; i++)
             {
-                if (enemyidsFromSave[j] == regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID())
+                if (enemyIdsFromSave[j] == regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID())
                 {
                     regularEnemyList[i].SetActive(false);
                     //regularEnemyList.RemoveAt(i);
@@ -131,5 +190,32 @@ public class EnemyManager : MonoBehaviour
         {
             regularEnemyList.Add(regularEnemyArray[i].transform.parent.gameObject);
         }
+    }
+
+
+
+    private void CheckBossEnemyIDs()
+    {
+        for (int j = 0; j < bossEnemyIdsFromSave.Length; j++)
+        {
+            for (int i = 0; i < bossEnemyList.Count; i++)
+            {
+                if (bossEnemyIdsFromSave[j] == bossEnemyList[i].GetComponentInChildren<BossEnemyScript>().GetBossEnemyID())
+                {
+                    bossEnemyList[i].SetActive(false);
+                    //regularEnemyList.RemoveAt(i);
+                }
+            }
+
+
+        }
+        bossEnemyArray = FindObjectsOfType<BossEnemyScript>();
+        bossEnemyList.Clear();
+        for (int i = 0; i < bossEnemyArray.Length; i++)
+        {
+            bossEnemyList.Add(bossEnemyArray[i].transform.parent.gameObject);
+        }
+
+
     }
 }

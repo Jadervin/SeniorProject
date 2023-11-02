@@ -142,6 +142,12 @@ public class EnemyScript : EntityScript
         public GameObject itemToSpawn;
     }
 
+    
+    public static void ResetStaticData()
+    {
+        OnAnyEnemyDefeated = null;
+    }
+
     /*
     public event EventHandler<OnKnockbackEventArgs> OnEnemyKnockbackAction;
     public class OnKnockbackEventArgs : EventArgs
@@ -149,10 +155,6 @@ public class EnemyScript : EntityScript
         public GameObject collidedGameObject;
     }
     */
-    public static void ResetStaticData()
-    {
-        OnAnyEnemyDefeated = null;
-    }
 
     // Start is called before the first frame update
     protected void Start()

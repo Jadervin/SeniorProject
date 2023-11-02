@@ -54,7 +54,8 @@ public class SaveManager : MonoBehaviour
             maxArtifactNum = playerObject.GetComponent<PlayerArtifactCollection>().GetArtifactsNeeded(),
             currentBaseBulletState = playerObject.GetComponentInChildren<PlayerBasicShooting>().GetBaseShootingState(),
             currentCameraIndex = CameraManager.instance.GetCurrentCameraIndex(),
-            enemyIDs = EnemyManager.instance.GetEnemyIDs()
+            enemyIDs = EnemyManager.instance.GetEnemyIDs(),
+            bossEnemyIDs = EnemyManager.instance.GetBossEnemyIDs()
         };
 
         string json = JsonUtility.ToJson(saveData);
@@ -85,7 +86,9 @@ public class SaveManager : MonoBehaviour
             playerObject.GetComponentInChildren<PlayerBasicShooting>().SetBaseShootingState(saveData.currentBaseBulletState);
             CameraManager.instance.SetCurrentCamera(saveData.currentCameraIndex);
             EnemyManager.instance.SetEnemyIDs(saveData.enemyIDs);
-            
+            EnemyManager.instance.SetBossEnemyIDs(saveData.bossEnemyIDs);
+
+
         }
         else
         {

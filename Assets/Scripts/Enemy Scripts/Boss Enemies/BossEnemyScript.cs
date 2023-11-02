@@ -113,7 +113,22 @@ public class BossEnemyScript : EntityScript
     [Header("Knockback Variables")]
     [SerializeField] protected float knockbackStrength = 16;
     [SerializeField] protected float delayTime = .3f;
-    
+
+
+    public static event EventHandler<OnBossEnemyDefeatedEventArgs> OnAnyBossEnemyDefeated;
+
+    public class OnBossEnemyDefeatedEventArgs : EventArgs
+    {
+        public GameObject enemyParent;
+        public GameObject itemToSpawn;
+    }
+
+
+    public static void ResetStaticData()
+    {
+        OnAnyBossEnemyDefeated = null;
+    }
+
 
     private void Start()
     {
@@ -542,6 +557,18 @@ public class BossEnemyScript : EntityScript
         }
         enemyParent.gameObject.SetActive(false);
 
+
+        OnAnyBossEnemyDefeated?.Invoke(this, new OnBossEnemyDefeatedEventArgs
+        {
+            enemyParent = enemyParent,
+            itemToSpawn = itemToSpawn,
+        });
+
+    }
+
+    public string GetBossEnemyID()
+    {
+        return bossEnemyID;
     }
 
     public BossEnemyStates GetBossEnemyState()

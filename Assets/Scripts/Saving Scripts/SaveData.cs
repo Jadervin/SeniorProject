@@ -18,5 +18,6 @@ public class SaveData
     public int currentCameraIndex;
 
     public string[] enemyIDs;
-    //public int[] bossEnemiesWithItemIndexes;
+    public string[] bossEnemyIDs;
+
 }
