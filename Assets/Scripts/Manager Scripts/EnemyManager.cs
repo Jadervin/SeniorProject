@@ -21,10 +21,10 @@ public class EnemyManager : MonoBehaviour
     private string[] bossEnemiesWithItemIDs;
     [SerializeField] private List<string> bossEnemiesWithItemsIdsList;
 
-    private string[] enemyIdsFromSave = new string[0];
+    private string[] enemyIDsFromSave = new string[0];
     [SerializeField] private List<string> enemyIdsFromSaveList = new List<string>();
 
-    private string[] bossEnemyIdsFromSave = new string[0];
+    private string[] bossEnemyIDsFromSave = new string[0];
     [SerializeField] private List<string> bossEnemyIdsFromSaveList = new List<string>();
 
 
@@ -46,7 +46,7 @@ public class EnemyManager : MonoBehaviour
         regularEnemyList = new List<GameObject>();
         bossEnemyList = new List<GameObject>();
         enemiesWithItemsIdsList = new List<string>();
-        enemyIdsFromSaveList = new List<string>();
+        //enemyIdsFromSaveList = new List<string>();
 
         for (int i = 0; i < regularEnemyArray.Length; i++)
         {
@@ -57,19 +57,19 @@ public class EnemyManager : MonoBehaviour
             bossEnemyList.Add(bossEnemyArray[i].transform.parent.gameObject);
         }
 
-        Debug.Log(enemyIdsFromSave);
+        //Debug.Log(enemyIdsFromSave);
 
-        if (enemyIdsFromSave.Length > 0)
+        if (enemyIDsFromSave.Length > 0)
         {
-            Debug.Log("Checking Regular Enemies");
+            //Debug.Log("Checking Regular Enemies");
             CheckEnemyIDs();
         }
 
-        Debug.Log(bossEnemyIdsFromSave);
+        //Debug.Log(bossEnemyIdsFromSave);
 
-        if(bossEnemyIdsFromSave.Length > 0)
+        if (bossEnemyIDsFromSave.Length > 0)
         {
-            Debug.Log("Checking Boss Enemies");
+            //Debug.Log("Checking Boss Enemies");
             CheckBossEnemyIDs();
         }
 
@@ -132,7 +132,7 @@ public class EnemyManager : MonoBehaviour
 
         bossEnemiesWithItemIDs = new string[bossEnemiesWithItemsIdsList.Count];
 
-        for (int i = 0; i < enemiesWithItemsIDs.Length; i++)
+        for (int i = 0; i < bossEnemiesWithItemIDs.Length; i++)
         {
             bossEnemiesWithItemIDs[i] = bossEnemiesWithItemsIdsList[i];
 
@@ -152,9 +152,9 @@ public class EnemyManager : MonoBehaviour
 
     public void SetEnemyIDs(string[] ids)
     {
-        enemyIdsFromSave = ids;
+        enemyIDsFromSave = ids;
 
-        for (int i = 0; i < enemyIdsFromSave.Length; i++)
+        for (int i = 0; i < enemyIDsFromSave.Length; i++)
         {
             enemyIdsFromSaveList.Add(ids[i]);
         }
@@ -163,9 +163,9 @@ public class EnemyManager : MonoBehaviour
 
     public void SetBossEnemyIDs(string[] ids)
     {
-        bossEnemyIdsFromSave = ids;
+        bossEnemyIDsFromSave = ids;
 
-        for (int i = 0; i < enemyIdsFromSave.Length; i++)
+        for (int i = 0; i < bossEnemyIDsFromSave.Length; i++)
         {
             bossEnemyIdsFromSaveList.Add(ids[i]);
         }
@@ -173,18 +173,22 @@ public class EnemyManager : MonoBehaviour
 
     private void CheckEnemyIDs()
     {
-        for (int j = 0; j < enemyIdsFromSave.Length; j++)
+        for (int j = 0; j < enemyIDsFromSave.Length; j++)
         {
             for (int i = 0; i < regularEnemyList.Count; i++)
             {
-                if (enemyIdsFromSave[j] == regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID())
+                if (enemyIDsFromSave[j] == regularEnemyList[i].GetComponentInChildren<EnemyScript>().GetEnemyID())
                 {
                     regularEnemyList[i].SetActive(false);
                     //regularEnemyList.RemoveAt(i);
                 }
             }
         }
+
+        //Debug.Log("regularEnemyArray.Length: " + regularEnemyArray.Length);
         regularEnemyArray = FindObjectsOfType<EnemyScript>();
+        //Debug.Log("regularEnemyArray.Length: " + regularEnemyArray.Length);
+
         regularEnemyList.Clear();
         for (int i = 0; i < regularEnemyArray.Length; i++)
         {
@@ -196,11 +200,11 @@ public class EnemyManager : MonoBehaviour
 
     private void CheckBossEnemyIDs()
     {
-        for (int j = 0; j < bossEnemyIdsFromSave.Length; j++)
+        for (int j = 0; j < bossEnemyIDsFromSave.Length; j++)
         {
             for (int i = 0; i < bossEnemyList.Count; i++)
             {
-                if (bossEnemyIdsFromSave[j] == bossEnemyList[i].GetComponentInChildren<BossEnemyScript>().GetBossEnemyID())
+                if (bossEnemyIDsFromSave[j] == bossEnemyList[i].GetComponentInChildren<BossEnemyScript>().GetBossEnemyID())
                 {
                     bossEnemyList[i].SetActive(false);
                     //regularEnemyList.RemoveAt(i);

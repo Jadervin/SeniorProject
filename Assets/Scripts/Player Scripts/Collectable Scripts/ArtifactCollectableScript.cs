@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class ArtifactCollectableScript : Collectables
 {
-    
 
+    [SerializeField] private float speed = 5f;
+
+    private void Update()
+    {
+        //MOVE TO PLAYER
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+    }
 
     public override void Interact()
     {

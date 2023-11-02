@@ -33,7 +33,19 @@ public class AfterShockScript : MonoBehaviour
             Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, shockRadius, enemyLayer);
             foreach (Collider2D collider in collider2Ds)
             {
-                collider.gameObject.GetComponent<EnemyScript>().DamageHealth(shockDamage);
+                //collider.gameObject.GetComponent<EnemyScript>().DamageHealth(shockDamage);
+                if(collider.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
+                {
+                    enemy.DamageHealth(shockDamage);
+
+                }
+                else if(collider.gameObject.TryGetComponent<BossEnemyScript>(out BossEnemyScript boss))
+                {
+                    boss.DamageHealth(shockDamage);
+
+                }
+
+
                 hitWithCollider = true;
             }
 

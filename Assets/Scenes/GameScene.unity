@@ -3815,9 +3815,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regularEnemyList: []
   bossEnemyList: []
-  enemiesWithItemsIndexList: 
-  bossEnemiesWithItemsIndexList: 
-  enemiesItemIndexesFromSaveList: 
+  enemiesWithItemsIdsList: []
+  bossEnemiesWithItemsIdsList: []
+  enemyIdsFromSaveList: []
+  bossEnemyIdsFromSaveList: []
 --- !u!1001 &284143437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4963,6 +4964,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2018204325}
+  - {fileID: 1042336562}
   - {fileID: 261708741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5922,6 +5924,67 @@ MonoBehaviour:
   fallYPanTime: 0.35
   fallSpeedYDampingChangeThreshold: -15
   currentCamera: {fileID: 0}
+--- !u!1001 &452390516
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 360463704}
+    m_Modifications:
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 101.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.043322
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.053984694
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163819194048927550, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_Name
+      value: HealthUpgradeObject (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032402737801373102, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: collectableID
+      value: HealthUp1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
 --- !u!1 &456463618
 GameObject:
   m_ObjectHideFlags: 0
@@ -10673,7 +10736,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 135.0783
+      value: 107.8
       objectReference: {fileID: 0}
     - target: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10714,6 +10777,10 @@ PrefabInstance:
     - target: {fileID: 5163819194048927550, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
       propertyPath: m_Name
       value: HealthUpgradeObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032402737801373102, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: collectableID
+      value: HealthUp2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -61958,6 +62025,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e1258b3dd4d90b4cbfe88ff2d1226d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectablesList: []
+  collectablesIdsList: []
+  collectablesIdsFromSaveList: []
 --- !u!1 &1025508626
 GameObject:
   m_ObjectHideFlags: 0
@@ -62493,6 +62563,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &1042336562 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3407903220877986920, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+  m_PrefabInstance: {fileID: 452390516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1051143003
 GameObject:
   m_ObjectHideFlags: 0
@@ -77590,7 +77665,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: / 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -106975,9 +107050,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SWEnergyUpgradeObject
       objectReference: {fileID: 0}
+    - target: {fileID: 6191440410365164192, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: collectableID
+      value: SWUp1
+      objectReference: {fileID: 0}
     - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 131.8
+      value: 104.52171
       objectReference: {fileID: 0}
     - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: m_LocalPosition.y
