@@ -323,7 +323,7 @@ public class CameraManager : MonoBehaviour
                 //set the current active camera
 
                 currentCamera = allVirtualCameras[i];
-                allVirtualCameras[i].gameObject.SetActive(true);
+                //allVirtualCameras[i].gameObject.SetActive(true);
                 allVirtualCameras[i].enabled = true;
                 //MapRoomManager.instance.RevealRoom();
 
@@ -340,7 +340,7 @@ public class CameraManager : MonoBehaviour
             }
             else
             {
-                allVirtualCameras[i].gameObject.SetActive(false);
+                //allVirtualCameras[i].gameObject.SetActive(false);
                 allVirtualCameras[i].enabled = false;
 
 
