@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class MapRoomManager : MonoBehaviour
 {
-   public static MapRoomManager instance;
+    public static MapRoomManager instance;
 
 
-    private MapContainerData[] rooms;
+    /*[SerializeField] */private MapContainerData[] rooms;
 
     private void Awake()
     {
