@@ -62,6 +62,13 @@
             "width": 960,
             "x": 1920,
             "y": -1600
+        },
+        {
+            "fileName": "World Tilemaps/WallSection.tmx",
+            "height": 320,
+            "width": 480,
+            "x": 2880,
+            "y": -1280
         }
     ],
     "onlyShowAdjacentMaps": false,
