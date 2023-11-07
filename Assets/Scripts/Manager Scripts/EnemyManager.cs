@@ -57,7 +57,12 @@ public class EnemyManager : MonoBehaviour
             bossEnemyList.Add(bossEnemyArray[i].transform.parent.gameObject);
         }
 
-        //Debug.Log(enemyIdsFromSave);
+        Debug.Log("Amount of Enemies From Save: " + enemyIDsFromSave.Length);
+
+        for (int i = 0; i < enemyIDsFromSave.Length; i++)
+        {
+            Debug.Log("Enemies From Save: " + enemyIDsFromSave[i]);
+        }
 
         if (enemyIDsFromSave.Length > 0)
         {
@@ -157,6 +162,14 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemyIDsFromSave.Length; i++)
         {
             enemyIdsFromSaveList.Add(ids[i]);
+        }
+
+
+        Debug.Log("Amount of Enemies From Save: " + enemyIDsFromSave.Length);
+
+        for (int i = 0; i < enemyIDsFromSave.Length; i++)
+        {
+            Debug.Log("Enemies From Save: " + enemyIDsFromSave[i]);
         }
     }
 

@@ -13,7 +13,7 @@ public class MapRoomManager : MonoBehaviour
     /*[SerializeField] */private List<string> openRoomNamesList;
     /*[SerializeField] */private string[] openRoomNames;
 
-    private string[] openRoomNamesFromSave/* = new string[0]*/;
+    private string[] openRoomNamesFromSave = new string[0];
 
     [SerializeField] private List<string> openRoomNamesListFromSave = new List<string>();
 
@@ -27,8 +27,6 @@ public class MapRoomManager : MonoBehaviour
             instance = this;
         }
         
-
-        
     }
 
 
@@ -37,6 +35,13 @@ public class MapRoomManager : MonoBehaviour
 
         rooms = GetComponentsInChildren<MapContainerData>(true);
 
+        Debug.Log("Amount of Rooms From Save: " + openRoomNamesFromSave.Length);
+
+        for (int i = 0; i < openRoomNamesFromSave.Length; i++)
+        {
+            Debug.Log("Rooms From Save: " + openRoomNamesFromSave[i]);
+        }
+
         openRoomNamesList = new List<string>();
 
 
@@ -44,7 +49,6 @@ public class MapRoomManager : MonoBehaviour
 
         if (openRoomNamesFromSave.Length > 0 || openRoomNamesFromSave != null)
         {
-            //Debug.Log("Checking Rooms");
             EnableSavedRooms();
         }
     }
@@ -91,6 +95,14 @@ public class MapRoomManager : MonoBehaviour
         {
             openRoomNamesListFromSave.Add(names[i]);
         }
+
+
+        Debug.Log("Amount of Rooms From Save: " + openRoomNamesFromSave.Length);
+        for (int i = 0; i < openRoomNamesFromSave.Length; i++)
+        {
+            Debug.Log("Rooms From Save: " + openRoomNamesFromSave[i]);
+        }
+
     }
 
     public void EnableSavedRooms()
@@ -99,25 +111,29 @@ public class MapRoomManager : MonoBehaviour
         {
             for (int j = 0; j < rooms.Length; j++)
             {
-                if (openRoomNamesFromSave[j] == rooms[i].GetRoomName())
+                if (openRoomNamesFromSave[i] == rooms[j].GetRoomName())
                 {
-                    rooms[i].gameObject.SetActive(true);
-                    rooms[i].hasBeenRevealed = true;
+                    rooms[j].gameObject.SetActive(true);
+                    rooms[j].hasBeenRevealed = true;
 
 
 
-                    openRoomNamesList.Add(rooms[i].GetRoomName());
+                    openRoomNamesList.Add(rooms[j].GetRoomName());
 
-                    openRoomNames = new string[openRoomNamesList.Count];
-
-
-                    for (int k = 0; k < openRoomNames.Length; k++)
-                    {
-                        openRoomNames[k] = openRoomNamesList[k];
-
-                    }
+                    
                 }
             }
+
         }
+
+        openRoomNames = new string[openRoomNamesList.Count];
+
+
+        for (int k = 0; k < openRoomNames.Length; k++)
+        {
+            openRoomNames[k] = openRoomNamesList[k];
+
+        }
+
     }
 }
