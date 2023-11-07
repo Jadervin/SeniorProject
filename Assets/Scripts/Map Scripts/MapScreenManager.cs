@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class MapScreenManager : MonoBehaviour
 {
-    public static MapManager instance;
+    public static MapScreenManager instance;
     [SerializeField] private GameObject largeMapImage;
 
     public bool IsMapScreenOpen {  get; set; }

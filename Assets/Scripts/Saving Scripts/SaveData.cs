@@ -20,4 +20,7 @@ public class SaveData
     public string[] enemyIDs;
     public string[] bossEnemyIDs;
     public string[] collectablesIDs;
+
+    public string[] openRoomNames;
+
 }

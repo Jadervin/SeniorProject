@@ -5,8 +5,20 @@ using UnityEngine;
 
 public class MapContainerData : MonoBehaviour
 {
-    public CinemachineVirtualCamera roomCamera;
+    [SerializeField] private CinemachineVirtualCamera roomCamera;
+    [SerializeField] private string roomName;
 
 
     public bool hasBeenRevealed { get; set; }
+
+
+    public CinemachineVirtualCamera GetRoomCamera() 
+    { 
+        return roomCamera; 
+    }
+
+    public string GetRoomName()
+    {
+        return roomName;
+    }
 }

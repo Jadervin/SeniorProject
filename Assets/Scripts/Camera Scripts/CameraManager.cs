@@ -41,7 +41,7 @@ public class CameraManager : MonoBehaviour
         }
 
         //if (SaveSystem.SaveFileCheck() == false)
-        {
+        //{
             for (int i = 0; i < allVirtualCameras.Length; i++)
             {
                 if (allVirtualCameras[i].enabled)
@@ -64,7 +64,7 @@ public class CameraManager : MonoBehaviour
 
             //set the starting position of the tracked object offset
             startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
-        }
+        //}
     }
 
 

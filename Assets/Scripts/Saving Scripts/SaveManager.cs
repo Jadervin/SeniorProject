@@ -56,7 +56,8 @@ public class SaveManager : MonoBehaviour
             currentCameraIndex = CameraManager.instance.GetCurrentCameraIndex(),
             enemyIDs = EnemyManager.instance.GetEnemyIDs(),
             bossEnemyIDs = EnemyManager.instance.GetBossEnemyIDs(),
-            collectablesIDs = StrayCollectableManager.Instance.GetCollectableIDs()
+            collectablesIDs = StrayCollectableManager.Instance.GetCollectableIDs(),
+            openRoomNames = MapRoomManager.instance.GetOpenRoomNames()
         };
 
         string json = JsonUtility.ToJson(saveData);
@@ -89,6 +90,7 @@ public class SaveManager : MonoBehaviour
             EnemyManager.instance.SetEnemyIDs(saveData.enemyIDs);
             EnemyManager.instance.SetBossEnemyIDs(saveData.bossEnemyIDs);
             StrayCollectableManager.Instance.SetCollectableIDs(saveData.collectablesIDs);
+            MapRoomManager.instance.SetOpenRoomNames(saveData.openRoomNames);
 
 
         }

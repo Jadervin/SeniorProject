@@ -21202,6 +21202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 777962504}
+  roomName: Room1.2
 --- !u!1 &812573800
 GameObject:
   m_ObjectHideFlags: 0
@@ -45648,6 +45649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 1347313459}
+  roomName: Room4.1
 --- !u!1 &903960410
 GameObject:
   m_ObjectHideFlags: 0
@@ -61581,6 +61583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 1661752807}
+  roomName: Room2.2
 --- !u!1 &976927651
 GameObject:
   m_ObjectHideFlags: 0
@@ -65167,6 +65170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b31b7ea748d4a74b8699b014a41b6c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rooms: []
+  currentOpenRoomNamesList: []
+  currentOpenRoomNames: []
 --- !u!1 &1190293569
 GameObject:
   m_ObjectHideFlags: 0
@@ -77437,6 +77443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 1085403449}
+  roomName: Room2.1
 --- !u!1 &1315618229
 GameObject:
   m_ObjectHideFlags: 0
@@ -85316,6 +85323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 547191445}
+  roomName: Room1.3
 --- !u!1 &1529174944
 GameObject:
   m_ObjectHideFlags: 0
@@ -90138,6 +90146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 1666043307}
+  roomName: Room1.1
 --- !u!1 &1547999819
 GameObject:
   m_ObjectHideFlags: 0
@@ -96674,6 +96683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 296385903}
+  roomName: Room1.4
 --- !u!1 &1706118874
 GameObject:
   m_ObjectHideFlags: 0
@@ -106438,6 +106448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCamera: {fileID: 65869167}
+  roomName: Room3.1
 --- !u!1001 &2071382157
 PrefabInstance:
   m_ObjectHideFlags: 0
