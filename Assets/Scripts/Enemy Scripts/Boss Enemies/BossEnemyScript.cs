@@ -489,14 +489,15 @@ public class BossEnemyScript : EntityScript
 
         Vector2 knockbackDirection = (transform.position - collidedGameObject.transform.position).normalized;
         knockbackDirection.y *= -1;
-        Debug.Log(knockbackDirection * knockbackStrength);
+
+        //Debug.Log(knockbackDirection * knockbackStrength);
 
         rb.velocity = Vector2.zero;
 /*        knockbackDirection = new Vector2((Mathf.Sign(knockbackDirection.x)), 0);
         Debug.Log(knockbackDirection);*/
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
         StartCoroutine(KnockbackDelay());
 

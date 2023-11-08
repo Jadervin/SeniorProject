@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: caa874244f3d25d47881df962471aa38
+guid: 5a63b1571c7926640bd09c6ddcd39f40
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -8,8 +8,12 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
-  missingFiles: []
-  errors: []
+  missingFiles:
+  - ../../../../../GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior
+    Project Test Map Project/Tilesets/Metroid_like2.tsx
+  errors:
+  - 'Missing tileset asset: ../../../../../GitHub Repositories/SeniorProject/Assets/Tiled
+    Projects/Senior Project Test Map Project/Tilesets/Metroid_like2.tsx'
   warnings: []
   missingSortingLayers: []
   missingLayers: []

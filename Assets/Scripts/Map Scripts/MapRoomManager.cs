@@ -34,14 +34,14 @@ public class MapRoomManager : MonoBehaviour
     {
 
         rooms = GetComponentsInChildren<MapContainerData>(true);
-
+/*
         Debug.Log("Amount of Rooms From Save: " + openRoomNamesFromSave.Length);
 
         for (int i = 0; i < openRoomNamesFromSave.Length; i++)
         {
             Debug.Log("Rooms From Save: " + openRoomNamesFromSave[i]);
         }
-
+*/
         openRoomNamesList = new List<string>();
 
 

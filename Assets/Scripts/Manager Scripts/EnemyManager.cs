@@ -57,12 +57,13 @@ public class EnemyManager : MonoBehaviour
             bossEnemyList.Add(bossEnemyArray[i].transform.parent.gameObject);
         }
 
+        /*
         Debug.Log("Amount of Enemies From Save: " + enemyIDsFromSave.Length);
 
         for (int i = 0; i < enemyIDsFromSave.Length; i++)
         {
             Debug.Log("Enemies From Save: " + enemyIDsFromSave[i]);
-        }
+        }*/
 
         if (enemyIDsFromSave.Length > 0)
         {

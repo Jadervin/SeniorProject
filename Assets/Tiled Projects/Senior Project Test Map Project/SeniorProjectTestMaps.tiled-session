@@ -1,0 +1,416 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Worlds/Build 4 World/World Tilemaps/Section-3.1.tmx",
+    "expandedProjectPaths": [
+        "Worlds/Build 4 World/World Tilemaps",
+        "Tilesets",
+        "Worlds/Test World/Tilemaps for World",
+        ".",
+        "Worlds/Build 4 World",
+        "Worlds",
+        "Worlds/Test World",
+        "Test World/Tilemaps for World",
+        "Test World"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "C:/Users/jdervin/Documents/GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior Project Test Map Project/Test World/Tilemaps for World/Level 1-3.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -196,
+                "y": 71.5
+            }
+        },
+        "C:/Users/jdervin/Documents/GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior Project Test Map Project/Tilemaps/0001_Level_0.tmx": {
+            "scale": 3.099375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 104.5372050816697,
+                "y": 41.78261746319822
+            }
+        },
+        "C:/Users/jdervin/Documents/GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior Project Test Map Project/Tilemaps/0002_Level_1.tmx": {
+            "scale": 0.619875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 600.1209921355112,
+                "y": 400.8872756604154
+            }
+        },
+        "C:/Users/jdervin/Documents/GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior Project Test Map Project/Tilesets/Metroid_like2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0001_Level_0.tmx": {
+            "scale": 3.099375,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 119.05626134301271,
+                "y": 80.17745513208308
+            }
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0001_Level_0.tmx#Metroid_like": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0001_Level_0.tmx#Metroid_like2": {
+            "scaleInDock": 1
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0002_Level_1.tmx": {
+            "scale": 0.619875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 756.6041540633192,
+                "y": 437.99153055051426
+            }
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0002_Level_1.tmx#Metroid_like2": {
+            "scaleInDock": 1
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0003_Level_2.tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "C:/Users/jdervin/Documents/LDTK Projects/LDTK Test Project/Test LDTK Project/tiled/0003_Level_2.tmx#Metroid_like2": {
+            "scaleInDock": 1
+        },
+        "Test World/Tilemaps for World/Level 1-1.tmx": {
+            "expandedGroupLayers": [
+                7
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 477,
+                "y": 195.5
+            }
+        },
+        "Test World/Tilemaps for World/Level 1-2.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 239,
+                "y": 159.5
+            }
+        },
+        "Test World/Tilemaps for World/Level 1-3.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 78,
+                "y": 211.5
+            }
+        },
+        "Tilemaps/0001_Level_0.tmx": {
+            "scale": 3.099375,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 129.05827787860454,
+                "y": 71.46602137527726
+            }
+        },
+        "Tilemaps/0001_Level_0.tmx#Metroid_like2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "Tilemaps/0002_Level_1.tmx": {
+            "scale": 0.619875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 595.2813067150636,
+                "y": 397.66081871345034
+            }
+        },
+        "Tilemaps/0002_Level_1.tmx#Metroid_like2": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tilemaps/0003_Level_2.tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 238.11252268602541,
+                "y": 160.35491026416616
+            }
+        },
+        "Tilemaps/0003_Level_2.tmx#Metroid_like2": {
+            "scaleInDock": 1
+        },
+        "Tilesets/Metroid_like2.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 4
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-1.1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 2988,
+                "y": -765
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-1.2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 477.3333333333333,
+                "y": -28.666666666666742
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-1.3.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 239.33333333333331,
+                "y": 159.66666666666663
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-1.4.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 239.99999999999994,
+                "y": 159.33333333333326
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-1.5.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -246.66666666666669,
+                "y": -647.3333333333333
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-2.1 - Copy.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 258.66666666666663,
+                "y": 432.66666666666674
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-2.1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 240,
+                "y": 319
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-2.2.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -406.060606060606,
+                "y": -86.36363636363626
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-2.3.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 1324,
+                "y": 191
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-2.4.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 239,
+                "y": 319.5
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-2.5.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 252,
+                "y": 217
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-3.1.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": -276,
+                "y": 407
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-4.1.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 239.99999999999994,
+                "y": 159.33333333333326
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-4.2.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 686,
+                "y": 729
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/Section-4.3.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 481.81818181818176,
+                "y": -692.4242424242425
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (2).tmx": {
+            "scale": 0.25,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -1032,
+                "y": -326
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (3).tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -262.6666666666667,
+                "y": 257.99999999999994
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (4).tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (5).tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (6).tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (7).tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (8).tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy (9).tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 160.35491026416616
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection - Copy.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 223.99999999999994,
+                "y": 107.33333333333326
+            }
+        },
+        "Worlds/Build 4 World/World Tilemaps/WallSection.tmx": {
+            "scale": 0.33,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.90909090909088,
+                "y": 159.090909090909
+            }
+        },
+        "Worlds/Test World/Tilemaps for World/Level 1-1.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 89,
+                "y": 153.75
+            }
+        },
+        "Worlds/Test World/Tilemaps for World/Level 1-2.tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 258.4392014519056
+            }
+        },
+        "Worlds/Test World/Tilemaps for World/Level 1-3.tmx": {
+            "scale": 1.5496875,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 240.04839685420447,
+                "y": 258.4392014519056
+            }
+        },
+        "Worlds/Tilesets/Metroid_like2.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "last.externalTilesetPath": "C:/Users/jdervin/Documents/GitHub Repositories/SeniorProject/Assets/Tiled Projects/Senior Project Test Map Project/Tilesets",
+    "last.worldFilePath": "C:/Users/jdervin/Documents/Tiled Projects/Senior Project Test Map Project/Worlds/Build 4 World",
+    "loadedWorlds": [
+        "C:/Users/jdervin/Documents/Tiled Projects/Senior Project Test Map Project/Worlds/Build 4 World/Build 4 World.world",
+        "C:/Users/jdervin/Documents/Tiled Projects/Senior Project Test Map Project/Worlds/Test World/testWorld.world"
+    ],
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "Worlds/Build 4 World/World Tilemaps/WallSection.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-3.1.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.3.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-1.1.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-4.2.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.5.tmx"
+    ],
+    "project": "SeniorProjectTestMaps.tiled-project",
+    "recentFiles": [
+        "Worlds/Build 4 World/World Tilemaps/WallSection.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.5.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-4.2.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-1.1.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.3.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-3.1.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.1.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-1.3.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-4.1.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.2.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-2.4.tmx",
+        "Worlds/Build 4 World/World Tilemaps/Section-4.3.tmx"
+    ],
+    "resizeMap.removeObjects": true,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)"
+}
