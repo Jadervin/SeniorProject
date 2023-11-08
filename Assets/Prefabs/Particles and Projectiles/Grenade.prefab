@@ -131,9 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab11e64ca541df4f815503142efb16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  ENEMYTAG: Enemy
-  BOSSENEMYTAG: Boss Enemy
+  speed: 20
   bulletDamage: 5
   bulletType: 1
   bulletSprite: {fileID: 2432697369381526004}
@@ -142,9 +140,6 @@ MonoBehaviour:
   whatDestroysObject:
     serializedVersion: 2
     m_Bits: 192
-  BossEnemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
   despawnTime: 0
   blastRadiusPrefab: {fileID: 5339650997589042250, guid: d754223d5d56a024fb900459e7f63498, type: 3}
 --- !u!50 &4965247661060206158

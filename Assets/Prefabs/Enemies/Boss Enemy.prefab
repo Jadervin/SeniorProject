@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5840901999893520163}
   - component: {fileID: 6789412536686039242}
   - component: {fileID: 6560697455208019798}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Wall (2)
-  m_TagString: Boss Enemy
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,6 +639,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   mainSprite: {fileID: 2879106286232372070}
   itemToSpawn: {fileID: 0}
+  bossEnemyID: 
   isFacingRight: 0
   currentlyAttacking: 0
   playerLayer:

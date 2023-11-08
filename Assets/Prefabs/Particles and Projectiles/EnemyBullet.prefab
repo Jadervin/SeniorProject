@@ -131,9 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab11e64ca541df4f815503142efb16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  ENEMYTAG: Enemy
-  BOSSENEMYTAG: Boss Enemy
+  speed: 20
   bulletDamage: 3
   bulletType: 0
   bulletSprite: {fileID: 0}
@@ -142,7 +140,7 @@ MonoBehaviour:
   whatDestroysObject:
     serializedVersion: 2
     m_Bits: 192
-  despawnTime: 1.3
+  despawnTime: 1.5
   blastRadiusPrefab: {fileID: 0}
 --- !u!61 &2670798709020007005
 BoxCollider2D:
