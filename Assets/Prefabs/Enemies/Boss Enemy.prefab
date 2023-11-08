@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 100
+  maxHealth: 200
   enemyDamage: 7
   bossEnemyState: 0
   bossAttackState: 0
