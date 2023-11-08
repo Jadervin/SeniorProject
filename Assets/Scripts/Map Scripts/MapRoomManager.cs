@@ -97,11 +97,11 @@ public class MapRoomManager : MonoBehaviour
         }
 
 
-        Debug.Log("Amount of Rooms From Save: " + openRoomNamesFromSave.Length);
+        /*Debug.Log("Amount of Rooms From Save: " + openRoomNamesFromSave.Length);
         for (int i = 0; i < openRoomNamesFromSave.Length; i++)
         {
             Debug.Log("Rooms From Save: " + openRoomNamesFromSave[i]);
-        }
+        }*/
 
     }
 
