@@ -164,7 +164,7 @@ public class EnemyManager : MonoBehaviour
         {
             enemyIdsFromSaveList.Add(ids[i]);
         }
-
+/*
 
         Debug.Log("Amount of Enemies From Save: " + enemyIDsFromSave.Length);
 
@@ -172,6 +172,7 @@ public class EnemyManager : MonoBehaviour
         {
             Debug.Log("Enemies From Save: " + enemyIDsFromSave[i]);
         }
+*/
     }
 
 
