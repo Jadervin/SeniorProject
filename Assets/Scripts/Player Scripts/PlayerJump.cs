@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -124,6 +125,9 @@ public class PlayerJump : MonoBehaviour
      * [SerializeField, Range(1, 10)]
     private float ledgeDistanceMultiplier = 2f;
     */
+
+
+    public event EventHandler OnJumpPerformed;
 
 
     void Awake()
@@ -356,8 +360,9 @@ public class PlayerJump : MonoBehaviour
         //Create the jump, provided we are on the ground, in coyote time, or have a double jump available
         if (onGround || (coyoteTimeCounter > 0.03f && coyoteTimeCounter < coyoteTime) || canJumpAgain)
         {
-           
-            
+            //Create event for Jump Sound
+            OnJumpPerformed?.Invoke(this, EventArgs.Empty);
+
             //Test this later to see if this fixes problem
             calculateGravity();
 

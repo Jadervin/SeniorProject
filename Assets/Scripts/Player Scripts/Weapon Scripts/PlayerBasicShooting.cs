@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class PlayerBasicShooting : MonoBehaviour
 
     [Header("Tri Shot Variables")]
     [SerializeField] private List<Transform> shootPoints = new List<Transform>();
+
+
+
+    public event EventHandler OnBaseShootPerformed;
+    public event EventHandler OnUpgradedShootPerformed;
+
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +91,7 @@ public class PlayerBasicShooting : MonoBehaviour
             
         temp = Instantiate(bullet, shootPoint.transform.position, shootPoint.transform.rotation);
 
+        OnBaseShootPerformed?.Invoke(this, EventArgs.Empty);
     }
 
     private void TriShotShoot()
@@ -93,6 +101,8 @@ public class PlayerBasicShooting : MonoBehaviour
             GameObject temp;
 
             temp = Instantiate(longBullet, shootPoint.transform.position, shootPoint.transform.rotation);
+
+            OnUpgradedShootPerformed?.Invoke(this, EventArgs.Empty);
         }
 
        /* GameObject temp1;

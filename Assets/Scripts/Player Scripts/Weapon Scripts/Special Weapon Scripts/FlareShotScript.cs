@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class FlareShotScript : SpecialWeaponEntityScript
 {
     //[SerializeField] private GameObject projectile;
     [SerializeField] private ParticleSystem flareShotParticle;
+
+    public event EventHandler OnFlareShotPerformed;
 
 
     // Start is called before the first frame update
@@ -72,6 +75,8 @@ public class FlareShotScript : SpecialWeaponEntityScript
 */
 
         flareShotParticle.Play();
+
+        OnFlareShotPerformed?.Invoke(this, EventArgs.Empty);
 
 
         //Instantiate(projectile, projectile.transform.position, projectile.transform.rotation);

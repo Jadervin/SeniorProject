@@ -9,6 +9,8 @@ public class SpecialWeaponManagerScript : MonoBehaviour
     //[SerializeField] private GameObject specialWeaponScriptParent;
     //[SerializeField] private GameObject spawnedSpecialWeapon;
 
+    public static SpecialWeaponManagerScript instance {  get; private set; }
+
     [SerializeField] private int maxWeaponEnergy = 10;
     [SerializeField] private int currentWeaponEnergy;
 
@@ -44,6 +46,14 @@ public class SpecialWeaponManagerScript : MonoBehaviour
     {
         public Sprite sWSprite;
 
+    }
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
     //public static SpecialWeaponScript Instance { get; set; }

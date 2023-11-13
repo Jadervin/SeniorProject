@@ -13,6 +13,8 @@ public class SparkGrenadeScript : SpecialWeaponEntityScript
     [SerializeField] private GameObject grenade;
     [SerializeField] private GameObject trajectoryLine;
 
+    public event EventHandler OnGrenadeThrowPerformed;
+
     new protected void Start()
     {
         GameInput.Instance.OnSpecialShootPressed += GameInput_OnSpecialShootPressed;
@@ -97,6 +99,7 @@ public class SparkGrenadeScript : SpecialWeaponEntityScript
     private void SparkGrenade()
     {
         GameObject temp = Instantiate(grenade, shootPoint.transform.position, shootPoint.transform.rotation);
+        OnGrenadeThrowPerformed?.Invoke(this, EventArgs.Empty);
     }
 
     public GameObject GetGrenade()
