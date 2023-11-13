@@ -286,12 +286,12 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
 
 
         //Changes the direction the enemy based on which side the player is on
-        if (force.x >= .01f)
+        if (transform.position.x < playerTarget.position.x)
         {
             /*spriteParent.*/transform.localScale = new Vector3(-1f, transform.localScale.y, transform.localScale.z);
             
         }
-        else if (force.x <= -.01f)
+        else if (transform.position.x > playerTarget.position.x)
         {
             /*spriteParent.*/transform.localScale = new Vector3(1f, transform.localScale.y, transform.localScale.z);
             

@@ -100293,7 +100293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13589b48e080514cac2d4766d48d1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxWeaponEnergy: 20
+  maxWeaponEnergy: 5
   currentWeaponEnergy: 0
   gameInput: {fileID: 0}
   specialWeaponList:

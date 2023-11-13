@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,12 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
     [SerializeField, Range(0, 5)]
     private float energyDecreaseTimeMax = .5f;
 
+    public event EventHandler<OnFlamethrowerStateChangedEventArgs> OnFlamethrowerStateChanged;
 
+    public class OnFlamethrowerStateChangedEventArgs : EventArgs
+    {
+        public bool isActivated;
+    }
 
 
     // Start is called before the first frame update
@@ -37,6 +43,10 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
         {
             specialWeaponManagerScript.DecreaseCurrentWeaponEnergy(weaponEnergyCost);
             isHoldingButton = true;
+            OnFlamethrowerStateChanged?.Invoke(this, new OnFlamethrowerStateChangedEventArgs
+            {
+                isActivated = isHoldingButton,
+            });
             
         }
         
@@ -46,6 +56,10 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
     private void GameInput_OnSpecialShootRelease(object sender, System.EventArgs e)
     {
         isHoldingButton = false;
+        OnFlamethrowerStateChanged?.Invoke(this, new OnFlamethrowerStateChangedEventArgs
+        {
+            isActivated = isHoldingButton,
+        });
     }
 
    
@@ -88,6 +102,12 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
     {
         flamethrowerParticle.Stop();
         flamethrowerParticle.gameObject.SetActive(false);
-        
+        isHoldingButton = false;
+
+        OnFlamethrowerStateChanged?.Invoke(this, new OnFlamethrowerStateChangedEventArgs
+        {
+            isActivated = isHoldingButton,
+        });
+
     }
 }
