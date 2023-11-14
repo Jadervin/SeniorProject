@@ -24,6 +24,8 @@ public class PlayerHealth : EntityScript
     public event EventHandler OnPlayerHealthChanged;
     public event EventHandler OnPlayerMaxHealthChanged;
 
+    public event EventHandler OnPlayerDamaged;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,7 @@ public class PlayerHealth : EntityScript
     {
         currentHealth -= damageAmount;
         OnPlayerHealthChanged?.Invoke(this, EventArgs.Empty);
-
+        
 
         if (currentHealth <= 0)
         {
@@ -50,6 +52,7 @@ public class PlayerHealth : EntityScript
         }
         else
         {
+            OnPlayerDamaged?.Invoke(this, EventArgs.Empty);
             StartCoroutine(playerInvincibility());
         }
     }

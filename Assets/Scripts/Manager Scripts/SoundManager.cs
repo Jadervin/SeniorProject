@@ -29,6 +29,19 @@ public class SoundManager : MonoBehaviour
         //playerRef.GetComponentInChildren<SpecialWeaponManagerScript>().gameObject.GetComponentInChildren<FlareShotScript>()
         SpecialWeaponManagerScript.instance.gameObject.GetComponentInChildren<FlareShotScript>().OnFlareShotPerformed += FlareShot_OnFlameShotPerformed;
         SpecialWeaponManagerScript.instance.gameObject.GetComponentInChildren<SparkGrenadeScript>().OnGrenadeThrowPerformed += SparkGrenade_OnGrenadeThrowPerformed;
+        playerRef.GetComponentInChildren<PlayerTongueCounter>().OnTongueCounterPerformed += TongueCounter_OnTongueCounterPerformed;
+
+        playerRef.GetComponent<PlayerHealth>().OnPlayerDamaged += PlayerHealth_OnPlayerDamaged;
+    }
+
+    private void PlayerHealth_OnPlayerDamaged(object sender, System.EventArgs e)
+    {
+        PlaySound(audioClipRefsSO.hurt, playerRef.transform.position, volume);
+    }
+
+    private void TongueCounter_OnTongueCounterPerformed(object sender, System.EventArgs e)
+    {
+        PlaySound(audioClipRefsSO.tongueCounter, playerRef.transform.position, volume);
     }
 
     private void SparkGrenade_OnGrenadeThrowPerformed(object sender, System.EventArgs e)

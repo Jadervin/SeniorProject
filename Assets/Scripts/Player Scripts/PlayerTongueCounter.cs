@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PlayerTongueCounter : MonoBehaviour
     [SerializeField] private float cooldownTime = 1f;
     private bool canCounter = true;
     private float timeSinceCounter = 0f;
+
+    public event EventHandler OnTongueCounterPerformed;
 
 
     // Start is called before the first frame update
@@ -53,6 +56,7 @@ public class PlayerTongueCounter : MonoBehaviour
 
     private IEnumerator TongueCounter()
     {
+        OnTongueCounterPerformed?.Invoke(this, EventArgs.Empty);
         polygonCollider.enabled = true;
         sprite.enabled = true;
         yield return new WaitForSeconds(tongueCounterTimer);
