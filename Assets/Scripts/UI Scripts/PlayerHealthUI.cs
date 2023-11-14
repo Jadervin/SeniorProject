@@ -31,9 +31,9 @@ public class PlayerHealthUI : MonoBehaviour
         currentHealthText.text = playerHealth.GetCurrentHealth().ToString();
     }
 
-    // Update is called once per frame
+    /*
     void Update()
     {
         
-    }
+    }*/
 }

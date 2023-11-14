@@ -12,6 +12,7 @@ public class ResetStaticDataManager : MonoBehaviour
         FlyingStationaryChaserEnemyScript.ResetStaticSoundEventData();
         Collectables.ResetStaticData();
         RefillStationScript.ResetStaticData();
+        PlanetTotemScript.ResetStaticData();
         
     }
 }

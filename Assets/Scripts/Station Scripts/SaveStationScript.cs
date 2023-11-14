@@ -10,6 +10,8 @@ public class SaveStationScript : MonoBehaviour
     //[SerializeField] private GameObject saveMenuUI;
     [SerializeField] private bool isOnSaveStation = false;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {

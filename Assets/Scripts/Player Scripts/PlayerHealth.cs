@@ -25,19 +25,20 @@ public class PlayerHealth : EntityScript
     public event EventHandler OnPlayerMaxHealthChanged;
 
     public event EventHandler OnPlayerDamaged;
+    public event EventHandler OnPlayerDead;
 
-    // Start is called before the first frame update
+   /*
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
-
+*/
     public override void DamageHealth(int damageAmount)
     {
         currentHealth -= damageAmount;
@@ -81,7 +82,7 @@ public class PlayerHealth : EntityScript
         {
             sprite.enabled = false;
         }
-
+        OnPlayerDead?.Invoke(this, EventArgs.Empty);
         MovementLimiter.instance.OnDeathManager();
 
         StartCoroutine(DeathTimerUntilLoseScreen());

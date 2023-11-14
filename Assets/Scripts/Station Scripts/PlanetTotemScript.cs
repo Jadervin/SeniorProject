@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlanetTotemScript : MonoBehaviour
 {
+    //public static PlanetTotemScript instance {  get; private set; }
     [SerializeField] private List<GameObject> unlockableAreas;
     //[SerializeField] private List<GameObject> hiddenAreas;
     [SerializeField] private Collider2D switchCollider;
@@ -14,11 +15,24 @@ public class PlanetTotemScript : MonoBehaviour
     public static event EventHandler<OnSendingArtifactNumberEventArgs> OnPlayerStartingWorld;
     public static event EventHandler OnPlayerHasAllArtifacts;
 
+    public static void ResetStaticData()
+    {
+        OnPlayerStartingWorld = null;
+        OnPlayerHasAllArtifacts = null;
+    }
+
     public class OnSendingArtifactNumberEventArgs : EventArgs
     {
         public int artifactsNeeded;
     }
 
+    private void Awake()
+    {
+        /*if(instance == null)
+        {
+            instance = this;
+        }*/
+    }
 
     // Start is called before the first frame update
     void Start()

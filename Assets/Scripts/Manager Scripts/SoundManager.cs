@@ -32,15 +32,50 @@ public class SoundManager : MonoBehaviour
         playerRef.GetComponentInChildren<PlayerTongueCounter>().OnTongueCounterPerformed += TongueCounter_OnTongueCounterPerformed;
 
         playerRef.GetComponent<PlayerHealth>().OnPlayerDamaged += PlayerHealth_OnPlayerDamaged;
+        playerRef.GetComponent<PlayerHealth>().OnPlayerDead += PlayerHealth_OnPlayerDead;
 
         RefillStationScript.OnAnyHeathRefill += RefillStationScript_OnAnyHeathRefill;
         Collectables.OnAnyCollectableGet += Collectables_OnAnyCollectableGet;
         GroundStationaryAttackerEnemyScript.OnAnyEnemySlash += GroundStationaryAttackerEnemyScript_OnAnyEnemySlash;
         FlyingStationaryChaserEnemyScript.OnAnyEnemySlash += FlyingStationaryChaserEnemyScript_OnAnyEnemySlash;
         EnemyScript.OnAnyEnemyDash += EnemyScript_OnAnyEnemyDash;
+        EnemyScript.OnAnyEnemyDefeated += EnemyScript_OnAnyEnemyDefeated;
 
         BossEnemyScript.OnAnyBossDash += BossEnemyScript_OnAnyBossDash;
         BossEnemyScript.OnAnyBossShoot += BossEnemyScript_OnAnyBossShoot;
+        BossEnemyScript.OnAnyBossEnemyDefeated += BossEnemyScript_OnAnyBossEnemyDefeated;
+
+        PlanetTotemScript.OnPlayerStartingWorld += PlanetTotemScript_OnPlayerStartingWorld;
+        PlanetTotemScript.OnPlayerHasAllArtifacts += PlanetTotemScript_OnPlayerHasAllArtifacts;
+
+        
+
+
+    }
+
+
+    private void PlanetTotemScript_OnPlayerHasAllArtifacts(object sender, System.EventArgs e)
+    {
+        PlanetTotemScript planetTotem = sender as PlanetTotemScript;
+        PlaySound(audioClipRefsSO.planetTotemUnlocking, planetTotem.transform.position, volume);
+    }
+
+    private void PlanetTotemScript_OnPlayerStartingWorld(object sender, PlanetTotemScript.OnSendingArtifactNumberEventArgs e)
+    {
+        PlanetTotemScript planetTotem = sender as PlanetTotemScript;
+        PlaySound(audioClipRefsSO.planetTotemActivation, planetTotem.transform.position, volume);
+    }
+
+    private void BossEnemyScript_OnAnyBossEnemyDefeated(object sender, BossEnemyScript.OnBossEnemyDefeatedEventArgs e)
+    {
+        BossEnemyScript bossEnemy = sender as BossEnemyScript;
+        PlaySound(audioClipRefsSO.enemyDeath, bossEnemy.transform.position, volume);
+    }
+
+    private void EnemyScript_OnAnyEnemyDefeated(object sender, EnemyScript.OnEnemyDefeatedEventArgs e)
+    {
+        EnemyScript enemy = sender as EnemyScript;
+        PlaySound(audioClipRefsSO.enemyDeath, enemy.transform.position, volume);
     }
 
     private void BossEnemyScript_OnAnyBossShoot(object sender, System.EventArgs e)
@@ -90,6 +125,12 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipRefsSO.hurt, playerRef.transform.position, volume);
     }
 
+
+    private void PlayerHealth_OnPlayerDead(object sender, System.EventArgs e)
+    {
+        PlaySound(audioClipRefsSO.playerDeath, playerRef.transform.position, volume);
+    }
+
     private void TongueCounter_OnTongueCounterPerformed(object sender, System.EventArgs e)
     {
         PlaySound(audioClipRefsSO.tongueCounter, playerRef.transform.position, volume);
@@ -128,5 +169,8 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(audioClip, position, volumeMultipler * volume);
     }
 
-
+    public void PlaySaveSound()
+    {
+        PlaySound(audioClipRefsSO.saving, playerRef.transform.position, volume);
+    }
 }

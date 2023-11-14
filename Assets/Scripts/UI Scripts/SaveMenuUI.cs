@@ -15,6 +15,8 @@ public class SaveMenuUI : MonoBehaviour
 
     [SerializeField] private bool isGamePaused = false;
 
+    
+
     private void Awake()
     {
         if (Instance == null)
@@ -24,9 +26,14 @@ public class SaveMenuUI : MonoBehaviour
 
         saveButton.onClick.AddListener(() => {
             //Click
+
+
+            
+
             SaveManager.instance.Save();
             GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
             ToggleTimePause();
+            SoundManager.instance.PlaySaveSound();
             Hide();
         });
 
@@ -44,7 +51,7 @@ public class SaveMenuUI : MonoBehaviour
         Hide();
     }
 
-  
+    
 
     // Update is called once per frame
     void Update()

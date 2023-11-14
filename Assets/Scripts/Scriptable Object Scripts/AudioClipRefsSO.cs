@@ -18,8 +18,15 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip hurt;
     public AudioClip itemGet;
     public AudioClip tongueCounter;
+    public AudioClip playerDeath;
 
     [Header("Enemy Sounds")]
     public AudioClip dash;
     public AudioClip slash;
+    public AudioClip enemyDeath;
+
+    [Header("Other Sounds")]
+    public AudioClip planetTotemActivation;
+    public AudioClip planetTotemUnlocking;
+    public AudioClip saving;
 }
