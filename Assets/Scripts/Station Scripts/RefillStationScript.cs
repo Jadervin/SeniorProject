@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,12 @@ public class RefillStationScript : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private SpecialWeaponManagerScript specialWeaponScript;
 
+    public static event EventHandler OnAnyHeathRefill;
+
+    public static void ResetStaticData()
+    {
+        OnAnyHeathRefill = null;
+    }
 
 
     // Start is called before the first frame update
@@ -30,7 +37,7 @@ public class RefillStationScript : MonoBehaviour
         if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG) && refilledEnergy == false)
         {
             refilledEnergy = true;
-
+            OnAnyHeathRefill?.Invoke(this, EventArgs.Empty);
             playerHealth.HealthRefill();
             specialWeaponScript.RechargeEnergy();
         }

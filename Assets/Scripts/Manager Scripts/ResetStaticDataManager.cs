@@ -9,5 +9,6 @@ public class ResetStaticDataManager : MonoBehaviour
         EnemyScript.ResetStaticData();
         BossEnemyScript.ResetStaticData();
         Collectables.ResetStaticData();
+        RefillStationScript.ResetStaticData();
     }
 }

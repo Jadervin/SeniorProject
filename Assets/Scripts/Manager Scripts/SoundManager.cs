@@ -26,12 +26,20 @@ public class SoundManager : MonoBehaviour
         playerRef.GetComponent<PlayerJump>().OnJumpPerformed += PlayerJump_OnJumpPerformed;
         playerRef.GetComponentInChildren<PlayerBasicShooting>().OnBaseShootPerformed += BasicShooting_OnBaseShootPerformed;
         playerRef.GetComponentInChildren<PlayerBasicShooting>().OnUpgradedShootPerformed += BasicShooting_OnUpgradedShootPerformed;
-        //playerRef.GetComponentInChildren<SpecialWeaponManagerScript>().gameObject.GetComponentInChildren<FlareShotScript>()
+        
         SpecialWeaponManagerScript.instance.gameObject.GetComponentInChildren<FlareShotScript>().OnFlareShotPerformed += FlareShot_OnFlameShotPerformed;
         SpecialWeaponManagerScript.instance.gameObject.GetComponentInChildren<SparkGrenadeScript>().OnGrenadeThrowPerformed += SparkGrenade_OnGrenadeThrowPerformed;
         playerRef.GetComponentInChildren<PlayerTongueCounter>().OnTongueCounterPerformed += TongueCounter_OnTongueCounterPerformed;
 
         playerRef.GetComponent<PlayerHealth>().OnPlayerDamaged += PlayerHealth_OnPlayerDamaged;
+
+        RefillStationScript.OnAnyHeathRefill += RefillStationScript_OnAnyHeathRefill;
+    }
+
+    private void RefillStationScript_OnAnyHeathRefill(object sender, System.EventArgs e)
+    {
+        RefillStationScript refillStation = sender as RefillStationScript;
+        PlaySound(audioClipRefsSO.healing, refillStation.transform.position, volume);
     }
 
     private void PlayerHealth_OnPlayerDamaged(object sender, System.EventArgs e)
