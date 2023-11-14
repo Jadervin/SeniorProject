@@ -1,4 +1,5 @@
 using Pathfinding;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,12 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     [Header("Slash Attack Variables")]
     [SerializeField] private Collider2D attackCollider;
     [SerializeField] private SpriteRenderer attackSprite;
+
+    public static event EventHandler OnAnyEnemySlash;
+    public static void ResetStaticSoundEventData()
+    {
+        OnAnyEnemySlash = null;
+    }
 
 
     new protected void Start()
@@ -326,14 +333,8 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         {
             attackState = AttackCounterStates.COUNTERABLE;
 
-
-            /*
-            float originalGravity = rb.gravityScale;
-            rb.gravityScale = 0f;
-
-            //Dash
-            rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
-            */
+            OnAnyEnemySlash?.Invoke(this, EventArgs.Empty);
+            
             attackCollider.enabled = true;
             attackSprite.enabled = true;
 

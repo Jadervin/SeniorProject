@@ -34,6 +34,49 @@ public class SoundManager : MonoBehaviour
         playerRef.GetComponent<PlayerHealth>().OnPlayerDamaged += PlayerHealth_OnPlayerDamaged;
 
         RefillStationScript.OnAnyHeathRefill += RefillStationScript_OnAnyHeathRefill;
+        Collectables.OnAnyCollectableGet += Collectables_OnAnyCollectableGet;
+        GroundStationaryAttackerEnemyScript.OnAnyEnemySlash += GroundStationaryAttackerEnemyScript_OnAnyEnemySlash;
+        FlyingStationaryChaserEnemyScript.OnAnyEnemySlash += FlyingStationaryChaserEnemyScript_OnAnyEnemySlash;
+        EnemyScript.OnAnyEnemyDash += EnemyScript_OnAnyEnemyDash;
+
+        BossEnemyScript.OnAnyBossDash += BossEnemyScript_OnAnyBossDash;
+        BossEnemyScript.OnAnyBossShoot += BossEnemyScript_OnAnyBossShoot;
+    }
+
+    private void BossEnemyScript_OnAnyBossShoot(object sender, System.EventArgs e)
+    {
+        BossEnemyScript bossEnemy = sender as BossEnemyScript;
+        PlaySound(audioClipRefsSO.baseShoot, bossEnemy.transform.position, volume);
+    }
+
+    private void BossEnemyScript_OnAnyBossDash(object sender, System.EventArgs e)
+    {
+        BossEnemyScript bossEnemy = sender as BossEnemyScript;
+        PlaySound(audioClipRefsSO.dash, bossEnemy.transform.position, volume);
+    }
+
+    private void EnemyScript_OnAnyEnemyDash(object sender, System.EventArgs e)
+    {
+        EnemyScript dashEnemy = sender as EnemyScript;
+        PlaySound(audioClipRefsSO.dash, dashEnemy.transform.position, volume);
+    }
+
+    private void FlyingStationaryChaserEnemyScript_OnAnyEnemySlash(object sender, System.EventArgs e)
+    {
+        FlyingStationaryChaserEnemyScript flyingSlashEnemy = sender as FlyingStationaryChaserEnemyScript;
+        PlaySound(audioClipRefsSO.slash, flyingSlashEnemy.transform.position, volume);
+    }
+
+    private void GroundStationaryAttackerEnemyScript_OnAnyEnemySlash(object sender, System.EventArgs e)
+    {
+        GroundStationaryAttackerEnemyScript slashEnemy = sender as GroundStationaryAttackerEnemyScript;
+        PlaySound(audioClipRefsSO.slash, slashEnemy.transform.position, volume);
+    }
+
+    private void Collectables_OnAnyCollectableGet(object sender, Collectables.OnCollectableGetEventArgs e)
+    {
+        Collectables collectable = sender as Collectables;
+        PlaySound(audioClipRefsSO.itemGet, collectable.transform.position, volume);
     }
 
     private void RefillStationScript_OnAnyHeathRefill(object sender, System.EventArgs e)

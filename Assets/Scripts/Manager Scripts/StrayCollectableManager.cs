@@ -43,11 +43,11 @@ public class StrayCollectableManager : MonoBehaviour
             CheckCollectablesIDs();
         }
 
-        Collectables.OnCollectableGet += Collectables_OnCollectableGet;
+        Collectables.OnAnyCollectableGet += Collectables_OnAnyCollectableGet;
 
     }
 
-    private void Collectables_OnCollectableGet(object sender, Collectables.OnCollectableGetEventArgs e)
+    private void Collectables_OnAnyCollectableGet(object sender, Collectables.OnCollectableGetEventArgs e)
     {
         CheckCollectablesList(e);
     }

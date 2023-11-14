@@ -135,6 +135,7 @@ public class EnemyScript : EntityScript
 
     //[Header("Events")]
     public static event EventHandler<OnEnemyDefeatedEventArgs> OnAnyEnemyDefeated;
+    
 
     public class OnEnemyDefeatedEventArgs : EventArgs
     {
@@ -142,9 +143,11 @@ public class EnemyScript : EntityScript
         public GameObject itemToSpawn;
     }
 
-    
+    public static event EventHandler OnAnyEnemyDash;
+
     public static void ResetStaticData()
     {
+        OnAnyEnemyDash = null;
         OnAnyEnemyDefeated = null;
     }
 
@@ -664,8 +667,9 @@ public class EnemyScript : EntityScript
         if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
         {
             attackState = AttackCounterStates.COUNTERABLE;
-            
-            
+
+            OnAnyEnemyDash?.Invoke(this, EventArgs.Empty);
+
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
 

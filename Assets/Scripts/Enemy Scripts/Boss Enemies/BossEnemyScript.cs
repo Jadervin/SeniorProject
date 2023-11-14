@@ -123,9 +123,13 @@ public class BossEnemyScript : EntityScript
         public GameObject itemToSpawn;
     }
 
+    public static event EventHandler OnAnyBossShoot;
+    public static event EventHandler OnAnyBossDash;
 
     public static void ResetStaticData()
     {
+        OnAnyBossDash = null;
+        OnAnyBossShoot = null;
         OnAnyBossEnemyDefeated = null;
     }
 
@@ -388,6 +392,7 @@ public class BossEnemyScript : EntityScript
 
         for(int i = 0; i < numOfShots; i++)
         {
+            OnAnyBossShoot?.Invoke(this, EventArgs.Empty);
             GameObject temp = Instantiate(bullet, shootPoint.transform.position, shootPoint.transform.rotation);
             //Debug.Log("Spawned Bullet");
             yield return new WaitForSeconds(shootReloadTime);
@@ -421,7 +426,7 @@ public class BossEnemyScript : EntityScript
         if (isChargingAttack == false && isRecharging == false && isUsingAttack == true)
         {
             attackCounterState = AttackCounterStates.COUNTERABLE;
-
+            OnAnyBossDash?.Invoke(this, EventArgs.Empty);
 
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;

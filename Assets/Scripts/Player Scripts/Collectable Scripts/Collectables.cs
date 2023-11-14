@@ -7,7 +7,7 @@ public abstract class Collectables : MonoBehaviour
 {
     [SerializeField] protected GameObject player;
     [SerializeField] protected string collectableID = "";
-    public static event EventHandler<OnCollectableGetEventArgs> OnCollectableGet;
+    public static event EventHandler<OnCollectableGetEventArgs> OnAnyCollectableGet;
 
     public class OnCollectableGetEventArgs : EventArgs
     {
@@ -16,7 +16,7 @@ public abstract class Collectables : MonoBehaviour
 
     public static void ResetStaticData()
     {
-        OnCollectableGet = null;
+        OnAnyCollectableGet = null;
     }
 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public abstract class Collectables : MonoBehaviour
         {
             Interact();
 
-            OnCollectableGet?.Invoke(this, new OnCollectableGetEventArgs
+            OnAnyCollectableGet?.Invoke(this, new OnCollectableGetEventArgs
             {
                 collectable = this.gameObject
             });

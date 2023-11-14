@@ -8,7 +8,10 @@ public class ResetStaticDataManager : MonoBehaviour
     {
         EnemyScript.ResetStaticData();
         BossEnemyScript.ResetStaticData();
+        GroundStationaryAttackerEnemyScript.ResetStaticSoundEventData();
+        FlyingStationaryChaserEnemyScript.ResetStaticSoundEventData();
         Collectables.ResetStaticData();
         RefillStationScript.ResetStaticData();
+        
     }
 }

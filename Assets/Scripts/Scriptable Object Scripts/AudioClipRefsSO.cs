@@ -11,8 +11,8 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip baseShoot;
     public AudioClip upgradedShoot;
     public AudioClip grenadeThrow;
-    public AudioClip aftershock;
-    public AudioClip flamethrower;
+    //public AudioClip aftershock;
+    //public AudioClip flamethrower;
     public AudioClip flareShot;
     public AudioClip healing;
     public AudioClip hurt;
