@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClipRefsSO audioClipRefsSO;
     [SerializeField] private GameObject playerRef;
 
-    private float volume = 1f;
+    [SerializeField] private float volume = 1f;
 
     private void Awake()
     {
@@ -16,6 +16,8 @@ public class SoundManager : MonoBehaviour
         {
             instance = this;
         }
+
+        volume = PlayerPrefs.GetFloat(TagReferencesScript.PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
 
         playerRef = GameObject.FindGameObjectWithTag(TagReferencesScript.PLAYERTAG);
     }
@@ -148,7 +150,7 @@ public class SoundManager : MonoBehaviour
 
     private void BasicShooting_OnUpgradedShootPerformed(object sender, System.EventArgs e)
     {
-        PlaySound(audioClipRefsSO.upgradedShoot, playerRef.transform.position, volume);
+        PlaySound(audioClipRefsSO.upgradedShoot, playerRef.transform.position, 0.3f);
     }
 
     private void BasicShooting_OnBaseShootPerformed(object sender, System.EventArgs e)
@@ -164,7 +166,7 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultipler = 1f)
+    private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultipler)
     {
         AudioSource.PlayClipAtPoint(audioClip, position, volumeMultipler * volume);
     }
@@ -172,5 +174,22 @@ public class SoundManager : MonoBehaviour
     public void PlaySaveSound()
     {
         PlaySound(audioClipRefsSO.saving, playerRef.transform.position, volume);
+    }
+
+    public void ChangeVolume(float sliderValue)
+    {
+        volume = sliderValue;
+
+        /*if (volume > 1f)
+        {
+            volume = 0f;
+        }*/
+        PlayerPrefs.SetFloat(TagReferencesScript.PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
+        PlayerPrefs.Save();
+    }
+
+    public float GetVolume()
+    {
+        return volume;
     }
 }

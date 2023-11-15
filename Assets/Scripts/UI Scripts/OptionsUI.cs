@@ -1,3 +1,4 @@
+using SuperTiled2Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,11 @@ public class OptionsUI : MonoBehaviour
 
     [SerializeField] private Button closeButton;
     [SerializeField] private Transform pressToRebindKeyTransform;
+
+
+    [Header("Sound Options")]
+    [SerializeField] private TextMeshProUGUI volumeNumberText;
+    [SerializeField] private Slider volumeSlider;
 
 
     [Header("Key Binding Buttons")]
@@ -66,6 +72,11 @@ public class OptionsUI : MonoBehaviour
         {
             Instance = this;
         }
+
+        volumeSlider.onValueChanged.AddListener(delegate {
+            SoundManager.instance.ChangeVolume(volumeSlider.value);
+            volumeNumberText.text = Mathf.Round(volumeSlider.value * 10f).ToString();
+        });
 
         closeButton.onClick.AddListener(() => {
             //Click
@@ -212,9 +223,22 @@ public class OptionsUI : MonoBehaviour
         pressToRebindKeyTransform.gameObject.SetActive(false);
 
     }
+/*
+    private void Update()
+    {
 
+
+    }
+*/
     private void UpdateVisual()
     {
+        //volumeSlider.value = SoundManager.instance.GetVolume();
+
+        volumeNumberText.text = Mathf.Round(SoundManager.instance.GetVolume() * 10f).ToString();
+        volumeSlider.value = volumeNumberText.text.ToInt() / 10f;
+
+
+
         moveLeftButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Move_Left);
         moveRightButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Move_Right);
         jumpButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Jump);
