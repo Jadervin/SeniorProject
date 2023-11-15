@@ -19,6 +19,8 @@ public class FlamethrowerSound : MonoBehaviour
     void Start()
     {
         flamethrower.OnFlamethrowerStateChanged += Flamethrower_OnFlamethrowerStateChanged;
+        audioSource.volume = SoundManager.instance.GetVolume();
+
     }
 
     private void Flamethrower_OnFlamethrowerStateChanged(object sender, FlamethrowerScript.OnFlamethrowerStateChangedEventArgs e)
@@ -37,6 +39,6 @@ public class FlamethrowerSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        audioSource.volume = SoundManager.instance.GetVolume();
     }
 }
