@@ -37512,6 +37512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flamethrower
       objectReference: {fileID: 0}
+    - target: {fileID: 7012015024389752937, guid: ad101d937be362a41bf0451ae550a6ca, type: 3}
+      propertyPath: volumeReduction
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

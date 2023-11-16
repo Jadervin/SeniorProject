@@ -7,6 +7,7 @@ public class FlamethrowerSound : MonoBehaviour
 
     [SerializeField] private FlamethrowerScript flamethrower;
     private AudioSource audioSource;
+    [SerializeField] private float volumeReduction = .5f;
 
 
     private void Awake()
@@ -19,7 +20,7 @@ public class FlamethrowerSound : MonoBehaviour
     void Start()
     {
         flamethrower.OnFlamethrowerStateChanged += Flamethrower_OnFlamethrowerStateChanged;
-        audioSource.volume = SoundManager.instance.GetVolume();
+        audioSource.volume = SoundManager.instance.GetVolume() * volumeReduction;
 
     }
 
@@ -39,6 +40,6 @@ public class FlamethrowerSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        audioSource.volume = SoundManager.instance.GetVolume();
+        audioSource.volume = SoundManager.instance.GetVolume() * volumeReduction;
     }
 }

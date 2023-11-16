@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -9,6 +10,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private GameObject playerRef;
 
     [SerializeField] private float volume = 1f;
+
+    /*[SerializeField]*/ private AudioSource[] currentSoundEffectsArray = new AudioSource[0];
+    //[SerializeField] private List<AudioSource> currentSoundEffectsList;
 
     private void Awake()
     {
@@ -53,6 +57,31 @@ public class SoundManager : MonoBehaviour
         
 
 
+    }
+
+
+    private void Update()
+    {
+        if(GameSceneManager.Instance.GetGameState() == GameStates.Paused)
+        {
+            currentSoundEffectsArray = FindObjectsOfType<AudioSource>();
+            for(int i = 0; i < currentSoundEffectsArray.Length; i++)
+            {
+                currentSoundEffectsArray[i].Pause();
+            }
+        }
+        else
+        {
+            if (currentSoundEffectsArray.Length > 0)
+            {
+                for (int i = 0; i < currentSoundEffectsArray.Length; i++)
+                {
+                    currentSoundEffectsArray[i].UnPause();
+                }
+
+                currentSoundEffectsArray = new AudioSource[0];
+            }
+        }
     }
 
 
