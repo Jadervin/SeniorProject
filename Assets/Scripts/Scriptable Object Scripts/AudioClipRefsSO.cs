@@ -29,4 +29,5 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip planetTotemActivation;
     public AudioClip planetTotemUnlocking;
     public AudioClip saving;
+    public AudioClip menu;
 }

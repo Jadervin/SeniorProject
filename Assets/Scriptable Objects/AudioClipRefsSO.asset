@@ -28,3 +28,4 @@ MonoBehaviour:
   planetTotemActivation: {fileID: 8300000, guid: 4aec3242c09be8a4aa4777a3be6054cb, type: 3}
   planetTotemUnlocking: {fileID: 8300000, guid: adb1212450b654a46aabfbf669cb6d26, type: 3}
   saving: {fileID: 8300000, guid: 5bd8c5e6a7649a148af733d9ddf889bb, type: 3}
+  menu: {fileID: 8300000, guid: cdab4173a27322844a76c42541735f6e, type: 3}

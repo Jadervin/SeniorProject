@@ -85,6 +85,8 @@ public class OptionsUI : MonoBehaviour
             Hide();
         });
 
+        
+
         moveLeftButton.onClick.AddListener(() => {
             //Click
             RebindBinding(Bindings.Move_Left);

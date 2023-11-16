@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class MenuUIScript : MonoBehaviour
 {
 
+    [Header("Audio")]
+    [SerializeField] private float volume = 1f;
+    [SerializeField] private AudioClipRefsSO audioClipRefsSO;
+    [SerializeField] private float buttonTimer = 1f;
+
+    [Header("Buttons")]
     [SerializeField] private Button playButton;
     [SerializeField] private Button loadButton;
     [SerializeField] private Button retryButton;
@@ -20,8 +27,11 @@ public class MenuUIScript : MonoBehaviour
     [SerializeField] private Button closeNewGamePopupButton;
 
 
+
     private void Awake()
     {
+        volume = PlayerPrefs.GetFloat(TagReferencesScript.PLAYER_PREFS_SOUND_EFFECTS_VOLUME, 1f);
+
         if (playButton != null)
         {
             playButton.onClick.AddListener(() =>
@@ -29,16 +39,21 @@ public class MenuUIScript : MonoBehaviour
                 //Click
                 if (SaveSystem.SaveFileCheck() == true)
                 {
+                    playButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
                     startNewGamePopupGO.gameObject.SetActive(true);
                 }
                 else
                 {
+                    playButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                    StartCoroutine(ButtonTimerBeforeSceneSwitch());
                     SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
                     Loader.Load(Loader.GameScenes.GameScene);
                 }
 
                 
             });
+
+            
         }
 
         if (retryButton != null)
@@ -48,11 +63,15 @@ public class MenuUIScript : MonoBehaviour
                 //Click
                 if (SaveSystem.SaveFileCheck() == true)
                 {
+                    retryButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                    StartCoroutine(ButtonTimerBeforeSceneSwitch());
                     SaveSystem.SetGameStartState(SaveSystem.GameStartStates.LOADGAME);
                     Loader.Load(Loader.GameScenes.GameScene);
                 }
                 else
                 {
+                    retryButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                    StartCoroutine(ButtonTimerBeforeSceneSwitch());
                     SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
                     Loader.Load(Loader.GameScenes.GameScene);
                 }
@@ -64,6 +83,8 @@ public class MenuUIScript : MonoBehaviour
             quitButton.onClick.AddListener(() =>
             {
                 //Click
+                quitButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                StartCoroutine(ButtonTimerBeforeSceneSwitch());
                 Application.Quit();
             });
         }
@@ -73,6 +94,8 @@ public class MenuUIScript : MonoBehaviour
             menuButton.onClick.AddListener(() =>
             {
                 //Click
+                menuButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                StartCoroutine(ButtonTimerBeforeSceneSwitch());
                 Loader.Load(Loader.GameScenes.StartScene);
             });
         }
@@ -84,11 +107,14 @@ public class MenuUIScript : MonoBehaviour
                 //Click
                 if (SaveSystem.SaveFileCheck() == false)
                 {
+                    loadButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
                     noSaveDataPopupGO.gameObject.SetActive(true);
                 }
 
                 else
                 {
+                    loadButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                    StartCoroutine(ButtonTimerBeforeSceneSwitch());
                     SaveSystem.SetGameStartState(SaveSystem.GameStartStates.LOADGAME);
                     Loader.Load(Loader.GameScenes.GameScene);
                 }
@@ -99,7 +125,7 @@ public class MenuUIScript : MonoBehaviour
         {
             closeLoadPopupButton.onClick.AddListener(() =>
             {
-                
+                closeLoadPopupButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
                 noSaveDataPopupGO.gameObject.SetActive(false);
                
             });
@@ -109,7 +135,8 @@ public class MenuUIScript : MonoBehaviour
         {
             startNewGameButton.onClick.AddListener(() =>
             {
-
+                startNewGameButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                StartCoroutine(ButtonTimerBeforeSceneSwitch());
                 startNewGamePopupGO.gameObject.SetActive(false);
                 SaveSystem.DeleteSave();
                 SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
@@ -122,7 +149,7 @@ public class MenuUIScript : MonoBehaviour
         {
             closeNewGamePopupButton.onClick.AddListener(() =>
             {
-
+                closeNewGamePopupButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
                 startNewGamePopupGO.gameObject.SetActive(false);
 
             });
@@ -142,6 +169,9 @@ public class MenuUIScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-
+    private IEnumerator ButtonTimerBeforeSceneSwitch()
+    {
+        yield return new WaitForSeconds(buttonTimer);
+    }
     
 }
