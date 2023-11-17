@@ -437,6 +437,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   mainSprite: {fileID: 0}
   itemToSpawn: {fileID: 0}
+  enemyID: 
   groundLength: 0.75
   colliderOffset: {x: -0.66, y: 0, z: 0}
   chaseTriggerRadius: 7.23
@@ -456,17 +457,13 @@ MonoBehaviour:
   canChaseOption: 1
   _enemyState: 0
   _attackState: 0
-  STOP_POINT_TAG: StopPoint
-  CAMERA_SWITCH_TRIGGER_TAG: CameraSwitchTrigger
-  WALLTAG: Wall
-  TONGUE_COUNTER_TAG: TongueCounter
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackChargeTime: 10
+  attackChargeTime: 1
   attackRechargeTime: 1
   canAttack: 1
   dashPower: 24

@@ -503,7 +503,7 @@ MonoBehaviour:
   bullet: {fileID: 5683315486978081061, guid: 07574fbd52dc9b242a97d4005d2cf0e3, type: 3}
   shootReloadTime: 2
   numOfShots: 3
-  dashAttackChargeTime: 2
+  dashAttackChargeTime: 1
   dashAttackRechargeTime: 1
   dashPower: 24
   attackTime: 0.4

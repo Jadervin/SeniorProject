@@ -497,6 +497,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   mainSprite: {fileID: 5983329531555483742}
   itemToSpawn: {fileID: 0}
+  enemyID: 
   groundLength: 0.95
   colliderOffset: {x: -0.7, y: 0, z: 0}
   chaseTriggerRadius: 3
@@ -516,17 +517,13 @@ MonoBehaviour:
   canChaseOption: 0
   _enemyState: 0
   _attackState: 0
-  STOP_POINT_TAG: StopPoint
-  CAMERA_SWITCH_TRIGGER_TAG: CameraSwitchTriggers
-  WALLTAG: Wall
-  TONGUE_COUNTER_TAG: TongueCounter
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackChargeTime: 2
+  attackChargeTime: 1
   attackRechargeTime: 3
   canAttack: 1
   dashPower: 30
@@ -588,7 +585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5320036793749713873}
   damage: 4
-  TONGUE_COUNTER_TAG: TongueCounter
 --- !u!61 &7208155411770650363
 BoxCollider2D:
   m_ObjectHideFlags: 0

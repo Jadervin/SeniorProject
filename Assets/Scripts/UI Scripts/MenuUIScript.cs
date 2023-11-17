@@ -169,6 +169,16 @@ public class MenuUIScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    private void Update()
+    {
+        if(noSaveDataPopupGO != null)
+        {
+            closeLoadPopupButton.Select();
+        }
+
+    }
+
+
     private IEnumerator ButtonTimerBeforeSceneSwitch()
     {
         yield return new WaitForSeconds(buttonTimer);
