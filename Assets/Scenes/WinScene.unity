@@ -1273,11 +1273,14 @@ MonoBehaviour:
   retryButton: {fileID: 490950477}
   quitButton: {fileID: 59331023}
   menuButton: {fileID: 1851656155}
-  noSaveDataPopupGO: {fileID: 0}
   closeLoadPopupButton: {fileID: 0}
-  startNewGamePopupGO: {fileID: 0}
   startNewGameButton: {fileID: 0}
   closeNewGamePopupButton: {fileID: 0}
+  noSaveDataPopupGO: {fileID: 0}
+  startNewGamePopupGO: {fileID: 0}
+  noSaveDataPopupClosed: 0
+  startNewGamePopupClosed: 0
+  startNewGamePopupFirstOpen: 0
 --- !u!4 &1404845467
 Transform:
   m_ObjectHideFlags: 0
@@ -1852,7 +1855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 490950473}
+  m_FirstSelected: {fileID: 1851656154}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1995265102

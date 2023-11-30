@@ -155,12 +155,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 1
+    m_Mode: 4
     m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 1033353059}
+    m_SelectOnRight: {fileID: 1033353059}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -404,11 +404,14 @@ MonoBehaviour:
   retryButton: {fileID: 0}
   quitButton: {fileID: 433158346}
   menuButton: {fileID: 0}
-  noSaveDataPopupGO: {fileID: 1453625016}
   closeLoadPopupButton: {fileID: 127796900}
-  startNewGamePopupGO: {fileID: 617304029}
   startNewGameButton: {fileID: 69668118}
   closeNewGamePopupButton: {fileID: 1033353059}
+  noSaveDataPopupGO: {fileID: 1453625016}
+  startNewGamePopupGO: {fileID: 617304029}
+  noSaveDataPopupClosed: 0
+  startNewGamePopupClosed: 0
+  startNewGamePopupFirstOpen: 0
 --- !u!4 &249525972
 Transform:
   m_ObjectHideFlags: 0
@@ -852,7 +855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.678284, y: 6.407013}
+  m_AnchoredPosition: {x: -10.678223, y: 6.4070435}
   m_SizeDelta: {x: -123.8682, y: -132.4109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &406369901
@@ -1183,7 +1186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.678284, y: 6.407013}
+  m_AnchoredPosition: {x: -10.678223, y: 6.4070435}
   m_SizeDelta: {x: -123.8682, y: -132.4109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &561524519
@@ -1563,12 +1566,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 1
+    m_Mode: 4
     m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 69668118}
+    m_SelectOnRight: {fileID: 69668118}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}

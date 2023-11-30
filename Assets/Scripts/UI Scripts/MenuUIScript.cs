@@ -19,13 +19,22 @@ public class MenuUIScript : MonoBehaviour
     [SerializeField] private Button quitButton;
     [SerializeField] private Button menuButton;
 
-    [SerializeField] private Transform noSaveDataPopupGO;
+    
     [SerializeField] private Button closeLoadPopupButton;
 
-    [SerializeField] private Transform startNewGamePopupGO;
+    
     [SerializeField] private Button startNewGameButton;
     [SerializeField] private Button closeNewGamePopupButton;
 
+
+    [Header("Popups")]
+    [SerializeField] private Transform noSaveDataPopupGO;
+    [SerializeField] private Transform startNewGamePopupGO;
+
+    [Header("Booleans")]
+    [SerializeField] private bool noSaveDataPopupClosed = false;
+    [SerializeField] private bool startNewGamePopupClosed = false;
+    [SerializeField] private bool startNewGamePopupFirstOpen = false;
 
 
     private void Awake()
@@ -171,11 +180,45 @@ public class MenuUIScript : MonoBehaviour
 
     private void Update()
     {
-        if(noSaveDataPopupGO != null)
+        if (noSaveDataPopupGO != null)
         {
-            closeLoadPopupButton.Select();
+            if (noSaveDataPopupGO.gameObject.activeSelf == true)
+            {
+                
+                    closeLoadPopupButton.Select();
+                  
+                noSaveDataPopupClosed = true;
+            }
+            else
+            {
+                if (noSaveDataPopupClosed == true)
+                {
+                    playButton.Select();
+                    noSaveDataPopupClosed = false;
+                }
+            }
         }
 
+        if (startNewGamePopupGO != null)
+        {
+            if (startNewGamePopupGO.gameObject.activeSelf == true)
+            {
+                if (startNewGamePopupFirstOpen == false)
+                {
+                    startNewGameButton.Select();
+                    startNewGamePopupFirstOpen = true;
+                }
+                startNewGamePopupClosed = true;
+            }
+            else
+            {
+                if (startNewGamePopupClosed == true)
+                {
+                    playButton.Select();
+                    startNewGamePopupClosed = false;
+                }
+            }
+        }
     }
 
 
