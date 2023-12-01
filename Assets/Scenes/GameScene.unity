@@ -12467,6 +12467,7 @@ GameObject:
   - component: {fileID: 136964817}
   - component: {fileID: 136964816}
   - component: {fileID: 136964815}
+  - component: {fileID: 136964818}
   m_Layer: 0
   m_Name: (1.2) NoYFollowBoundary
   m_TagString: Untagged
@@ -12618,6 +12619,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 136964813}
+--- !u!114 &136964818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136964813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &143421729
 GameObject:
   m_ObjectHideFlags: 0
@@ -26260,6 +26277,7 @@ Transform:
   - {fileID: 280496452}
   - {fileID: 1009350118}
   - {fileID: 1049141750}
+  - {fileID: 965374416}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &676291809
@@ -26505,6 +26523,7 @@ GameObject:
   - component: {fileID: 685670371}
   - component: {fileID: 685670370}
   - component: {fileID: 685670369}
+  - component: {fileID: 685670372}
   m_Layer: 0
   m_Name: (2.4) PlayerFollowBoundary (1)
   m_TagString: Untagged
@@ -26656,6 +26675,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 685670367}
+--- !u!114 &685670372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685670367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &687969614
 GameObject:
   m_ObjectHideFlags: 3
@@ -27247,6 +27282,7 @@ GameObject:
   - component: {fileID: 759941528}
   - component: {fileID: 759941527}
   - component: {fileID: 759941526}
+  - component: {fileID: 759941529}
   m_Layer: 0
   m_Name: (2.1) PlayerFollowBoundary
   m_TagString: Untagged
@@ -27398,6 +27434,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 759941524}
+--- !u!114 &759941529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759941524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &762477160
 GameObject:
   m_ObjectHideFlags: 0
@@ -37697,6 +37749,7 @@ GameObject:
   - component: {fileID: 847080943}
   - component: {fileID: 847080942}
   - component: {fileID: 847080941}
+  - component: {fileID: 847080944}
   m_Layer: 0
   m_Name: (2.5) PlayerFollowBoundary (1)
   m_TagString: Untagged
@@ -37848,6 +37901,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 847080939}
+--- !u!114 &847080944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847080939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &855415556
 GameObject:
   m_ObjectHideFlags: 0
@@ -49295,6 +49364,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957005338}
   m_CullTransparentMesh: 1
+--- !u!1 &965374415
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965374416}
+  m_Layer: 0
+  m_Name: Level Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &965374416
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965374415}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 674019451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966923163
 GameObject:
   m_ObjectHideFlags: 0
@@ -64972,6 +65072,7 @@ GameObject:
   - component: {fileID: 1002588437}
   - component: {fileID: 1002588436}
   - component: {fileID: 1002588435}
+  - component: {fileID: 1002588438}
   m_Layer: 0
   m_Name: (1.5) PlayerFollowBoundary
   m_TagString: Untagged
@@ -65123,6 +65224,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1002588433}
+--- !u!114 &1002588438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002588433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1005160615
 GameObject:
   m_ObjectHideFlags: 0
@@ -72086,6 +72203,7 @@ GameObject:
   - component: {fileID: 1114766989}
   - component: {fileID: 1114766990}
   - component: {fileID: 1114766991}
+  - component: {fileID: 1114766993}
   m_Layer: 0
   m_Name: (1.1) PlayerFollowBoundary
   m_TagString: Untagged
@@ -72134,9 +72252,9 @@ CompositeCollider2D:
     m_ColliderPaths:
     - - X: 293707232
         Y: -304832
-      - X: 2617130
+      - X: 2617120
         Y: -304832
-      - X: 2617130
+      - X: 2617120
         Y: -199400160
       - X: 293707232
         Y: -199400160
@@ -72144,8 +72262,8 @@ CompositeCollider2D:
     m_Paths:
     - - {x: 29.370695, y: -19.940016}
       - {x: 29.370695, y: -0.030483201}
-      - {x: 0.261713, y: -0.0305125}
-      - {x: 0.2617423, y: -19.940016}
+      - {x: 0.261712, y: -0.0305125}
+      - {x: 0.2617413, y: -19.940016}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -72193,7 +72311,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 29.109009, y: 19.909533}
+  m_Size: {x: 29.10901, y: 19.909533}
   m_EdgeRadius: 0
 --- !u!50 &1114766991
 Rigidbody2D:
@@ -72237,6 +72355,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 920417281}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1114766993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114766988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1127779814
 GameObject:
   m_ObjectHideFlags: 3
@@ -73345,6 +73479,7 @@ GameObject:
   - component: {fileID: 1190293573}
   - component: {fileID: 1190293572}
   - component: {fileID: 1190293571}
+  - component: {fileID: 1190293574}
   m_Layer: 0
   m_Name: (2.2) PlayerFollowBoundary
   m_TagString: Untagged
@@ -73496,6 +73631,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1190293569}
+--- !u!114 &1190293574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190293569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1191552967
 GameObject:
   m_ObjectHideFlags: 0
@@ -88545,7 +88696,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1464256111
 MonoBehaviour:
@@ -99381,6 +99532,7 @@ GameObject:
   - component: {fileID: 1567785381}
   - component: {fileID: 1567785380}
   - component: {fileID: 1567785379}
+  - component: {fileID: 1567785382}
   m_Layer: 0
   m_Name: (4.1) NoYFollowBoundary
   m_TagString: Untagged
@@ -99532,6 +99684,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1567785377}
+--- !u!114 &1567785382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567785377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1572557069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5753602949181134182, guid: 2cedabf5ab1668e458d5cff59d3a078d, type: 3}
@@ -109182,6 +109350,7 @@ GameObject:
   - component: {fileID: 1972789087}
   - component: {fileID: 1972789086}
   - component: {fileID: 1972789085}
+  - component: {fileID: 1972789088}
   m_Layer: 0
   m_Name: (1.4) PlayerFollowBoundary
   m_TagString: Untagged
@@ -109333,6 +109502,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1972789083}
+--- !u!114 &1972789088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972789083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderList: []
+  EnemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1975521059
 GameObject:
   m_ObjectHideFlags: 3
