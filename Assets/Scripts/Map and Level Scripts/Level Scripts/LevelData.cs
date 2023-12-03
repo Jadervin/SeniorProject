@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-    public List<GameObject> colliderList = new List<GameObject>();
+    public List<GameObject> enemyColliderList = new List<GameObject>();
     private Collider2D[] hitColliders2D;
 
     public LayerMask EnemyLayerMask;
@@ -13,45 +13,23 @@ public class LevelData : MonoBehaviour
     public bool GotEnemies;
     public Transform origin;
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (!colliderList.Contains(collision.gameObject) && collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG))
-        {
-            colliderList.Add(collision.gameObject);
-            Debug.Log("Added " + gameObject.name);
-            Debug.Log("GameObjects in list: " + colliderList.Count);
-        }
-    }*/
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!colliderList.Contains(collision.gameObject) && collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG))
+        if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG))
         {
-            colliderList.Add(collision.gameObject);
-            Debug.Log("Added " + gameObject.name);
-            Debug.Log("GameObjects in list: " + colliderList.Count);
-        }
-    }
-*/
-    /*private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (!colliderList.Contains(collision.gameObject) && collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG))
-        {
-            colliderList.Add(collision.gameObject);
-            Debug.Log("Added " + gameObject.name);
-            Debug.Log("GameObjects in list: " + colliderList.Count);
-        }
-    }
+            if(enemyColliderList.Count > 0)
+            {
+                foreach (GameObject enemy in enemyColliderList)
+                {
+                    enemy.SetActive(true);
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (!colliderList.Contains(collision.gameObject) && collision.gameObject.CompareTag(TagReferencesScript.ENEMYTAG))
-        {
-            colliderList.Add(collision.gameObject);
-            Debug.Log("Added " + gameObject.name);
-            Debug.Log("GameObjects in list: " + colliderList.Count);
-        }
-    }*/
+                    enemy.gameObject.GetComponentInChildren<EnemyScript>().ResetHealth();
+                    enemy.gameObject.GetComponentInChildren<EnemyScript>().ResetEnemyState();
+                }
+            }
+        }   
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -86,7 +64,7 @@ public class LevelData : MonoBehaviour
             {
                 if (enemy.GetEnemyID() != null)
                 {
-                    colliderList.Add(hit.transform.parent.gameObject);
+                    enemyColliderList.Add(hit.transform.parent.gameObject);
                 }
             }
         }

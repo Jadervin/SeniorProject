@@ -179,6 +179,17 @@ public class EnemyScript : EntityScript
 
     }
 
+    public void ResetEnemyState()
+    {
+        enemyState = EnemyStates.IDLE;
+        attackState = AttackCounterStates.NON_COUNTERABLE;
+
+        canAttack = true;
+        isChargingAttack = false;
+        isUsingAttack = false;
+        isRecharging = false;
+    }
+
     // Update is called once per frame
     protected void Update()
     {
@@ -767,7 +778,9 @@ public class EnemyScript : EntityScript
     public string GetEnemyID()
     {
         return enemyID;
-    }    
+    }   
+    
+    
 
 }
 

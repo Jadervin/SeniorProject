@@ -12632,7 +12632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -26754,7 +26754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -27579,7 +27579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -38050,7 +38050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -65408,7 +65408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -72605,7 +72605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -73885,7 +73885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -99942,7 +99942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -109222,6 +109222,63 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &1923897934
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3285343449884654340, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_Name
+      value: SWEnergyUpgradeObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.19999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19.797935
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.053984694
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
 --- !u!212 &1938936150 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7486006123871666179, guid: a4c32f80c7804214081849c603c2f915, type: 3}
@@ -109826,7 +109883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ee864b33b615344a6b8fa995a8e0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderList: []
+  enemyColliderList: []
   EnemyLayerMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -117714,7 +117771,7 @@ PrefabInstance:
     - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: itemToSpawn
       value: 
-      objectReference: {fileID: 3285343449884654340, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 547643627493095586, guid: dc0a57b71469c4142ae3e1e0737351fc, type: 3}
       propertyPath: playerTarget
       value: 
@@ -118026,3 +118083,4 @@ SceneRoots:
   - {fileID: 1179014535}
   - {fileID: 1499677944}
   - {fileID: 318575961}
+  - {fileID: 1923897934}

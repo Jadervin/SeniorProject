@@ -33,7 +33,10 @@ public abstract class EntityScript : MonoBehaviour
         }
     }
     
-
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+    }
     
 
     public int GetCurrentHealth()
