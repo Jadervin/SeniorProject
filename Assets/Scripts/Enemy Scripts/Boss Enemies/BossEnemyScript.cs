@@ -33,16 +33,22 @@ public enum BossEnemyHealthStates
 
 public class BossEnemyScript : EntityScript
 {
-    [Header("States")]
-    [SerializeField] protected BossEnemyStates bossEnemyState;
-    //[SerializeField] protected List<BossEnemyAttackStates> bossAttackStateChoices;
-    [SerializeField] protected BossEnemyAttackStates bossAttackState;
-    [SerializeField] protected BossEnemyAttackStates previousBossAttackState;
-    //[SerializeField] protected bool choseAttack = false;
 
-    [SerializeField] protected AttackCounterStates attackCounterState;
-    [SerializeField] protected BossEnemyHealthStates enemyHealthState;
-    [SerializeField] protected int maxAttackStates;
+
+
+    [Header("States")]
+    /*[SerializeField] */protected BossEnemyStates bossEnemyState;
+   
+    /*[SerializeField] */protected BossEnemyAttackStates bossAttackState;
+    /*[SerializeField] */protected BossEnemyAttackStates previousBossAttackState;
+
+    /*[SerializeField] */protected AttackCounterStates attackCounterState;
+    /*[SerializeField] */protected BossEnemyHealthStates enemyHealthState;
+    /*[SerializeField] */protected int maxAttackStates;
+
+
+    //[SerializeField] protected List<BossEnemyAttackStates> bossAttackStateChoices;
+    //[SerializeField] protected bool choseAttack = false;
 
 
     [Header("Components")]
