@@ -56,6 +56,21 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
 
     }
 
+    new public void ResetEnemyState()
+    {
+        enemyState = EnemyStates.IDLE;
+        attackState = AttackCounterStates.NON_COUNTERABLE;
+        mainSprite.color = mainColor;
+        canAttack = true;
+        isChargingAttack = false;
+        isUsingAttack = false;
+        isRecharging = false;
+
+        attackCollider.enabled = false;
+        attackSprite.enabled = false;
+    }
+
+
     void UpdatePath()
     {
         if(seeker.IsDone())

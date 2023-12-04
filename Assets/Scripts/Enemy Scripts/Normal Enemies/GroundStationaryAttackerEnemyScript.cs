@@ -40,6 +40,20 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
     }
 
+    new public void ResetEnemyState()
+    {
+        enemyState = EnemyStates.IDLE;
+        attackState = AttackCounterStates.NON_COUNTERABLE;
+        mainSprite.color = mainColor;
+        canAttack = true;
+        isChargingAttack = false;
+        isUsingAttack = false;
+        isRecharging = false;
+
+        attackCollider.enabled = false;
+        attackSprite.enabled = false;
+    }
+
 
     // Update is called once per frame
     new private void Update()

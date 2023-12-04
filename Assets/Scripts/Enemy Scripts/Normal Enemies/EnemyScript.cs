@@ -183,7 +183,7 @@ public class EnemyScript : EntityScript
     {
         enemyState = EnemyStates.IDLE;
         attackState = AttackCounterStates.NON_COUNTERABLE;
-
+        mainSprite.color = mainColor;
         canAttack = true;
         isChargingAttack = false;
         isUsingAttack = false;
