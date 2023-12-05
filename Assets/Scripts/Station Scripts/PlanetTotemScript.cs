@@ -111,7 +111,7 @@ public class PlanetTotemScript : MonoBehaviour
     {
 
         if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG) &&
-            collision.gameObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected() == maxArtifacts)
+            collision.gameObject.GetComponent<PlayerArtifactCollection>().GetCurrentArtifactsCollected() >= maxArtifacts)
         {
             foreach (GameObject wall in unlockableAreas)
             {
