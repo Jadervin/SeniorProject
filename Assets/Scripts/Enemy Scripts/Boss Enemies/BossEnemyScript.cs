@@ -131,12 +131,14 @@ public class BossEnemyScript : EntityScript
 
     public static event EventHandler OnAnyBossShoot;
     public static event EventHandler OnAnyBossDash;
+    public static event EventHandler OnAnyBossActivation;
 
     public static void ResetStaticData()
     {
         OnAnyBossDash = null;
         OnAnyBossShoot = null;
         OnAnyBossEnemyDefeated = null;
+        OnAnyBossActivation = null;
     }
 
 
@@ -331,6 +333,8 @@ public class BossEnemyScript : EntityScript
             {
                 wall.SetActive(true);
             }
+
+            OnAnyBossActivation?.Invoke(this, EventArgs.Empty);
 
             bossEnemyState = BossEnemyStates.IDLE;
         }

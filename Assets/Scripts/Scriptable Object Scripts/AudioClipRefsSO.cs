@@ -24,6 +24,7 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip dash;
     public AudioClip slash;
     public AudioClip enemyDeath;
+    public AudioClip bossEnemyActivation;
 
     [Header("Other Sounds")]
     public AudioClip planetTotemActivation;

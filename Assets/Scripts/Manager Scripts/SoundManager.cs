@@ -50,6 +50,7 @@ public class SoundManager : MonoBehaviour
         BossEnemyScript.OnAnyBossDash += BossEnemyScript_OnAnyBossDash;
         BossEnemyScript.OnAnyBossShoot += BossEnemyScript_OnAnyBossShoot;
         BossEnemyScript.OnAnyBossEnemyDefeated += BossEnemyScript_OnAnyBossEnemyDefeated;
+        BossEnemyScript.OnAnyBossActivation += BossEnemyScript_OnAnyBossActivation;
 
         PlanetTotemScript.OnPlayerStartingWorld += PlanetTotemScript_OnPlayerStartingWorld;
         PlanetTotemScript.OnPlayerHasAllArtifacts += PlanetTotemScript_OnPlayerHasAllArtifacts;
@@ -59,6 +60,7 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    
 
     private void Update()
     {
@@ -119,6 +121,12 @@ public class SoundManager : MonoBehaviour
     {
         BossEnemyScript bossEnemy = sender as BossEnemyScript;
         PlaySound(audioClipRefsSO.dash, bossEnemy.transform.position, volume);
+    }
+
+    private void BossEnemyScript_OnAnyBossActivation(object sender, System.EventArgs e)
+    {
+        BossEnemyScript bossEnemy = sender as BossEnemyScript;
+        PlaySound(audioClipRefsSO.bossEnemyActivation, bossEnemy.transform.position, volume);
     }
 
     private void EnemyScript_OnAnyEnemyDash(object sender, System.EventArgs e)

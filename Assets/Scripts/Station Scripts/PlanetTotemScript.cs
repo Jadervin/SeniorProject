@@ -7,6 +7,7 @@ public class PlanetTotemScript : MonoBehaviour
 {
     //public static PlanetTotemScript instance {  get; private set; }
     [SerializeField] private List<GameObject> unlockableAreas;
+    [SerializeField] private List<GameObject> bossMapSections;
     //[SerializeField] private List<GameObject> hiddenAreas;
     [SerializeField] private Collider2D switchCollider;
     [SerializeField] private int maxArtifacts = 3;
@@ -93,6 +94,11 @@ public class PlanetTotemScript : MonoBehaviour
                 platform.SetActive(true);
             }
             */
+
+            foreach(GameObject mapSection in bossMapSections)
+            {
+                mapSection.SetActive(true);
+            }
 
             OnPlayerStartingWorld?.Invoke(this, new OnSendingArtifactNumberEventArgs
             {

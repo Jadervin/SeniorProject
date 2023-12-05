@@ -25,6 +25,7 @@ public class EnemyScript : EntityScript
 
     [SerializeField] protected Rigidbody2D rb;
     [SerializeField] protected Collider2D boxCollider;
+    [SerializeField] protected Vector3 startPosition;
 
     [Header("Components")]
     [SerializeField] protected GameObject enemyParent;
@@ -175,6 +176,8 @@ public class EnemyScript : EntityScript
 
         mainColor = mainSprite.color;
 
+        startPosition = this.transform.localPosition;
+
         //isFacingRightFunction();
 
     }
@@ -188,6 +191,7 @@ public class EnemyScript : EntityScript
         isChargingAttack = false;
         isUsingAttack = false;
         isRecharging = false;
+        this.transform.localPosition = startPosition;
     }
 
     // Update is called once per frame
