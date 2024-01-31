@@ -12,6 +12,7 @@ public class PlanetTotemScript : MonoBehaviour
     [SerializeField] private Collider2D switchCollider;
     [SerializeField] private int maxArtifacts = 3;
     [SerializeField] private bool completedTotem = false;
+    [SerializeField] private SpriteRenderer planetTotemSprite;
 
     public static event EventHandler<OnSendingArtifactNumberEventArgs> OnPlayerStartingWorld;
     public static event EventHandler OnPlayerHasAllArtifacts;
@@ -117,6 +118,7 @@ public class PlanetTotemScript : MonoBehaviour
             {
                 wall.SetActive(false);
             }
+            planetTotemSprite.color = Color.cyan;
             completedTotem = true;
             OnPlayerHasAllArtifacts?.Invoke(this, EventArgs.Empty);
         }
