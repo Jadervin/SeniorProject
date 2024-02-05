@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class FlamethrowerScript : SpecialWeaponEntityScript
 {
-    [SerializeField] private ParticleSystem flamethrowerParticle;
+    [SerializeField] private ParticleSystem flamethrowerDamageParticle;
+    [SerializeField] private ParticleSystem flamethrowerEnemyPassThroughParticle;
 
 
     [SerializeField] private bool isHoldingButton;
@@ -28,7 +29,8 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
         GameInput.Instance.OnSpecialShootPressed += GameInput_OnSpecialShootPressed;
         GameInput.Instance.OnSpecialShootRelease += GameInput_OnSpecialShootRelease;
 
-        flamethrowerParticle.gameObject.SetActive(false);
+        flamethrowerDamageParticle.gameObject.SetActive(false);
+        flamethrowerEnemyPassThroughParticle.gameObject.SetActive(false);
         specialWeaponManagerScript = FindAnyObjectByType<SpecialWeaponManagerScript>();
 
         weaponEnergyCost = specialWeaponSOReference.specialWeaponEnergyCost;
@@ -94,14 +96,19 @@ public class FlamethrowerScript : SpecialWeaponEntityScript
 
     private void FlamethrowerShoot()
     {
-        flamethrowerParticle.gameObject.SetActive(true);
-        flamethrowerParticle.Play();
+        flamethrowerDamageParticle.gameObject.SetActive(true);
+        flamethrowerDamageParticle.Play();
+
+        flamethrowerEnemyPassThroughParticle.gameObject.SetActive(true);
+        flamethrowerEnemyPassThroughParticle.Play();
     }
 
     private void TurnOffFlamethrower()
     {
-        flamethrowerParticle.Stop();
-        flamethrowerParticle.gameObject.SetActive(false);
+        flamethrowerDamageParticle.Stop();
+        flamethrowerDamageParticle.gameObject.SetActive(false);
+        flamethrowerEnemyPassThroughParticle.Stop();
+        flamethrowerEnemyPassThroughParticle.gameObject.SetActive(false);
         isHoldingButton = false;
 
         OnFlamethrowerStateChanged?.Invoke(this, new OnFlamethrowerStateChangedEventArgs
