@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool onGround;
     [SerializeField] private bool pressingKey;
     [SerializeField] private bool isFacingRight;
+    [SerializeField] private bool isWalking;
 
 
     [Header("Camera Components")]
@@ -218,6 +219,8 @@ public class PlayerMovement : MonoBehaviour
         //Update the Rigidbody with this new velocity
         body.velocity = velocity;
 
+        isWalking = body.velocity.x != 0f;
+
     }
 
     private void runWithoutAcceleration()
@@ -226,10 +229,17 @@ public class PlayerMovement : MonoBehaviour
         velocity.x = desiredVelocity.x;
 
         body.velocity = velocity;
+
+        isWalking = body.velocity.x != 0f;
     }
 
     public bool GetIsFacingRight()
     {
         return isFacingRight;
+    }
+
+    public bool GetIsWalking()
+    {
+        return isWalking;
     }
 }

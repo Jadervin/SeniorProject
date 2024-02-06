@@ -21,7 +21,8 @@ public class PlayerBasicShooting : MonoBehaviour
     [SerializeField] private float cooldownTimeMax = .3f;
     //[SerializeField] private GameInput gameInput;
     [SerializeField] private Transform shootPoint;
-    /*[SerializeField]*/ private bool canShoot = true;
+    [SerializeField] private bool canShoot = true;
+    [SerializeField] private bool shotBullet;
 
     [SerializeField] private BasicShootingUpgradeStates basicShootingState;
 
@@ -32,6 +33,8 @@ public class PlayerBasicShooting : MonoBehaviour
 
     public event EventHandler OnBaseShootPerformed;
     public event EventHandler OnUpgradedShootPerformed;
+    public event EventHandler OnShootPerformed;
+    //public event EventHandler OnShootStopped;
 
 
     // Start is called before the first frame update
@@ -62,6 +65,8 @@ public class PlayerBasicShooting : MonoBehaviour
 
 
             canShoot = false;
+            //OnShootPerformed?.Invoke(this, EventArgs.Empty);
+            shotBullet = !canShoot;
             MovementLimiter.instance.IsBasicShooting();
         }
        
@@ -71,6 +76,8 @@ public class PlayerBasicShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (canShoot == false)
         {
             timeSinceShooting += Time.deltaTime;
@@ -79,6 +86,8 @@ public class PlayerBasicShooting : MonoBehaviour
             {
                 timeSinceShooting = 0;
                 canShoot = true;
+                //OnShootStopped?.Invoke(this, EventArgs.Empty);
+                shotBullet = !canShoot;
                 MovementLimiter.instance.IsNotDoingAnything();
             }
         }
@@ -127,6 +136,11 @@ public class PlayerBasicShooting : MonoBehaviour
     public void SetBaseShootingState(BasicShootingUpgradeStates baseShootState)
     {
         basicShootingState = baseShootState;
+    }
+
+    public bool GetShotBullet()
+    {
+        return shotBullet;
     }
 
 }
