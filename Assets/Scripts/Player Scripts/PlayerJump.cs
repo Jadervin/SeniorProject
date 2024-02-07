@@ -633,4 +633,10 @@ public class PlayerJump : MonoBehaviour
             isAboveLedgeDownwardOffsetForLoop *= 2;
         }*/
     }
+
+
+    public bool GetCurrentlyJumping()
+    {
+        return currentlyJumping;
+    }
 }

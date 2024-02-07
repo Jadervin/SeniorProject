@@ -101995,6 +101995,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMove: {fileID: 1464256111}
   playerBaseShoot: {fileID: 912360815}
+  playerJump: {fileID: 1464256112}
+  playerGround: {fileID: 1464256108}
 --- !u!1 &1687954157
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,8 +33,10 @@ public class PlayerBasicShooting : MonoBehaviour
 
     public event EventHandler OnBaseShootPerformed;
     public event EventHandler OnUpgradedShootPerformed;
-    public event EventHandler OnShootPerformed;
+    
+    //public event EventHandler OnShootPerformed;
     //public event EventHandler OnShootStopped;
+   
 
 
     // Start is called before the first frame update
@@ -65,7 +67,9 @@ public class PlayerBasicShooting : MonoBehaviour
 
 
             canShoot = false;
+            
             //OnShootPerformed?.Invoke(this, EventArgs.Empty);
+
             shotBullet = !canShoot;
             MovementLimiter.instance.IsBasicShooting();
         }
@@ -86,7 +90,9 @@ public class PlayerBasicShooting : MonoBehaviour
             {
                 timeSinceShooting = 0;
                 canShoot = true;
+                
                 //OnShootStopped?.Invoke(this, EventArgs.Empty);
+
                 shotBullet = !canShoot;
                 MovementLimiter.instance.IsNotDoingAnything();
             }
