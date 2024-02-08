@@ -7,6 +7,7 @@ public class FlareShotScript : SpecialWeaponEntityScript
 {
     //[SerializeField] private GameObject projectile;
     [SerializeField] private ParticleSystem flareShotParticle;
+    [SerializeField] private PlayerMovement playerMove;
 
     public event EventHandler OnFlareShotPerformed;
 
@@ -60,6 +61,15 @@ public class FlareShotScript : SpecialWeaponEntityScript
             }
         }
 
+
+        if(playerMove.GetIsFacingRight() == true)
+        {
+            flareShotParticle.GetComponent<ParticleSystemRenderer>().flip = new Vector3(1, 0, 0);
+        }
+        else
+        {
+            flareShotParticle.GetComponent<ParticleSystemRenderer>().flip = new Vector3(0, 0, 0);
+        }
 
     }
 

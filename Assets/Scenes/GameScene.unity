@@ -111045,6 +111045,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1687954158}
     m_Modifications:
+    - target: {fileID: 1377700381217168950, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
+      propertyPath: playerMove
+      value: 
+      objectReference: {fileID: 1464256111}
     - target: {fileID: 4121623116001316203, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -111083,6 +111087,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4121623116001316203, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6725370331723648597, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
+      propertyPath: m_Flip.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9115927276592769470, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
