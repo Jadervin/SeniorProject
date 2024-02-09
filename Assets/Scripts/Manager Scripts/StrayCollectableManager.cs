@@ -6,11 +6,11 @@ public class StrayCollectableManager : MonoBehaviour
 {
     public static StrayCollectableManager Instance;
 
-    /*[SerializeField] */private Collectables[] collectablesArray;
-    [SerializeField] private List<GameObject> collectablesList;
+    /*[SerializeField]*/ private Collectables[] collectablesArray;
+    [SerializeField] private List<GameObject> collectablesList = new List<GameObject>();
 
     /*[SerializeField] */private string[] collectablesIDs;
-    [SerializeField] private List<string> collectablesIdsList;
+    [SerializeField] private List<string> collectablesIdsList = new List<string>();
 
     /*[SerializeField] */private string[] collectablesIDsFromSave = new string[0];
     [SerializeField] private List<string> collectablesIdsFromSaveList = new List<string>();
@@ -28,8 +28,9 @@ public class StrayCollectableManager : MonoBehaviour
     {
         collectablesArray = FindObjectsOfType<Collectables>();
 
-        collectablesList = new List<GameObject>();
-        collectablesIdsList = new List<string>();
+        //collectablesList = new List<GameObject>();
+        //collectablesIdsList = new List<string>();
+
 
         for (int i = 0; i < collectablesArray.Length; i++)
         {
@@ -49,23 +50,27 @@ public class StrayCollectableManager : MonoBehaviour
 
     private void Collectables_OnAnyCollectableGet(object sender, Collectables.OnCollectableGetEventArgs e)
     {
+        Debug.Log("Called Event in Manager");
         CheckCollectablesList(e);
     }
 
 
     private void CheckCollectablesList(Collectables.OnCollectableGetEventArgs collectableObject)
     {
+        Debug.Log("Collectable List Count: " + collectablesList.Count);
         for (int i = 0; i < collectablesList.Count; i++)
         {
+            Debug.Log("Collectables in List: " + collectablesList[i]);
+
             if (collectableObject.collectable == collectablesList[i])
             {
-                
+                Debug.Log("Collectable IDs: " + collectablesList[i].GetComponent<Collectables>().GetCollectableID());
                 if (collectablesIdsList.Contains(collectablesList[i].GetComponent<Collectables>().GetCollectableID()) == false)
                 {
                     collectablesIdsList.Add(collectablesList[i].GetComponent<Collectables>().GetCollectableID());
                     collectablesList.RemoveAt(i);
                 }
-                
+                Debug.Log("Current Collectable: " + collectableObject.collectable);
             }
         }
 

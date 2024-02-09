@@ -1273,6 +1273,7 @@ MonoBehaviour:
   retryButton: {fileID: 490950477}
   quitButton: {fileID: 59331023}
   menuButton: {fileID: 1851656155}
+  creditsButton: {fileID: 0}
   closeLoadPopupButton: {fileID: 0}
   startNewGameButton: {fileID: 0}
   closeNewGamePopupButton: {fileID: 0}
@@ -1447,7 +1448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1431635788
 RectTransform:
   m_ObjectHideFlags: 0

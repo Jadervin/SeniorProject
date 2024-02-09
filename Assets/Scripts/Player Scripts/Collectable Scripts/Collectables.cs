@@ -32,14 +32,17 @@ public abstract class Collectables : MonoBehaviour
         {
             Interact();
 
+            Debug.Log("Invoked Event");
             OnAnyCollectableGet?.Invoke(this, new OnCollectableGetEventArgs
             {
+                
                 collectable = this.gameObject
             });
-
+            
 
 
             Destroy(this.gameObject);
+            Debug.Log("Destroyed Object");
 
             //this.gameObject.SetActive(false);
         }

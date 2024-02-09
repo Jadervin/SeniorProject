@@ -548,11 +548,15 @@ MonoBehaviour:
   retryButton: {fileID: 2108142917}
   quitButton: {fileID: 413014760}
   menuButton: {fileID: 2027974634}
-  noSaveDataPopupGO: {fileID: 0}
+  creditsButton: {fileID: 0}
   closeLoadPopupButton: {fileID: 0}
-  startNewGamePopupGO: {fileID: 0}
   startNewGameButton: {fileID: 0}
   closeNewGamePopupButton: {fileID: 0}
+  noSaveDataPopupGO: {fileID: 0}
+  startNewGamePopupGO: {fileID: 0}
+  noSaveDataPopupClosed: 0
+  startNewGamePopupClosed: 0
+  startNewGamePopupFirstOpen: 0
 --- !u!4 &568125909
 Transform:
   m_ObjectHideFlags: 0
@@ -719,7 +723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1301680693
 RectTransform:
   m_ObjectHideFlags: 0
