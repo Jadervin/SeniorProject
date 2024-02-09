@@ -388,6 +388,7 @@ public class EnemyScript : EntityScript
             //particle.SetActive(false);
             //hitWithParticle = true;
         }
+
     }
 
 

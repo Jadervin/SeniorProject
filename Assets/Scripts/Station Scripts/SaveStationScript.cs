@@ -15,20 +15,29 @@ public class SaveStationScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameInput.Instance.OnShootPressed += GameInput_OnShootPressed;
+        //GameInput.Instance.OnShootPressed += GameInput_OnShootPressed;
+        GameInput.Instance.OnMapPressed += GameInput_OnMapPressed;
 
         saveCollisionMessage.SetActive(false);
     }
 
+    private void GameInput_OnMapPressed(object sender, EventArgs e)
+    {
+        if (isOnSaveStation == true && GameSceneManager.Instance.GetGameState() == GameStates.GamePlaying)
+        {
+            SaveMenuUI.Instance.Show();
+            SaveMenuUI.Instance.ToggleTimePause();
+        }
+    }
 
-    private void GameInput_OnShootPressed(object sender, EventArgs e)
+    /*private void GameInput_OnShootPressed(object sender, EventArgs e)
     {
         if (isOnSaveStation == true)
         {
             SaveMenuUI.Instance.Show();
             SaveMenuUI.Instance.ToggleTimePause();
         }
-    }
+    }*/
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,5 +58,10 @@ public class SaveStationScript : MonoBehaviour
         {
             saveCollisionMessage.SetActive(false);
         }*/
+    }
+
+    public bool GetIsOnSaveStation()
+    {
+        return isOnSaveStation;
     }
 }

@@ -7,6 +7,8 @@ public class MapScreenManager : MonoBehaviour
     public static MapScreenManager instance;
     [SerializeField] private GameObject largeMapImage;
 
+    [SerializeField] private SaveStationScript saveStationScript;
+
     public bool IsMapScreenOpen {  get; set; }
 
 
@@ -26,21 +28,34 @@ public class MapScreenManager : MonoBehaviour
 
     private void GameInput_OnMapPressed(object sender, System.EventArgs e)
     {
-        if(IsMapScreenOpen == false) 
+        if (saveStationScript.GetIsOnSaveStation() == false)
         {
-            //open map screen
-            GameSceneManager.Instance.SetGameState(GameStates.MapOpen);
-            OpenMapScreen();
 
+            if (IsMapScreenOpen == false)
+            {
+                //open map screen
+                GameSceneManager.Instance.SetGameState(GameStates.MapOpen);
+                OpenMapScreen();
+
+
+            }
+
+            else
+            {
+                //close map screen
+                GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
+                CloseMapScreen();
+
+            }
 
         }
-
         else
         {
-            //close map screen
-            GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
-            CloseMapScreen();
-
+            if (IsMapScreenOpen == true)
+            {
+                GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
+                CloseMapScreen();
+            }
         }
     }
 
