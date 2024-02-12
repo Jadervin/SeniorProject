@@ -21,6 +21,9 @@ public class StrayCollectableManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        //Quick fix to Pickup Bug
+        //Collectables.ResetStaticData();
     }
 
 
@@ -50,27 +53,27 @@ public class StrayCollectableManager : MonoBehaviour
 
     private void Collectables_OnAnyCollectableGet(object sender, Collectables.OnCollectableGetEventArgs e)
     {
-        Debug.Log("Called Event in Manager");
+        //Debug.Log("Called Event in Manager");
         CheckCollectablesList(e);
     }
 
 
     private void CheckCollectablesList(Collectables.OnCollectableGetEventArgs collectableObject)
     {
-        Debug.Log("Collectable List Count: " + collectablesList.Count);
+        //Debug.Log("Collectable List Count: " + collectablesList.Count);
         for (int i = 0; i < collectablesList.Count; i++)
         {
-            Debug.Log("Collectables in List: " + collectablesList[i]);
+            //Debug.Log("Collectables in List: " + collectablesList[i]);
 
             if (collectableObject.collectable == collectablesList[i])
             {
-                Debug.Log("Collectable IDs: " + collectablesList[i].GetComponent<Collectables>().GetCollectableID());
+                //Debug.Log("Collectable IDs: " + collectablesList[i].GetComponent<Collectables>().GetCollectableID());
                 if (collectablesIdsList.Contains(collectablesList[i].GetComponent<Collectables>().GetCollectableID()) == false)
                 {
                     collectablesIdsList.Add(collectablesList[i].GetComponent<Collectables>().GetCollectableID());
                     collectablesList.RemoveAt(i);
                 }
-                Debug.Log("Current Collectable: " + collectableObject.collectable);
+                //Debug.Log("Current Collectable: " + collectableObject.collectable);
             }
         }
 
