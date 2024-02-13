@@ -106,4 +106,9 @@ public class SparkGrenadeScript : SpecialWeaponEntityScript
     {
         return grenade;
     }
+
+    public bool GetIsHoldingButton()
+    {
+        return isHoldingButton;
+    }
 }

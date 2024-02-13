@@ -95629,6 +95629,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2951942007811151338, guid: 17580f952c0a991458efbbb3e07eed79, type: 3}
   m_PrefabInstance: {fileID: 3163708046849316551}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1531957788 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7432907687103798041, guid: 17580f952c0a991458efbbb3e07eed79, type: 3}
+  m_PrefabInstance: {fileID: 3163708046849316551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531957786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c14885f3f1aa97489871f13ad59bd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1536508141
 GameObject:
   m_ObjectHideFlags: 0
@@ -102421,6 +102432,8 @@ MonoBehaviour:
   playerBaseShoot: {fileID: 912360815}
   playerJump: {fileID: 1464256112}
   playerGround: {fileID: 1464256108}
+  playerTongueCounter: {fileID: 1033175149}
+  grenadeThrow: {fileID: 1531957788}
 --- !u!1 &1687954157
 GameObject:
   m_ObjectHideFlags: 0

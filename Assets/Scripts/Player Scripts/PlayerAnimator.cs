@@ -10,12 +10,16 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private PlayerJump playerJump;
     [SerializeField] private PlayerGround playerGround;
     [SerializeField] private PlayerTongueCounter playerTongueCounter;
+    [SerializeField] private SparkGrenadeScript grenadeThrow;
 
     private const string IS_WALKING = "isWalking";
     private const string IS_SHOOTING = "isShooting";
     private const string IS_JUMPING = "isJumping";
     private const string ON_GROUND = "onGround";
     private const string IS_COUNTERING = "isCountering";
+    private const string LEDGEGRABBED = "ledgeGrabbed";
+    private const string ISHOLDINGTHROW = "isHoldingThrow";
+
 
 
     private void Awake()
@@ -28,22 +32,20 @@ public class PlayerAnimator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        //playerBaseShoot.OnShootPerformed += PlayerBaseShoot_OnShootPerformed;
-        //playerBaseShoot.OnShootStopped += PlayerBaseShoot_OnShootStopped;
+        playerJump.OnLedgeGrabPerformed += PlayerJump_OnLedgeGrabPerformed;
+        playerTongueCounter.OnTongueCounterPerformed += PlayerTongueCounter_OnTongueCounterPerformed;
     }
 
-/*    
-    private void PlayerBaseShoot_OnShootPerformed(object sender, System.EventArgs e)
+    private void PlayerTongueCounter_OnTongueCounterPerformed(object sender, System.EventArgs e)
     {
-        playerAnimator.SetBool(IS_SHOOTING, true);
+        playerAnimator.SetTrigger(IS_COUNTERING);
     }
 
-    private void PlayerBaseShoot_OnShootStopped(object sender, System.EventArgs e)
+    private void PlayerJump_OnLedgeGrabPerformed(object sender, System.EventArgs e)
     {
-        playerAnimator.SetBool(IS_SHOOTING, false);
+        playerAnimator.SetTrigger(LEDGEGRABBED);
     }
-*/
+
 
 
     // Update is called once per frame
@@ -53,7 +55,10 @@ public class PlayerAnimator : MonoBehaviour
         playerAnimator.SetBool(IS_SHOOTING, playerBaseShoot.GetShotBullet());
         playerAnimator.SetBool(IS_JUMPING, playerJump.GetCurrentlyJumping());
         playerAnimator.SetBool(ON_GROUND, playerGround.GetOnGround());
-        playerAnimator.SetBool(IS_COUNTERING, playerTongueCounter.GetIsCountering());
+        playerAnimator.SetBool(ISHOLDINGTHROW, grenadeThrow.GetIsHoldingButton());
+
+        //playerAnimator.SetBool(IS_COUNTERING, playerTongueCounter.GetIsCountering());
+
 
     }
 }

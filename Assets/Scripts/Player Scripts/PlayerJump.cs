@@ -128,6 +128,8 @@ public class PlayerJump : MonoBehaviour
 
 
     public event EventHandler OnJumpPerformed;
+    public event EventHandler OnLedgeGrabPerformed;
+
 
 
     void Awake()
@@ -572,11 +574,17 @@ public class PlayerJump : MonoBehaviour
             //Debug.Log("transform.position: " + transform.position);
 
 
+
+
             if (transform.position.x <= 2 && transform.position.y <= 1)
             {
                 transform.position = originalPosition;
 
                 //Debug.Log("Back to origial position: " + transform.position);
+            }
+            else
+            {
+                OnLedgeGrabPerformed?.Invoke(this, new EventArgs());
             }
 
 
