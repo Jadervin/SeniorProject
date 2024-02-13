@@ -6,11 +6,13 @@ using UnityEngine;
 
 public class PlayerHealth : EntityScript
 {
-   
 
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private float damageTimeBuffer = 1f;
     [SerializeField] private bool isInvincible;
     [SerializeField] private float deathTimer = 2f;
+    [SerializeField] private GameObject explosionPrefab;
+
     
 
     [SerializeField] private List<SpriteRenderer> sprites = new List<SpriteRenderer>();
@@ -27,17 +29,20 @@ public class PlayerHealth : EntityScript
     public event EventHandler OnPlayerDamaged;
     public event EventHandler OnPlayerDead;
 
-   /*
+
+
+
+ 
     void Start()
     {
-        
+       boxCollider = GetComponent<BoxCollider2D>(); 
     }
+    /*
 
-    
-    void Update()
-    {
-        
-    }
+  void Update()
+  {
+
+  }
 */
     public override void DamageHealth(int damageAmount)
     {
@@ -82,6 +87,11 @@ public class PlayerHealth : EntityScript
         {
             sprite.enabled = false;
         }
+
+        boxCollider.enabled = false;
+
+        GameObject explosionEffect = Instantiate(explosionPrefab, this.transform.position, this.transform.rotation);
+
         OnPlayerDead?.Invoke(this, EventArgs.Empty);
         MovementLimiter.instance.OnDeathManager();
 
@@ -100,6 +110,7 @@ public class PlayerHealth : EntityScript
             if (currentHealth > 0)
             {
                 //player gets knocked back
+
                 OnPlayerKnockbackAction?.Invoke(this, new OnKnockbackEventArgs
                 {
                     collidedGameObject = collision.gameObject
