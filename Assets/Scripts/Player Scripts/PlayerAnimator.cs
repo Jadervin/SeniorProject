@@ -9,11 +9,13 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private PlayerBasicShooting playerBaseShoot;
     [SerializeField] private PlayerJump playerJump;
     [SerializeField] private PlayerGround playerGround;
+    [SerializeField] private PlayerTongueCounter playerTongueCounter;
 
     private const string IS_WALKING = "isWalking";
     private const string IS_SHOOTING = "isShooting";
     private const string IS_JUMPING = "isJumping";
     private const string ON_GROUND = "onGround";
+    private const string IS_COUNTERING = "isCountering";
 
 
     private void Awake()
@@ -51,6 +53,7 @@ public class PlayerAnimator : MonoBehaviour
         playerAnimator.SetBool(IS_SHOOTING, playerBaseShoot.GetShotBullet());
         playerAnimator.SetBool(IS_JUMPING, playerJump.GetCurrentlyJumping());
         playerAnimator.SetBool(ON_GROUND, playerGround.GetOnGround());
+        playerAnimator.SetBool(IS_COUNTERING, playerTongueCounter.GetIsCountering());
 
     }
 }

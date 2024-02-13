@@ -65,4 +65,10 @@ public class PlayerTongueCounter : MonoBehaviour
         MovementLimiter.instance.IsNotDoingAnything();
 
     }
+
+
+    public bool GetIsCountering()
+    {
+        return !canCounter;
+    }
 }
