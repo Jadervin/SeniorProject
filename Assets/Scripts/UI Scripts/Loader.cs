@@ -12,7 +12,8 @@ public class Loader : MonoBehaviour
         LoseScene,
         LoadingScene,
         WinScene,
-        CreditsScene
+        CreditsScene,
+        InstructionsScene
     }
 
     private static GameScenes targetScene;
