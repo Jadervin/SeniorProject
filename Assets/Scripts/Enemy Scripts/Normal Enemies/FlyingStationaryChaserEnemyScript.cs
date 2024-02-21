@@ -35,6 +35,8 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     public static void ResetStaticSoundEventData()
     {
         OnAnyEnemySlash = null;
+
+        //Not for sounds, maybe change for later
         OnAnyEnemyCharging = null;
         //OnAnyEnemyAttacking = null;
     }

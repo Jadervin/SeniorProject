@@ -10,7 +10,7 @@ public class ResetStaticDataManager : MonoBehaviour
         BossEnemyScript.ResetStaticData();
         GroundStationaryAttackerEnemyScript.ResetStaticSoundEventData();
         FlyingStationaryChaserEnemyScript.ResetStaticSoundEventData();
-        GroundPatrollingAttackerEnemyScript.ResetOtherStaticData();
+        
         Collectables.ResetStaticData();
         RefillStationScript.ResetStaticData();
         PlanetTotemScript.ResetStaticData();

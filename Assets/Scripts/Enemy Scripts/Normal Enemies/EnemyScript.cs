@@ -147,6 +147,7 @@ public class EnemyScript : EntityScript
     public static event EventHandler OnAnyEnemyDash;
     public static event EventHandler OnAnyEnemyCharging;
     public static event EventHandler OnAnyEnemyRecharging;
+    public static event EventHandler OnAnyEnemyDoneRecharging;
     public static event EventHandler OnAnyEnemyReset;
 
     public static void ResetStaticData()
@@ -155,6 +156,7 @@ public class EnemyScript : EntityScript
         OnAnyEnemyDefeated = null;
         OnAnyEnemyCharging = null;
         OnAnyEnemyRecharging = null;
+        OnAnyEnemyDoneRecharging = null;
         OnAnyEnemyReset = null;
 
     }
@@ -738,6 +740,8 @@ public class EnemyScript : EntityScript
         yield return new WaitForSeconds(attackRechargeTime);
 
         isRecharging = false;
+        OnAnyEnemyDoneRecharging?.Invoke(this, EventArgs.Empty);
+
         canAttack = true;
 
 

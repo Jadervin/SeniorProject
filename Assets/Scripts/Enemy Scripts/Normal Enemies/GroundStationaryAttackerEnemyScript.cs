@@ -12,9 +12,19 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
 
     public static event EventHandler OnAnyEnemySlash;
+
+    new public static event EventHandler OnAnyEnemyCharging;
+    new public static event EventHandler OnAnyEnemyRecharging;
+    new public static event EventHandler OnAnyEnemyDoneRecharging;
     public static void ResetStaticSoundEventData()
     {
         OnAnyEnemySlash = null;
+
+        //Not for sounds, maybe change for later
+        OnAnyEnemyCharging = null;
+        OnAnyEnemyRecharging = null;
+        OnAnyEnemyDoneRecharging = null;
+
     }
 
 
@@ -263,6 +273,9 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         isChargingAttack = true;
         currentlyAttacking = true;
         mainSprite.color = Color.red;
+
+        OnAnyEnemyCharging?.Invoke(this, EventArgs.Empty);
+
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(attackChargeTime);
@@ -297,11 +310,17 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         //Enemy is now recharging
         isRecharging = true;
+
+        OnAnyEnemyRecharging?.Invoke(this, EventArgs.Empty);
+
         //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
 
         yield return new WaitForSeconds(attackRechargeTime);
 
         isRecharging = false;
+
+        OnAnyEnemyDoneRecharging?.Invoke(this, EventArgs.Empty);
+
         canAttack = true;
         attackTriggerRadius = oldAttackTriggerRadius;
 
