@@ -10,6 +10,7 @@ public class GroundPatrollingAttackerEnemyAnimator : MonoBehaviour
     private const string IS_ATTACKING = "isAttacking";
     private const string IS_RECHARGING = "isRecharging";
     private const string IS_DONE_RECHARGING = "doneRecharging";
+    private const string IS_RESET = "isReset";
 
 
 
@@ -22,9 +23,13 @@ public class GroundPatrollingAttackerEnemyAnimator : MonoBehaviour
         GroundPatrollingAttackerEnemyScript.OnAnyEnemyDash += GroundPatrollingAttackerEnemyScript_OnAnyEnemyDash;
         GroundPatrollingAttackerEnemyScript.OnAnyEnemyRecharging += GroundPatrollingAttackerEnemyScript_OnAnyEnemyRecharging;
         GroundPatrollingAttackerEnemyScript.OnAnyEnemyDoneRecharging += GroundPatrollingAttackerEnemyScript_OnAnyEnemyDoneRecharging;
+        GroundPatrollingAttackerEnemyScript.OnAnyEnemyReset += GroundPatrollingAttackerEnemyScript_OnAnyEnemyReset;
     }
 
-    
+    private void GroundPatrollingAttackerEnemyScript_OnAnyEnemyReset(object sender, System.EventArgs e)
+    {
+        patrollingEnemyAnimator.SetTrigger(IS_RESET);
+    }
 
     private void GroundPatrollingAttackerEnemyScript_OnAnyEnemyCharging(object sender, System.EventArgs e)
     {
