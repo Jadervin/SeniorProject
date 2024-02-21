@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class FlyingStationaryChaserEnemyScript : EnemyScript
 {
@@ -24,10 +25,20 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     [SerializeField] private SpriteRenderer attackSprite;
 
     public static event EventHandler OnAnyEnemySlash;
+
+    new public static event EventHandler OnAnyEnemyCharging;
+
+    //public static event EventHandler OnAnyEnemyAttacking;
+
+
+
     public static void ResetStaticSoundEventData()
     {
         OnAnyEnemySlash = null;
+        OnAnyEnemyCharging = null;
+        //OnAnyEnemyAttacking = null;
     }
+
 
 
     new protected void Start()
@@ -331,6 +342,10 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         //Have the enemy charge up their attack
         canAttack = false;
         isChargingAttack = true;
+
+        //Charging Animation Event
+        OnAnyEnemyCharging?.Invoke(this, EventArgs.Empty);
+
         currentlyAttacking = true;
         mainSprite.color = Color.red;
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)

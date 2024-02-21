@@ -145,11 +145,18 @@ public class EnemyScript : EntityScript
     }
 
     public static event EventHandler OnAnyEnemyDash;
+    public static event EventHandler OnAnyEnemyCharging;
+    public static event EventHandler OnAnyEnemyRecharging;
+    public static event EventHandler OnAnyEnemyReset;
 
     public static void ResetStaticData()
     {
         OnAnyEnemyDash = null;
         OnAnyEnemyDefeated = null;
+        OnAnyEnemyCharging = null;
+        OnAnyEnemyRecharging = null;
+        OnAnyEnemyReset = null;
+
     }
 
     /*
@@ -192,6 +199,9 @@ public class EnemyScript : EntityScript
         isUsingAttack = false;
         isRecharging = false;
         this.transform.localPosition = startPosition;
+
+        OnAnyEnemyReset?.Invoke(this, EventArgs.Empty);
+
     }
 
     // Update is called once per frame
@@ -669,6 +679,10 @@ public class EnemyScript : EntityScript
         isChargingAttack = true;
         currentlyAttacking = true;
         mainSprite.color = Color.red;
+
+        OnAnyEnemyCharging?.Invoke(this, EventArgs.Empty);
+
+
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(attackChargeTime);
@@ -718,6 +732,8 @@ public class EnemyScript : EntityScript
         //Enemy is now recharging
         isRecharging = true;
         //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
+
+        OnAnyEnemyRecharging?.Invoke(this, EventArgs.Empty);
         
         yield return new WaitForSeconds(attackRechargeTime);
 

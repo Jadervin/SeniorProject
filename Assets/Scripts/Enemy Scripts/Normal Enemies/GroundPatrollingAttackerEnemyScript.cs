@@ -1,9 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundPatrollingAttackerEnemyScript : EnemyScript
 {//This enemy may be a slow mover, but can have a wide attack range
+
+    public static event EventHandler OnAnyEnemyDoneRecharging;
+
+    public static void ResetOtherStaticData()
+    {
+        OnAnyEnemyDoneRecharging = null;
+
+    }
+
+
 
     // Update is called once per frame
     new private void Update()
@@ -219,6 +230,7 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
     }
 
 
+
     new protected IEnumerator StunTimer()
     {
         stunTimerOn = true;
@@ -237,6 +249,10 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
         mainSprite.color = mainColor;
 
         enemyState = EnemyStates.PATROL;
+
+        //Walking Animation Event
+        OnAnyEnemyDoneRecharging?.Invoke(this, EventArgs.Empty);
+
 
         stunTimerOn = false;
     }
@@ -258,6 +274,7 @@ public class GroundPatrollingAttackerEnemyScript : EnemyScript
         attackState = AttackCounterStates.NON_COUNTERABLE;
 
         enemyState = EnemyStates.PATROL;
+
 
         TurnOffOneStopPoint();
 
