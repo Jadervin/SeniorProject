@@ -312,7 +312,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4bfe1da97a34a4496450e10d9546d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyingEnemyScript: {fileID: 2687123208228548819}
 --- !u!95 &4318541787896414141
 Animator:
   serializedVersion: 5
