@@ -136,7 +136,7 @@ public class BossEnemyScript : EntityScript
 
     public static event EventHandler OnAnyBossEnemyCharging;
     public static event EventHandler OnAnyBossEnemyRecharging;
-    public static event EventHandler OnAnyBossEnemyDoneRecharging;
+    //public static event EventHandler OnAnyBossEnemyDoneRecharging;
 
 
     public static void ResetStaticData()
@@ -148,7 +148,7 @@ public class BossEnemyScript : EntityScript
 
         OnAnyBossEnemyCharging = null;
         OnAnyBossEnemyRecharging = null;
-        OnAnyBossEnemyDoneRecharging = null;
+        //OnAnyBossEnemyDoneRecharging = null;
     }
 
 
@@ -434,6 +434,9 @@ public class BossEnemyScript : EntityScript
         isChargingAttack = true;
         currentlyAttacking = true;
         mainSprite.color = Color.yellow;
+
+        OnAnyBossEnemyCharging?.Invoke(this, EventArgs.Empty);
+
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(dashAttackChargeTime);
@@ -482,7 +485,8 @@ public class BossEnemyScript : EntityScript
         {}*/
         mainSprite.color = currentColor;
         bossEnemyState = BossEnemyStates.IDLE;
-        
+
+        OnAnyBossEnemyRecharging?.Invoke(this, EventArgs.Empty);
 
 
         previousBossAttackState = BossEnemyAttackStates.DASH;
