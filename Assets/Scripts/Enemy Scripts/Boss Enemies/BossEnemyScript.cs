@@ -131,7 +131,13 @@ public class BossEnemyScript : EntityScript
 
     public static event EventHandler OnAnyBossShoot;
     public static event EventHandler OnAnyBossDash;
+
     public static event EventHandler OnAnyBossActivation;
+
+    public static event EventHandler OnAnyBossEnemyCharging;
+    public static event EventHandler OnAnyBossEnemyRecharging;
+    public static event EventHandler OnAnyBossEnemyDoneRecharging;
+
 
     public static void ResetStaticData()
     {
@@ -139,6 +145,10 @@ public class BossEnemyScript : EntityScript
         OnAnyBossShoot = null;
         OnAnyBossEnemyDefeated = null;
         OnAnyBossActivation = null;
+
+        OnAnyBossEnemyCharging = null;
+        OnAnyBossEnemyRecharging = null;
+        OnAnyBossEnemyDoneRecharging = null;
     }
 
 
