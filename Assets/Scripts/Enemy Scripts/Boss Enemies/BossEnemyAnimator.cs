@@ -11,6 +11,7 @@ public class BossEnemyAnimator : MonoBehaviour
     private const string IS_CHARGING = "isCharging";
     private const string IS_DASHING = "isDashing";
     private const string IS_RECHARGING = "isRecharging";
+    private const string IS_STUNNED = "isStunned";
     //private const string IS_DONE_RECHARGING = "doneRecharging";
 
 
@@ -24,6 +25,12 @@ public class BossEnemyAnimator : MonoBehaviour
         BossEnemyScript.OnAnyBossEnemyCharging += BossEnemyScript_OnAnyBossEnemyCharging;
         BossEnemyScript.OnAnyBossDash += BossEnemyScript_OnAnyBossDash;
         BossEnemyScript.OnAnyBossEnemyRecharging += BossEnemyScript_OnAnyBossEnemyRecharging;
+        BossEnemyScript.OnAnyBossStunned += BossEnemyScript_OnAnyBossStunned;
+    }
+
+    private void BossEnemyScript_OnAnyBossStunned(object sender, System.EventArgs e)
+    {
+        bossEnemyAnimator.SetTrigger(IS_STUNNED);
     }
 
     private void BossEnemyScript_OnAnyBossEnemyRecharging(object sender, System.EventArgs e)

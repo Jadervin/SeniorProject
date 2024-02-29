@@ -202,6 +202,7 @@ public class EnemyScript : EntityScript
         isUsingAttack = false;
         isRecharging = false;
         this.transform.localPosition = startPosition;
+        boxCollider.enabled = true;
 
         OnAnyEnemyReset?.Invoke(this, EventArgs.Empty);
 

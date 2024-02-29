@@ -139,6 +139,9 @@ public class BossEnemyScript : EntityScript
 
     public static event EventHandler OnAnyBossEnemyCharging;
     public static event EventHandler OnAnyBossEnemyRecharging;
+
+    public static event EventHandler OnAnyBossStunned;
+
     //public static event EventHandler OnAnyBossEnemyDoneRecharging;
 
 
@@ -151,6 +154,9 @@ public class BossEnemyScript : EntityScript
 
         OnAnyBossEnemyCharging = null;
         OnAnyBossEnemyRecharging = null;
+
+        OnAnyBossStunned = null;
+
         //OnAnyBossEnemyDoneRecharging = null;
     }
 
@@ -500,7 +506,9 @@ public class BossEnemyScript : EntityScript
     {
         if (collision.gameObject.CompareTag(TagReferencesScript.TONGUE_COUNTER_TAG) && bossEnemyState == BossEnemyStates.ATTACKING && attackCounterState == AttackCounterStates.COUNTERABLE)
         {
-          
+            //Activate Enemy Countered Animation
+            OnAnyBossStunned?.Invoke(this, EventArgs.Empty);
+
             EnemyKnockbackAction(collision.gameObject);
 
             //enemyState = EnemyStates.STUNNED;

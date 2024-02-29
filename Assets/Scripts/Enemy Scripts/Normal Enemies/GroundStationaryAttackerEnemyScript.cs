@@ -62,6 +62,8 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         attackCollider.enabled = false;
         attackSprite.enabled = false;
+
+        boxCollider.enabled = true;
     }
 
 
