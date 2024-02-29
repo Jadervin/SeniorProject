@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossEnemyAnimator : MonoBehaviour
 {
     private Animator bossEnemyAnimator;
+    //[SerializeField] private BossEnemyScript bossEnemy;
 
     private const string IS_ACTIVATED = "isActivated";
     private const string IS_SHOOTING = "isShooting";
