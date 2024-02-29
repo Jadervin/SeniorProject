@@ -35,6 +35,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected SpriteRenderer mainSprite;
     [SerializeField] protected GameObject itemToSpawn;
     [SerializeField] protected string enemyID = "";
+    [SerializeField] private GameObject enemyExplosionPrefab;
     protected Color mainColor;
 
     /*[Header("Damage Amount")]
@@ -653,6 +654,11 @@ public class EnemyScript : EntityScript
     {
         enemyState = EnemyStates.DEATH;
         //enemyParent.gameObject.SetActive(false);
+
+        boxCollider.enabled = false;
+
+        GameObject explosionEffect = Instantiate(enemyExplosionPrefab, this.transform.position, this.transform.rotation);
+
 
         if (itemToSpawn != null && enemyParent.gameObject.activeSelf == true)
         {

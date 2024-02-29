@@ -779,6 +779,7 @@ MonoBehaviour:
   mainSprite: {fileID: 7648187446383833913}
   itemToSpawn: {fileID: 1801604100929784084, guid: a3a285c3c4c4a3e4ebb09778e03aca28, type: 3}
   enemyID: 
+  enemyExplosionPrefab: {fileID: 3201618850806317528, guid: 406ca99c3feb7014584e3471746e28c9, type: 3}
   groundLength: 0
   colliderOffset: {x: 0, y: 0, z: 0}
   chaseTriggerRadius: 13.91
