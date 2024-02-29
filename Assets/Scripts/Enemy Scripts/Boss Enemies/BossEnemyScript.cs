@@ -58,6 +58,9 @@ public class BossEnemyScript : EntityScript
     [SerializeField] protected Transform playerTarget;
     [SerializeField] protected SpriteRenderer mainSprite;
     [SerializeField] protected GameObject itemToSpawn;
+
+    [SerializeField] private GameObject bossEnemyExplosionPrefab;
+
     protected Color mainColor;
     protected Color currentColor;
     [SerializeField] protected string bossEnemyID = "";
@@ -574,7 +577,11 @@ public class BossEnemyScript : EntityScript
     public override void OnDeath()
     {
         bossEnemyState = BossEnemyStates.DEATH;
-        
+
+        polyCollider.enabled = false;
+
+        GameObject explosionEffect = Instantiate(bossEnemyExplosionPrefab, this.transform.position, this.transform.rotation);
+
 
         foreach (GameObject wall in wallsToSpawn)
         {

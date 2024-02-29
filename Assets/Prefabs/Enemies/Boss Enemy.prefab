@@ -476,6 +476,7 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   mainSprite: {fileID: 7647476556311090255}
   itemToSpawn: {fileID: 0}
+  bossEnemyExplosionPrefab: {fileID: 1502257447224867889, guid: 55682262c4f7fd147a03abcc1544a572, type: 3}
   bossEnemyID: 
   isFacingRight: 0
   currentlyAttacking: 0
