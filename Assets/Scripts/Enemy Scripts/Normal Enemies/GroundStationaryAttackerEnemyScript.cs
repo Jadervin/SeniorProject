@@ -16,6 +16,16 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
     new public static event EventHandler OnAnyEnemyCharging;
     new public static event EventHandler OnAnyEnemyRecharging;
     new public static event EventHandler OnAnyEnemyDoneRecharging;
+
+
+    //Animation Events
+    public event EventHandler OnEnemySlashAnim;
+
+    new public event EventHandler OnEnemyChargingAnim;
+    new public event EventHandler OnEnemyRechargingAnim;
+    new public event EventHandler OnEnemyDoneRechargingAnim;
+
+
     public static void ResetStaticSoundEventData()
     {
         OnAnyEnemySlash = null;
@@ -278,6 +288,8 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         OnAnyEnemyCharging?.Invoke(this, EventArgs.Empty);
 
+        OnEnemyChargingAnim?.Invoke(this, EventArgs.Empty);
+
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(attackChargeTime);
@@ -294,7 +306,10 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
             attackState = AttackCounterStates.COUNTERABLE;
 
             OnAnyEnemySlash?.Invoke(this, EventArgs.Empty);
-            
+
+            OnEnemySlashAnim?.Invoke(this, EventArgs.Empty);
+
+
             attackCollider.enabled = true;
             attackSprite.enabled = true;
 
@@ -315,6 +330,8 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
 
         OnAnyEnemyRecharging?.Invoke(this, EventArgs.Empty);
 
+        OnEnemyRechargingAnim?.Invoke(this, EventArgs.Empty);
+
         //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
 
         yield return new WaitForSeconds(attackRechargeTime);
@@ -322,6 +339,8 @@ public class GroundStationaryAttackerEnemyScript : EnemyScript
         isRecharging = false;
 
         OnAnyEnemyDoneRecharging?.Invoke(this, EventArgs.Empty);
+
+        OnEnemyDoneRechargingAnim?.Invoke(this, EventArgs.Empty);
 
         canAttack = true;
         attackTriggerRadius = oldAttackTriggerRadius;

@@ -7,6 +7,8 @@ public class FlyingStationaryChaserEnemyAnimator : MonoBehaviour
 
     private Animator flyingEnemyAnimator;
 
+    [SerializeField] private FlyingStationaryChaserEnemyScript flyingEnemy;
+
     private const string IS_CHARGING = "isCharging";
     private const string IS_ATTACKING = "isAttacking";
     private const string IS_RESET = "isReset";
@@ -21,9 +23,9 @@ public class FlyingStationaryChaserEnemyAnimator : MonoBehaviour
         flyingEnemyAnimator = GetComponent<Animator>();
 
         //flyingEnemyScript.
-        FlyingStationaryChaserEnemyScript.OnAnyEnemyCharging += FlyingStationaryChaserEnemyScript_OnAnyEnemyCharging;
-        FlyingStationaryChaserEnemyScript.OnAnyEnemySlash += FlyingStationaryChaserEnemyScript_OnAnyEnemySlash;
-        FlyingStationaryChaserEnemyScript.OnAnyEnemyReset += FlyingStationaryChaserEnemyScript_OnAnyEnemyReset;
+        flyingEnemy.OnEnemyChargingAnim += FlyingStationaryChaserEnemyScript_OnAnyEnemyCharging;
+        flyingEnemy.OnEnemySlashAnim += FlyingStationaryChaserEnemyScript_OnAnyEnemySlash;
+        flyingEnemy.OnEnemyResetAnim += FlyingStationaryChaserEnemyScript_OnAnyEnemyReset;
     }
 
     private void FlyingStationaryChaserEnemyScript_OnAnyEnemyReset(object sender, System.EventArgs e)

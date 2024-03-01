@@ -142,6 +142,18 @@ public class BossEnemyScript : EntityScript
 
     public static event EventHandler OnAnyBossStunned;
 
+    //Animation Events
+    public event EventHandler OnBossShootAnim;
+    public event EventHandler OnBossDashAnim;
+
+    public event EventHandler OnBossActivationAnim;
+
+    public event EventHandler OnBossEnemyChargingAnim;
+    public event EventHandler OnBossEnemyRechargingAnim;
+
+    public event EventHandler OnBossStunnedAnim;
+
+
     //public static event EventHandler OnAnyBossEnemyDoneRecharging;
 
 
@@ -355,6 +367,8 @@ public class BossEnemyScript : EntityScript
 
             OnAnyBossActivation?.Invoke(this, EventArgs.Empty);
 
+            OnBossActivationAnim?.Invoke(this, EventArgs.Empty);
+
             bossEnemyState = BossEnemyStates.IDLE;
         }
     }
@@ -422,6 +436,10 @@ public class BossEnemyScript : EntityScript
         for(int i = 0; i < numOfShots; i++)
         {
             OnAnyBossShoot?.Invoke(this, EventArgs.Empty);
+
+            OnBossShootAnim?.Invoke(this, EventArgs.Empty);
+
+
             GameObject temp = Instantiate(bullet, shootPoint.transform.position, shootPoint.transform.rotation);
             //Debug.Log("Spawned Bullet");
             yield return new WaitForSeconds(shootReloadTime);
@@ -446,6 +464,8 @@ public class BossEnemyScript : EntityScript
 
         OnAnyBossEnemyCharging?.Invoke(this, EventArgs.Empty);
 
+        OnBossEnemyChargingAnim?.Invoke(this, EventArgs.Empty);
+
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
             yield return new WaitForSeconds(dashAttackChargeTime);
@@ -459,6 +479,8 @@ public class BossEnemyScript : EntityScript
         {
             attackCounterState = AttackCounterStates.COUNTERABLE;
             OnAnyBossDash?.Invoke(this, EventArgs.Empty);
+
+            OnBossDashAnim?.Invoke(this, EventArgs.Empty);
 
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
@@ -497,6 +519,8 @@ public class BossEnemyScript : EntityScript
 
         OnAnyBossEnemyRecharging?.Invoke(this, EventArgs.Empty);
 
+        OnBossEnemyRechargingAnim?.Invoke(this, EventArgs.Empty);
+
 
         previousBossAttackState = BossEnemyAttackStates.DASH;
         canAttack = true;
@@ -508,6 +532,8 @@ public class BossEnemyScript : EntityScript
         {
             //Activate Enemy Countered Animation
             OnAnyBossStunned?.Invoke(this, EventArgs.Empty);
+
+            OnBossStunnedAnim?.Invoke(this, EventArgs.Empty);
 
             EnemyKnockbackAction(collision.gameObject);
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossEnemyAnimator : MonoBehaviour
 {
     private Animator bossEnemyAnimator;
-    //[SerializeField] private BossEnemyScript bossEnemy;
+    [SerializeField] private BossEnemyScript bossEnemy;
 
     private const string IS_ACTIVATED = "isActivated";
     private const string IS_SHOOTING = "isShooting";
@@ -21,12 +21,12 @@ public class BossEnemyAnimator : MonoBehaviour
     void Start()
     {
         bossEnemyAnimator = GetComponent<Animator>();
-        BossEnemyScript.OnAnyBossActivation += BossEnemyScript_OnAnyBossActivation;
-        BossEnemyScript.OnAnyBossShoot += BossEnemyScript_OnAnyBossShoot;
-        BossEnemyScript.OnAnyBossEnemyCharging += BossEnemyScript_OnAnyBossEnemyCharging;
-        BossEnemyScript.OnAnyBossDash += BossEnemyScript_OnAnyBossDash;
-        BossEnemyScript.OnAnyBossEnemyRecharging += BossEnemyScript_OnAnyBossEnemyRecharging;
-        BossEnemyScript.OnAnyBossStunned += BossEnemyScript_OnAnyBossStunned;
+        bossEnemy.OnBossActivationAnim += BossEnemyScript_OnAnyBossActivation;
+        bossEnemy.OnBossShootAnim += BossEnemyScript_OnAnyBossShoot;
+        bossEnemy.OnBossEnemyChargingAnim += BossEnemyScript_OnAnyBossEnemyCharging;
+        bossEnemy.OnBossDashAnim += BossEnemyScript_OnAnyBossDash;
+        bossEnemy.OnBossEnemyRechargingAnim += BossEnemyScript_OnAnyBossEnemyRecharging;
+        bossEnemy.OnBossStunnedAnim += BossEnemyScript_OnAnyBossStunned;
     }
 
     private void BossEnemyScript_OnAnyBossStunned(object sender, System.EventArgs e)

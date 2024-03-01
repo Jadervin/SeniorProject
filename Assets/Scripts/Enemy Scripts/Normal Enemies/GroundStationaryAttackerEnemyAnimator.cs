@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundStationaryAttackerEnemyAnimator : MonoBehaviour
 {
     private Animator stationaryEnemyAnimator;
+    [SerializeField] private GroundStationaryAttackerEnemyScript stationaryEnemy;
 
     private const string IS_CHARGING = "isCharging";
     private const string IS_ATTACKING = "isAttacking";
@@ -18,12 +19,12 @@ public class GroundStationaryAttackerEnemyAnimator : MonoBehaviour
     {
         stationaryEnemyAnimator = GetComponent<Animator>();
 
-        
-        GroundStationaryAttackerEnemyScript.OnAnyEnemyCharging += GroundStationaryAttackerEnemyScript_OnAnyEnemyCharging;
-        GroundStationaryAttackerEnemyScript.OnAnyEnemySlash += GroundStationaryAttackerEnemyScript_OnAnyEnemySlash;
-        GroundStationaryAttackerEnemyScript.OnAnyEnemyRecharging += GroundStationaryAttackerEnemyScript_OnAnyEnemyRecharging;
-        GroundStationaryAttackerEnemyScript.OnAnyEnemyDoneRecharging += GroundStationaryAttackerEnemyScript_OnAnyEnemyDoneRecharging;
-        GroundStationaryAttackerEnemyScript.OnAnyEnemyReset += GroundStationaryAttackerEnemyScript_OnAnyEnemyReset;
+
+        stationaryEnemy.OnEnemyChargingAnim += GroundStationaryAttackerEnemyScript_OnAnyEnemyCharging;
+        stationaryEnemy.OnEnemySlashAnim += GroundStationaryAttackerEnemyScript_OnAnyEnemySlash;
+        stationaryEnemy.OnEnemyRechargingAnim += GroundStationaryAttackerEnemyScript_OnAnyEnemyRecharging;
+        stationaryEnemy.OnEnemyDoneRechargingAnim += GroundStationaryAttackerEnemyScript_OnAnyEnemyDoneRecharging;
+        stationaryEnemy.OnEnemyResetAnim += GroundStationaryAttackerEnemyScript_OnAnyEnemyReset;
 
     }
 

@@ -151,6 +151,13 @@ public class EnemyScript : EntityScript
     public static event EventHandler OnAnyEnemyDoneRecharging;
     public static event EventHandler OnAnyEnemyReset;
 
+    //Animation Events
+    public event EventHandler OnEnemyDashAnim;
+    public event EventHandler OnEnemyChargingAnim;
+    public event EventHandler OnEnemyRechargingAnim;
+    public event EventHandler OnEnemyDoneRechargingAnim;
+    public event EventHandler OnEnemyResetAnim;
+
     public static void ResetStaticData()
     {
         OnAnyEnemyDash = null;
@@ -205,6 +212,8 @@ public class EnemyScript : EntityScript
         boxCollider.enabled = true;
 
         OnAnyEnemyReset?.Invoke(this, EventArgs.Empty);
+
+        OnEnemyResetAnim?.Invoke(this, EventArgs.Empty);
 
     }
 
@@ -691,6 +700,8 @@ public class EnemyScript : EntityScript
 
         OnAnyEnemyCharging?.Invoke(this, EventArgs.Empty);
 
+        OnEnemyChargingAnim?.Invoke(this, EventArgs.Empty);
+
 
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
         {
@@ -708,6 +719,8 @@ public class EnemyScript : EntityScript
             attackState = AttackCounterStates.COUNTERABLE;
 
             OnAnyEnemyDash?.Invoke(this, EventArgs.Empty);
+
+            OnEnemyDashAnim?.Invoke(this, EventArgs.Empty);
 
             float originalGravity = rb.gravityScale;
             rb.gravityScale = 0f;
@@ -743,11 +756,15 @@ public class EnemyScript : EntityScript
         //if (isChargingAttack == false && isAttacking == false && isRecharging == true)
 
         OnAnyEnemyRecharging?.Invoke(this, EventArgs.Empty);
-        
+
+        OnEnemyRechargingAnim?.Invoke(this, EventArgs.Empty);
+
         yield return new WaitForSeconds(attackRechargeTime);
 
         isRecharging = false;
         OnAnyEnemyDoneRecharging?.Invoke(this, EventArgs.Empty);
+
+        OnEnemyDoneRechargingAnim?.Invoke(this, EventArgs.Empty);
 
         canAttack = true;
 

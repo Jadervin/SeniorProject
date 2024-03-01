@@ -24,9 +24,16 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
     [SerializeField] private Collider2D attackCollider;
     [SerializeField] private SpriteRenderer attackSprite;
 
+
+
     public static event EventHandler OnAnyEnemySlash;
 
     new public static event EventHandler OnAnyEnemyCharging;
+
+    //Animation Events
+    public event EventHandler OnEnemySlashAnim;
+
+    new public event EventHandler OnEnemyChargingAnim;
 
     //public static event EventHandler OnAnyEnemyAttacking;
 
@@ -350,6 +357,8 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
         //Charging Animation Event
         OnAnyEnemyCharging?.Invoke(this, EventArgs.Empty);
 
+        OnEnemyChargingAnim?.Invoke(this, EventArgs.Empty);
+
         currentlyAttacking = true;
         mainSprite.color = Color.red;
         if (isUsingAttack == false && isRecharging == false && isChargingAttack == true)
@@ -368,7 +377,10 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
             attackState = AttackCounterStates.COUNTERABLE;
 
             OnAnyEnemySlash?.Invoke(this, EventArgs.Empty);
-            
+
+            OnEnemySlashAnim?.Invoke(this, EventArgs.Empty);
+
+
             attackCollider.enabled = true;
             attackSprite.enabled = true;
 

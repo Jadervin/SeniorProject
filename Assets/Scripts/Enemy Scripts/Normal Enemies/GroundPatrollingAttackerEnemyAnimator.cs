@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundPatrollingAttackerEnemyAnimator : MonoBehaviour
 {
     private Animator patrollingEnemyAnimator;
+    [SerializeField] private GroundPatrollingAttackerEnemyScript patrollingEnemy;
 
     private const string IS_CHARGING = "isCharging";
     private const string IS_ATTACKING = "isAttacking";
@@ -19,11 +20,11 @@ public class GroundPatrollingAttackerEnemyAnimator : MonoBehaviour
     {
         patrollingEnemyAnimator = GetComponent<Animator>();
 
-        GroundPatrollingAttackerEnemyScript.OnAnyEnemyCharging += GroundPatrollingAttackerEnemyScript_OnAnyEnemyCharging;
-        GroundPatrollingAttackerEnemyScript.OnAnyEnemyDash += GroundPatrollingAttackerEnemyScript_OnAnyEnemyDash;
-        GroundPatrollingAttackerEnemyScript.OnAnyEnemyRecharging += GroundPatrollingAttackerEnemyScript_OnAnyEnemyRecharging;
-        GroundPatrollingAttackerEnemyScript.OnAnyEnemyDoneRecharging += GroundPatrollingAttackerEnemyScript_OnAnyEnemyDoneRecharging;
-        GroundPatrollingAttackerEnemyScript.OnAnyEnemyReset += GroundPatrollingAttackerEnemyScript_OnAnyEnemyReset;
+        patrollingEnemy.OnEnemyChargingAnim += GroundPatrollingAttackerEnemyScript_OnAnyEnemyCharging;
+        patrollingEnemy.OnEnemyDashAnim += GroundPatrollingAttackerEnemyScript_OnAnyEnemyDash;
+        patrollingEnemy.OnEnemyRechargingAnim += GroundPatrollingAttackerEnemyScript_OnAnyEnemyRecharging;
+        patrollingEnemy.OnEnemyDoneRechargingAnim += GroundPatrollingAttackerEnemyScript_OnAnyEnemyDoneRecharging;
+        patrollingEnemy.OnEnemyResetAnim += GroundPatrollingAttackerEnemyScript_OnAnyEnemyReset;
     }
 
     private void GroundPatrollingAttackerEnemyScript_OnAnyEnemyReset(object sender, System.EventArgs e)
