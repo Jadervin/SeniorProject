@@ -12,6 +12,9 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float volume = 1f;
 
     /*[SerializeField]*/ private AudioSource[] currentSoundEffectsArray = new AudioSource[0];
+
+    [SerializeField] private AudioSource audioSource;
+
     //[SerializeField] private List<AudioSource> currentSoundEffectsList;
 
     private void Awake()
@@ -55,7 +58,7 @@ public class SoundManager : MonoBehaviour
         PlanetTotemScript.OnPlayerStartingWorld += PlanetTotemScript_OnPlayerStartingWorld;
         PlanetTotemScript.OnPlayerHasAllArtifacts += PlanetTotemScript_OnPlayerHasAllArtifacts;
 
-        
+        audioSource.spatialBlend = 0f;
 
 
     }
@@ -64,6 +67,8 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
+        audioSource.volume = volume;
+
         if(GameSceneManager.Instance.GetGameState() == GameStates.Paused)
         {
             currentSoundEffectsArray = FindObjectsOfType<AudioSource>();
@@ -205,7 +210,11 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultipler)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volumeMultipler * volume);
+        audioSource.PlayOneShot(audioClip, volumeMultipler * volume);
+        //AudioSource.PlayClipAtPoint(audioClip, position, volumeMultipler * volume);
+        
+
+
     }
 
     public void PlaySaveSound()
