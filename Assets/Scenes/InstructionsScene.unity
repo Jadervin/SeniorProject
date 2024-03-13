@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 410788392}
   - component: {fileID: 410788391}
   m_Layer: 5
-  m_Name: Button Scroll Area
+  m_Name: Text Scroll Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,6 +356,7 @@ MonoBehaviour:
   quitButton: {fileID: 0}
   menuButton: {fileID: 1052604883}
   creditsButton: {fileID: 0}
+  controlsButton: {fileID: 0}
   closeLoadPopupButton: {fileID: 0}
   startNewGameButton: {fileID: 0}
   closeNewGamePopupButton: {fileID: 0}
