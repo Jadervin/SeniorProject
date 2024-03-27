@@ -112334,6 +112334,10 @@ PrefabInstance:
       propertyPath: playerMove
       value: 
       objectReference: {fileID: 1464256111}
+    - target: {fileID: 2452611041553100311, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
+      propertyPath: bulletDamage
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4121623116001316203, guid: 00c7953bfe4fbd547a9223ee9dee3d08, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
