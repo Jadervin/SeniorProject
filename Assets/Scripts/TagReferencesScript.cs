@@ -14,5 +14,5 @@ public static class TagReferencesScript
     public const string PLAYERTAG = "Player";
     public const string HEALTHUPGRADETAG = "HealthUpgrade";
     public const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
-    private const string PLAYER_PREFS_MUSIC_VOLUME = "MusicVolume";
+    public const string PLAYER_PREFS_MUSIC_VOLUME = "MusicVolume";
 }

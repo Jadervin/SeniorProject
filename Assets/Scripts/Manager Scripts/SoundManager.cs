@@ -238,6 +238,7 @@ public class SoundManager : MonoBehaviour
     {
         return volume;
     }
+
     public AudioClipRefsSO GetAudioClipRefsSO()
     {
         return audioClipRefsSO;

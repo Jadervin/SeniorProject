@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
@@ -9,8 +10,10 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] private List<AudioClip> soundtrackList;
 
-
     [SerializeField] private AudioSource audioSource;
+
+
+    [SerializeField] private float volume = 1f;
 
     private void Awake()
     {
@@ -18,6 +21,8 @@ public class MusicManager : MonoBehaviour
         {
             instance = this;
         }
+
+        volume = PlayerPrefs.GetFloat(TagReferencesScript.PLAYER_PREFS_MUSIC_VOLUME, 1f);
     }
 
 
@@ -65,6 +70,26 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        
+        audioSource.volume = volume;
     }
+
+
+    public void ChangeVolume(float sliderValue)
+    {
+        volume = sliderValue;
+
+        /*if (volume > 1f)
+        {
+            volume = 0f;
+        }*/
+        PlayerPrefs.SetFloat(TagReferencesScript.PLAYER_PREFS_MUSIC_VOLUME, volume);
+        PlayerPrefs.Save();
+    }
+
+    public float GetVolume()
+    {
+        return volume;
+    }
+
+
 }

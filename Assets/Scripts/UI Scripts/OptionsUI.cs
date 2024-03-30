@@ -17,8 +17,11 @@ public class OptionsUI : MonoBehaviour
 
 
     [Header("Sound Options")]
-    [SerializeField] private TextMeshProUGUI volumeNumberText;
-    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private TextMeshProUGUI soundVolumeNumberText;
+    [SerializeField] private Slider soundVolumeSlider;
+
+    [SerializeField] private TextMeshProUGUI musicVolumeNumberText;
+    [SerializeField] private Slider musicVolumeSlider;
 
 
     [Header("Key Binding Buttons")]
@@ -73,9 +76,14 @@ public class OptionsUI : MonoBehaviour
             Instance = this;
         }
 
-        volumeSlider.onValueChanged.AddListener(delegate {
-            SoundManager.instance.ChangeVolume(volumeSlider.value);
-            volumeNumberText.text = Mathf.Round(volumeSlider.value * 10f).ToString();
+        musicVolumeSlider.onValueChanged.AddListener(delegate {
+            MusicManager.instance.ChangeVolume(musicVolumeSlider.value);
+            musicVolumeNumberText.text = Mathf.Round(musicVolumeSlider.value * 10f).ToString();
+        });
+
+        soundVolumeSlider.onValueChanged.AddListener(delegate {
+            SoundManager.instance.ChangeVolume(soundVolumeSlider.value);
+            soundVolumeNumberText.text = Mathf.Round(soundVolumeSlider.value * 10f).ToString();
         });
 
         closeButton.onClick.AddListener(() => {
@@ -236,10 +244,11 @@ public class OptionsUI : MonoBehaviour
     {
         //volumeSlider.value = SoundManager.instance.GetVolume();
 
-        volumeNumberText.text = Mathf.Round(SoundManager.instance.GetVolume() * 10f).ToString();
-        volumeSlider.value = volumeNumberText.text.ToInt() / 10f;
+        soundVolumeNumberText.text = Mathf.Round(SoundManager.instance.GetVolume() * 10f).ToString();
+        soundVolumeSlider.value = soundVolumeNumberText.text.ToInt() / 10f;
 
-
+        musicVolumeNumberText.text = Mathf.Round(SoundManager.instance.GetVolume() * 10f).ToString();
+        musicVolumeSlider.value = soundVolumeNumberText.text.ToInt() / 10f;
 
         moveLeftButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Move_Left);
         moveRightButtonText.text = GameInput.Instance.GetBindingText(GameInput.Bindings.Move_Right);
