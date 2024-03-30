@@ -266,7 +266,7 @@ public class PlayerJump : MonoBehaviour
         if (onGround == false && gameInputDirectionX != 0)
         {
             //Debug.Log("Checking for Ledge");
-            LedgeGrab();
+            //LedgeGrab();
         }
 
         //Get velocity from Kit's Rigidbody 
@@ -489,7 +489,7 @@ public class PlayerJump : MonoBehaviour
         }
     }
 
-
+    
     public void LedgeGrab()
     {
         
@@ -595,7 +595,7 @@ public class PlayerJump : MonoBehaviour
         
 
     }
-
+   
 
     private void OnDrawGizmos()
     {
