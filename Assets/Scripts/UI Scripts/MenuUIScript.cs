@@ -20,6 +20,7 @@ public class MenuUIScript : MonoBehaviour
     [SerializeField] private Button menuButton;
     [SerializeField] private Button creditsButton;
     [SerializeField] private Button controlsButton;
+    [SerializeField] private Button tutorialButton;
 
     [SerializeField] private Button closeLoadPopupButton;
 
@@ -129,6 +130,17 @@ public class MenuUIScript : MonoBehaviour
                 controlsButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
                 StartCoroutine(ButtonTimerBeforeSceneSwitch());
                 Loader.Load(Loader.GameScenes.InstructionsScene);
+            });
+        }
+
+        if (tutorialButton != null)
+        {
+            tutorialButton.onClick.AddListener(() =>
+            {
+                //Click
+                tutorialButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
+                StartCoroutine(ButtonTimerBeforeSceneSwitch());
+                Loader.Load(Loader.GameScenes.TutorialScene);
             });
         }
 

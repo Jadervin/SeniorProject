@@ -13,7 +13,8 @@ public class Loader : MonoBehaviour
         LoadingScene,
         WinScene,
         CreditsScene,
-        InstructionsScene
+        InstructionsScene,
+        TutorialScene
     }
 
     private static GameScenes targetScene;
