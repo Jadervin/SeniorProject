@@ -15953,6 +15953,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -766523283658241413, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 39.96
+      objectReference: {fileID: 0}
     - target: {fileID: 1257990577705194529, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16009,9 +16013,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5002583035456183101, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 59.85
+      objectReference: {fileID: 0}
     - target: {fileID: 5620062226883799552, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
       propertyPath: m_Name
       value: Build 4 World
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678884615201302729, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[4].Array.data[1].x
+      value: 30.014116
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678884615201302729, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[4].Array.data[1].y
+      value: -15.068527
       objectReference: {fileID: 0}
     - target: {fileID: 6824097776970653973, guid: 398d6fdc491c49442b084b14ab4a69cb, type: 3}
       propertyPath: m_IsActive
