@@ -123,6 +123,83 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11353314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 11353319}
+  - component: {fileID: 11353316}
+  m_Layer: 0
+  m_Name: Camera Spawn Collider
+  m_TagString: Spawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &11353316
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11353314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -30.584389, y: 1.2473679}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 60, y: 20}
+    newSize: {x: 60, y: 20}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8625622, y: 11.302135}
+  m_EdgeRadius: 0
+--- !u!4 &11353319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11353314}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24.13, y: 0, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &67782311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1615,7 @@ GameObject:
   - component: {fileID: 494191533}
   - component: {fileID: 494191532}
   - component: {fileID: 494191534}
+  - component: {fileID: 494191535}
   m_Layer: 0
   m_Name: Section 1-2 Background (Ground)
   m_TagString: Untagged
@@ -1572,9 +1650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9514a37eee5ebe14da8a70d225d20d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxMovementNumber: {x: 0.3, y: 0}
+  parallaxMovementNumber: {x: 0.03, y: 0}
   duplicateImage: {fileID: 494191530}
-  cameraSpawnCollider: {fileID: 651988012}
+  cameraSpawnCollider: {fileID: 11353314}
   cameraDeleteCollider: {fileID: 1830945669}
 --- !u!212 &494191533
 SpriteRenderer:
@@ -1617,12 +1695,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 925dea7233ffca940a62292839d82e05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ab50361336e41040837384636bc7f3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 60, y: 20}
+  m_Size: {x: 9.6, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1665,7 +1743,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 60, y: 20}
-    newSize: {x: 60, y: 20}
+    newSize: {x: 9.6, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1673,6 +1751,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33000183, y: 11.302135}
   m_EdgeRadius: 0
+--- !u!50 &494191535
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494191530}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &505605949 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2726480364092853284, guid: f06f86a36a6be1545b3313e923f73f80, type: 3}
@@ -1916,6 +2021,7 @@ GameObject:
   - component: {fileID: 606991413}
   - component: {fileID: 606991412}
   - component: {fileID: 606991414}
+  - component: {fileID: 606991415}
   m_Layer: 0
   m_Name: Section 1-2 Background (Planet Totems)
   m_TagString: Untagged
@@ -1950,9 +2056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9514a37eee5ebe14da8a70d225d20d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxMovementNumber: {x: 0.2, y: 0}
+  parallaxMovementNumber: {x: 0.02, y: 0}
   duplicateImage: {fileID: 606991410}
-  cameraSpawnCollider: {fileID: 651988012}
+  cameraSpawnCollider: {fileID: 11353314}
   cameraDeleteCollider: {fileID: 1830945669}
 --- !u!212 &606991413
 SpriteRenderer:
@@ -1995,12 +2101,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 238e7551e15cb6e42a81f2626d21b711, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31ed5c1dfeb1b514eaf14a9e5ef96303, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 60, y: 20}
+  m_Size: {x: 9.6, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2043,7 +2149,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 60, y: 20}
-    newSize: {x: 60, y: 20}
+    newSize: {x: 9.6, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2051,6 +2157,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33000183, y: 11.302135}
   m_EdgeRadius: 0
+--- !u!50 &606991415
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606991410}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &617304028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,83 +2224,6 @@ RectTransform:
   m_AnchoredPosition: {x: 3, y: -16}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &651988012
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 651988014}
-  - component: {fileID: 651988013}
-  m_Layer: 0
-  m_Name: Camera Spawn Collider
-  m_TagString: Spawn
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &651988013
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651988012}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.267843, y: 0.06696057}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.46431398, y: 9.169216}
-  m_EdgeRadius: 0
---- !u!4 &651988014
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 651988012}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.54, y: 0.06, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &654411343
 GameObject:
   m_ObjectHideFlags: 0
@@ -2657,6 +2713,7 @@ GameObject:
   - component: {fileID: 852550779}
   - component: {fileID: 852550778}
   - component: {fileID: 852550780}
+  - component: {fileID: 852550781}
   m_Layer: 0
   m_Name: Section 1-2 Background (Background)
   m_TagString: Untagged
@@ -2691,9 +2748,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9514a37eee5ebe14da8a70d225d20d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxMovementNumber: {x: 0.5, y: 0}
+  parallaxMovementNumber: {x: 0.05, y: 0}
   duplicateImage: {fileID: 852550776}
-  cameraSpawnCollider: {fileID: 651988012}
+  cameraSpawnCollider: {fileID: 11353314}
   cameraDeleteCollider: {fileID: 1830945669}
 --- !u!212 &852550779
 SpriteRenderer:
@@ -2736,12 +2793,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 807d61adaf54b6942a21a5e407d43270, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 11ff00178ae6c634c9fbb21a3b9ca766, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 60, y: 20}
+  m_Size: {x: 9.6, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2784,7 +2841,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 60, y: 20}
-    newSize: {x: 60, y: 20}
+    newSize: {x: 9.6, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2792,6 +2849,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33000183, y: 11.302135}
   m_EdgeRadius: 0
+--- !u!50 &852550781
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852550776}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &976005755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3582,6 +3666,7 @@ GameObject:
   - component: {fileID: 1312910409}
   - component: {fileID: 1312910408}
   - component: {fileID: 1312910410}
+  - component: {fileID: 1312910411}
   m_Layer: 0
   m_Name: Section 1-2 Background (Other Ground)
   m_TagString: Untagged
@@ -3616,9 +3701,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9514a37eee5ebe14da8a70d225d20d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxMovementNumber: {x: 0.1, y: 0}
+  parallaxMovementNumber: {x: 0.01, y: 0}
   duplicateImage: {fileID: 1312910406}
-  cameraSpawnCollider: {fileID: 651988012}
+  cameraSpawnCollider: {fileID: 11353314}
   cameraDeleteCollider: {fileID: 1830945669}
 --- !u!212 &1312910409
 SpriteRenderer:
@@ -3661,12 +3746,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e8a8d1f9d4c6a74ba41f578f4c0c863, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cf312ddce4119542b67ee2edc86c53e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 60, y: 20}
+  m_Size: {x: 9.6, y: 3.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3709,7 +3794,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 60, y: 20}
-    newSize: {x: 60, y: 20}
+    newSize: {x: 9.6, y: 3.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -3717,6 +3802,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.33000183, y: 11.302135}
   m_EdgeRadius: 0
+--- !u!50 &1312910411
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312910406}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1352931371
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,6 +5750,7 @@ GameObject:
   - component: {fileID: 2090157088}
   - component: {fileID: 2090157087}
   - component: {fileID: 2090157086}
+  - component: {fileID: 2090157089}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5662,8 +5775,8 @@ Camera:
   m_GameObject: {fileID: 2090157085}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5719,6 +5832,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2090157089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090157085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &2137685968
 GameObject:
   m_ObjectHideFlags: 0
@@ -6542,5 +6699,5 @@ SceneRoots:
   - {fileID: 1850523478}
   - {fileID: 67782313}
   - {fileID: 361577499}
-  - {fileID: 651988014}
+  - {fileID: 11353319}
   - {fileID: 1830945671}

@@ -42,14 +42,14 @@ public class InfiniteBackgroundScroll : MonoBehaviour
 
         }
         
-        if (collision.gameObject == cameraDeleteCollider)
+        if (collision.gameObject.CompareTag(TagReferencesScript.DELETE))
         {
-
+            Destroy(this.gameObject);
         }
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(TagReferencesScript.SPAWN))
         {
@@ -57,7 +57,7 @@ public class InfiniteBackgroundScroll : MonoBehaviour
             SpawnCopyImage();
 
         }
-    }
+    }*/
 
     private void SpawnCopyImage()
     {
