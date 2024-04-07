@@ -374,4 +374,10 @@ public class GameInput : MonoBehaviour
             PlayerPrefs.Save();
         }).Start();
     }
+
+
+    public PlayerInputActions GetPlayerInputActions()
+    {
+        return playerInputActions;
+    }
 }
