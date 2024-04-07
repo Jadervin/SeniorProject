@@ -16,6 +16,8 @@ TagManager:
   - HiddenAreas
   - HealthUpgrade
   - Boss Enemy
+  - Spawn
+  - Delete
   layers:
   - Default
   - TransparentFX
