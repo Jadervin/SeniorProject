@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be67b194405615489d43a0341b46156, type: 3}
   m_Name: AudioClipRefsSO
   m_EditorClassIdentifier: 
-  jump: {fileID: 8300000, guid: fe8ca556c893017488f68deff8572757, type: 3}
   baseShoot: {fileID: 8300000, guid: 1e7c1602de387594d93ed35ab68c1de6, type: 3}
   upgradedShoot: {fileID: 8300000, guid: 0b30302136a297d4d9386084898a6063, type: 3}
   grenadeThrow: {fileID: 8300000, guid: d5ba7a984fb4bb64db0c899d6b4f8426, type: 3}
@@ -22,6 +21,10 @@ MonoBehaviour:
   itemGet: {fileID: 8300000, guid: 3a5b55dbdb38c404799013599ab09819, type: 3}
   tongueCounter: {fileID: 8300000, guid: 2d59592815c6e094396018b4d7c21c54, type: 3}
   playerDeath: {fileID: 8300000, guid: ce712321c0b985f42852853e6cbbe56d, type: 3}
+  jumpSounds:
+  - {fileID: 8300000, guid: 2e278c03660417b419d2f729b2b8d76c, type: 3}
+  - {fileID: 8300000, guid: ea26261cca4a6564d803db471d71ef6a, type: 3}
+  - {fileID: 8300000, guid: 68aee3de94773a54b86c8adcc956be65, type: 3}
   dash: {fileID: 8300000, guid: 82a5a53ea01b92d4eb00d152131512ac, type: 3}
   slash: {fileID: 8300000, guid: 575be55d76fdf5349a578b9924d869c7, type: 3}
   enemyDeath: {fileID: 8300000, guid: 724357b9bccd58f40b2e915d7e833ee0, type: 3}

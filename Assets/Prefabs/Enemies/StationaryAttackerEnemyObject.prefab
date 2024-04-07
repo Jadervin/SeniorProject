@@ -526,7 +526,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackChargeTime: 1
+  attackChargeTime: 0.7
   attackRechargeTime: 3
   canAttack: 1
   dashPower: 30
@@ -732,6 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba363abac4e60654190e6a1bb4e5e236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stationaryEnemy: {fileID: 0}
 --- !u!95 &9204724483676607507
 Animator:
   serializedVersion: 5
@@ -939,7 +940,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e2a746f6d79923d42a5bfc69ec531a14, type: 3}
-  m_Color: {r: 0.6792453, g: 0.6309224, b: 0.16917051, a: 1}
+  m_Color: {r: 0.6792453, g: 0.15200478, b: 0.12431466, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4bfe1da97a34a4496450e10d9546d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flyingEnemy: {fileID: 0}
 --- !u!95 &4318541787896414141
 Animator:
   serializedVersion: 5
@@ -898,7 +899,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c51abd88d28dc634c9a060a4eb547cc8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5943396, g: 0.19848697, b: 0.19848697, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

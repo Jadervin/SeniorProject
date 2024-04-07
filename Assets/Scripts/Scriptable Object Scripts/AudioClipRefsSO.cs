@@ -7,7 +7,7 @@ using UnityEngine;
 public class AudioClipRefsSO : ScriptableObject
 {
     [Header("Player Sounds")]
-    public AudioClip jump;
+    //public AudioClip jump;
     public AudioClip baseShoot;
     public AudioClip upgradedShoot;
     public AudioClip grenadeThrow;
@@ -19,6 +19,13 @@ public class AudioClipRefsSO : ScriptableObject
     public AudioClip itemGet;
     public AudioClip tongueCounter;
     public AudioClip playerDeath;
+
+    [Header("Jump Sounds")]
+    public List<AudioClip> jumpSounds;
+    //public AudioClip jump1;
+    //public AudioClip jump2;
+    //public AudioClip jump3;
+
 
     [Header("Enemy Sounds")]
     public AudioClip dash;

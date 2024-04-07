@@ -335,8 +335,8 @@ public class BossEnemyScript : EntityScript
             case BossEnemyHealthStates.LOWHEALTH:
                 if (canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
-                    mainSprite.color = Color.red;
-                    currentColor = Color.red;
+                    mainSprite.color = Color.yellow;
+                    currentColor = Color.yellow;
                 }
                 break;
 
@@ -460,7 +460,7 @@ public class BossEnemyScript : EntityScript
         //canAttack = false;
         isChargingAttack = true;
         currentlyAttacking = true;
-        mainSprite.color = Color.yellow;
+        mainSprite.color = Color.red;
 
         OnAnyBossEnemyCharging?.Invoke(this, EventArgs.Empty);
 

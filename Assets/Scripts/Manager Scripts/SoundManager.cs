@@ -204,8 +204,9 @@ public class SoundManager : MonoBehaviour
     {
 
         //PlayerJump playerJump = sender as PlayerJump;
-        PlaySound(audioClipRefsSO.jump, playerRef.transform.position, volume);
-        
+        //PlaySound(audioClipRefsSO.jump, playerRef.transform.position, volume);
+        PlayFromArrayOfSounds(audioClipRefsSO.jumpSounds, playerRef.transform.position);
+
     }
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultipler)
@@ -214,6 +215,12 @@ public class SoundManager : MonoBehaviour
         //AudioSource.PlayClipAtPoint(audioClip, position, volumeMultipler * volume);
         
 
+
+    }
+
+    private void PlayFromArrayOfSounds(List<AudioClip> audioClipArray, Vector3 position)
+    {
+        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Count)], position, volume);
 
     }
 
