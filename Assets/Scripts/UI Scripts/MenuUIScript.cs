@@ -58,7 +58,17 @@ public class MenuUIScript : MonoBehaviour
                     playButton.GetComponentInChildren<AudioSource>().PlayOneShot(audioClipRefsSO.menu, volume);
                     StartCoroutine(ButtonTimerBeforeSceneSwitch());
                     SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
-                    Loader.Load(Loader.GameScenes.GameScene);
+
+
+                    if (TutorialCheck.instance.GetPlayedTutorialCheck() == false)
+                    {
+                        Loader.Load(Loader.GameScenes.TutorialScene);
+                    }
+                    else
+                    {
+                        Loader.Load(Loader.GameScenes.GameScene);
+                    }
+
                 }
 
                 
@@ -184,7 +194,15 @@ public class MenuUIScript : MonoBehaviour
                 startNewGamePopupGO.gameObject.SetActive(false);
                 SaveSystem.DeleteSave();
                 SaveSystem.SetGameStartState(SaveSystem.GameStartStates.NEWGAME);
-                Loader.Load(Loader.GameScenes.GameScene);
+
+                if (TutorialCheck.instance.GetPlayedTutorialCheck() == false)
+                {
+                    Loader.Load(Loader.GameScenes.TutorialScene);
+                }
+                else
+                {
+                    Loader.Load(Loader.GameScenes.GameScene);
+                }
 
             });
         }

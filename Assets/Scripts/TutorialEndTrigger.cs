@@ -9,7 +9,8 @@ public class TutorialEndTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(TagReferencesScript.PLAYERTAG))
         {
-            Loader.Load(Loader.GameScenes.StartScene);
+            TutorialCheck.instance.SetPlayedTutorialCheck(true);
+            Loader.Load(Loader.GameScenes.GameScene);
         }
     }
 }
