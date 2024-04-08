@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 5d98164f92eceb04c9c1656bf5a501f7
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: cc34d0f3dc257a442819830b408c5322, type: 3}
+  missingFiles:
+  - ../../../../../Class Files/College Classes/Senior (CLIMAX)/Senior Project/Sprites/Custom
+    Sprites/Level Backgrounds/Section 1-1 Background.png
+  errors:
+  - 'Missing texture asset: ../../../../../Class Files/College Classes/Senior (CLIMAX)/Senior
+    Project/Sprites/Custom Sprites/Level Backgrounds/Section 1-1 Background.png'
+  warnings: []
+  missingSortingLayers: []
+  missingLayers: []
+  missingTags: []
+  importerVersion: 14
+  pixelsPerUnit: 16
+  edgesPerEllipse: 32
+  numberOfObjectsImported: 2
+  useSpriteAtlas: 1
+  atlasWidth: 2048
+  atlasHeight: 2048
