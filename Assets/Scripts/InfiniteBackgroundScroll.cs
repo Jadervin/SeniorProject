@@ -37,7 +37,7 @@ public class InfiniteBackgroundScroll : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(TagReferencesScript.SPAWN))
         {
-            Debug.Log("Checked on Trigger");
+            //Debug.Log("Checked on Trigger");
             SpawnCopyImage();
 
         }

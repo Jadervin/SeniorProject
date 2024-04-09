@@ -211,6 +211,24 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultipler)
     {
+        if (audioClip == null)
+        {
+            Debug.LogError($"{nameof(audioClip)} is null on {gameObject.name}", this);
+            Debug.Log($"{nameof(audioClip)} is null on {gameObject.name}", this);
+        }
+
+        if (float.IsNaN(volumeMultipler))
+        {
+            Debug.LogError($"{nameof(volumeMultipler)} is null on {gameObject.name}", this);
+            Debug.Log($"{nameof(volumeMultipler)} is null on {gameObject.name}", this);
+        }
+
+        if (float.IsNaN(volume))
+        {
+            Debug.LogError($"{nameof(volume)} is null on {gameObject.name}", this);
+            Debug.Log($"{nameof(volume)} is null on {gameObject.name}", this);
+        }
+
         audioSource.PlayOneShot(audioClip, volumeMultipler * volume);
         //AudioSource.PlayClipAtPoint(audioClip, position, volumeMultipler * volume);
         

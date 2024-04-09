@@ -28,9 +28,42 @@ public class MapScreenManager : MonoBehaviour
 
     private void GameInput_OnMapPressed(object sender, System.EventArgs e)
     {
-        if (saveStationScript.GetIsOnSaveStation() == false)
+        //For tutorial level
+        if (saveStationScript != null)
         {
+            if (saveStationScript.GetIsOnSaveStation() == false)
+            {
 
+                if (IsMapScreenOpen == false)
+                {
+                    //open map screen
+                    GameSceneManager.Instance.SetGameState(GameStates.MapOpen);
+                    OpenMapScreen();
+
+
+                }
+
+                else
+                {
+                    //close map screen
+                    GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
+                    CloseMapScreen();
+
+                }
+
+            }
+            else
+            {
+                if (IsMapScreenOpen == true)
+                {
+                    GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
+                    CloseMapScreen();
+                }
+            }
+        }
+
+        else
+        {
             if (IsMapScreenOpen == false)
             {
                 //open map screen
@@ -46,15 +79,6 @@ public class MapScreenManager : MonoBehaviour
                 GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
                 CloseMapScreen();
 
-            }
-
-        }
-        else
-        {
-            if (IsMapScreenOpen == true)
-            {
-                GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
-                CloseMapScreen();
             }
         }
     }
