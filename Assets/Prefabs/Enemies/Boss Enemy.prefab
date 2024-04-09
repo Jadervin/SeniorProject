@@ -443,7 +443,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.6353846, y: 1.4050751}
+    - - {x: -0.18223667, y: 1.1001358}
+      - {x: -1.6353846, y: 1.4050751}
       - {x: -2.1479063, y: 0.763114}
       - {x: -1.0475025, y: 0.34954622}
       - {x: -1.0353861, y: -0.40306473}
@@ -452,8 +453,8 @@ PolygonCollider2D:
       - {x: -0.8821139, y: -1.4797877}
       - {x: 2.4876504, y: -1.5590055}
       - {x: 2.4526825, y: -0.10084534}
-      - {x: 2.4429579, y: 1.975357}
-      - {x: 2.1337862, y: 2.8192225}
+      - {x: 2.0457602, y: 1.1412392}
+      - {x: 1.3393898, y: 1.2304277}
   m_UseDelaunayMesh: 0
 --- !u!114 &8449440168632149564
 MonoBehaviour:
@@ -608,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6118b65be1e40a43b219b065401ca8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossEnemy: {fileID: 0}
 --- !u!95 &2350215221444586822
 Animator:
   serializedVersion: 5

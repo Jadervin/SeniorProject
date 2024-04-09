@@ -26,6 +26,19 @@ public class LevelData : MonoBehaviour
 
                     enemy.gameObject.GetComponentInChildren<EnemyScript>().ResetHealth();
                     enemy.gameObject.GetComponentInChildren<EnemyScript>().ResetEnemyState();
+
+                    if(enemy.transform.GetChild(0).TryGetComponent<GroundStationaryAttackerEnemyScript>(out GroundStationaryAttackerEnemyScript stationaryEnemy))
+                    {
+                        //Debug.Log("Stationary Enemy Reset");
+                        stationaryEnemy.ResetEnemyState();
+                    }
+
+                    if(enemy.transform.GetChild(0).TryGetComponent<FlyingStationaryChaserEnemyScript>(out FlyingStationaryChaserEnemyScript flyingEnemy))
+                    {
+                        //Debug.Log("Flying Enemy Reset");
+                        flyingEnemy.ResetEnemyState();
+                    }
+                   
                 }
             }
         }   
