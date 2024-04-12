@@ -14419,7 +14419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5668fa64c9ac7e84aa164a3cf116a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0.06, y: 0}
+  parallaxEffectMultiplier: {x: 0.03, y: 0}
   roomCamera: {fileID: 777962504}
 --- !u!1 &237070302
 GameObject:
@@ -105251,7 +105251,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698163273}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
