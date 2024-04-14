@@ -14632,7 +14632,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -3
   m_Sprite: {fileID: 21300000, guid: 31ed5c1dfeb1b514eaf14a9e5ef96303, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.30588236, g: 0.3764706, b: 0.6431373, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -28780,6 +28780,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3498762399126386536, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5163819194048927550, guid: 1e8c0ed819bcabb45b84119e2e650a1f, type: 3}
       propertyPath: m_Name
       value: HealthUpgradeObject
@@ -41271,6 +41275,10 @@ PrefabInstance:
     - target: {fileID: 6191440410365164192, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: collectableID
       value: SWUp1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595154144711886408, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: m_LocalPosition.x
@@ -111418,7 +111426,7 @@ SpriteRenderer:
   m_SortingLayer: -2
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: fa8705235e65cb74bb500e95cc4586cb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -113925,6 +113933,10 @@ PrefabInstance:
     - target: {fileID: 6191440410365164192, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: collectableID
       value: SWUp2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595154144711886408, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: m_LocalPosition.x
