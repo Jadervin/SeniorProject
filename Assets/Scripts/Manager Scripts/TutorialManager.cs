@@ -21,8 +21,21 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private GameObject healthCheckmark;
     [SerializeField] private List<GameObject> mapCheckmarks;
 
+    [Header("Checkmark Booleans")]
+    [SerializeField] private bool jumpCheckmarksComplete;
+    [SerializeField] private bool shootCheckmarksComplete;
+    [SerializeField] private bool optionCheckmarksComplete;
+    [SerializeField] private bool sWSwitchCheckmarksComplete;
+    [SerializeField] private bool specialShootCheckmarksComplete;
+    [SerializeField] private bool counterCheckmarksComplete;
+    [SerializeField] private bool counterSuccessCheckmarkComplete;
+    [SerializeField] private bool orbCheckmarkComplete;
+    [SerializeField] private bool planetTotemCheckmarkComplete;
+    [SerializeField] private bool healthCheckmarkComplete;
+    [SerializeField] private bool mapCheckmarksComplete;
 
-    [Header("Booleans")]
+    /*
+    [Header("Tutorial Booleans")]
     [SerializeField] private bool tutorial2Complete;
     [SerializeField] private bool tutorial3Complete;
     [SerializeField] private bool tutorial4Complete;
@@ -30,6 +43,8 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private bool tutorial6Complete;
     [SerializeField] private bool tutorial7Complete;
     [SerializeField] private bool tutorial10Complete;
+    */
+
 
     [Header("Unlockable Areas")]
     [SerializeField] private GameObject tutorial2UnlockableArea;
@@ -62,9 +77,15 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
+
+
         GameInput.Instance.OnShootPressed += GameInput_OnShootPressed;
 
         GameInput.Instance.OnJumpPressed += GameInput_OnJumpPressed;
+
+        GameInput.Instance.OnPausePressed += GameInput_OnPausePressed;
     }
 
     
@@ -80,6 +101,7 @@ public class TutorialManager : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
+            shootCheckmarksComplete = true;
         }
     }
 
@@ -95,12 +117,40 @@ public class TutorialManager : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
+
+            jumpCheckmarksComplete = true;
         }
     }
+
+
+    private void GameInput_OnPausePressed(object sender, System.EventArgs e)
+    {
+        if (CameraManager.instance.GetCurrentCamera() == tutorial2Camera)
+        {
+            foreach (GameObject obj in optionCheckmarks)
+            {
+                if (obj.activeSelf == false)
+                {
+                    obj.SetActive(true);
+                }
+            }
+
+            optionCheckmarksComplete = true;
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(jumpCheckmarksComplete == true && shootCheckmarksComplete == true && optionCheckmarksComplete == true)
+        {
+            //tutorial2Complete = true;
+            jumpCheckmarksComplete = false;
+            shootCheckmarksComplete = false;
+            optionCheckmarksComplete = false;
+
+            tutorial2UnlockableArea.SetActive(false);
+        }
     }
 }
