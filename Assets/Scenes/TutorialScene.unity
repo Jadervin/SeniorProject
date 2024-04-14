@@ -79644,6 +79644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6cd44bc6aed2ba4792f331088eb7291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerArtifactCollection: {fileID: 1464256115}
   jumpCheckmarks:
   - {fileID: 861265083}
   - {fileID: 1706487517}
@@ -79669,6 +79670,17 @@ MonoBehaviour:
   mapCheckmarks:
   - {fileID: 826404857}
   - {fileID: 2058679085}
+  jumpCheckmarksComplete: 0
+  shootCheckmarksComplete: 0
+  optionCheckmarksComplete: 0
+  sWSwitchCheckmarksComplete: 0
+  specialShootCheckmarksComplete: 0
+  counterCheckmarksComplete: 0
+  counterSuccessCheckmarkComplete: 0
+  orbCheckmarkComplete: 0
+  planetTotemCheckmarkComplete: 0
+  healthCheckmarkComplete: 0
+  mapCheckmarksComplete: 0
   tutorial2Complete: 0
   tutorial3Complete: 0
   tutorial4Complete: 0

@@ -13,7 +13,16 @@ public class EnemyProjectileScript : MonoBehaviour
 
     [SerializeField] private EnemyScript enemy;
     [SerializeField] private int damage;
-    
+
+    public static event EventHandler OnAnyEnemyCountered;
+
+
+    public static void ResetStaticData()
+    {
+        OnAnyEnemyCountered = null;
+
+    }
+
 
     public int GetDamage()
     {
@@ -31,6 +40,8 @@ public class EnemyProjectileScript : MonoBehaviour
             });
 
             //enemyState = EnemyStates.STUNNED;
+
+            OnAnyEnemyCountered?.Invoke(this, EventArgs.Empty);
             enemy.StunEnemy();
         }
     }

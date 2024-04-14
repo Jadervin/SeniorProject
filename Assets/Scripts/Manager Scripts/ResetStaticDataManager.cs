@@ -14,6 +14,8 @@ public class ResetStaticDataManager : MonoBehaviour
         Collectables.ResetStaticData();
         RefillStationScript.ResetStaticData();
         PlanetTotemScript.ResetStaticData();
+
+        EnemyProjectileScript.ResetStaticData();
         
     }
 }
