@@ -102,8 +102,13 @@ public class TutorialManager : MonoBehaviour
 
         playerArtifactCollection.OnPlayerCollectsArtifact += PlayerArtifactCollection_OnPlayerCollectsArtifact;
         PlanetTotemScript.OnPlayerHasAllArtifacts += PlanetTotemScript_OnPlayerHasAllArtifacts;
+        RefillStationScript.OnAnyHeathRefill += RefillStationScript_OnAnyHeathRefill;
+
+
+        GameInput.Instance.OnMapPressed += GameInput_OnMapPressed;
 
     }
+
 
     private void GameInput_OnShootPressed(object sender, System.EventArgs e)
     {
@@ -254,6 +259,37 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    private void RefillStationScript_OnAnyHeathRefill(object sender, System.EventArgs e)
+    {
+        if (CameraManager.instance.GetCurrentCamera() == tutorial7Camera)
+        {
+
+            if (healthCheckmark.activeSelf == false)
+            {
+                healthCheckmark.SetActive(true);
+            }
+
+            healthCheckmarkComplete = true;
+
+        }
+    }
+
+
+    private void GameInput_OnMapPressed(object sender, System.EventArgs e)
+    {
+        if (CameraManager.instance.GetCurrentCamera() == tutorial10Camera)
+        {
+            foreach (GameObject obj in mapCheckmarks)
+            {
+                if (obj.activeSelf == false)
+                {
+                    obj.SetActive(true);
+                }
+            }
+            mapCheckmarksComplete = true;
+        }
+    }
+
 
 
     // Update is called once per frame
@@ -304,6 +340,22 @@ public class TutorialManager : MonoBehaviour
             planetTotemCheckmarkComplete = false;
 
             tutorial6UnlockableArea.SetActive(false);
+        }
+
+        if (healthCheckmarkComplete == true && tutorial7Complete == false)
+        {
+            tutorial7Complete = true;
+            healthCheckmarkComplete = false;
+
+            tutorial7UnlockableArea.SetActive(false);
+        }
+
+        if (mapCheckmarksComplete == true && tutorial10Complete == false)
+        {
+            tutorial10Complete = true;
+            mapCheckmarksComplete = false;
+
+            tutorial10UnlockableArea.SetActive(false);
         }
 
     }

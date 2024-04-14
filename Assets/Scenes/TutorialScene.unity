@@ -88370,6 +88370,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5868250318068863133, guid: da386970c6fede74fb9dfe95d21525fb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6b153ff7a3bb7c0468d8abb7ace43add, type: 3}
     - target: {fileID: 8917967192720478452, guid: da386970c6fede74fb9dfe95d21525fb, type: 3}
       propertyPath: m_fontAsset
       value: 
