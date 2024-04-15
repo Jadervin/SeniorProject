@@ -71,6 +71,9 @@ public class BossEnemyScript : EntityScript
     [SerializeField] protected bool isFacingRight;
     [SerializeField] protected bool currentlyAttacking;
     [SerializeField] protected bool isHurt;
+    [SerializeField] protected bool setHighHealth;
+    [SerializeField] protected bool setMildHealth;
+    [SerializeField] protected bool setLowHealth;
 
 
     [Header("Hurt Timer")]
@@ -316,8 +319,12 @@ public class BossEnemyScript : EntityScript
             case BossEnemyHealthStates.HIGHHEALTH:
                 if (bossEnemyState != BossEnemyStates.WAITINGFORPLAYER && canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
-                    mainSprite.color = mainColor;
-                    currentColor = mainColor;
+                    if (setHighHealth == false)
+                    {
+                        mainSprite.color = mainColor;
+                        currentColor = mainColor;
+                        setHighHealth = true;
+                    }
                 }
 
                 if (currentHealth < (maxHealth * .6f))
@@ -329,8 +336,12 @@ public class BossEnemyScript : EntityScript
             case BossEnemyHealthStates.MILDHEALTH:
                 if (canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
-                    mainSprite.color = Color.magenta;
-                    currentColor = Color.magenta;
+                    if (setMildHealth == false)
+                    {
+                        mainSprite.color = Color.magenta;
+                        currentColor = Color.magenta;
+                        setMildHealth = true;
+                    }
                 }
 
 
@@ -343,8 +354,13 @@ public class BossEnemyScript : EntityScript
             case BossEnemyHealthStates.LOWHEALTH:
                 if (canAttack == true && bossEnemyState != BossEnemyStates.STUNNED)
                 {
-                    mainSprite.color = Color.yellow;
-                    currentColor = Color.yellow;
+                    if (setLowHealth == false)
+                    {
+                        mainSprite.color = Color.yellow;
+                        currentColor = Color.yellow;
+
+                        setLowHealth = true;
+                    }
                 }
                 break;
 
@@ -372,7 +388,7 @@ public class BossEnemyScript : EntityScript
                 currentHurtTime = 0;
                 isHurt = false;
 
-                mainSprite.color = mainColor;
+                mainSprite.color = currentColor;
 
             }
 
@@ -571,6 +587,22 @@ public class BossEnemyScript : EntityScript
 
             //enemyState = EnemyStates.STUNNED;
         }
+    }
+
+    private void OnParticleCollision(GameObject particle)
+    {
+        if (particle.GetComponent<SpecialWeaponParticleScript>().GetHitWithParticleBool() == false)
+        {
+            DamageHealth(particle.GetComponent<SpecialWeaponParticleScript>().GetDamage());
+            SetGotHurt();
+
+            particle.GetComponent<SpecialWeaponParticleScript>().SetHitWithParticleBool(true);
+
+
+            //particle.SetActive(false);
+            //hitWithParticle = true;
+        }
+
     }
 
 
