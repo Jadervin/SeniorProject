@@ -36,6 +36,7 @@ public class EnemyScript : EntityScript
     [SerializeField] protected GameObject itemToSpawn;
     [SerializeField] protected string enemyID = "";
     [SerializeField] private GameObject enemyExplosionPrefab;
+    [SerializeField] private GameObject counterEffectPrefab;
     protected Color mainColor;
 
     /*[Header("Damage Amount")]
@@ -60,14 +61,21 @@ public class EnemyScript : EntityScript
 
     [Header("Booleans")]
     [SerializeField] protected bool isFacingRight;
+    
     [SerializeField] protected bool onEdgeOfGround;
     [SerializeField] protected bool canChaseDetection;
     [SerializeField] protected bool canAttackDetection;
     [SerializeField] protected bool currentlyAttacking;
-    
 
     [SerializeField] protected bool stunTimerOn;
     [SerializeField] protected bool notStunnedAnymore;
+    [SerializeField] protected bool isHurt;
+
+
+    [Header("Hurt Timer")]
+    [SerializeField] protected float currentHurtTime = 0f;
+    [SerializeField] protected float hurtTime = 1f;
+
 
     [Header("Options")]
     [SerializeField] private bool canPatrolOption;
@@ -225,6 +233,8 @@ public class EnemyScript : EntityScript
         //Check if the player collides with any of the circle colliders made in this code
         CheckCustomColliders();
 
+        
+
 
         switch (enemyState)
         {
@@ -332,11 +342,39 @@ public class EnemyScript : EntityScript
                 //Enemy is dead and cannot do anything
                 break;
 
-            default: 
+            default:
                 break;
                     
         }
+
+
+
     }
+
+    private void FixedUpdate()
+    {
+        if (isHurt == true)
+        {
+            mainSprite.color = Color.gray;
+
+            if (currentHurtTime <= hurtTime)
+            {
+                currentHurtTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                currentHurtTime = 0;
+                isHurt = false;
+
+                mainSprite.color = mainColor;
+
+            }
+
+
+        }
+
+    }
+
 
     protected void Movement()
     {
@@ -405,6 +443,8 @@ public class EnemyScript : EntityScript
         if (particle.GetComponent<SpecialWeaponParticleScript>().GetHitWithParticleBool() == false)
         {
             DamageHealth(particle.GetComponent<SpecialWeaponParticleScript>().GetDamage());
+            SetGotHurt();
+
             particle.GetComponent<SpecialWeaponParticleScript>().SetHitWithParticleBool(true);
 
             
@@ -412,6 +452,11 @@ public class EnemyScript : EntityScript
             //hitWithParticle = true;
         }
 
+    }
+
+    public void SetGotHurt()
+    {
+        isHurt = true;
     }
 
 
@@ -427,14 +472,14 @@ public class EnemyScript : EntityScript
         //StopAllCoroutines();
         Vector2 knockbackDirection = (transform.position - collidedGameObject.transform.position).normalized;
         knockbackDirection.y *= -1;
-        Debug.Log(knockbackDirection * knockbackStrength);
+        //Debug.Log(knockbackDirection * knockbackStrength);
 
         rb.velocity = Vector2.zero;
         //knockbackDirection = new Vector2((Mathf.Sign(knockbackDirection.x)), 0);
         //Debug.Log(knockbackDirection);
         rb.AddForce(knockbackDirection * knockbackStrength, ForceMode2D.Impulse);
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
         
         StartCoroutine(KnockbackDelay());
         StunEnemy();
@@ -450,6 +495,11 @@ public class EnemyScript : EntityScript
 
     public void StunEnemy()
     {
+        if (counterEffectPrefab != null)
+        {
+            GameObject temp = Instantiate(counterEffectPrefab, this.transform.position, this.transform.rotation);
+
+        }
         enemyState = EnemyStates.STUNNED;
     }
 

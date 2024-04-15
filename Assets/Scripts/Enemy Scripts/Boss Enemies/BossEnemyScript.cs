@@ -61,6 +61,8 @@ public class BossEnemyScript : EntityScript
 
     [SerializeField] private GameObject bossEnemyExplosionPrefab;
 
+    [SerializeField] private GameObject counterEffectPrefab;
+
     protected Color mainColor;
     protected Color currentColor;
     [SerializeField] protected string bossEnemyID = "";
@@ -68,12 +70,18 @@ public class BossEnemyScript : EntityScript
     [Header("Booleans")]
     [SerializeField] protected bool isFacingRight;
     [SerializeField] protected bool currentlyAttacking;
+    [SerializeField] protected bool isHurt;
 
-/*
-    [Header("Tags")]
-    public string WALLTAG = "Wall";
-    public string TONGUE_COUNTER_TAG = "TongueCounter";
-*/
+
+    [Header("Hurt Timer")]
+    [SerializeField] protected float currentHurtTime = 0f;
+    [SerializeField] protected float hurtTime = 1f;
+
+    /*
+        [Header("Tags")]
+        public string WALLTAG = "Wall";
+        public string TONGUE_COUNTER_TAG = "TongueCounter";
+    */
 
     [Header("Layer Masks")]
     [SerializeField] protected LayerMask playerLayer;
@@ -348,6 +356,30 @@ public class BossEnemyScript : EntityScript
         }
     }
 
+
+    private void FixedUpdate()
+    {
+        if (isHurt == true)
+        {
+            mainSprite.color = Color.gray;
+
+            if (currentHurtTime <= hurtTime)
+            {
+                currentHurtTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                currentHurtTime = 0;
+                isHurt = false;
+
+                mainSprite.color = mainColor;
+
+            }
+
+
+        }
+    }
+
     private void CheckForPlayer()
     {
         playerTriggerRadius = playerTriggerRadiusReset;
@@ -541,6 +573,13 @@ public class BossEnemyScript : EntityScript
         }
     }
 
+
+    public void SetGotHurt()
+    {
+        isHurt = true;
+    }
+
+
     protected void EnemyKnockbackAction(GameObject collidedGameObject)
     {
 /*        StopAllCoroutines();
@@ -566,6 +605,9 @@ public class BossEnemyScript : EntityScript
         //Debug.Log(rb.velocity);
 
         StartCoroutine(KnockbackDelay());
+
+        GameObject temp = Instantiate(counterEffectPrefab, this.transform.position, this.transform.rotation);
+
 
         bossEnemyState = BossEnemyStates.STUNNED;
         //StunEnemy();

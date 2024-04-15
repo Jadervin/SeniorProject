@@ -501,6 +501,7 @@ MonoBehaviour:
   itemToSpawn: {fileID: 0}
   enemyID: 
   enemyExplosionPrefab: {fileID: 3201618850806317528, guid: 406ca99c3feb7014584e3471746e28c9, type: 3}
+  counterEffectPrefab: {fileID: 0}
   groundLength: 0.95
   colliderOffset: {x: -0.53, y: 0, z: 0}
   chaseTriggerRadius: 3
@@ -516,6 +517,9 @@ MonoBehaviour:
   currentlyAttacking: 0
   stunTimerOn: 0
   notStunnedAnymore: 0
+  isHurt: 0
+  currentHurtTime: 0
+  hurtTime: 0.1
   canPatrolOption: 0
   canChaseOption: 0
   _enemyState: 0
@@ -589,6 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 5320036793749713873}
   damage: 4
+  counterEffectPrefab: {fileID: 6301208322106742489, guid: a8dde67f093136d48aaa56dcb8198a5d, type: 3}
 --- !u!61 &7208155411770650363
 BoxCollider2D:
   m_ObjectHideFlags: 0

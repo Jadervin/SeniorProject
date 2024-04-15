@@ -478,9 +478,13 @@ MonoBehaviour:
   mainSprite: {fileID: 7647476556311090255}
   itemToSpawn: {fileID: 0}
   bossEnemyExplosionPrefab: {fileID: 1502257447224867889, guid: 55682262c4f7fd147a03abcc1544a572, type: 3}
+  counterEffectPrefab: {fileID: 167074414365056612, guid: e2f39b62b935b07458d541db9588865b, type: 3}
   bossEnemyID: 
   isFacingRight: 0
   currentlyAttacking: 0
+  isHurt: 0
+  currentHurtTime: 0
+  hurtTime: 0.1
   playerLayer:
     serializedVersion: 2
     m_Bits: 256

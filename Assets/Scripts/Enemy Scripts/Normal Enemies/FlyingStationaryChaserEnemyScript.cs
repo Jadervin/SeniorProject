@@ -253,6 +253,26 @@ public class FlyingStationaryChaserEnemyScript : EnemyScript
                 break;
 
         }
+
+        if (isHurt == true)
+        {
+            mainSprite.color = Color.gray;
+
+            if (currentHurtTime <= hurtTime)
+            {
+                currentHurtTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                currentHurtTime = 0;
+                isHurt = false;
+
+                mainSprite.color = mainColor;
+
+            }
+
+
+        }
     }
 
 

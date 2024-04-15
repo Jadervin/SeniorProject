@@ -37,11 +37,13 @@ public class AfterShockScript : MonoBehaviour
                 if(collider.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
                 {
                     enemy.DamageHealth(shockDamage);
+                    enemy.SetGotHurt();
 
                 }
                 else if(collider.gameObject.TryGetComponent<BossEnemyScript>(out BossEnemyScript boss))
                 {
                     boss.DamageHealth(shockDamage);
+                    boss.SetGotHurt();
 
                 }
 

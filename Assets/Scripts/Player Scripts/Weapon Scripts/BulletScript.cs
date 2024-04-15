@@ -85,6 +85,17 @@ public class BulletScript : MonoBehaviour
             
             collision.gameObject.GetComponent<EntityScript>().DamageHealth(bulletDamage);
             
+            if(collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
+            {
+                enemy.SetGotHurt();
+            }
+
+            if (collision.gameObject.TryGetComponent<BossEnemyScript>(out BossEnemyScript bossEnemy))
+            {
+                bossEnemy.SetGotHurt();
+            }
+
+
 
             if (bulletType == BulletTypes.GRENADE)
             {

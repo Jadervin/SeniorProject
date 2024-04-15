@@ -756,7 +756,8 @@ MonoBehaviour:
     https://opengameart.org/users/spring-spring\n\t-Flying Enemy Slash Attack made
     by GustavoPlima from OpenGameArt\r\n\t\tLink to user: https://opengameart.org/users/gustavoplima\n\t-Ground
     Stationary Enemy Slash Attack made by MetaShinryu from OpenGameArt\n\t\tLink
-    to user: https://opengameart.org/users/metashinryu\n\n"
+    to user: https://opengameart.org/users/metashinryu\n\t-Enemy Countered Effect
+    made by GustavoPlima from OpenGameArt\r\n\t\tLink to user: https://opengameart.org/users/gustavoplima\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94535683f37225541b57e9c0866f54cb, type: 2}
   m_sharedMaterial: {fileID: -818225515190014256, guid: 94535683f37225541b57e9c0866f54cb, type: 2}

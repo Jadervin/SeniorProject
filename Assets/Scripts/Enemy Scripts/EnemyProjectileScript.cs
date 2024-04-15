@@ -14,6 +14,8 @@ public class EnemyProjectileScript : MonoBehaviour
     [SerializeField] private EnemyScript enemy;
     [SerializeField] private int damage;
 
+    [SerializeField] private GameObject counterEffectPrefab;
+
     public static event EventHandler OnAnyEnemyCountered;
 
 
@@ -40,6 +42,10 @@ public class EnemyProjectileScript : MonoBehaviour
             });
 
             //enemyState = EnemyStates.STUNNED;
+
+            
+            GameObject temp = Instantiate(counterEffectPrefab, this.transform.position, this.transform.rotation);
+
 
             OnAnyEnemyCountered?.Invoke(this, EventArgs.Empty);
             enemy.StunEnemy();
