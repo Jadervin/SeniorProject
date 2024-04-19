@@ -546,7 +546,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 83fd059d44b57e04aa1804dbdf7ec2fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -980,7 +980,7 @@ Transform:
   m_GameObject: {fileID: 59973814}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.05, y: -13.06, z: -0.49969432}
+  m_LocalPosition: {x: -4.05, y: -13.21, z: -0.49969432}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -14732,7 +14732,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 83fd059d44b57e04aa1804dbdf7ec2fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -28190,7 +28190,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 83fd059d44b57e04aa1804dbdf7ec2fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -41290,7 +41290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 54.13
+      value: 53.99
       objectReference: {fileID: 0}
     - target: {fileID: 8995293977351249911, guid: 3ca6842d14c1722498216eaf77d2ea29, type: 3}
       propertyPath: m_LocalPosition.z
@@ -72993,8 +72993,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -76316,8 +76316,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -92706,7 +92706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7159573112845096422, guid: a3a285c3c4c4a3e4ebb09778e03aca28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 66.15091
+      value: 65.711
       objectReference: {fileID: 0}
     - target: {fileID: 7159573112845096422, guid: a3a285c3c4c4a3e4ebb09778e03aca28, type: 3}
       propertyPath: m_LocalPosition.z
@@ -106061,7 +106061,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 83fd059d44b57e04aa1804dbdf7ec2fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
