@@ -9,6 +9,8 @@ public class SaveStationScript : MonoBehaviour
     [SerializeField] private GameObject saveCollisionMessage;
     //[SerializeField] private GameObject saveMenuUI;
     [SerializeField] private bool isOnSaveStation = false;
+    //[SerializeField] private bool isSaved;
+    [SerializeField] private GameObject saveCheckmarkSprite;
 
     
 
@@ -19,6 +21,14 @@ public class SaveStationScript : MonoBehaviour
         GameInput.Instance.OnMapPressed += GameInput_OnMapPressed;
 
         saveCollisionMessage.SetActive(false);
+
+        SaveMenuUI.Instance.OnSaved += SaveMenuUI_OnSaved;
+        saveCheckmarkSprite.SetActive(false);
+    }
+
+    private void SaveMenuUI_OnSaved(object sender, EventArgs e)
+    {
+        saveCheckmarkSprite.SetActive(true);
     }
 
     private void GameInput_OnMapPressed(object sender, EventArgs e)

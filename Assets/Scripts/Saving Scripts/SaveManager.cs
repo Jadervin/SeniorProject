@@ -63,8 +63,8 @@ public class SaveManager : MonoBehaviour
         string json = JsonUtility.ToJson(saveData);
         SaveSystem.Save(json);
 
-        Debug.Log("Saved");
-        Debug.Log(json);
+        //Debug.Log("Saved");
+        //Debug.Log(json);
 
     }
     private void Load()
@@ -74,7 +74,7 @@ public class SaveManager : MonoBehaviour
         if (saveString != null)
         {
             //Debug.Log("Loaded");
-            Debug.Log(saveString);
+            //Debug.Log(saveString);
 
 
             SaveData saveData = JsonUtility.FromJson<SaveData>(saveString);
@@ -96,7 +96,7 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Save");
+            //Debug.Log("No Save");
         }
 
     }

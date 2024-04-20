@@ -15,6 +15,8 @@ public class SaveMenuUI : MonoBehaviour
 
     [SerializeField] private bool isGamePaused = false;
 
+    public event EventHandler OnSaved;
+
     
 
     private void Awake()
@@ -34,6 +36,9 @@ public class SaveMenuUI : MonoBehaviour
             GameSceneManager.Instance.SetGameState(GameStates.GamePlaying);
             ToggleTimePause();
             SoundManager.instance.PlaySaveSound();
+
+            OnSaved?.Invoke(this, EventArgs.Empty);
+
             Hide();
         });
 
@@ -49,6 +54,8 @@ public class SaveMenuUI : MonoBehaviour
     void Start()
     {
         Hide();
+
+
     }
 
     
