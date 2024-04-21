@@ -14658,7 +14658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5668fa64c9ac7e84aa164a3cf116a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxEffectMultiplier: {x: 0.03, y: 0}
+  parallaxEffectMultiplier: {x: 0.025, y: 0}
   roomCamera: {fileID: 777962504}
 --- !u!1 &232149895
 GameObject:

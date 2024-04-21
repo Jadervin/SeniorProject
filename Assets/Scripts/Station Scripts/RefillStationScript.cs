@@ -13,6 +13,9 @@ public class RefillStationScript : MonoBehaviour
 
     public static event EventHandler OnAnyHeathRefill;
 
+    [SerializeField] private GameObject healingEffectPrefab;
+    [SerializeField] private List<GameObject> healingEffectSpawnSpots;
+
     public static void ResetStaticData()
     {
         OnAnyHeathRefill = null;
@@ -38,6 +41,12 @@ public class RefillStationScript : MonoBehaviour
         {
             refilledEnergy = true;
             OnAnyHeathRefill?.Invoke(this, EventArgs.Empty);
+
+            foreach (GameObject spawnSpots in healingEffectSpawnSpots)
+            {
+                GameObject temp = Instantiate(healingEffectPrefab, spawnSpots.transform.position, spawnSpots.transform.rotation);
+            }
+
             playerHealth.HealthRefill();
             specialWeaponScript.RechargeEnergy();
         }
