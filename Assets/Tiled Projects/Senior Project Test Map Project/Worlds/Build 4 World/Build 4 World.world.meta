@@ -8,13 +8,7 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: c6b19dac32d07094ca0a4ffc902a36c4, type: 3}
-  missingFiles: []
-  errors: []
-  warnings: []
-  missingSortingLayers: []
-  missingLayers: []
-  missingTags: []
   importerVersion: 1
   pixelsPerUnit: 16
   edgesPerEllipse: 32
-  numberOfObjectsImported: 2
+  numberOfObjectsImported: 3
